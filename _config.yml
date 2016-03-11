@@ -1,1 +1,16 @@
-destination: _site
+# My variables
+name: Micah Cowell
+description: Futuristic Web Design
+google_analytics: null
+google_verification: null
+
+
+# File management
+include:      [".htaccess"]
+exclude:      ["readme.md", "LICENSE"]
+
+
+# Sass
+sass:
+  style: :compressed
+  sass_dir: _sass

@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
+---
+layout: default
+---
 
-<head>
-    <title>Micah Cowell</title>
-</head>
+<div class="posts">
+    <ul class="posts__list">
 
-<body>
-    <h1>Hello World!</h1>
-    <p>this is a jekyll blog</p>
-</body>
+        {% for post in site.posts %}
+            <li>
+                {{ post.date | date: '%b %d %Y' }}<a href="{{ post.url }}">{{ post.title }}</a>
+            </li>
+        {% endfor %}
 
-</html>
+    </ul>
+</div>

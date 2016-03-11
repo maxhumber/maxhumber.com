@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<a href="/">home</a>
+
+<div class="post">
+
+    <h1 class="post__title">{{ page.title }}</h1>
+    <p class="post__date">{{ page.date | date: '%B %-d, %Y' }}</p>
+
+    <div class="post__content"?>
+        {{ content }}
+    </div>
+
+</div>
