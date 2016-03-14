@@ -3,9 +3,6 @@
 
 @import "reset";
 @import "config";
-@import "header";
-@import "post";
-@import "about";
 
 
 body {
@@ -31,6 +28,12 @@ a {
     text-decoration: none;
   }
 }
+ul {
+    margin-top: 5px;
+    li {
+        margin-top: 5px;
+    }
+}
 
 
 // WRAPPER
@@ -41,8 +44,24 @@ a {
 }
 
 
-// PORTFOLIO
-.portfolio {
+// NAVIGATION
+.nav {
+    h1 {
+        font-size: 36px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    ul {
+        li {
+            display: inline;
+            margin-right: 5px;
+        }
+    }
+}
+
+
+.blog {
     margin-top: 20px;
     h1 {
         font-size: 24px;
@@ -50,8 +69,17 @@ a {
 }
 
 
-// BLOG
-.blog {
+.post {
+    margin-top: 20px;
+}
+
+
+.about {
+    margin-top: 20px;
+}
+
+
+.portfolio {
     margin-top: 20px;
     h1 {
         font-size: 24px;

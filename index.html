@@ -2,24 +2,13 @@
 layout: default
 ---
 
-<div class="portfolio">
-    <h1>Portfolio</h1>
-    <ul>
-        {% for project in site.data.projects %}
-        <li>
-            <a href="{{ project.url }}">{{ project.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
-
 
 <div class="blog">
     <h1>Blog</h1>
     <ul>
         {% for post in site.posts %}
         <li>
-            <a href="{{ post.url }}">{{ post.title }} | {{ post.date | date: '%b %d %Y' }}</a>
+            <span class="date">{{ post.date | date: '%b %d %Y' }}</span> | <a href="{{ post.url }}">{{ post.title }}</a>
         </li>
         {% endfor %}
     </ul>
