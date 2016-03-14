@@ -2,5 +2,12 @@
 <div class="header">
     <h1>{{ site.name }}</h1>
     <h2>{{ site.description }}</h2>
-    <a href="/">home</a>
+    <ul>
+        <li><a href="/">home</a></li>
+        {% for item in site.data.navigation %}
+        <li>
+            <a href="{{ item.url }}">{{ item.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
 </div>

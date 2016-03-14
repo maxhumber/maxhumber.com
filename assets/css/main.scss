@@ -3,32 +3,47 @@
 
 @import "reset";
 @import "config";
+@import "header";
+@import "post";
+@import "about";
+
 
 body {
     color: $color-primary;
     background: $color-background;
 }
+h1, h2 {
+    margin-bottom: 5px;
+}
+a {
+  color: #1A0DAB;
+  text-decoration: none;
+  &:visited {
+    color: #1A0DAB;
+    text-decoration: none;
+  }
+  &:hover {
+    color: #1A0DAB;
+    text-decoration: underline;
+  }
+  &:active {
+    color: #1A0DAB;
+    text-decoration: none;
+  }
+}
 
 
 // WRAPPER
 .wrapper {
-    margin: 30px;
-}
-
-
-// HEADER
-.header {
-    h1 {
-        font-size: 36px;
-    }
-    h2 {
-        font-size: 20px;
-    }
+    max-width: 666px;
+    margin: auto;
+    padding: 30px;
 }
 
 
 // PORTFOLIO
 .portfolio {
+    margin-top: 20px;
     h1 {
         font-size: 24px;
     }
@@ -37,13 +52,8 @@ body {
 
 // BLOG
 .blog {
+    margin-top: 20px;
     h1 {
         font-size: 24px;
     }
-}
-
-
-// POST
-.post {
-    
 }
