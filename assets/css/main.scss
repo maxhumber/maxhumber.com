@@ -4,7 +4,6 @@
 @import "reset";
 @import "config";
 
-
 body {
     color: $color-primary;
     background: $color-background;
@@ -36,16 +35,12 @@ ul {
 }
 
 
-// WRAPPER
 .wrapper {
-    max-width: 666px;
-    margin: auto;
     padding: 30px;
 }
 
 
-// NAVIGATION
-.nav {
+.main {
     h1 {
         font-size: 36px;
     }
@@ -62,26 +57,28 @@ ul {
 
 
 .blog {
-    margin-top: 20px;
     h1 {
-        font-size: 24px;
+        font-size: 26px;
     }
 }
 
 
 .post {
-    margin-top: 20px;
-}
-
-
-.about {
-    margin-top: 20px;
+    h1 {
+        font-size: 26px;
+    }
 }
 
 
 .portfolio {
-    margin-top: 20px;
     h1 {
-        font-size: 24px;
+        font-size: 26px;
+    }
+}
+
+
+.about {
+    h1 {
+        font-size: 26px;
     }
 }
