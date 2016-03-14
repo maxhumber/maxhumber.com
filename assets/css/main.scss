@@ -1,9 +1,49 @@
 ---
 ---
 
+@import "reset";
 @import "config";
 
 body {
     color: $color-primary;
     background: $color-background;
+}
+
+
+// WRAPPER
+.wrapper {
+    margin: 30px;
+}
+
+
+// HEADER
+.header {
+    h1 {
+        font-size: 36px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+}
+
+
+// PORTFOLIO
+.portfolio {
+    h1 {
+        font-size: 24px;
+    }
+}
+
+
+// BLOG
+.blog {
+    h1 {
+        font-size: 24px;
+    }
+}
+
+
+// POST
+.post {
+    
 }

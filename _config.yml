@@ -1,13 +1,13 @@
 # My variables
 name: Micah Cowell
-description: Futuristic Web Design
+description: a clueless web developer
 google_analytics: null
 google_verification: null
 
 
 # File management
-include:      [".htaccess"]
-exclude:      ["README.md", "LICENSE"]
+include: [".htaccess"]
+exclude: ["README.md", "LICENSE"]
 
 
 # Sass
