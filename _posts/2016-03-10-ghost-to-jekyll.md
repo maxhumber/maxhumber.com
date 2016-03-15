@@ -20,3 +20,5 @@ The use of variables has to be my favorite feature. It splits variables up betwe
 
 # Data Files
 Another way to access info in your blog is through data files. Instead of just variables, data files allow you to create a YAML, JSON, or CSV file to put data into. For example on this site I have /data/websites.yml file where I store the websites I've made, the fields being the name and url, and then loop them into a list inside my html.
+
+[Jekyll Documentation](https://jekyllrb.com/docs/home/)
