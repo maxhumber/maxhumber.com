@@ -9,6 +9,7 @@ body {
     background: $color-background;
     font-family: 'Inconsolata', ;
     font-size: 100%;
+    font-weight: 400;
 }
 h1, h2 {
     margin-bottom: 5px;
@@ -52,7 +53,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     @media screen and (max-width: 570px) {
         display: block;
     }
@@ -91,9 +92,34 @@ ul {
 
 .post {
     padding-bottom: 30px;
-    h1 {
+    &__title {
         font-size: 1.4em;
-        margin-bottom: 5px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    &__date {
+        font-size: 1em;
+    }
+    &__content {
+        padding-top: 30px;
+        h1 {
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+        p {
+            font-size: 1em;
+            line-height: 150%;
+            margin-bottom: 12px;
+        }
+        strong {
+            font-weight: 700;
+        }
+        em {
+            font-style: italic;
+        }
+        u {
+            text-decoration: underline;
+        }
     }
 }
 
