@@ -7,6 +7,8 @@
 body {
     color: $color-primary;
     background: $color-background;
+    font-family: 'Inconsolata', ;
+    font-size: 100%;
 }
 h1, h2 {
     margin-bottom: 5px;
@@ -38,26 +40,25 @@ ul {
 .wrapper {
     max-width: 600px;
     margin: auto;
-    padding: 15px;
-    @media screen and (min-width: 570px) {
-        padding: 30px;
+    padding: 30px;
+    padding-top: 60px;
+    @media screen and (max-width: 570px) {
+        padding: 20px;
     }
 }
 
 
 .main {
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #000;
-    @media screen and (min-width: 570px) {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 40px;
+    @media screen and (max-width: 570px) {
+        display: block;
     }
     h1 {
-        font-size: 36px;
-        margin-right: 20px;
+        font-size: 2em;
+        margin-bottom: 0;
     }
     ul {
         margin-top: 10px;
@@ -69,29 +70,38 @@ ul {
 }
 
 
-.blog {
+.work {
+    padding-bottom: 30px;
     h1 {
-        font-size: 26px;
+        font-size: 1.4em;
+        margin-bottom: 5px;
+    }
+}
+
+
+
+.blog {
+    padding-bottom: 30px;
+    h1 {
+        font-size: 1.4em;
+        margin-bottom: 5px;
     }
 }
 
 
 .post {
+    padding-bottom: 30px;
     h1 {
-        font-size: 26px;
-    }
-}
-
-
-.portfolio {
-    h1 {
-        font-size: 26px;
+        font-size: 1.4em;
+        margin-bottom: 5px;
     }
 }
 
 
 .about {
+    padding-bottom: 30px;
     h1 {
-        font-size: 26px;
+        font-size: 1.4em;
+        margin-bottom: 5px;
     }
 }
