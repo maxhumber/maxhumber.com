@@ -137,7 +137,21 @@ ul {
             font-style: italic;
         }
         ul {
+            font-size: 1em;
             list-style: circle;
+            margin-left: 30px;
+            margin-top: -5px;
+            margin-bottom: 5px;
+            li {
+                padding: 5px;
+                padding-left: 5px;
+                @media screen and (max-width: $br) {
+                    padding: 10px 0 10px 0;
+                }
+            }
+            @media screen and (max-width: $br) {
+                margin-left: 10px;
+            }
         }
         img {
             margin-top: 10px;
