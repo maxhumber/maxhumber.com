@@ -35,7 +35,7 @@ I really do see myself sticking with Arch for quite some time. With its rolling 
 Here's a short list of things I have installed on my main Arch Linux computer.
 
 * Gnome 3 with [arc-theme](https://github.com/horst3180/arc-theme) and the [Paper icons](https://snwh.org/paper/icons/)
-* i3 gapless (if I'm feeling extra hackerish)
+* bspwm (if I'm feeling extra hackerish)
 * [mpv](https://mpv.io/) for all forms of media (ie. music and movies)
 * Google's open source browser [chromium](https://wiki.archlinux.org/index.php/chromium)
 * [atom-editor](https://aur.archlinux.org/packages/atom-editor-bin/) for coding (should probably learn vim better)
