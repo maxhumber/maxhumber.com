@@ -38,6 +38,7 @@ Here's a short list of things I have installed on my main Arch Linux computer.
 * bspwm (if I'm feeling extra hackerish)
 * [mpv](https://mpv.io/) for all forms of media (ie. music and movies)
 * Google's open source browser [chromium](https://wiki.archlinux.org/index.php/chromium)
-* [atom-editor](https://aur.archlinux.org/packages/atom-editor-bin/) for coding (should probably learn vim better)
+* [atom-editor](https://aur.archlinux.org/packages/atom-editor-bin/) for coding (should probably learn vim better)  
+
 
 *Update:* I changed some of the "What's on my PC" entries due to the input on [reddit](https://www.reddit.com/r/archlinux/comments/4c4mmh/blog_post_arch_linux_is_cool/). Thanks!
