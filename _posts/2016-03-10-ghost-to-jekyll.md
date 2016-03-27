@@ -27,4 +27,6 @@ Everything is through Github, which is where I would be putting my code anyways,
 # Conclusion
 So why did I switch to Jekyll? Simply the speed and price. The free hosting, static site generation, and complete control make it, in my opinion, the best option for any web developer desiring a blog. With Github Pages there's no need to check on your server nor do you have to worry about having the latest software, Github just does it for you.
 
+<br>
+
 For more information about Jekyll, check out the [Docs](https://jekyllrb.com/docs/home/).
