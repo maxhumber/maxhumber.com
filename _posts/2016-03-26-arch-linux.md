@@ -9,11 +9,11 @@ For most my computer life I have either used Windows 7 or Linux. Windows was gre
 # About My Computer
 *Hardware*: The PC I mainly use is a desktop that I built a few years back with a Intel Core i5, Nvidia GTX 650ti, and 8 GB of RAM.
 
-*Usage*: On my computer I mainly write code using a basic text-editor (i.e. atom and sublime text) and browse the web. I sometime play video games on Steam, which include Civ5 and Besiege.
+*Usage*: On my computer I mainly write code using a basic text-editor (i.e. atom or sublime text) and browse the web. I sometime play video games on Steam, which include Civ5 and Besiege.
 
 
 # The Dreaded Installation
-Getting Arch Linux really isn't that bad. Arch has great [documentation](https://www.archlinux.org/) and the [beginner's guide](https://wiki.archlinux.org/index.php/beginners'_guide) makes everything very straight forward. It still took me a couple of tries to get a stable desktop environment (graphic drivers were tricky) but once I got all the basic stuff taken care of I was finally able to begin making the operating system I really wanted.
+Getting Arch Linux up and running on your computer really isn't that bad. Arch has great [documentation](https://www.archlinux.org/) and the [beginner's guide](https://wiki.archlinux.org/index.php/beginners'_guide) makes everything very straight forward. It still took me a couple of tries to get a stable desktop environment (graphic drivers were tricky) but once I got all the basic stuff taken care of I was finally able to begin making the operating system I really wanted.
 
 
 # So Why use Arch?
