@@ -4,8 +4,8 @@ layout: about
 
 Hello, my name is Micah Cowell. I'm 17 years old living in Washington state. I like the internet, hip hop, and over-priced yo-yos. I make websites in the way I see most appealing and write code to put on Github.
 
-# What is with the website url?
-The url hac.im is just my name backwards. I'm also hipster af.
+[//]: # # What is with the website url?
+[//]: # The url hac.im is just my name backwards.
 
 # Who are your favorite artists?
 I currently like Oshi, Anderson Paak, and Common.
