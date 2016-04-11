@@ -7,11 +7,14 @@ Hello, my name is Micah Cowell. I'm 17 years old living in Washington state. I l
 [//]: # # What is with the website url?
 [//]: # The url hac.im is just my name backwards.
 
+# What do you do?
+I write code
+
 # Who are your favorite artists?
 I currently like Oshi, Anderson Paak, and Common.
 
 # What programming languages do you use?
-Javascript is my favorite but I do like Sass. I'm taking a Java class at my school right now (AP Computer Science) which is pretty fun.
+I like using Javascript and Sass when making websites but I also like Python and Haskell.
 
 # Which sports teams do you follow?
 I like following the Mariners but hate watching baseball. University of Washington football and basketball. Waiting for the Supersonics.
