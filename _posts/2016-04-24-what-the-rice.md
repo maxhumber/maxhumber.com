@@ -40,4 +40,4 @@ Here's a list of what I'm using on my Arch Linux System:
 * Files: pcmanfm
 
 <br>
-All the [dotfiles](https://github.com/getmicah/dotfiles) can be found on Github and if you can should check out my [reddit post](https://www.reddit.com/r/unixporn/comments/4f3rm0/bspwm_some_blue/) where can find some more details on my current setup and a gallery.
+All the [dotfiles](https://github.com/getmicah/dotfiles) can be found on Github. If you want to see a gallery of what my desktop looks like at the moment, check out my [reddit post](https://www.reddit.com/r/unixporn/comments/4f3rm0/bspwm_some_blue/) where can find some more details and a gallery.
