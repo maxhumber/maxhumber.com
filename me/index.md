@@ -8,7 +8,7 @@ Hello, my name is Micah Cowell. I'm 17 years old living in Washington state. I l
 [//]: # The url hac.im is just my name backwards.
 
 # What do you do?
-I write code
+I write code.
 
 # Who are your favorite artists?
 I currently like Oshi, Anderson Paak, and Common.
