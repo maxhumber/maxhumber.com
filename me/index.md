@@ -2,19 +2,13 @@
 layout: about
 ---
 
-Hello, my name is Micah Cowell. I'm 17 years old living in Washington state. I like the internet, hip hop, and over-priced yo-yos. I make websites in the way I see most appealing and write code to put on Github.
-
-[//]: # # What is with the website url?
-[//]: # The url hac.im is just my name backwards.
+Hello, my name is Micah Cowell. I am a self proclaimed web developer who likes the internet, hip hop, and fancy yo-yos.
 
 # What do you do?
-I write code.
+I make website and write code. All the stuff I make is on my [Github](https://github.com/getmicah).
 
-# Who are your favorite artists?
-I currently like Oshi, Anderson Paak, and Common.
+# Who are your favorite artsits?
+Currently I'm listening to a lot of Anderson Paak and Common.
 
 # What programming languages do you use?
-I like using Javascript and Sass when making websites but I also like Python and Haskell.
-
-# Which sports teams do you follow?
-I like following the Mariners but hate watching baseball. University of Washington football and basketball. Waiting for the Supersonics.
+When doing making I like using Javascript and Sass but I also like Python and bash for making linux scripts.
