@@ -48,8 +48,8 @@ To do this sort of thing in shell script all you have to do is replace the keywo
     }
 
     INFO="${1}"
-    INFO="${INFO//"%artist"/$(artist)}"
-    INFO="${INFO//"%title"/$(title)}"
+    INFO="${INFO//"%artist"/$(getArtist)}"
+    INFO="${INFO//"%title"/$(getTitle)}"
     echo "$INFO"
 
 <hr class="codebreak">
