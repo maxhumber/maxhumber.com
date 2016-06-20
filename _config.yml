@@ -1,3 +1,7 @@
+# Blog settings
+permalink: /post/:title
+
+
 # My variables
 name: Micah Cowell
 description: Futuristic web design
