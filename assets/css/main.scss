@@ -5,8 +5,8 @@
 @import "config";
 
 body {
-    color: $color-fg;
-    background: $color-bg;
+    color: $color-black;
+    background: $color-white;
     font-family: 'Inconsolata', ;
     font-size: 100%;
     font-weight: 400;
@@ -173,7 +173,7 @@ ul {
             padding: 10px;
             line-height: 1.5;
             border-radius: 3px;
-            background: $color-fg;
+            background: $color-black;
             code {
                 color: $color-code;
                 background: none;
@@ -182,7 +182,7 @@ ul {
         .codebreak {
             margin: 15px;
             border: 0;
-            border-bottom: 1px dashed $color-fg;
+            border-bottom: 1px dashed $color-black;
         }
     }
 }
