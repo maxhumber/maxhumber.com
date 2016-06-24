@@ -16,23 +16,24 @@ var shadowSwag = {
         this.bindEvents();
     },
     cacheDom: function() {
-        this.$el = $('#name');
+        this.el = document.getElementById("name");
     },
     setPageSize: function() {
-        this.pageWidth = $(document).width();
-        this.pageHeight = $(document).height();
+        this.pageWidth = document.documentElement.clientWidth;
+        this.pageHeight = document.documentElement.clientHeight;
     },
     setPageOrigin: function() {
+        var position = this.el.getBoundingClientRect();
         this.originX = this.pageWidth / 2;
-        this.originY = this.$el.position().top;
+        this.originY = position.top + (position.bottom - position.top);
     },
     logPageOrigin: function() {
         console.log('ORIGIN:' + this.originX + ', ' + this.originY);
     },
     bindEvents: function() {
-        $(document).on("mousemove", this.setPointerLocation.bind(this));
+        document.onmousemove = this.setPointerLocation.bind(this);
     },
-    setPointerLocation: function() {
+    setPointerLocation: function(event) {
         this.pointerX = event.pageX;
         this.pointerY = event.pageY;
         this.calculateShadow();
@@ -50,10 +51,10 @@ var shadowSwag = {
         this.render();
     },
     render: function() {
-        this.$el.css('text-shadow', String(-this.shadowX) + 'px ' +
-                                    String(-this.shadowY) + 'px ' +
-                                    this.shadowBlur + ' ' +
-                                    this.shadowColor);
+        this.el.style.textShadow = String(-this.shadowX) + 'px ' +
+                                   String(-this.shadowY) + 'px ' +
+                                   this.shadowBlur + ' ' +
+                                   this.shadowColor;
     }
 }
 shadowSwag.init();
