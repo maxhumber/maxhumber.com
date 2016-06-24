@@ -28,7 +28,7 @@ body {
         font-size: 4em;
         font-weight: 900;
         letter-spacing: 0.02em;
-        text-shadow: $color-hire-shadow 0.02em 0.02em 0.2em;
+        text-shadow: 0 10px 8px $color-hire-shadow;
     }
     &__links {
         margin-top: 2em;
