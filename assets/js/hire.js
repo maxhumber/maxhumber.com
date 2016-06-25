@@ -45,7 +45,7 @@ var shadowSwag = {
         var deltaX = this.originX - this.pointerX;
         var deltaY = this.originY - this.pointerY;
         var angle = Math.atan2(deltaY, deltaX);
-        var R = 10; // shadow length
+        var R = 0.05 * (Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
         this.shadowX = R * Math.cos(angle);
         this.shadowY = R * Math.sin(angle);
         this.render();
