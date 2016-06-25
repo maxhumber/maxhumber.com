@@ -51,8 +51,8 @@ var shadowSwag = {
         this.render();
     },
     render: function() {
-        this.el.style.textShadow = String(-this.shadowX) + 'px ' +
-                                   String(-this.shadowY) + 'px ' +
+        this.el.style.textShadow = String(this.shadowX) + 'px ' +
+                                   String(this.shadowY) + 'px ' +
                                    this.shadowBlur + ' ' +
                                    this.shadowColor;
     }
