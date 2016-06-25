@@ -17,7 +17,7 @@ Ricing is term conceiver [/r/unixporn](https://www.reddit.com/r/unixporn) to som
 It's and there are more ways than ever to rice your PC. The reddit community [/r/unixporn](https://www.reddit.com/r/unixporn) is a great place to stay up to date on what people are using for their setups.
 
 *Window Managers:*
-The most widely used WMs at the moment seem to be the young [bspwm](https://github.com/baskerville/bspwm) and the widely used [i3wm](https://i3wm.org/), though people are also making some awesome [openbox](http://openbox.org/wiki/Main_Page) desktops.
+The most popular WMs at the moment seem to be the young [bspwm](https://github.com/baskerville/bspwm) and the widely used [i3wm](https://i3wm.org/), though people are also making some awesome [openbox](http://openbox.org/wiki/Main_Page) desktops.
 
 *Panel / Bar:*
 Lots of redditors are also using some sort panel or bar in the configuration which displays all sorts of information such as the time, volume, even the current song playing. I'm not going to go into much details on how panels work, but if your interested check out [z3bra's great introduction](http://blog.z3bra.org/2014/04/meeting-at-the-bar.html). At the moment, [lemonbar](https://github.com/LemonBoy/bar) seems to be the best option for creating a panel in your WM but other options such as i3bar also work great and are built into i3wm. You can check out my lemonbar files in the link at end of this page.
