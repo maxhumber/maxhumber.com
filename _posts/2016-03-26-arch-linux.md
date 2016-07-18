@@ -17,7 +17,7 @@ Getting Arch Linux up and running on your computer really isn't that bad. Arch h
 
 
 # So Why use Arch?
-I'd be lying if I said I didn't use Arch because it makes me feel like a hacker elitist. Also seeing all the beautiful desktops on [/r/unixporn](https://www.reddit.com/r/unixporn) also influenced my decision in using Arch. But, there are some legitimate reasons on why I prefer Arch over other Linux distros or any operating system for that matter:
+I'd be lying if I said I didn't use Arch because it makes me feel like a hacker elitist. Seeing all the beautiful desktops on [/r/unixporn](https://www.reddit.com/r/unixporn) also influenced my decision in using Arch. But, there are some legitimate reasons on why I prefer Arch over other Linux distros or any operating system for that matter:
 
 * The best performance
 * I choose what's installed
