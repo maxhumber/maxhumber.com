@@ -32,10 +32,13 @@ var nowPlaying = {
         var i = 0;
         while(i < 3) {
             var track = data.recenttracks.track[i];
-            if (track.album['#text'] == "") {
+            console.log(track.album['#text']);
+            if (track.album['#text'] == null) {
                 i++;
             } else {
-                this.recentTrack = track.artist['#text'] + " - " + track.name;
+                var artist = track.artist['#text'];
+                var title = track.name.replace('-', '~');;
+                this.recentTrack = artist + " - " + title;
                 break;
             }
         }
