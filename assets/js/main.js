@@ -37,7 +37,7 @@ var nowPlaying = {
                 i++;
             } else {
                 var artist = track.artist['#text'];
-                var title = track.name.replace('-', '~');;
+                var title = track.name.replace(/-/g, '~');;
                 this.recentTrack = artist + " - " + title;
                 break;
             }
