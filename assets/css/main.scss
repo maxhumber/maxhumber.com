@@ -27,7 +27,9 @@ a {
   }
   &:hover {
 	color: $color-link;
-	text-decoration: underline;
+	text-decoration: none;
+	padding-bottom: 1px;
+	border-bottom: 1px solid $color-link;
   }
   &:active {
 	color: $color-link;
@@ -152,9 +154,11 @@ ul {
 			margin-bottom: 15px;
 		}
 		a {
-			text-decoration: underline;
+			padding-bottom: 1px;
+			border-bottom: 1px solid $color-link;
 			&:hover {
-				font-weight: bold;
+				background-color: $color-grey;
+				text-decoration: none;
 			}
 		}
 		strong {
@@ -167,8 +171,8 @@ ul {
 			font-size: 1em;
 			list-style: circle;
 			margin-left: 30px;
-			margin-top: -5px;
-			margin-bottom: 5px;
+			margin-top: -10px;
+			margin-bottom: 15px;
 			li {
 				padding: 5px;
 				padding-left: 5px;
