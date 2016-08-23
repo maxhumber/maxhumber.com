@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What the Rice?
+title: The Basics of Ricing Linux
 ---
 
 **TL;DR** Here are my [dotfiles](https://github.com/getmicah/dotfiles).

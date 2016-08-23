@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Arch Linux is Cool
+title: Why I use Arch Linux
 ---
 
 
