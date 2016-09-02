@@ -4,7 +4,7 @@ My blog made with [jekyll](http://jekyllrb.com) and hosted with Github Pages.
 
 ### Install
 
-* Fork this repository
+* fork this repository
 * edit the `_config.yml` with your info
 * change the links in `_data/navigation.yml`
 * remove my posts from `_posts/`
