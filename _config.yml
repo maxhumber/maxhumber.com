@@ -1,7 +1,3 @@
-# Plugins
-gems:
-  - jemoji
-
 # Blog settings
 permalink: /blog/:title
 
