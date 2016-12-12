@@ -38,8 +38,8 @@ opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE)
 URL <- "http://www.hsx.com/security/view/"
 ```
 
-Step 2A: Build a scraper to get the tickers for each cast member of Rogue One
-=============================================================================
+Step 2: Build a scraper to get the tickers for each cast member of Rogue One
+============================================================================
 
 ``` r
 get_cast <- function(movie) {
@@ -60,26 +60,8 @@ get_cast <- function(movie) {
 cast <- get_cast("SW16")
 ```
 
-Step 2B: Save the tickers
-=========================
-
-``` r
-kable(cast)
-```
-
-| name            | symbol |
-|:----------------|:-------|
-| Alan Tudyk      | ATUDY  |
-| Ben Mendelsohn  | BMEND  |
-| Diego Luna      | DLUNA  |
-| Donnie Yen      | DYEN   |
-| Felicity Jones  | FJONE  |
-| Forest Whitaker | FWHIT  |
-| Mads Mikkelsen  | MMIKK  |
-| Riz Ahmed       | RAHME  |
-
-Step 3A: Build a scraper to get the movie credits for each cast member
-======================================================================
+Step 3: Build a scraper to get the movie credits for each cast member
+=====================================================================
 
 ``` r
 get_credits <- function(actor) {
@@ -102,28 +84,7 @@ get_credits <- function(actor) {
     
     return(df)
 }
-```
 
-Step 3B: Test the scraper on Mads
-=================================
-
-``` r
-MMIKK <- get_credits("MMIKK")
-MMIKK %>% head(5) %>% kable()
-```
-
-| date         | movie                        | symbol |
-|:-------------|:-----------------------------|:-------|
-| Dec 16, 2016 | Rogue One: A Star Wars Story | MMIKK  |
-| Nov 4, 2016  | Doctor Strange               | MMIKK  |
-| Apr 22, 2016 | Men & Chicken                | MMIKK  |
-| Nov 15, 2013 | Charlie Countryman           | MMIKK  |
-| Jul 12, 2013 | The Hunt                     | MMIKK  |
-
-Step 3C: Get the credits for everyone
-=====================================
-
-``` r
 credits <- map(cast$symbol, get_credits) %>% bind_rows() 
 ```
 
@@ -135,7 +96,8 @@ clean_credits <- function(credits) {
     
     clean <- credits %>% 
         mutate(date = as.Date(date, format = "%b %d, %Y")) %>% 
-        mutate(date = ifelse(!is.na(date), as.character(date), as.character("3000-01-01"))) %>% 
+        mutate(date = ifelse(!is.na(date), 
+        	as.character(date), as.character("3000-01-01"))) %>% 
         mutate(date = as.Date(date)) %>% 
         group_by(movie, symbol) %>% 
         mutate(future = ifelse(date >= Sys.Date() | is.na(date), TRUE, FALSE))
@@ -153,41 +115,16 @@ clean_credits <- function(credits) {
 }
 
 tag_credits <- clean_credits(credits)
-glimpse(tag_credits)
 ```
 
-    ## Observations: 40
-    ## Variables: 4
-    ## $ date      <date> 2016-11-23, 2016-03-04, 2015-12-04, 2015-05-01, 201...
-    ## $ movie     <chr> "Moana", "Zootopia", "Trumbo", "Welcome to Me", "Big...
-    ## $ symbol    <chr> "ATUDY", "ATUDY", "ATUDY", "ATUDY", "ATUDY", "BMEND"...
-    ## $ movie_idx <int> 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3...
-
-Poop. The movie ticker values are missing. I guess I'll have to brute force a search for them instead...
-
-Step 5A: Generate terms for brute force search
-==============================================
+Step 5: Brute force search for the missing movie tickers
+========================================================
 
 ``` r
 movies <- tag_credits %>% 
     distinct(movie, .keep_all = FALSE) %>% 
     mutate(search_term = str_replace_all(movie, "\\s", "\\+"))
 
-movies %>% tail(5) %>% kable()
-```
-
-| movie                        | search\_term                 |
-|:-----------------------------|:-----------------------------|
-| Jason Bourne                 | Jason+Bourne                 |
-| Nightcrawler                 | Nightcrawler                 |
-| Closed Circuit               | Closed+Circuit               |
-| The Reluctant Fundamentalist | The+Reluctant+Fundamentalist |
-| Trishna                      | Trishna                      |
-
-Step 5B: Brute force search for the missing movie tickers
-=========================================================
-
-``` r
 get_meta_m <- function(movie) {
 
     page <- read_html(str_c(
@@ -219,8 +156,8 @@ get_meta_m <- function(movie) {
 meta_m <- map(movies$search_term, safely(get_meta_m))
 ```
 
-Step 5C: Clean the results
-==========================
+Step 6: Clean the results
+=========================
 
 ``` r
 clean_meta_m <- function(meta_m) {
@@ -241,7 +178,7 @@ clean_meta_m <- function(meta_m) {
 meta_m <- clean_meta_m(meta_m)
 ```
 
-Step 6: Join the tickers and prices to the TAG eligible credits
+Step 7: Join the tickers and prices to the TAG eligible credits
 ===============================================================
 
 ``` r
@@ -259,7 +196,7 @@ tag_prices <- tag_credits %>%
         NA, "DYEN", "Ip Man 2", 0.20, 5))
 ```
 
-Step 7: Build a scraper to get the meta data for each cast member
+Step 8: Build a scraper to get the meta data for each cast member
 =================================================================
 
 ``` r
@@ -286,7 +223,8 @@ get_meta_a <- function(actor) {
         spread(meta, data) %>%
         mutate(trading_tag = value) %>% 
         mutate(TAG = as.numeric(str_replace(TAG, "\\$", ""))) %>% 
-        separate(trading_tag, into = c("junk", "trading_tag"), sep = "H\\$", extra = "drop") %>% 
+        separate(trading_tag, into = c("junk", "trading_tag"), 
+        	sep = "H\\$", extra = "drop") %>% 
         mutate(trading_tag = as.numeric(trading_tag)) %>% 
         mutate(actual_tag = round(as.numeric(TAG)/1e6,2)) %>% 
         select(symbol = Symbol, trading_tag, actual_tag) %>% 
@@ -298,7 +236,7 @@ get_meta_a <- function(actor) {
 meta_a <- map(cast$symbol, get_meta_a) %>% bind_rows()
 ```
 
-Step 8: Calculate the forecasted TAG values for Rogue One at $440
+Step 9: Calculate the forecasted TAG values for Rogue One at $440
 =================================================================
 
 ``` r
@@ -310,31 +248,21 @@ tag_new <- tag_prices %>%
     select(-total)
 ```
 
-Step 9: Calculate the arbitrage opportunities
-=============================================
+Step 10: Calculate the arbitrage opportunities
+==============================================
 
 ``` r
 arbitrage <- meta_a %>% 
     left_join(tag_new, by = "symbol") %>% 
     mutate(investment = 20000 * trading_tag) %>% 
-    mutate(return = ifelse(tag_forecast >= trading_tag, (20000 * tag_forecast), (20000 * tag_forecast * -1))) %>% 
+    mutate(return = ifelse(tag_forecast >= trading_tag, 
+    	(20000 * tag_forecast), (20000 * tag_forecast * -1))) %>% 
     mutate(roi = return / investment)
-
-arbitrage %>% kable()
 ```
-
-| symbol |  trading\_tag|  actual\_tag| forecast\_tag|         roi|
-|:-------|-------------:|------------:|-------------:|-----------:|
-| ATUDY  |        131.96|       146.15|        169.47|         1.2|
-| BMEND  |         48.60|        13.32|         88.31|         1.8|
-| DLUNA  |         71.61|        30.96|        114.24|         1.6|
-| DYEN   |         16.20|         0.50|         88.46|         5.5|
-| FJONE  |         64.81|        55.50|        136.98|         2.1|
-| FWHIT  |         48.99|        46.67|        131.12|         2.7|
-| MMIKK  |         47.22|        43.54|        129.28|         2.7|
-| RAHME  |         58.24|        40.20|        122.87|         2.1|
 
 Punch Line
 ==========
+
+![](assets/img/arbitrage.png)
 
 Ha! I knew it. Arbitrage Galore. Just look at Mads. He's trading at 43.54 right now. But when Rogue One gets added he's going to pop all the way up to 129.28. But it's not just Mads. The entire top billed cast of Rogue One is chronincally undervalued right now, with Donnie Yen [(DYEN)](http://www.hsx.com/security/view/DYEN) at the extreme end. Basically an investment in DYEN could yield a return of ~5.5X. Fuck I really wish this wasn't just fake money...
