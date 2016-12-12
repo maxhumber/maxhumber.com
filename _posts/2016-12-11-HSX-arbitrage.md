@@ -1,4 +1,4 @@
-TL;DR: I wrote a webcraper to help me make fake money.
+TL;DR: I wrote a webscraper to help me make fake money.
 
 I've been playing around with an online marketplace called the ["Hollywood Stock Exchange"](http://www.hsx.com/) for a couple of months now. The website is basically "fantasy" for actors, directors and upcoming movies but it functions pretty much exactly like a stock market.
 
@@ -10,13 +10,15 @@ There's definitely money (well, fake money...) to be made on a Rogue One positio
 
 See, actors and actresses (StarBonds) are priced slightly differently on the HSX. StarBonds are calculated on the average total box-office performance over the last five credited films by release date. This means that each time a movie featuring a particular star cashes out and delists, the box-office gross is calculated into the star's Trailing Average Gross (TAG), and the bond price is adjusted to match.
 
-Mads Mikkelsen [(MMIKK)](http://www.hsx.com/security/view/MMIKK) a Rogue One cast member, for instance, is currently priced at $47.10. His actual TAG value is only $43.54. This spread is because of Rogue One. In a couple weeks Rogue One will be added to Mads' TAG value while at the some random indie art film called "A Royal Affair" [(ROYAF)](http://www.hsx.com/security/view/ROYAF) will fall off and out of his TAG.
+Mads Mikkelsen [(MMIKK)](http://www.hsx.com/security/view/MMIKK) a Rogue One cast member, for instance, is currently priced at $47.10. His actual TAG value is only $43.54. This spread is because of Rogue One. In a couple weeks Rogue One will be added to Mads' TAG value while at the same time some random indie art film called "A Royal Affair" [(ROYAF)](http://www.hsx.com/security/view/ROYAF) will fall off and out of his TAG.
 
 I mean, I could manually do the math for the Mads example and figure out what his TAG will be when Rogue One gets added. But there's no fun in that! And besides, Mads is already a big deal. The thing about the new Star Wars movies is that a bunch of nobodies get cast and turned it into Super Stars overnight. It means that a lot of random indie art films (think sub ~$5) are about to fall off to make room for Rogue One (~$440). Basically, Rogue One is going to make the TAGs for a lot of people pop.
 
-And, at last, we get to the punch line:
+The punch line:
 
-I'm lazy. And, I didn't want to manually do the math! So, I built a webscraper to calculate the arbitrage opportunities for me. (If you don't care about the code just skip to the bottom of the page...)
+I'm lazy. And, I didn't want to manually do the math! So, I built a webscraper to calculate the arbitrage opportunities for me. 
+
+(If you don't care about the code just skip to the bottom of the page...)
 
 Step 1: Setup
 =============
