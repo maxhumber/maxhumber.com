@@ -1,0 +1,348 @@
+---
+title: "Stratford"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+I started going to the [Stratford Festival](https://www.stratfordfestival.ca/) with my grandparents when I turned seven. Honestly, I hated that first time. Shakespeare and seven years old go together about as well as peanut butter and snot. But it meant a lot to my grandparents. So, I signed up to do it again when I was eight. 
+
+I hated that second time, too. But the third time we did the Festival I hated it a little bit less. And the fourth time I actually kind of enjoyed it. 
+
+By the time I was in grade 8 Shakespeare had become a significant enough part of my life that I decided to write my Speech on *The Bard*. I can't remeber it exactly but it was something like, "Why you should give Shakespeare a chance in High School" (I was really cool in grade school...)
+
+Now, Shakespeare at the Stratford Festival has become an incredibly rich tradition for me and my grandparents. We've done the festival 16-years in a row! And we're just now starting to plan our seventeenth adventure. The only problem: We're running out of plays to see! And it's getting harder and harder to remember what we've actually seen.
+
+This year, Stratford is running *Twelfth Night*, *Romeo and Juliet* and *Timon of Athens*. I was sure we had seen  *Twelfth Night* and *Romeo and Juliet* so our decision was pretty easy. But still, I was kind of curious about what was still left... 
+
+```{r, warning = FALSE, message = FALSE, include = FALSE}
+# load packages
+library(tidyverse)
+library(rvest)
+library(purrr)
+library(stringr)
+library(knitr)
+library(forcats)
+
+# knitr options
+opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE, echo = FALSE)
+```
+
+```{r}
+# base url
+URL <- read_html("https://en.wikipedia.org/wiki/Stratford_Shakespeare_Festival_production_history")
+
+# selectors
+COMEDY_SELECTOR <- "ul:nth-child(144) li"
+HISTORY_SELECTOR <- "ul:nth-child(146) li"
+TRAGEDY_SELECTOR <- "ul:nth-child(148) li"
+```
+
+```{r}
+# play scrape and cleaner
+get_plays <- function(HTML_SELECTOR) {
+
+    df <- URL %>% 
+        html_nodes(HTML_SELECTOR) %>% 
+        html_text() %>% 
+        as_tibble() %>% 
+        separate(value, into = c("play", "year"), sep = "\\s\\-\\s") %>% 
+        separate(year, into = paste(1:25), sep = ",", fill = "right") %>% 
+        gather(edition, year, -play) %>% 
+        drop_na(year) %>% 
+        arrange(play) %>% 
+        group_by(play) %>% 
+        mutate(edition = as.integer(edition), year = as.integer(year)) %>% 
+        mutate(gap = year - lag(year))
+    
+    return(df)
+}
+
+# get plays
+comedies <- get_plays(COMEDY_SELECTOR) %>% mutate(type = "Comedy")
+histories <- get_plays(HISTORY_SELECTOR) %>% mutate(type = "History")
+tragedies <- get_plays(TRAGEDY_SELECTOR) %>% mutate(type = "Tragedy")
+```
+
+```{r}
+# full list
+shakespeare <- comedies %>% 
+    bind_rows(histories) %>% 
+    bind_rows(tragedies)
+```
+
+## Data Investigation
+
+Simply pulling and graphing the runs for every play for single season didn't really tell me much...
+
+```{r shakespeare_01}
+# attempt 1
+shakespeare %>% 
+    ggplot(aes(y = play, x = year)) + 
+    geom_point()
+```
+
+Trying to get fancy with lines instead of points didn't help either...
+
+```{r shakespeare_02}
+# attempt 2
+shakespeare %>% 
+    ggplot(aes(y = play, x = year)) + 
+    geom_point(shape = 124, size = 3)
+```
+
+Zooming in the *Histories* was interesting and telling. Just look at how the *Henry* plays are bunched up and played at the same time during the same season...
+
+```{r shakespeare_03}
+# attempt 3
+shakespeare %>% 
+    filter(type == "History") %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = play, x = year)) + 
+    geom_point(shape = 124, size = 10)
+```
+
+But zooming back out and colouring all the genres on the same vertical line plot really didn't work...
+
+```{r shakespeare_04}
+# attempt 4
+shakespeare %>% 
+    # filter(type == "History") %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = play, x = year, color = type)) + 
+    geom_point(shape = 124, size = 10)
+```
+
+Faceting the genres with three columns was a disaster...
+
+```{r shakespeare_05}
+# attempt 5
+shakespeare %>% 
+    # filter(type == "History") %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = play, x = year, color = type)) + 
+    geom_point(shape = 124, size = 10) +
+    facet_wrap(~type, scales = "free_y")
+```
+
+And a one-column facet wasn't much better...
+
+```{r shakespeare_06}
+# attempt 6
+shakespeare %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = play, x = year)) + 
+    geom_point(shape = 124, size = 10) +
+    facet_wrap(~type, scales = "free_y", ncol = 1)
+```
+
+I was starting to get somewhere when I reverted back to points (instead of lines) and when I reordered the data accoring to the most recent runs of each play...
+
+```{r shakespeare_07}
+# attempt 7
+shakespeare %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = fct_reorder(play, latest), x = year, fill = type)) + 
+    geom_point(shape = 21, size = 2)
+```
+
+Moving the y-axis text over...
+
+```{r shakespeare_08}
+# attempt 8
+shakespeare %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = fct_reorder(play, latest), x = year, fill = type)) + 
+    geom_point(shape = 21, size = 2) + 
+    scale_y_discrete(position = "right")
+```
+
+And trimming the data to 2000 helped immensely...
+
+```{r shakespeare_09}
+# attempt 9
+shakespeare %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = fct_reorder(play, latest), x = year, fill = type)) + 
+    geom_point(shape = 21, size = 2) + 
+    scale_y_discrete(position = "right") + 
+    scale_x_continuous(limits = c(2000, 2017)) + 
+    theme_minimal() +
+    theme(legend.position = "none") + 
+    labs(x = "", y = "")
+```
+
+At this point, I was able to reverse out exactly the play that me and my grandparents had seen and when.
+
+```{r shakespeare_10}
+# attempt 10
+shakespeare %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = fct_reorder(play, latest), x = year, fill = type)) + 
+    geom_point(shape = 21, size = 2) + 
+    scale_y_discrete(position = "right") + 
+    scale_x_continuous(
+        limits = c(2000, 2018), 
+        breaks = seq(2000, 2018, 2),
+        labels = c("2000", paste0("'0", seq(2, 8, 2)), paste0("'", seq(10, 18, 2)))) + 
+    theme_minimal() +
+    theme(legend.position = "none") + 
+    labs(title = "Shakespeare Playbill at Stratford", x = "", y = "")
+```
+
+After trying to clean up the styling...
+
+```{r shakespeare_11}
+# attempt 11
+shakespeare %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = fct_reorder(play, latest), x = year, fill = type)) + 
+    geom_point(shape = 21, size = 2) + 
+    scale_y_discrete(position = "right") + 
+    scale_x_continuous(
+        limits = c(2000, 2018), 
+        breaks = seq(2000, 2018, 2),
+        labels = c("2000", paste0("'0", seq(2, 8, 2)), paste0("'", seq(10, 18, 2)))) + 
+    labs(title = "Shakespeare Playbill at Stratford", x = "", y = "") + 
+    theme(
+        plot.title = element_text(colour = "#3C3C3C", size = 12),
+        axis.text = element_text(colour = "#3C3C3C", size = 10),
+        panel.background = element_rect(fill = "#F0F0F0", colour = "#F0F0F0"),
+        plot.background = element_rect(fill = "#F0F0F0", colour = "#F0F0F0"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "none")
+```
+
+And trying to mess with the colors (gross)...
+
+```{r shakespeare_12}
+# attempt 12
+shakespeare %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = fct_reorder(play, latest), x = year, color = type)) + 
+    geom_point(shape = 16, size = 3, color = "#3C3C3C") + 
+    geom_point(shape = 16, size = 2) + 
+    scale_y_discrete(position = "right") + 
+    scale_x_continuous(
+        limits = c(2000, 2018), 
+        breaks = seq(2000, 2018, 2),
+        labels = c("2000", paste0("'0", seq(2, 8, 2)), paste0("'", seq(10, 18, 2)))) + 
+    scale_color_manual(values = c("History" = "yellow", "Comedy" = "green", "Tragedy" = "red")) + 
+    labs(title = "Shakespeare at The Stratford Festival", x = "", y = "") + 
+    theme(
+        plot.title = element_text(colour = "#3C3C3C", size = 12),
+        axis.text = element_text(colour = "#3C3C3C", size = 10),
+        panel.background = element_rect(fill = "#F0F0F0", colour = "#F0F0F0"),
+        plot.background = element_rect(fill = "#F0F0F0", colour = "#F0F0F0"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "none")
+```
+
+I finally...
+
+```{r shakespeare_13}
+# attempt 13
+shakespeare %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = fct_reorder(play, latest), x = year, color = type)) + 
+    geom_point(shape = 16, size = 3, color = "#3C3C3C", alpha = 0.75) + 
+    geom_point(shape = 16, size = 2) + 
+    scale_y_discrete(position = "right") + 
+    scale_x_continuous(
+        limits = c(2000, 2018), 
+        breaks = seq(2000, 2018, 2),
+        labels = c("2000", paste0("'0", seq(2, 8, 2)), paste0("'", seq(10, 18, 2)))) + 
+    scale_color_manual(values = c("History" = "#39a9db", "Comedy" = "#f39237", "Tragedy" = "#d63230")) + 
+    labs(title = "Shakespeare at The Stratford Festival", x = "", y = "") + 
+    theme(
+        plot.title = element_text(colour = "#3C3C3C", size = 12),
+        axis.text = element_text(colour = "#3C3C3C", size = 10),
+        panel.background = element_rect(fill = "#F0F0F0", colour = "#F0F0F0"),
+        plot.background = element_rect(fill = "#F0F0F0", colour = "#F0F0F0"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "none")
+```
+
+```{r}
+# plays we've seen
+humber <- tribble(
+    ~play,~edition,~year,~gap,~type,
+    "A Midsummer Night's Dream",10,2004,5,"Comedy",
+    "All's Well That Ends Well",5,2002,14,"Comedy",
+    "As You Like It",10,2005,5,"Comedy",
+    "Love's Labour's Lost",8,2003,11,"Comedy",
+    "The Comedy of Errors",7,2007,12,"Comedy",
+    "The Merchant of Venice",7,2001,5,"Comedy",
+    "The Taming of the Shrew",10,2015,7,"Comedy",
+    "The Tempest",7,2010,5,"Comedy",
+    "Twelfth Night",10,2006,5,"Comedy",
+    "Henry IV, Part 2",7,2016,10,"History",
+    "Richard III",7,2011,9,"History",
+    "Cymbeline",4,2012,8,"Tragedy",
+    "Hamlet",8,2008,8,"Tragedy",
+    "King Lear",10,2014,7,"Tragedy",
+    "Macbeth",10,2009,5,"Tragedy",
+    "Romeo and Juliet",10,2013,5,"Tragedy",
+    "Timon of Athens",4,2017,13,"Tragedy") %>% 
+    mutate(seen = 1) %>% 
+    select(play, year, seen)
+
+# complete join
+shakey <- shakespeare %>% 
+    left_join(humber, by = c("play", "year")) %>% 
+    mutate(seen = ifelse(!is.na(seen), 1, 0))
+
+```
+
+...arrived at this polished and finished version. 
+
+Here I present every play that me and my grandparents have seen so far (the Xs)...
+
+```{r shakespeare_14}
+# attempt 14
+shakey %>% 
+    group_by(play) %>% 
+    mutate(latest = max(year)) %>% 
+    ggplot(aes(y = fct_reorder(play, latest), x = year, color = type, shape = factor(seen))) + 
+    geom_point(size = 3, color = "#3C3C3C", alpha = 0.75) + 
+    geom_point(size = 2) + 
+    scale_shape_manual(values = c(16, 4)) + 
+    scale_y_discrete(position = "right") + 
+    scale_x_continuous(
+        limits = c(2000, 2018), 
+        breaks = seq(2000, 2018, 2),
+        labels = c("2000", paste0("'0", seq(2, 8, 2)), paste0("'", seq(10, 18, 2)))) + 
+    scale_color_manual(values = c("History" = "#39a9db", "Comedy" = "#f39237", "Tragedy" = "#d63230")) + 
+    labs(title = "Shakespeare at The Stratford Festival", x = "", y = "") + 
+    theme(
+        plot.title = element_text(colour = "#3C3C3C", size = 10),
+        axis.text = element_text(colour = "#3C3C3C", size = 8),
+        panel.background = element_rect(fill = "#F0F0F0", colour = "#F0F0F0"),
+        plot.background = element_rect(fill = "#F0F0F0", colour = "#F0F0F0"),
+        panel.grid.major = element_line(linetype = 1, size = 0.25, color = "#D0D0D0"),
+        panel.grid.minor = element_line(linetype = 1, size = 0.25, color = "#D0D0D0"),
+        axis.ticks = element_blank(),
+        legend.position = "none")
+
+```
+
+The cool thing about this graph is you can infer what Stratford might play in the seasons to come (*Coriolanus* and *The Two Noble Kinsmen* is due for a run)...
+
+If you're interested in seeing the code for each graph and how I pulled the data from Wikipedia it's available on [GitHub](https://github.com/maxhumber/maxhumber.com/tree/master/_R)
