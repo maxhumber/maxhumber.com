@@ -118,6 +118,6 @@ All of that get to this graph:
 
 ![](/assets/img/goodreads_comp.png)
 
-It's funny to see that I started strong in both years and fell off in March. Though I recovered somewhat in 2015, Summer 2016 was a bad season for reading, apparently.
+It's funny to see that I started strong in both years and fell off in March. Though I recovered somewhat in 2015, Spring 2016 was a bad season for reading, apparently.
 
-Looks like I was finished 52 books by December 21 last year. Whoops. Oh well, I still think I can mad rush it to the finish line.
+Looks like I was finished 52 books by December 21st last year. Whoops. Oh well, I still think I can mad rush it to the finish line.
