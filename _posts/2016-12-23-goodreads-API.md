@@ -33,18 +33,7 @@ I've censored my `API_KEY` and `GR_ID` but if you replace the `"XXXXXXXXXXXXX"`s
 # API_KEY <- "XXXXXXXXXXXXX"
 # GR_ID   <- "XXXXXXXXXXXXX"
 
-# https://www.goodreads.com/review/list?key=K97BcQqbrP9X8e2gY4Z2g&id=16626766&v=2&shelf=read&per_page=200
 URL <- "https://www.goodreads.com/review/list?"
-
-# v: 2
-# id: Goodreads id of the user
-# shelf: read, currently-reading, to-read, etc. (optional)
-# sort: title, author, cover, rating, year_pub, date_pub, date_pub_edition, date_started, date_read, date_updated, date_added, recommender, avg_rating, num_ratings, review, read_count, votes, random, comments, notes, isbn, isbn13, asin, num_pages, format, position, shelves, owned, date_purchased, purchase_location, condition (optional)
-# search[query]: query text to match against member's books (optional)
-# order: a, d (optional)
-# page: 1-N (optional)
-# per_page: 1-200 (optional)
-# key: Developer key (required).
 ```
 
 Get Shelf
@@ -54,7 +43,8 @@ This is where the heavy lifting `GETS` done. I'm leaning on `httr` and `XML2` to
 
 ``` r
 get_shelf <- function(GR_ID) {
-    shelf <- GET(URL, query = list(v = 2, key = API_KEY, id = GR_ID, shelf = "read", per_page = 200))
+    shelf <- GET(URL, query = list(
+    	v = 2, key = API_KEY, id = GR_ID, shelf = "read", per_page = 200))
     shelf_contents <- content(shelf, as = "parsed")
     return(shelf_contents)
 }
@@ -103,13 +93,15 @@ get_books <- function(df) {
     books <- df %>% 
         gather(date_type, date, -title, -rating) %>% 
         separate(date, 
-            into = c("weekday", "month", "day", "time", "zone", "year"), sep = "\\s", fill = "right") %>% 
+            into = c("weekday", "month", "day", "time", "zone", "year"), 
+            sep = "\\s", fill = "right") %>% 
         mutate(date = str_c(year, "-", month, "-", day)) %>% 
         select(title, rating, date_type, date) %>% 
         mutate(date = as.Date(date, format = "%Y-%b-%d")) %>% 
         spread(date_type, date) %>% 
         mutate(title = str_replace(title, "\\:.*$|\\(.*$|\\-.*$", "")) %>% 
-        mutate(started = ifelse(is.na(started), as.character(added), as.character(started))) %>% 
+        mutate(started = ifelse(
+        	is.na(started), as.character(added), as.character(started))) %>% 
         mutate(started = as.Date(started)) %>% 
         mutate(rating = as.integer(rating))
     
