@@ -45,11 +45,11 @@ On Philosophy
 
 'There is nothing new under the sun.' — Philip Tetlock in [Superforecasting](http://amzn.to/2hiq611)
 
-'There are billions of planets where there is no life, but there's no one on those planets with brains to notice. It's like if everyone in the world was tossing coins eventually someone would get 5,698 heads in a row and they would think they were very special. But they wouldn't be because there would be millions of people who didn't get 5,698 heads.' — Mark Haddon in [The Curious Incident of the Dog in the Night-Time](http://amzn.to/2i4WhCk)
-
 'Without a diversity of opinion, the discovery of truth is impossible' — Andrea Wulf in [The Invention of Nature](http://amzn.to/2iqILW2)
 
 'Introspection can only capture a tiny fraction of the complex processes whirling inside your head.' — Philip Tetlock in [Superforecasting](http://amzn.to/2hiq611)
+
+'The History of every major Galactic Civilization tends to pass through three distinct and recognizable phases, those of Survival, Inquiry and Sophistication, otherwise known as the How, Why and Where phases. For instance, the first phase is characterized by the question How can we eat? the second by the question Why do we eat? and the third by the question Where shall we have lunch? ' — Douglas Adams in [The Hitchhiker's Guide to the Galaxy](http://amzn.to/2hTnEid)
 
 On Politics and Religion
 ========================
@@ -77,8 +77,6 @@ On Society
 
 'You can make a fortune in this world far more efficiently by using the law to your advantage than by breaking it.' — Jasper Fforde in [The Big Over Easy](http://amzn.to/2hit0mH)
 
-'The History of every major Galactic Civilization tends to pass through three distinct and recognizable phases, those of Survival, Inquiry and Sophistication, otherwise known as the How, Why and Where phases. For instance, the first phase is characterized by the question How can we eat? the second by the question Why do we eat? and the third by the question Where shall we have lunch? ' — Douglas Adams in [The Hitchhiker's Guide to the Galaxy](http://amzn.to/2hTnEid)
-
 'Obviously. It was designed to make you want it. If people had turned out not to want it very much, the makers would have redesigned it and redesigned it until they did. The world is now full of things like this, which is, of course, why everybody is in such a permanent state of want.' — Douglas Adams in [The Salmon of Doubt](http://amzn.to/2hit6uz)
 
 'Societies in which even your deepest beliefs and feelings can be questioned and trodden upon are the only societies worth living in.' — Douglas Murray in [Islamophilia](https://www.goodreads.com/book/show/18044655-islamophilia)
@@ -97,6 +95,8 @@ On Statistics
 'If we want to predict how long something will last, and have no other knowledge about it whatsoever, the best guess we can make is that it will continue just as long as it's gone on so far.' — Brian Christian & Tom Griffiths in [Algorithms to Live By](http://amzn.to/2iosnJJ)
 
 'If the forecast said there was a 70% chance of rain and it rains, people think the forecast was right; if it doesn't rain, they think it was wrong. ' — Philip Tetlock in [Superforecasting](http://amzn.to/2hiq611)
+
+'There are billions of planets where there is no life, but there's no one on those planets with brains to notice. It's like if everyone in the world was tossing coins eventually someone would get 5,698 heads in a row and they would think they were very special. But they wouldn't be because there would be millions of people who didn't get 5,698 heads.' — Mark Haddon in [The Curious Incident of the Dog in the Night-Time](http://amzn.to/2i4WhCk)
 
 On Work and Talent
 ==================
@@ -131,7 +131,7 @@ In Closing
 
 'You should never pass up an opportunity to be kind. You should never not thank someone. You should never not say something nice when you think it.' — Christopher Moore in [Secondhand Souls](http://amzn.to/2hTieE8)
 
-~
+~ P.S.
 
 If you're interested, I parsed through all of my Kindle highlights using [this script](http://maxhumber.com/blog/kindle-clippings). And if you want to see The 2015 Edition of my 52 favourite quotes it's available on [Medium](https://medium.com/@maxhumber/52-quotes-89c538fa38fa#.kvpkvwxhy).
 
