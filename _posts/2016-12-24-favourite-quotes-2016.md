@@ -64,10 +64,11 @@ On Politics and Religion
 
 'Undecided voters, by and large, aren't undecided because they're carefully weighing the merits of each candidate, unprejudiced by political dogma. They're undecided because they're barely paying attention.' — Jordan Ellenberg in [How Not to Be Wrong](http://amzn.to/2iojAaT)
 
-'If you ignore government, a lot of governing will get done without you.' — Steve Case in The Third Wave
+'If you ignore government, a lot of governing will get done without you.' — Steve Case in [The Third Wave](http://amzn.to/2hBnysC)
+
 'Religion has run out of justifications. Thanks to the telescope and the microscope, it no longer offers an explanation of anything important.' — Christopher Hitchens in [God Is Not Great](http://amzn.to/2hTifb9)
 
-'If somebody threatens to kill because a cartoon offends them, the only proper response is to keep drawing that cartoon until such a time as the people who do the complaining stop.' — Douglas Murray in Islamophilia
+'If somebody threatens to kill because a cartoon offends them, the only proper response is to keep drawing that cartoon until such a time as the people who do the complaining stop.' — Douglas Murray in [Islamophilia](https://www.goodreads.com/book/show/18044655-islamophilia)
 
 On Society
 ==========
@@ -80,7 +81,7 @@ On Society
 
 'Obviously. It was designed to make you want it. If people had turned out not to want it very much, the makers would have redesigned it and redesigned it until they did. The world is now full of things like this, which is, of course, why everybody is in such a permanent state of want.' — Douglas Adams in [The Salmon of Doubt](http://amzn.to/2hit6uz)
 
-'Societies in which even your deepest beliefs and feelings can be questioned and trodden upon are the only societies worth living in.' — Douglas Murray in Islamophilia
+'Societies in which even your deepest beliefs and feelings can be questioned and trodden upon are the only societies worth living in.' — Douglas Murray in [Islamophilia](https://www.goodreads.com/book/show/18044655-islamophilia)
 
 'A frightened nation is a nation that buys evening papers.' — Jonas Jonasson in [Hitman Anders and the Meaning of It All](http://amzn.to/2hmkmoQ)
 
