@@ -130,3 +130,7 @@ In Closing
 
 'You should never pass up an opportunity to be kind. You should never not thank someone. You should never not say something nice when you think it.' — Christopher Moore in [Secondhand Souls](http://amzn.to/2hTieE8)
 
+~
+
+If you're interested, I parsed through all of my Kindle highlights using [this script](http://maxhumber.com/blog/kindle-clippings). And if you want to see The 2015 Edition of my 52 favourite quotes it's available on [Medium](https://medium.com/@maxhumber/52-quotes-89c538fa38fa#.kvpkvwxhy).
+
