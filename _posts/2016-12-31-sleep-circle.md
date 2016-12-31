@@ -6,7 +6,7 @@ Last night while browsing [/r/dataisbeautiful](https://www.reddit.com/r/dataisbe
 
 ![](/assets/img/sleep_inspiration.png)
 
-[My daughters sleeping patterns for the first 4 months of her life. One continuous spiral starting on the inside when she was born, each revolution representing a single day.](https://www.reddit.com/r/dataisbeautiful/comments/5l39mu/my_daughters_sleeping_patterns_for_the_first_4/?sort=new) is sitting at 52.4k upvotes and is right now the most liked post on /r/dataisbeautiful. Ever.
+[My daughters sleeping patterns for the first 4 months of her life. One continuous spiral starting on the inside when she was born, each revolution representing a single day](https://www.reddit.com/r/dataisbeautiful/comments/5l39mu/my_daughters_sleeping_patterns_for_the_first_4/?sort=new) is sitting at 52.4k upvotes and is, right now, the most liked post on /r/dataisbeautiful. Ever.
 
 The pie chart format is well suited for sleep data because time spirals like a clock. It doesn't abruptly stop and start again on the other side of a bar or column. The graph is powerful, this once, because it helps to show an infant finding her circadian rhythm.
 
