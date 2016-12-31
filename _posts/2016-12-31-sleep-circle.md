@@ -22,4 +22,4 @@ Here's my version of /u/andrew_elliott's Sleep Circle / Time Spiral Graph:
 
 It's obviously not an exact copy, because I'm using fake data, and I wanted to slightly adjust the color palette and add a fade for waking up and falling sleep. But I think it captures everything I liked about the original.
 
-If you're interested in creating time spiral graphs for yourself, perhaps with your own FitBit data, the script that underpins this post is available on [GitHub](https://github.com/maxhumber/sleep_circle/blob/master/sleep_circle.R)
+If you're interested in creating Sleep Cirle Time Spiral graphy things for yourself, perhaps with your own FitBit data, the script that underpins this post is available on [GitHub](https://github.com/maxhumber/sleep_circle/blob/master/sleep_circle.R)
