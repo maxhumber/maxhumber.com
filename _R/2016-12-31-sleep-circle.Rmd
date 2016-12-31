@@ -1,0 +1,101 @@
+---
+title: "Sleep Circle"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+I hate pie charts. They're incredibly misleading and way overused. Walter Hickey has a great post on [why you should never use them](http://www.businessinsider.com/pie-charts-are-the-worst-2013-6?op=1), but the entire argument can basically be summed up in an image:
+
+[INSERT IMAGE HERE]
+
+Last night while browsing [/r/dataisbeautiful](https://www.reddit.com/r/dataisbeautiful/), however, I spyed a pie chart that I actually kind of liked. I'm talking about this thing:
+
+[INSERT PIE HERE]
+
+[My daughters sleeping patterns for the first 4 months of her life. One continuous spiral starting on the inside when she was born, each revolution representing a single day.](https://www.reddit.com/r/dataisbeautiful/comments/5l39mu/my_daughters_sleeping_patterns_for_the_first_4/?sort=new) is sitting at 52.4k upvotes and is right now the most liked post on /r/dataisbeautiful. Ever.
+
+The pie chart format is well suited for sleep data because time spirals like a clock. It doesn't abruptly stop and start again on the other side of a bar or column. The graph is powerful, this once, because it helps to show an infant finding her circadian rhythm.
+
+I thought it would be fun to recreate [/u/andrew_elliott](https://www.reddit.com/user/andrew_elliott)'s graph, but the process he detailed in the comments was fairly opaque and unhelpful:
+
+"Visualisation pattern was created using the CAD package Rhinoceros with Grasshopper plugin, using my own script. Then Adobe Illustrator was used for appearance. Source data was manually logged using Baby Connect iPhone app by my wife and myself."
+
+After futzing around in R for a couple of hours with data that I simulated, I think I've come close to a viable recreation. 
+
+Here's my version of the time spiral graph:
+
+```{r, warning = FALSE, message = FALSE, include = FALSE}
+library(knitr)
+opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE, include = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(stringr)
+
+options(digits = 8, scipen = 100)
+set.seed(5)
+
+start <- Sys.Date() - 100
+
+sleep <- tibble(
+    date = 1:50,
+    time_up = rnorm(50, mean = 8, sd = 1),
+    time_down = rnorm(50, mean = 22, sd = 1.5)
+    ) %>% 
+    gather(time_type, time_value, -date) %>% 
+    mutate(time_type = recode(time_type, time_up = 1, time_down = 0)) %>% 
+    mutate(date = ifelse(time_value >= 24, date + 1, date)) %>% 
+    mutate(time_value = ifelse(time_value >= 24, time_value - 24, time_value)) %>% 
+    mutate(time_value = round(time_value, 2)) %>% 
+    arrange(date, time_value)
+    
+full <- expand.grid(
+    date = 1:50, 
+    time_value = seq(0, 23.99, 0.01)
+    ) %>% 
+    left_join(sleep, by = c("date", "time_value")) %>% 
+    arrange(date, time_value) %>% 
+    fill(time_type, .direction = "down") %>% 
+    drop_na()
+
+blocks <- full %>% 
+    mutate(date = start + date) %>% 
+    mutate(time_group = (time_value %/% 0.1) * 0.1 + 0.000001) %>%
+    group_by(date, time_group) %>% 
+    summarise(time_type = mean(time_type)) %>%
+    separate(time_group, 
+        into = c("hour", "minute"),
+        fill = "left", sep = "\\.", remove = FALSE) %>%
+    mutate(minute = as.numeric(str_c(0, ".", minute))) %>% 
+    mutate(minute = floor(60 * minute)) %>% 
+    mutate(minute = ifelse(str_length(minute) == 1, str_c("0", minute, sep = ""), minute)) %>% 
+    mutate(hour = ifelse(str_length(hour) == 1, str_c("0", hour, sep = ""), hour)) %>% 
+    mutate(time = str_c(hour, ":", minute, sep = "")) %>% 
+    mutate(date_time = as.POSIXct(str_c(date, " ", time), format = "%Y-%m-%d %H:%M")) %>% 
+    arrange(date_time)
+```
+
+```{r, include = TRUE, echo = FALSE}
+blocks %>% 
+    ggplot(aes(
+        x = time_group, xend = time_group + 0.1, 
+        y = date_time, yend = date_time, 
+        color = time_type)) +
+    geom_segment(size = 3, show.legend = FALSE) +
+    scale_color_gradient(low = "#1A4860", high = "#EACEAF") +
+    scale_y_datetime(
+        limits = range(blocks$date_time) + c(-2e6,0)) +
+    coord_polar() +
+    labs(x = "", y = "", title = "") + 
+    theme(
+        plot.background = element_rect(fill = "#FFFFFF", color = "#FFFFFF"),
+        panel.background = element_rect(fill = "#FFFFFF", color = "#FFFFFF"),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+```
+
+If you're interested in creating time spiral graphs for yourself, my script is available on [GitHub](https://github.com/maxhumber/sleep_circle)
