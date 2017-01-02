@@ -1,3 +1,9 @@
+---
+title: "Kindle Clippings"
+date: 2016-12-11
+tags: [r]
+---
+
 TL;DR: I wrote a web scraper to help me make fake money.
 
 I've been playing around with an online marketplace called the ["Hollywood Stock Exchange"](http://www.hsx.com/) for a couple of months now. The website is basically "fantasy" for actors, directors and upcoming movies but it functions pretty much exactly like a stock market.
@@ -20,8 +26,7 @@ I'm lazy. And, I didn't want to manually do the math. So, I built a web scraper 
 
 (If you don't care about the code just scroll to the bottom...)
 
-Step 1: Setup
-=============
+## Setup
 
 ``` r
 # load packages
@@ -38,8 +43,7 @@ opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE)
 URL <- "http://www.hsx.com/security/view/"
 ```
 
-Step 2: Build a scraper to get the tickers for each cast member of Rogue One
-============================================================================
+## Cast Scraper
 
 ``` r
 get_cast <- function(movie) {
@@ -60,8 +64,7 @@ get_cast <- function(movie) {
 cast <- get_cast("SW16")
 ```
 
-Step 3: Build a scraper to get the movie credits for each cast member
-=====================================================================
+## Credits Scraper
 
 ``` r
 get_credits <- function(actor) {
@@ -88,8 +91,7 @@ get_credits <- function(actor) {
 credits <- map(cast$symbol, get_credits) %>% bind_rows() 
 ```
 
-Step 4: Clean the credits and keep the last five movies for each cast member
-============================================================================
+## Clean Credits
 
 ``` r
 clean_credits <- function(credits) {
@@ -117,8 +119,7 @@ clean_credits <- function(credits) {
 tag_credits <- clean_credits(credits)
 ```
 
-Step 5: Brute force search for the missing movie tickers
-========================================================
+## Brute-force Search
 
 ``` r
 movies <- tag_credits %>% 
@@ -156,8 +157,7 @@ get_meta_m <- function(movie) {
 meta_m <- map(movies$search_term, safely(get_meta_m))
 ```
 
-Step 6: Clean the results
-=========================
+## Clean Search Results
 
 ``` r
 clean_meta_m <- function(meta_m) {
@@ -178,8 +178,7 @@ clean_meta_m <- function(meta_m) {
 meta_m <- clean_meta_m(meta_m)
 ```
 
-Step 7: Join the tickers and prices to the TAG eligible credits
-===============================================================
+## Join Tickers and Prices
 
 ``` r
 tag_prices <- tag_credits %>% 
@@ -196,8 +195,7 @@ tag_prices <- tag_credits %>%
         NA, "DYEN", "Ip Man 2", 0.20, 5))
 ```
 
-Step 8: Build a scraper to get the metadata for each cast member
-================================================================
+## Cast Metadata Scraper
 
 ``` r
 get_meta_a <- function(actor) {
@@ -236,8 +234,7 @@ get_meta_a <- function(actor) {
 meta_a <- map(cast$symbol, get_meta_a) %>% bind_rows()
 ```
 
-Step 9: Calculate the forecasted TAG values for Rogue One at $440
-=================================================================
+## TAG Forecasts
 
 ``` r
 tag_new <- tag_prices %>% 
@@ -248,8 +245,7 @@ tag_new <- tag_prices %>%
     select(-total)
 ```
 
-Step 10: Calculate the arbitrage opportunities
-==============================================
+## Calculate Arbitrage Opportunities
 
 ``` r
 arbitrage <- meta_a %>% 
@@ -260,8 +256,7 @@ arbitrage <- meta_a %>%
     mutate(roi = return / investment)
 ```
 
-Punch Line
-==========
+## Punch Line
 
 ![](/assets/img/arbitrage.png)
 
