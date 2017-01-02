@@ -1,4 +1,4 @@
-It's 2017. And that means it's time to read another 52 books. This will be the third year that I do a book a week. And I'm stoked!
+It's 2017. And that means it's time to read another 52 books. This will be the third year that I do a book a week. And I'm really stoked!
 
 As I reflect on what I've learned last year and as I plan out my first couple books for this new one I thought I'd pause and write something quick about my process.
 
@@ -20,13 +20,16 @@ So with the odds stacked against you, here are three tips on how you might impro
 
 # Chain
 
-> It's hard to start reading another book right after you've just finished with one. Unless, of course, it's the next book in the series. If you don't start another book immediately you can lazy and kick books into tomorrow. Those tomorrows quickly turn weeks, trust me. If you *chain* books, however, the problem evaporates. By chaining, I mean, always have multiple books on the go. As soon as you're about 80% the way through one book start another and make a dent in it before finishing the former. With chaining you can't ever lose momentum.
+> It's hard to start reading another book right after you've just finished with one. Unless, of course, it's the next book in the series. If you don't start another book immediately you can lazy and kick books into tomorrow. Those tomorrows quickly turn into weeks, trust me. If you *chain* books, however, the problem evaporates. By chaining, I mean, always have multiple books on the go. As soon as you're about 80% the way through one book start another and make a dent in it before finishing the former. With chaining you can't ever lose momentum.
 
 # Cheat
 
-> Okay, I lied. You're going to lose momentum. And if it's week 14 and you've only read ten books you're probably going to get discouraged. You need quick wins to get your momentum back. Because if you don't get to 17 books by week 17 your Resolution is probably KO'd. So you're going to probably need to *cheat*. Pick up an audio-book and find something sub-100 pages. I promise it's not hardcore cheating... A one-hundred page book is still a book. And there's a bunch of studies that suggest listening to books activate the same areas of the brain!
+> Okay, I lied. You're going to lose momentum. And if it's week 14 and you've only read ten books you're probably going to get discouraged. You need quick wins to get your momentum back. Because if you don't get to 17 books by week 17 your Resolution is probably KO'd. So you're going to probably need to *cheat*. Pick up an audio-book and find something sub-100 pages. I promise it's not hardcore cheating... A one-hundred page book is still a book! And there's a bunch of studies that suggest listening to books on tape activate the same areas of the brain.
 
 <br />
+
 ***
 
-Reading 52 books can be an incredibly rewarding Resolution. Although you won't remember every single page of every single book, you'll be changed if you do it. In the words of Ralph Waldo Emerson, “I cannot remember the books I've read any more than the meals I have eaten; even so, they have made me.” Good luck!
+Reading 52 books can be an incredibly rewarding Resolution. Although you won't remember every single page of every single book, you'll be changed for it. In the words of Ralph Waldo Emerson, “I cannot remember the books I've read any more than the meals I have eaten; even so, they have made me.” 
+
+Good luck!
