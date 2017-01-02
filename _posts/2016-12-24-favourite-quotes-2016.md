@@ -1,4 +1,8 @@
-My 52 favourite quotes for 2016:
+---
+title: "Favourite Quotes of 2016"
+date: 2016-12-24
+tags: [other]
+---
 
 'What makes a museum great is the stuff that's not on the walls. Someone says no. A curator is involved, making conscious decisions about what should stay and what should go. There's an editing process. There's a lot more stuff off the walls than on the walls. The best is a sub-sub-subset of all the possibilities.' — Jason Fried & DHH in [Rework](http://amzn.to/2iqEMZN)
 
