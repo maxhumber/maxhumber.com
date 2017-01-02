@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Kindle Clippings"
 date: 2016-12-23
 tags: [r]
