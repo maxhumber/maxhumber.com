@@ -2,9 +2,9 @@ It's December 23rd and I've only read 49 books. Shit. There's still time, but it
 
 Of course, last year I did 52 books in 52 weeks and remember sitting pretty just before Christmas.
 
-As I've been logging all my activity on [Goodreads](https://www.goodreads.com/user/show/16626766-max) I thought it would be neat to plug into the API and compare my reading progress between the years. To see if I read at the same pace or if there's some sort of seasonality in my reading habits.
+As I've been logging all my activity on [Goodreads](https://www.goodreads.com/user/show/16626766-max) I thought it would be neat to plug into the API and compare my reading progress between the years. To see if I read at the same pace and whether there's some sort of seasonality in my reading habits.
 
-If you happen to use Goodreads and want to do the same here's how:
+If you happen to use Goodreads and want to do the same here's how I did it:
 
 Setup
 =====
@@ -39,7 +39,7 @@ URL <- "https://www.goodreads.com/review/list?"
 Get Shelf
 =========
 
-This is where the heavy lifting `GETS` done. I'm leaning on `httr` and `XML2` to parse the API responses.
+This is where the heavy lifting `GET`s done. I'm leaning on `httr` and `XML2` to parse the API responses.
 
 ``` r
 get_shelf <- function(GR_ID) {
@@ -118,6 +118,6 @@ All of that get to this graph:
 
 ![](/assets/img/goodreads_comp.png)
 
-It's funny to see that I started strong in both years and fell off in March. Though I recovered somewhat in 2015, Spring 2016 was a bad season for reading, apparently.
+It's funny to see that I started strong in both years and fell off sometime around March. Though I recovered somewhat in 2015, Spring 2016 was a bad season for reading, apparently.
 
 Looks like I was finished 52 books by December 21st last year. Whoops. Oh well, I still think I can mad rush it to the finish line.

@@ -1,6 +1,8 @@
-I highlight a lot of shit on my Kindle. Well, it's not all shit! There's usually some good stuff buried in the `My Clippings.txt` file. But it's hard to manually parse through the file (and the shit).
+I highlight a lot of shit on my Kindle. Well, it's not all shit! 💩 There's usually some good stuff buried in the `clippings.txt` file. But it's hard to manually parse through the file (and the shit).
 
-In the past I've relied on online tools to organize my clippings. But this year, I thought "screw that" and I built my own script to manage and clean it all:
+In the past I've relied on online tools to organize my clippings. But this year, I thought I'd try and build my script to manage and clean it all.
+
+Here's what I ended up with:
 
 ``` r
 library(tidyverse)
@@ -69,4 +71,4 @@ parse_clippings <- function(txt) {
 clippings <- parse_clippings(txt)
 ```
 
-I've just pumped my clippings from 2016 through the script and everything seems to have to worked! I'm sifting through each highlight right now trying to curate them down my annual "Favourite 52 Quotes" post. Should have it up tomorrow!
+I've just pumped my clippings from 2016 through the script and everything seems to be working! I'm sifting through each highlight right now, trying to curate them down my to annual "Favourite Quotes of YYYY" post. Should have it up tomorrow!
