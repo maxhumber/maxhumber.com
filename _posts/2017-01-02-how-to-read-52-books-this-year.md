@@ -1,3 +1,9 @@
+---
+title: "How to Read 52 Books this Year"
+date: 2017-01-02
+tags: [other]
+---
+
 It's 2017. And that means it's time to read another 52 books. This will be the third year that I do a book a week. And I'm really stoked!
 
 As I reflect on what I've learned last year and as I plan out my first couple books for this new one I thought I'd pause and write something quick about my process.
