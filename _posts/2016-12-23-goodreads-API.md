@@ -1,3 +1,9 @@
+---
+title: "Goodreads API"
+date: 2016-12-23
+tags: [r]
+---
+
 It's December 23rd and I've only read 49 books. Shit. There's still time, but it's definitely getting dicey. I'm about halfway through three books right now so I think I'll be able to pull it off. Fingers crossed.
 
 Of course, last year I did 52 books in 52 weeks and remember sitting pretty just before Christmas.
