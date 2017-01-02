@@ -14,8 +14,6 @@ Reading 52 books a year is tough. You start strong. And build up a bit of moment
 
 So with the odds stacked against you, here are three tips on how you might improve your chances of reading 52 books—or just more—this year.
 
-***
-
 # Chunk
  
 > Goals, and New Years Resolutions for that matter, are binary and intimating. And 52 books can sound ominous. But if you *chunk* 52 books into one book for each week the goal is immediately smaller and more manageable. By making the goal smaller and turning it into something of a system you can develop a habit and a pace to eventually hit 52. 
@@ -28,6 +26,7 @@ So with the odds stacked against you, here are three tips on how you might impro
 
 > Okay, I lied. You're going to lose momentum. And if it's week 14 and you've only read ten books you're probably going to get discouraged. You need quick wins to get your momentum back. Because if you don't get to 17 books by week 17 your Resolution is probably KO'd. So you're going to probably need to *cheat*. Pick up an audio-book and find something sub-100 pages. I promise it's not hardcore cheating... A one-hundred page book is still a book. And there's a bunch of studies that suggest listening to books activate the same areas of the brain!
 
+<br />
 ***
 
 Reading 52 books can be an incredibly rewarding Resolution. Although you won't remember every single page of every single book, you'll be changed if you do it. In the words of Ralph Waldo Emerson, “I cannot remember the books I've read any more than the meals I have eaten; even so, they have made me.” Good luck!
