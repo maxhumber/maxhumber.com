@@ -183,7 +183,7 @@ ul {
 			border-radius: 3px;
 			background: $color-grey;
 		}
-		
+
 		.highlight{
 			background-color: #073642;
 			color: #93a1a1;
@@ -191,6 +191,9 @@ ul {
 		    border-radius: 3px 3px 3px 3px;
 		    overflow: auto;
 		    padding: 6px 10px;
+		    code {
+		    	background: none;
+		    }
 		}
 
 		.highlight .c{color:#586e75 !important;font-style:italic !important}
