@@ -27,7 +27,6 @@ So with the odds stacked against you, here are three tips on how you might impro
 > Okay, I lied. You're going to lose momentum. And if it's week 14 and you've only read ten books you're probably going to get discouraged. You need quick wins to get your momentum back. Because if you don't get to 17 books by week 17 your Resolution is probably KO'd. So you're going to probably need to *cheat*. Pick up an audio-book and find something sub-100 pages. I promise it's not hardcore cheating... A one-hundred page book is still a book! And there's a bunch of studies that suggest listening to books on tape activate the same areas of the brain.
 
 <br />
-
 ***
 
 Reading 52 books can be an incredibly rewarding Resolution. Although you won't remember every single page of every single book, you'll be changed for it. In the words of Ralph Waldo Emerson, “I cannot remember the books I've read any more than the meals I have eaten; even so, they have made me.” 
