@@ -1,5 +1,5 @@
-# blog
-My blog made with [jekyll](http://jekyllrb.com) and hosted with Github Pages.
+## maxhumber.com
+My personal website and blog made with [Jekyll](http://jekyllrb.com) and hosted on Github Pages.
 
 
 ### Install
@@ -11,4 +11,4 @@ My blog made with [jekyll](http://jekyllrb.com) and hosted with Github Pages.
 * rename your repo to ***your-username*.github.io**
 
 ### License
-All this stuff is under the [MIT License](https://raw.githubusercontent.com/getmicah/getmicah.github.io/master/LICENSE)
+All this stuff is under the [MIT License](https://github.com/maxhumber/maxhumber.com/blob/master/LICENSE)
