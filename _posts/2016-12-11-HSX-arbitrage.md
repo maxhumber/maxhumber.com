@@ -1,24 +1,24 @@
-TL;DR: I wrote a webscraper to help me make fake money.
+TL;DR: I wrote a web scraper to help me make fake money.
 
 I've been playing around with an online marketplace called the ["Hollywood Stock Exchange"](http://www.hsx.com/) for a couple of months now. The website is basically "fantasy" for actors, directors and upcoming movies but it functions pretty much exactly like a stock market.
 
-In simple terms here's how it works:
+In simple terms here's how the exchange works:
 
-Rogue One [(SW16)](http://www.hsx.com/security/view/SW16) is currently trading at ~$440 on the HSX. This means that the market thinks that Rogue One will do $440 Million during the first four weeks at the Box Office. For context, the last Star Wars movie [(STAR7)](http://www.hsx.com/security/view/STAR7) did $936 Million in four weeks. If you think that Rogue One is going to do something in between $440 - $936 Million than you ought to buy the "security" because it will converge and delist on the actual Box Office total.
+Rogue One [(SW16)](http://www.hsx.com/security/view/SW16) is currently trading at ~$440 on the HSX. This means that the market thinks that Rogue One will gross $440,000,000 during the first four weeks in theatres. For context, the last Star Wars movie [(STAR7)](http://www.hsx.com/security/view/STAR7) did $936 Million in the same time period. If you think that Rogue One is going to do something in between $440 and $936 Million than you ought to buy the security because it will converge and delist on the actual box office totals.
 
-There's definitely money (well, fake money...) to be made on a Rogue One position right now. But, I think there's an arbitrage opportunity in buying the actors and actresses attached to Rogue One instead.
+There's definitely money* to be made on a Rogue One position, right now. But, I think there's an arbitrage opportunity in buying the actors and actresses attached to Rogue One instead.
 
-See, actors and actresses (StarBonds) are priced slightly differently on the HSX. StarBonds are calculated on the average total box-office performance over the last five credited films by release date. This means that each time a movie featuring a particular star cashes out and delists, the box-office gross is calculated into the star's Trailing Average Gross (TAG), and the bond price is adjusted to match.
+See, actors and actresses, called StarBonds on the HSXm are priced slightly differently. StarBonds are derived from the average total box-office performance for the last five credited films by release date. This means that each time a movie featuring a particular star cashes out and delists, the box office gross is added into the star's Trailing Average Gross (TAG), and the bond price is adjusted to match.
 
-Mads Mikkelsen [(MMIKK)](http://www.hsx.com/security/view/MMIKK) a Rogue One cast member, for instance, is currently priced at $47.10. His actual TAG value is only $43.54. This spread is because of Rogue One. In a couple weeks Rogue One will be added to Mads' TAG value while at the same time some random indie art film called "A Royal Affair" [(ROYAF)](http://www.hsx.com/security/view/ROYAF) will fall off and out of his TAG.
+Mads Mikkelsen [(MMIKK)](http://www.hsx.com/security/view/MMIKK) a Rogue One cast member, for instance, is currently priced at $47.10. His actual TAG value, however, is only $43.54. This spread is because of Rogue One. In a couple weeks Rogue One will be added to Mads' TAG value while at the same time some random indie art film called "A Royal Affair" [(ROYAF)](http://www.hsx.com/security/view/ROYAF) will fall off and out of his TAG.
 
 I mean, I could manually do the math for the Mads example and figure out what his TAG will be when Rogue One gets added. But there's no fun in that! And besides, Mads is already a big deal. The thing about the new Star Wars movies is that a bunch of nobodies get cast and turned it into Super Stars overnight. It means that a lot of random indie art films (think sub ~$5) are about to fall off to make room for Rogue One (~$440). Basically, Rogue One is going to make the TAGs for a lot of people pop.
 
 The punch line:
 
-I'm lazy. And, I didn't want to manually do the math! So, I built a webscraper to calculate the arbitrage opportunities for me. 
+I'm lazy. And, I didn't want to manually do the math. So, I built a web scraper to calculate the arbitrage opportunities for me. 
 
-(If you don't care about the code just skip to the bottom of the page...)
+(If you don't care about the code just scroll to the bottom...)
 
 Step 1: Setup
 =============
@@ -196,8 +196,8 @@ tag_prices <- tag_credits %>%
         NA, "DYEN", "Ip Man 2", 0.20, 5))
 ```
 
-Step 8: Build a scraper to get the meta data for each cast member
-=================================================================
+Step 8: Build a scraper to get the metadata for each cast member
+================================================================
 
 ``` r
 get_meta_a <- function(actor) {
@@ -265,4 +265,4 @@ Punch Line
 
 ![](/assets/img/arbitrage.png)
 
-Ha! I knew it. Arbitrage Galore. Just look at Mads. He's trading at 43.54 right now. But when Rogue One gets added he's going to pop all the way up to 129.28. But it's not just Mads. The entire top billed cast of Rogue One is chronincally undervalued right now, with Donnie Yen [(DYEN)](http://www.hsx.com/security/view/DYEN) at the extreme end. Basically an investment in DYEN could yield a return of ~5.5X. Fuck I really wish this wasn't just fake money...
+Ha! I knew it. Arbitrage Galore. Just look at Mads. He's trading at $43.54 right now. But when Rogue One gets added he's going to pop to $129.28. But it's not just Mads. The entire top billed cast of Rogue One is chronincally undervalued right now, with Donnie Yen [(DYEN)](http://www.hsx.com/security/view/DYEN) at the extreme end. Basically an investment in DYEN could yield a return of ~5.5X. Fuck, I really wish this wasn't just fake money...
