@@ -8,4 +8,9 @@ I do data science for [Borrowell](http://borrowell.com/). We are a fintech lende
 
 # stack 📚
 <br />
-I mostly lean on R/Python and absolutely I love the *tidyverse* and Stan.
+I lean on R and Python and I love the *tidyverse*.
+
+# blogroll 🕸
+<br />
+I read [r-bloggers](https://www.r-bloggers.com/), [varianceexplained](http://varianceexplained.org/) and [fivethirtyeight](https://fivethirtyeight.com/). You should too!
+
