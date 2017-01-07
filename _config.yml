@@ -25,3 +25,7 @@ kramdown:
   input: GFM
   hard_wrap: false
 highlighter: rouge
+
+# Gems
+gems:
+  - jekyll-feed
