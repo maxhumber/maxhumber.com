@@ -4,8 +4,8 @@ layout: null
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Max Humber</title>
-    <description>R posts</description>
+    <title>max humber</title>
+    <description>r feed</description>
     <link>{{ site.url }}</link>
 		{% for post in site.posts %}
 		{% if post.tags contains 'r' %}
