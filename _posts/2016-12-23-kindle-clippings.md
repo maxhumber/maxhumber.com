@@ -4,7 +4,7 @@ date: 2016-12-23
 tags: [r]
 ---
 
-I highlight a lot of shit on my Kindle. Well, it's not all shit! 💩 There's usually some good stuff buried in the `clippings.txt` file. But it's hard to manually parse through the file (and the shit).
+I highlight a lot of junk on my Kindle. Well, it's not all junk! 💩 There's usually some good stuff buried deep within my `clippings.txt` file. But it's hard to manually parse through the file (and the junk).
 
 In the past I've relied on online tools to organize my clippings. But this year, I thought I'd try and build my script to manage and clean it all.
 
