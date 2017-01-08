@@ -6,6 +6,12 @@ tags: [r]
 
 `rvest` and `purrr` are wonderful bedfellows. The packages share the underlying `tidyverse` API. And it feels simple and almost natural to combine them when scraping the web.
 
+Here is a slimmed down and worked recipe of how to leverage `rvest` and `purrr` in Fantasy Hockey.
+
+***
+
+**Step 0. Load packages.**
+
 ``` r
 library(tidyverse)
 library(rvest)
@@ -13,17 +19,13 @@ library(purrr)
 library(stringr)
 ```
 
-Here is a slimmed down and worked recipe of how to leverage `rvest` and `purrr` in Fantasy Hockey.
-
-<br />
-
 **Step 1. Find a data source.**
 
 I'm going to use [Fantasy Sports Portal](https://www.fantasysp.com/projections/hockey/weekly/) for this example.
 
 **Step 2. Figure out the CSS selectors for the data.**
 
-[SelectorGadget](http://selectorgadget.com/) makes this part super easy. This is what it looks like in action:
+[SelectorGadget](http://selectorgadget.com/) makes this dead simple, like so:
 
 ![](/assets/img/vorp_hockey.png)
 
@@ -52,7 +54,7 @@ p_fetch <- function(position = "C") {
     
     return(df)
 }
-```
+```  
 
 **Step 4. Iterate through each page.**
 
@@ -69,7 +71,7 @@ p_pull <- function() {
 
     return(df)
 }
-```
+```  
 
 **Step 5. Clean and format projection data.**
 
@@ -96,7 +98,7 @@ p_clean <- function() {
 }
 
 df <- p_clean()
-```
+```  
 
 At this point you should have a nice clean tibble/dataframe with every player, their position, team, and their projected goals for this week. I could stop here, but I wanted to go a little further with a *value over replacement player* (VORP) calculation.
 
@@ -135,7 +137,7 @@ p_vorp <- function() {
     
     return(rp)
 }
-```
+```  
 
 **Step 7. Calculate the vorp for each player.**
 
