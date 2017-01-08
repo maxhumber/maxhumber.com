@@ -73,7 +73,7 @@ p_pull <- function() {
 }
 ```  
 <br>
-**Step 5. Clean and format projection data.**
+**Step 5. Clean and format the projection data.**
 
 This is a pretty janky use `separate` but it works to get everything into a format that I like.
 
@@ -102,7 +102,7 @@ df <- p_clean()
 
 At this point you should have a nice clean tibble/dataframe with every player, their position, team, and their projected goals for this week. I could stop here, but I wanted to go a little further with a *value over replacement player* (VORP) calculation.
 
-**Step 6. Calculate replacement player for each scoring position.**
+**Step 6. Calculate a replacement player for each scoring position.**
 
 I'm using `pmap` again to pump through each position to get the mean value for the top X players. It's a little overkill, but really flexible.
 
@@ -139,7 +139,7 @@ p_vorp <- function() {
 }
 ```  
 <br>
-**Step 7. Calculate the vorp for each player.**
+**Step 7. Calculate the VORP for each player.**
 
 Simple join at this point...
 
@@ -155,5 +155,5 @@ vorp <- df %>%
     select(-goals_rp) %>% 
     arrange(desc(goals_vorp))
 ```
-
+<br>
 And that's it!
