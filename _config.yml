@@ -1,7 +1,3 @@
-# Blog settings
-permalink: /blog/:title
-
-
 # My variables
 name: max humber
 description: small data musings
