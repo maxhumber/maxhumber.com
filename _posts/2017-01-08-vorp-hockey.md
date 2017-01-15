@@ -27,7 +27,7 @@ I'm going to use [Fantasy Sports Portal](https://www.fantasysp.com/projections/h
 
 [SelectorGadget](http://selectorgadget.com/) makes this dead simple, like so:
 
-![](/assets/img/vorp_hockey.png)
+![]({{ site.url }}/assets/img/vorp_hockey.png)
 
 **Step 3. Fetch the data elements.**
 
