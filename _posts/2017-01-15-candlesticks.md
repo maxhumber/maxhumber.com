@@ -26,7 +26,7 @@ This is what I finally arrived at:
 
 ![](/assets/img/candle3.png)
 
-I love this slimmed down version because it's kind of like putting notches in a wall. And despite the lack of labels and text annotations you can still see a lot. For instance, you can see Eli's training exercises (two short bursts on the second and third row as well as the string of short jumps near the end of the third row). You can tease out some semblance of consistency in his free falls. And you can see where it almost all came to an end...that data point near the end of the second row where he had to pull his reserve shoot.
+I love this slimmed down version because it's kind of like putting notches in a wall. And despite the lack of labels and text annotations you can still see a lot. For instance, you can see Eli's training exercises (two short bursts on the second and third row as well as the string of short jumps near the end of the third row). You can tease out some semblance of consistency in his free falls. And you can see where it almost all came to an end...that data point near the end of the second row where he had to pull his reserve chute.
 
 Anyways. Thanks for letting my play with your data, Eli! For anyone interested, this is the `ggplot2` code that I used to create the final graph. And if you want to see all of the data for this post, it's available on [GitHub](https://github.com/maxhumber/maxhumber.com/tree/master/_R):
 
@@ -36,10 +36,10 @@ df %>%
     geom_segment(size = 1, color = "grey20", aes(
         xend = id,
         y = jump, 
-        yend = shoot)) +
+        yend = chute)) +
     geom_segment(lty = 1, size = 0.25, color = "grey40", aes(
         xend = id,
-        y = shoot, 
+        y = chute, 
         yend = 0)) +
     facet_wrap(~section, scales = "free_x", ncol = 1) + 
     labs(title = "", x = "", y = "", color = "") + 
