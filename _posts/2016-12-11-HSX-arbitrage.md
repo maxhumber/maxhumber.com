@@ -258,6 +258,6 @@ arbitrage <- meta_a %>%
 
 ## Punch Line
 
-![](/assets/img/arbitrage.png)
+![]({{ site.url }}/assets/img/arbitrage.png)
 
 Ha! I knew it. Arbitrage Galore. Just look at Mads. He's trading at $43.54 right now. But when Rogue One gets added he's going to pop to $129.28. But it's not just Mads. The entire top billed cast of Rogue One is chronincally undervalued right now, with Donnie Yen [(DYEN)](http://www.hsx.com/security/view/DYEN) at the extreme end. Basically an investment in DYEN could yield a return of ~5.5X. Damn, I really wish this wasn't just fake money...
