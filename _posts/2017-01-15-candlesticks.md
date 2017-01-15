@@ -14,17 +14,17 @@ After some time messing around with graphical primitives in `ggplot2` I hit on a
 
 This was my first attempt with simulated data:
 
-![](/assets/img/candle1.png)
+![]({{ site.url }}/assets/img/candle1.png)
 
 After getting Eli's logbook to conform to and look like the simulated data I threw it all back into the `geom_segment`s and got this:
 
-![](/assets/img/candle2.png)
+![]({{ site.url }}/assets/img/candle2.png)
 
 A little busy for my tastes. So, I decided to break every rule in data visualization and strip away all the fuss. I got rid of the labels and axes and text and titles and the legends because it was all noise and getting in the way of Eli's fearlessness (stupidity?) and the data. I wanted the raw stuff to shine.
 
 This is what I finally arrived at:
 
-![](/assets/img/candle3.png)
+![]({{ site.url }}/assets/img/candle3.png)
 
 I love this slimmed down version because it's kind of like putting notches in a wall. And despite the lack of labels and text annotations you can still see a lot. For instance, you can see Eli's training exercises (two short bursts on the second and third row as well as the string of short jumps near the end of the third row). You can tease out some semblance of consistency in his free falls. And you can see where it almost all came to an end...that data point near the end of the second row where he had to pull his reserve chute.
 
