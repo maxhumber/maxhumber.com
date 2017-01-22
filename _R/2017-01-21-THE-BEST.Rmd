@@ -51,10 +51,11 @@ df <- tribble(
     "Larry Bird", 88, 89, 93, 92, 87,
     "Kawhi Leonard", 71, 94, 92, 93, 62,
     "Stephen Curry", 95, 92, 87, 43, 32,
-    "Average", 72, 85, 32, 34, 30) %>% 
+    "Top five average\n('97 to '15)", 72, 85, 32, 34, 30) %>% 
     gather(stat, percentile, -player) %>% 
     mutate(outof4 = percentile %/% 25 + 1) %>% 
-    mutate(col = ifelse(player == "Average", "A", "B")) %>% 
+    mutate(col = ifelse(
+        player == "Top five average\n('97 to '15)", "A", "B")) %>% 
     mutate(order = recode(stat, 
         assists = 5, shooting = 1, usage = 2, 
         defense = 3, rebounds = 4)) %>% 
