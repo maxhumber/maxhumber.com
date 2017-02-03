@@ -1,9 +1,9 @@
 ---
 title: 'Hypothetical Outcome Plots'
 tags: [r]
-output: html_document
-    # md_document:
-    #   variant: markdown_github
+output: # html_document
+    md_document:
+      variant: markdown_github
 ---
 
 ```{r, warning = FALSE, message = FALSE, include = FALSE}
@@ -33,7 +33,7 @@ opts_chunk$set(
     cache = TRUE, warning = FALSE, message = FALSE, dpi = 150, fig.show = "animate")
 ```
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 suppressPackageStartupMessages(library(tidyverse))
 # devtools::install_github("dgrtwo/gganimate")
 # install.packages("cowplot")
@@ -41,31 +41,31 @@ library(gganimate)
 # install image magick in terminal >> "brew install image magick"
 ```
 
+If the Weatherman says that there is 30% chance of rain tomorrow. And it rains. Was he wrong? It's an important question. Because it rained on November 8th. And a lot of people think that it wasn't supposed to.
+
 Communicating uncertainty is hard. It's hard because uncertainty can be convoluted and opaque. And it's hard because a lot of people can't get down with boxplots or measures of spread.
 
 Take this toy data for example:
 
 ```{r}
-set.seed(2017)
+set.seed(2016)
 
 df <- tibble(
-    Seinfeld = round(rnorm(50, mean = 81, sd = 10)), 
-    `Rick and Morty` = round(rnorm(50, mean = 85, sd = 5))
+    `Blue Team` = round(rnorm(50, mean = 48, sd = 5)), 
+    `Red Team` = round(rnorm(50, mean = 45, sd = 3))
     ) %>% 
-    mutate(episode = row_number()) %>% 
-    gather(tv_show, rating, -episode) %>% 
-    mutate(rating = ifelse(rating >= 100, 100, rating) / 100)
+    mutate(simulation = row_number()) %>% 
+    gather(team, probability, -simulation) %>% 
+    mutate(probability = ifelse(probability >= 100, 100, probability) / 100)
 ```
 
-Here we have the (fake) ratings for 50 episodes of two TV shows, *Rick and Morty* and *Seinfeld*. 
+Imagine that this data was generated from some model. How might we represent the uncertainty in our model and around our predictions? 
 
-Which of these shows is better? If we didn't exactly know the distributions of this data, there would be some uncertainty in our answer. 
-
-To figure out which show is better we might push the data through a boxplot:
+Perhaps we might push the data through a boxplot:
 
 ```{r}
 df %>% 
-    ggplot(aes(x = tv_show, y = rating)) +
+    ggplot(aes(x = team, y = probability)) +
     geom_boxplot()
 ```
 
@@ -73,99 +73,71 @@ Or a density chart:
 
 ```{r}
 df %>% 
-    ggplot(aes(x = rating, fill = tv_show)) + 
-    geom_density(alpha = 1/2)
+    ggplot(aes(x = probability, fill = team)) + 
+    geom_density(alpha = 1/2) + 
+    scale_fill_manual(values = c("blue", "red"))
 ```
 
 Or use some errorbars:
 
 ```{r}
 df %>% 
-    group_by(tv_show) %>% 
+    group_by(team) %>% 
     summarise(
-        mean = mean(rating), 
-        low = quantile(rating, 0.025),
-        high = quantile(rating, 0.975)) %>% 
-    ggplot(aes(x = tv_show, y = mean)) +
+        mean = mean(probability), 
+        low = quantile(probability, 0.025),
+        high = quantile(probability, 0.975)) %>% 
+    ggplot(aes(x = team, y = mean)) +
     geom_errorbar(aes(ymin = low, ymax = high))
 ```
 
-Or we might even go HAM and build some model on it. 
-
-But these options all kind of suck. They're not super intuitive. And they aren't all that convincing, because they intimidate a lot of people!
+These options all kind of suck. They're not super intuitive. And they aren't all that convincing, because they can intimidate a lot of people!
 
 Instead of boxplots or density charts or regular errorbars we can hack errorbars to generate a proto-Hypothetical Outcome Plot:
 
 ```{r}
 df %>% 
-    ggplot(aes(x = tv_show, y = rating)) +
-    geom_errorbar(aes(ymin = rating, ymax = rating))
+    ggplot(aes(x = team, y = probability)) +
+    geom_errorbar(aes(ymin = probability, ymax = probability))
 ```
 
-Hypothetical Outcome Plots (HOPs) are a way to build and visualize uncertainty in the same way that we experience it (in and by countable events). The depth and theory behind HOPs is beyond the scope of this quick post, but if you're interested in learning more check out [this Medium story](https://medium.com/hci-design-at-uw/hypothetical-outcomes-plots-experiencing-the-uncertain-b9ea60d7c740#.taennvi6g) by the *UW Interactive Data Lab*. 
+Hypothetical Outcome Plots (HOPs) are a way to build and visualize uncertainty in the same way that we experience it (in and by countable events). The depth and theory behind HOPs is beyond the scope of this quick post, but if you're interested in learning more check out [this awesome Medium story](https://medium.com/hci-design-at-uw/hypothetical-outcomes-plots-experiencing-the-uncertain-b9ea60d7c740#.taennvi6g) by the *UW Interactive Data Lab*. 
 
 Extending our hacked errorbars with `gganimate` we can implement an actual HOP in just a few lines of R:
 
 ```{r, fig.width=6, fig.height=4}
 p <- df %>% 
-    ggplot(aes(x = tv_show, y = rating, frame = episode)) +
-    geom_errorbar(aes(ymin = rating, ymax = rating))
+    ggplot(aes(x = team, y = probability, frame = simulation)) +
+    geom_errorbar(aes(ymin = probability, ymax = probability))
 
 gganimate(p, title_frame = FALSE)
 ```
 
-Cool. Looks like *Seinfeld* is all over the place and *Rick & Morty* is a little bit more consistent (and better**)
+In this way we can directly experience the uncertainty of our model and the predictions that it happens to make. 
 
-I hope HOPs get some more love in the future, because I really do they they're a good way to visualize and communicate uncertainty. Or at least that they're better than boxplots 
+In looking at the HOP it seems as though the Blue Team is supposed to win our imaginary game. Importantly, however, the Red Team comes up on top in certain simulations. So, don't say that the model was wrong if they happen to actually win the imaginary game!
 
-
-We can extend the HOP a bit further with some ghost bars:
+If you want to add a little polish to our HOP, I might suggest extending it with some ghost bars:
 
 ```{r, fig.width=6, fig.height=4}
 p <- df %>%
-    ggplot(aes(x = tv_show, y = rating)) +
+    ggplot(aes(x = team, y = probability)) +
     geom_errorbar(aes(
-        ymin = rating, ymax = rating, 
-        frame = episode, cumulative = TRUE), 
+        ymin = probability, ymax = probability, 
+        frame = simulation, cumulative = TRUE), 
         color = "grey80", alpha = 1/8) +
     geom_errorbar(aes(
-        ymin = rating, ymax = rating, frame = episode), 
+        ymin = probability, ymax = probability, frame = simulation), 
         color = "#00a9e0") +
     scale_y_continuous(
         limits = c(0, 1), 
         labels = scales::percent_format()) +
     theme(panel.background = element_rect(fill = "#FFFFFF")) +
-    labs(title = "TV Shows", y = "Rating", x = "")
+    labs(title = "", y = "Probability of winning", x = "")
 
 gganimate(p, title_frame = FALSE)
 ```
 
-And/or sprinkle in some colour:
+And that's it. Thanks for reading!
 
-```{r}
-df_col <- df %>%
-    spread(tv_show, rating) %>% 
-    mutate(better = ifelse(
-        `Rick and Morty` >= Seinfeld, "Rick and Morty", "Seinfeld")) %>%
-    gather(tv_show, rating, -episode, -better) %>%
-    mutate(col = ifelse(better == tv_show, "green", "red"))
-
-p <- df_col %>%
-    ggplot(aes(x = tv_show, y = rating)) +
-    geom_errorbar(aes(
-        ymin = rating, ymax = rating, 
-        frame = episode, cumulative = TRUE), 
-        color = "grey80", alpha = 1/8) +
-    geom_errorbar(aes(
-        ymin = rating, ymax = rating, 
-        color = col, frame = episode), 
-        size = 1.5, alpha = 1/2, show.legend = FALSE) +
-    scale_color_manual(values = c("#8FB339", "#FF1B1C")) +
-    scale_y_continuous(
-        limits = c(0, 1), 
-        labels = scales::percent_format()) +
-    theme(panel.background = element_rect(fill = "#FFFFFF")) +
-    labs(title = "TV Shows", y = "Rating", x = "")
-
-gganimate(p, title_frame = FALSE)
-```
+I have two more posts in the queue about visualizing models and model performance. Look for them in the near future!
