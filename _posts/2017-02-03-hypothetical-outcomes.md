@@ -24,11 +24,11 @@ set.seed(2016)
 
 df <- tibble(
     `Blue Team` = round(rnorm(50, mean = 48, sd = 5)), 
-    `Red Team` = round(rnorm(50, mean = 45, sd = 3))
+    `Red Team` = `Blue Team` + round(rnorm(50, mean = -1, sd = 3))
     ) %>% 
     mutate(simulation = row_number()) %>% 
-    gather(team, probability, -simulation) %>% 
-    mutate(probability = ifelse(probability >= 100, 100, probability) / 100)
+    gather(team, polling, -simulation) %>% 
+    mutate(polling = ifelse(polling >= 100, 100, polling) / 100)
 ```
 <br>
 
@@ -38,7 +38,7 @@ Perhaps we might push the data through a boxplot:
 
 ``` r
 df %>% 
-    ggplot(aes(x = team, y = probability)) +
+    ggplot(aes(x = team, y = polling)) +
     geom_boxplot()
 ```
 
@@ -48,7 +48,7 @@ Or a density chart:
 
 ``` r
 df %>% 
-    ggplot(aes(x = probability, fill = team)) + 
+    ggplot(aes(x = polling, fill = team)) + 
     geom_density(alpha = 1/2) + 
     scale_fill_manual(values = c("blue", "red"))
 ```
@@ -61,23 +61,23 @@ Or use some errorbars:
 df %>% 
     group_by(team) %>% 
     summarise(
-        mean = mean(probability), 
-        low = quantile(probability, 0.025),
-        high = quantile(probability, 0.975)) %>% 
+        mean = mean(polling), 
+        low = quantile(polling, 0.025),
+        high = quantile(polling, 0.975)) %>% 
     ggplot(aes(x = team, y = mean)) +
     geom_errorbar(aes(ymin = low, ymax = high))
 ```
 
 ![center]({{ site.url }}/assets/img/hop_3.png)
 
-These options all kind of suck, though. They're not super intuitive. And they aren't all that convincing, because they can intimidate a lot of people!
+These options all kind of suck. They're not super intuitive. And they aren't all that convincing, because they can intimidate a lot of people!
 
 Instead of boxplots or density charts or regular errorbars we can hack errorbars to generate a proto-Hypothetical Outcome Plot:
 
 ``` r
 df %>% 
-    ggplot(aes(x = team, y = probability)) +
-    geom_errorbar(aes(ymin = probability, ymax = probability))
+    ggplot(aes(x = team, y = polling)) +
+    geom_errorbar(aes(ymin = polling, ymax = polling))
 ```
 
 ![center]({{ site.url }}/assets/img/hop_4.png)
@@ -88,8 +88,8 @@ Extending our hacked errorbars with `gganimate` we can implement an actual HOP i
 
 ``` r
 p <- df %>% 
-    ggplot(aes(x = team, y = probability, frame = simulation)) +
-    geom_errorbar(aes(ymin = probability, ymax = probability))
+    ggplot(aes(x = team, y = polling, frame = simulation)) +
+    geom_errorbar(aes(ymin = polling, ymax = polling))
 
 gganimate(p, title_frame = FALSE)
 ```
@@ -98,25 +98,25 @@ gganimate(p, title_frame = FALSE)
 
 In this way we can directly experience the uncertainty of our model and the predictions that it happens to make.
 
-In looking at the HOP it seems as though the Blue Team is supposed to win our imaginary game. Importantly, however, the Red Team comes up on top in certain simulations. So, don't say that the model is wrong if they happen to actually win our imaginary game!
+In looking at the HOP it seems as though the Blue Team is supposed to win our imaginary game. Importantly, however, the Red Team comes up on top in certain simulations. So, don't say that the model was wrong if they happen to actually win the imaginary game!
 
-If you want to add a little polish to your HOP, I might suggest extending it with some ghost bars:
+If you want to add a little polish to our HOP, I might suggest extending it with some ghost bars:
 
 ``` r
 p <- df %>%
-    ggplot(aes(x = team, y = probability)) +
+    ggplot(aes(x = team, y = polling)) +
     geom_errorbar(aes(
-        ymin = probability, ymax = probability, 
+        ymin = polling, ymax = polling, 
         frame = simulation, cumulative = TRUE), 
         color = "grey80", alpha = 1/8) +
     geom_errorbar(aes(
-        ymin = probability, ymax = probability, frame = simulation), 
+        ymin = polling, ymax = polling, frame = simulation), 
         color = "#00a9e0") +
     scale_y_continuous(
         limits = c(0, 1), 
         labels = scales::percent_format()) +
     theme(panel.background = element_rect(fill = "#FFFFFF")) +
-    labs(title = "", y = "Probability of winning", x = "")
+    labs(title = "", y = "Polling %", x = "")
 
 gganimate(p, title_frame = FALSE)
 ```
