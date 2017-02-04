@@ -1,0 +1,246 @@
+---
+title: 'Visualizing Models'
+tags: [r]
+output: html_document
+    # md_document:
+    #   variant: markdown_github
+---
+
+```{r, warning = FALSE, message = FALSE, include = FALSE}
+library(knitr)
+
+opts_chunk$set(
+    cache = TRUE, warning = FALSE, message = FALSE, dpi = 150, fig.show = "animate")
+```
+
+```{r warning=FALSE, message=FALSE}
+suppressPackageStartupMessages(library(tidyverse))
+library(rvest)
+library(viridis)
+```
+
+Source: https://en.wikipedia.org/wiki/List_of_Super_Bowl_champions
+
+```{r}
+superbowl <- tribble(
+    ~superbowl, ~winner, ~loser,
+    50, "Denver Broncos", "Carolina Panthers", 
+    49, "New England Patriots", "Seattle Seahawks", 
+    48, "Seattle Seahawks", "Denver Broncos", 
+    47, "Baltimore Ravens", "San Francisco 49ers", 
+    46, "New York Giants", "New England Patriots",
+    45, "Green Bay Packers", "Pittsburgh Steelers",
+    44, "New Orleans Saints", "Indianapolis Colts",
+    43, "Pittsburgh Steelers", "Arizona Cardinals",
+    42, "New York Giants", "New England Patriots",
+    41, "Indianapolis Colts", "Chicago Bears",
+    40, "Pittsburgh Steelers", "Seattle Seahawks",
+    39, "New England Patriots", "Philadelphia Eagles",
+    38, "New England Patriots", "Carolina Pathers",
+    37, "Tampa Bay Buccaneers", "Oakland Raiders",
+    36, "New England Patriots", "St. Louis Rams"
+    ) %>% 
+    mutate(year_superbowl = 1966 + superbowl) %>% 
+    mutate(year_season = year_superbowl - 1) %>% 
+    select(-year_superbowl)
+```
+
+Source: http://www.pro-football-reference.com/years/NFL/scoring.htm
+
+```{r}
+scrape_ppga <- function() {
+    
+    url <- "http://www.pro-football-reference.com/years/NFL/scoring.htm"
+    page <- read_html(url)
+    
+    year <- page %>%
+        html_nodes("#team_scoring_per_team .left") %>% 
+        html_text() %>% 
+        .[-1] %>% 
+        as.numeric(.)
+    
+    ppga <- page %>% 
+        html_nodes("#team_scoring_per_team :nth-child(20)") %>% 
+        html_text() %>% 
+        .[-1:-2] %>% 
+        .[-length(.)] %>% 
+        as.numeric(.)
+    
+    df <- tibble(year = year, ppga = ppga) %>% filter(year >= 2001)
+    
+    return(df)
+}
+
+ppga <- scrape_ppga()
+```
+
+Source: http://nfl-historical-teams.pointafter.com/
+
+```{r}
+pfa <- tribble(
+    ~year, ~team, ~pf, ~pa,
+    2015, "Denver Broncos", 22.2, 18.5,
+    2015, "Carolina Panthers", 31.2, 19.2, 
+    2014, "New England Patriots", 29.3, 19.6,
+    2014, "Seattle Seahawks", 24.6, 15.9, 
+    2013, "Seattle Seahawks", 26.1, 14.4, 
+    2013, "Denver Broncos", 37.9, 24.9,
+    2012, "Baltimore Ravens", 24.9, 21.5,
+    2012, "San Francisco 49ers", 24.8, 17.1, 
+    2011, "New York Giants", 24.6, 25,
+    2011, "New England Patriots", 32.1, 21.4, 
+    2010, "Green Bay Packers", 24.2, 15,
+    2010, "Pittsburgh Steelers", 23.4, 14.5,
+    2009, "New Orleans Saints", 31.9, 21.3,
+    2009, "Indianapolis Colts", 26.0, 19.2, 
+    2008, "Pittsburgh Steelers", 21.7, 13.9,
+    2008, "Arizona Cardinals", 26.7, 26.6,
+    2007, "New York Giants", 23.3, 21.9,
+    2007, "New England Patriots", 36.8, 17.1,
+    2006, "Indianapolis Colts", 26.7, 22.5, 
+    2006, "Chicago Bears", 26.7, 15.9,
+    2005, "Pittsburgh Steelers", 24.3, 16.1,
+    2005, "Seattle Seahawks", 28.2, 16.9,
+    2004, "New England Patriots", 27.3, 16.2,
+    2004, "Philadelphia Eagles", 24.1, 16.2, 
+    2003, "New England Patriots", 21.8, 14.9,
+    2003, "Carolina Pathers", 20.3, 19.0,
+    2002, "Tampa Bay Buccaneers", 21.6, 12.2, 
+    2002, "Oakland Raiders", 28.1, 19,
+    2001, "New England Patriots", 23.2, 17.0, 
+    2001, "St. Louis Rams", 31.4, 17.1
+)
+```
+
+```{r}
+df <- superbowl %>% 
+    gather(result, team, -superbowl, -year_season) %>% 
+    left_join(pfa, by = c("team", "year_season" = "year")) %>% 
+    left_join(ppga, by = c("year_season" = "year")) %>% 
+    mutate(pf_va = pf - ppga) %>% 
+    mutate(pa_va = pa - ppga) %>% 
+    mutate(win = ifelse(result == "winner", 1, 0))
+```
+
+```{r}
+df %>% 
+    ggplot(aes(x = pf, y = pa)) + 
+    # ggplot(aes(x = pf_va, y = pa_va)) + 
+    geom_point(aes(color = factor(win)))
+```
+
+```{r}
+mod1 <- glm(
+    win ~ pf + pa + pf:pa,
+    family = "binomial",
+    data = df)
+summary(mod1)
+
+pred_grid <- expand.grid(
+    pf = 0:40, 
+    pa = 0:40) 
+
+pred_grid$prob <- predict(mod1, newdata = pred_grid, type = "response")
+```
+
+```{r}
+pred_grid %>% 
+    ggplot(aes(x = pf, y = pa)) + 
+    geom_tile(aes(fill = prob)) + 
+    geom_contour(aes(z = prob), color = "white", lty = 2, binwidth = 0.25) +
+    geom_point(
+        data = (df %>% filter(win == 1)),
+        color = "white", shape = 16, size = 2) +
+    geom_point(
+        data = (df %>% filter(win == 0)),
+        color = "white", shape = 4, size = 2) +
+    scale_fill_viridis(direction = 1, end = 0.85, option = "D") + 
+    coord_cartesian(xlim = c(10, 40), ylim = c(10, 40)) + 
+    theme_minimal()
+```
+
+http://www.pro-football-reference.com/teams/atl/2016.htm#all_team_stats
+
+```{r}
+ranking <- tribble(
+    ~year, ~team, ~off_ranking, ~def_ranking,
+    2015, "Denver Broncos", 19, 4,
+    2015, "Carolina Panthers", 1, 6, 
+    2014, "New England Patriots", 4, 8,
+    2014, "Seattle Seahawks", 10, 1, 
+    2013, "Seattle Seahawks", 8, 1, 
+    2013, "Denver Broncos", 1, 22,
+    2012, "Baltimore Ravens", 10, 12,
+    2012, "San Francisco 49ers", 11, 2, 
+    2011, "New York Giants", 9, 25,
+    2011, "New England Patriots", 3, 15, 
+    2010, "Green Bay Packers", 10, 2,  
+    2010, "Pittsburgh Steelers", 12, 1,
+    2009, "New Orleans Saints", 1, 20,
+    2009, "Indianapolis Colts", 7, 8, 
+    2008, "Pittsburgh Steelers", 20, 1,
+    2008, "Arizona Cardinals", 3, 28,
+    2007, "New York Giants", 14, 17,
+    2007, "New England Patriots", 1, 4,
+    2006, "Indianapolis Colts", 2, 23, 
+    2006, "Chicago Bears", 2, 3,
+    2005, "Pittsburgh Steelers", 9, 3,
+    2005, "Seattle Seahawks", 1, 7,
+    2004, "New England Patriots", 4, 2,
+    2004, "Philadelphia Eagles", 8, 2, 
+    2003, "New England Patriots", 12, 1,
+    2003, "Carolina Pathers", 15, 10,
+    2002, "Tampa Bay Buccaneers", 18, 1, 
+    2002, "Oakland Raiders", 2, 6,
+    2001, "New England Patriots", 6, 6, 
+    2001, "St. Louis Rams", 1, 7
+)
+```
+
+```{r}
+df <- superbowl %>% 
+    gather(result, team, -superbowl, -year_season) %>% 
+    left_join(ranking, by = c("team", "year_season" = "year")) %>% 
+    mutate(win = ifelse(result == "winner", 1, 0)) %>% 
+    filter(win == 1) %>% 
+    group_by(year_season) %>% 
+    complete(off_ranking = seq(1, 32, 1), def_ranking = seq(1, 32, 1)) %>% 
+    mutate(win = ifelse(is.na(win), 0, 1))
+```
+
+```{r}
+mod2 <- glm(
+    win ~ off_ranking + def_ranking,
+    family = "binomial",
+    data = df)
+summary(mod2)
+
+pred_grid <- expand.grid(
+    off_ranking = 1:32, 
+    def_ranking = 1:32) 
+
+pred_grid$prob <- predict(mod2, newdata = pred_grid, type = "response")
+```
+
+```{r}
+pred_grid %>% 
+    ggplot(aes(x = off_ranking, y = def_ranking)) + 
+    geom_tile(aes(fill = prob)) + 
+    geom_contour(aes(z = prob), color = "white", lty = 2, binwidth = 0.0025) +
+    geom_point(
+        data = (df %>% filter(win == 1)),
+        color = "white", shape = 16, size = 2) +
+    # geom_point(
+    #     data = (df %>% filter(win == 0)),
+    #     color = "white", shape = 4, size = 2) +
+    scale_fill_viridis(direction = 1, end = 0.85, option = "D") + 
+    # coord_cartesian(xlim = c(10, 40), ylim = c(10, 40)) + 
+    theme_minimal()
+```
+
+
+
+
+
+
+
