@@ -1,29 +1,29 @@
 superbowl,year_season,team,win,pf,pa,srs
-50.0,2015.0,Denver Broncos,1,22.2,18.5,5.78
-49.0,2014.0,New England Patriots,1,29.3,19.6,10.94
-48.0,2013.0,Seattle Seahawks,1,26.1,14.4,13.04
-47.0,2012.0,Baltimore Ravens,1,24.9,21.5,2.90
-46.0,2011.0,New York Giants,1,24.6,25.0,1.59
-45.0,2010.0,Green Bay Packers,1,24.3,15.0,10.94
-44.0,2009.0,New Orleans Saints,1,31.9,21.3,10.76
-43.0,2008.0,Pittsburgh Steelers,1,21.7,13.9,9.8
-42.0,2007.0,New York Giants,1,23.3,21.9,3.26
-41.0,2006.0,Indianapolis Colts,1,26.7,22.5,5.88
-40.0,2005.0,Pittsburgh Steelers,1,24.3,16.1,7.81
-39.0,2004.0,New England Patriots,1,27.3,16.3,12.84
-38.0,2003.0,New England Patriots,1,21.8,14.9,6.94
-37.0,2002.0,Tampa Bay Buccaneers,1,21.6,12.3,8.8
-50.0,2015.0,Carolina Panthers,0,31.3,19.3,8.12
-49.0,2014.0,Seattle Seahawks,0,24.6,15.9,9.54
-48.0,2013.0,Denver Broncos,0,37.9,24.9,11.37
-47.0,2012.0,San Francisco 49ers,0,24.8,17.1,10.20
-46.0,2011.0,New England Patriots,0,32.1,21.4,9.27
-45.0,2010.0,Pittsburgh Steelers,0,23.4,14.5,10.21
-44.0,2009.0,Indianapolis Colts,0,26.0,19.2,5.93
-43.0,2008.0,Arizona Cardinals,0,26.7,26.6,-1.89
-42.0,2007.0,New England Patriots,0,36.8,17.1,20.06
-41.0,2006.0,Chicago Bears,0,26.7,15.9,7.9
-40.0,2005.0,Seattle Seahawks,0,28.3,16.9,9.11
-39.0,2004.0,Philadelphia Eagles,0,24.1,16.3,5.55
-38.0,2003.0,Carolina Panthers,0,20.3,19.0,-0.93
-37.0,2002.0,Oakland Raiders,0,28.1,19.0,10.63
+50,2015,Denver Broncos,1,22.2,18.5,5.78
+49,2014,New England Patriots,1,29.3,19.6,10.94
+48,2013,Seattle Seahawks,1,26.1,14.4,13.04
+47,2012,Baltimore Ravens,1,24.9,21.5,2.90
+46,2011,New York Giants,1,24.6,25.0,1.59
+45,2010,Green Bay Packers,1,24.3,15.0,10.94
+44,2009,New Orleans Saints,1,31.9,21.3,10.76
+43,2008,Pittsburgh Steelers,1,21.7,13.9,9.8
+42,2007,New York Giants,1,23.3,21.9,3.26
+41,2006,Indianapolis Colts,1,26.7,22.5,5.88
+40,2005,Pittsburgh Steelers,1,24.3,16.1,7.81
+39,2004,New England Patriots,1,27.3,16.3,12.84
+38,2003,New England Patriots,1,21.8,14.9,6.94
+37,2002,Tampa Bay Buccaneers,1,21.6,12.3,8.8
+50,2015,Carolina Panthers,0,31.3,19.3,8.12
+49,2014,Seattle Seahawks,0,24.6,15.9,9.54
+48,2013,Denver Broncos,0,37.9,24.9,11.37
+47,2012,San Francisco 49ers,0,24.8,17.1,10.20
+46,2011,New England Patriots,0,32.1,21.4,9.27
+45,2010,Pittsburgh Steelers,0,23.4,14.5,10.21
+44,2009,Indianapolis Colts,0,26.0,19.2,5.93
+43,2008,Arizona Cardinals,0,26.7,26.6,-1.89
+42,2007,New England Patriots,0,36.8,17.1,20.06
+41,2006,Chicago Bears,0,26.7,15.9,7.9
+40,2005,Seattle Seahawks,0,28.3,16.9,9.11
+39,2004,Philadelphia Eagles,0,24.1,16.3,5.55
+38,2003,Carolina Panthers,0,20.3,19.0,-0.93
+37,2002,Oakland Raiders,0,28.1,19.0,10.63
