@@ -1,5 +1,5 @@
 ---
-title: 'Visualizing Models'
+title: 'Starry Night Plots'
 tags: [r]
 output: html_document
     # md_document:
@@ -13,24 +13,19 @@ opts_chunk$set(
     cache = TRUE, warning = FALSE, message = FALSE, dpi = 150, fig.show = "animate")
 ```
 
-Really wanted to write somethng for super bowl.
-don't really know anything about football.. but will watch
+I think good data science reads like a good story. In that it flows. Has an arc. And is compelling. 
 
-tried to precit who will will
+But data science has a dirty secret. For every piece that works, there are about nine others that didn't. Nine other stories that look like they were typed up by a monkey with a typewriter (and with a [finite amount](https://en.wikipedia.org/wiki/Infinite_monkey_theorem) time!)
 
+The problem with this problem is that unless you did the work you never get to see the monkey scripts. The stuff that never worked. The stuff that got thrown out. 
 
-Model diagnoistics
-visualizatior diagnotistics
-pred grid
+This creates, I think, unrealistic expectations about how data science gets done. Because every tutorial, textbook, lesson, workshop, talk, and blog post about data science just works. And we forget that this stuff has been designed and vetted to work. Most real world stuff doesn't just work. 
 
-p-hacking .... could have find something.
-looking at pvalues and like... ooop!
+I initially wanted this post to be about the Super Bowl. To build some model on `Average Points For` and `Against` and push it through a new plot that I've been working on. But nothing was working. The data and my model told a story that literally made zero sense.
 
-wanted to tell a story,
+But then it struck me. This is perfect. I was able to catch and diagnose a garbage model exactly because of the plot I wanted to talk about. So. Here's my monkey script and the Starry Night Plot that helped me throw it out:
 
-that's okay 90% of my work is throw out. And it has to be that way. sometimes things just don't pan out. but that's not what textbooks tell you. everything you read has an answer. that's not how the real world works. it's messy and sometimes the data just inst there.
-
-showed what I want to show.
+## SETUP
 
 ```{r warning=FALSE, message=FALSE}
 library(tidyverse)
@@ -181,121 +176,89 @@ write_csv(superbowl_data, "superbowl_data.csv")
 superbowl_data <- read_csv("superbowl_data.csv")
 ```
 
+## DATA
+
+These data are scraped from [pro-football-reference.com](http://www.pro-football-reference.com/) with `purrr` and `rvest`. If you want to learn more about webscraping with the tidverse I have a quick post about it [here](http://maxhumber.com/2017/01/08/vorp-hockey.html). And if you want to see exactly how I got these data the full 
+
+```{r}
+df <- read_csv(paste0(
+    "https://raw.githubusercontent.com/maxhumber/",
+    "maxhumber.com/master/assets/data/superbowl_data.csv"))
+```
+
 ```{r}
 mod1 <- glm(
-    win ~ pf:srs + pa:srs,
+    win ~ pf + pa,
     family = "binomial",
     data = df)
-summary(mod1)
 
+summary(mod1)
+```
+
+```{r}
 pred_grid <- expand.grid(
     pf = 0:40, 
-    pa = 0:40, 
-    srs = -20:20) 
+    pa = 0:40)
 
 pred_grid$prob <- predict(mod1, newdata = pred_grid, type = "response")
 ```
 
+
+
+
+
+Really wanted to write somethng for super bowl.
+don't really know anything about football.. but will watch
+
+tried to precit who will will
+
+
+Model diagnoistics
+visualizatior diagnotistics
+pred grid
+
+p-hacking .... could have find something.
+looking at pvalues and like... ooop!
+
+wanted to tell a story,
+
+
+```{r}
+contour(x = pred_grid$pf, y = pred_grid$pa, z = pred_grid$prob)
+```
+
 ```{r}
 pred_grid %>% 
-    ggplot(aes(x = pf_diff, y = pa_diff)) + 
+    ggplot(aes(x = pf, y = pa)) + 
+    geom_tile(aes(fill = prob))
+```
+
+
+
+```{r}
+br <- 0.2
+
+pred_grid %>% 
+    ggplot(aes(x = pf, y = pa)) + 
     geom_tile(aes(fill = prob)) + 
-    geom_contour(aes(z = prob), color = "white", lty = 2, binwidth = 0.25) +
+    geom_contour(aes(z = prob), color = "white", lty = 2, binwidth = br) +
     geom_point(
         data = (df %>% filter(win == 1)),
         color = "white", shape = 16, size = 2) +
     geom_point(
         data = (df %>% filter(win == 0)),
         color = "white", shape = 4, size = 2) +
-    scale_fill_viridis(direction = 1, end = 0.85, option = "D") + 
-    # coord_cartesian(xlim = c(10, 40), ylim = c(10, 40)) + 
-    theme_minimal()
-```
-
-http://www.pro-football-reference.com/teams/atl/2016.htm#all_team_stats
-
-```{r}
-ranking <- tribble(
-    ~year, ~team, ~off_ranking, ~def_ranking,
-    2015, "Denver Broncos", 19, 4,
-    2015, "Carolina Panthers", 1, 6, 
-    2014, "New England Patriots", 4, 8,
-    2014, "Seattle Seahawks", 10, 1, 
-    2013, "Seattle Seahawks", 8, 1, 
-    2013, "Denver Broncos", 1, 22,
-    2012, "Baltimore Ravens", 10, 12,
-    2012, "San Francisco 49ers", 11, 2, 
-    2011, "New York Giants", 9, 25,
-    2011, "New England Patriots", 3, 15, 
-    2010, "Green Bay Packers", 10, 2,  
-    2010, "Pittsburgh Steelers", 12, 1,
-    2009, "New Orleans Saints", 1, 20,
-    2009, "Indianapolis Colts", 7, 8, 
-    2008, "Pittsburgh Steelers", 20, 1,
-    2008, "Arizona Cardinals", 3, 28,
-    2007, "New York Giants", 14, 17,
-    2007, "New England Patriots", 1, 4,
-    2006, "Indianapolis Colts", 2, 23, 
-    2006, "Chicago Bears", 2, 3,
-    2005, "Pittsburgh Steelers", 9, 3,
-    2005, "Seattle Seahawks", 1, 7,
-    2004, "New England Patriots", 4, 2,
-    2004, "Philadelphia Eagles", 8, 2, 
-    2003, "New England Patriots", 12, 1,
-    2003, "Carolina Pathers", 15, 10,
-    2002, "Tampa Bay Buccaneers", 18, 1, 
-    2002, "Oakland Raiders", 2, 6,
-    2001, "New England Patriots", 6, 6, 
-    2001, "St. Louis Rams", 1, 7
-)
+    scale_fill_viridis(
+        direction = 1, end = 0.85, option = "D", 
+        breaks = seq(0, 1, br),
+        labels = scales::percent_format()) + 
+    coord_cartesian(xlim = c(10, 40), ylim = c(10, 40))
 ```
 
 ```{r}
-df <- superbowl %>% 
-    gather(result, team, -superbowl, -year_season) %>% 
-    left_join(ranking, by = c("team", "year_season" = "year")) %>%
-    group_by(year_season) %>% 
-    mutate(off_percentile = 1 - (off_ranking / 32)) %>% 
-    mutate(def_percentile = 1 - (def_ranking / 32)) %>% 
-    mutate(win = ifelse(result == "winner", 1, 0)) %>% 
-    mutate(off_diff = (off_percentile - mean(off_percentile ))*2) %>% 
-    mutate(def_diff = (def_percentile - mean(def_percentile ))*2)
-    
-    mutate(win = ifelse(result == "winner", 1, 0)) %>% 
-    filter(win == 1) %>% 
-    group_by(year_season) %>% 
-    complete(off_ranking = seq(1, 32, 1), def_ranking = seq(1, 32, 1)) %>% 
-    mutate(win = ifelse(is.na(win), 0, 1))
-```
-
-```{r}
-mod2 <- glm(
-    win ~ off_diff + def_diff,
-    family = "binomial",
-    data = df)
-summary(mod2)
-
-pred_grid <- expand.grid(
-    off_diff = seq(-1, 1, 0.05), 
-    def_diff = seq(-1, 1, 0.05))
-
-pred_grid$prob <- predict(mod2, newdata = pred_grid, type = "response")
-```
-
-```{r}
-pred_grid %>% 
-    ggplot(aes(x = off_diff, y = def_diff)) + 
-    geom_tile(aes(fill = prob)) + 
-    geom_contour(aes(z = prob), color = "white", lty = 2, binwidth = 0.2) +
-    geom_point(
-        data = (df %>% filter(win == 1)),
-        color = "white", shape = 16, size = 2) +
-    # geom_point(
-    #     data = (df %>% filter(win == 0)),
-    #     color = "white", shape = 4, size = 2) +
-    scale_fill_viridis(direction = 1, end = 0.85, option = "D") + 
-    # coord_cartesian(xlim = c(10, 40), ylim = c(10, 40)) + 
-    theme_minimal()
+df2 <- df %>% 
+    select(year_season, team, win, pf, pa) %>% 
+    arrange(year_season)
 ```
 
 
