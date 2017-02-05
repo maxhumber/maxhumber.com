@@ -1,0 +1,2881 @@
+ticker,year,record,pf,pa,expected,comp
+crd,2002,"
+  Record: 5-11-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 262 (16.4/g) 29th of 32,Points Against: 417 (26.1/g) 29th of 32,Expected W-L: 4.0-12.0,"SRS: -9.89 (31st of 32), 
+  SOS: -0.20
+"
+atl,2002,"
+  Record: 9-6-1, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 402 (25.1/g) 5th of 32,Points Against: 314 (19.6/g) 8th of 32,Expected W-L: 10.3-5.7,"SRS: 5.06 (6th of 32), 
+  SOS: -0.44
+"
+rav,2002,"
+  Record: 7-9-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 316 (19.8/g) 23rd of 32,Points Against: 354 (22.1/g) 19th of 32,Expected W-L: 6.9-9.1,"SRS: -2.12 (22nd of 32), 
+  SOS: .26
+"
+buf,2002,"
+  Record: 8-8-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 379 (23.7/g) 11th of 32,Points Against: 397 (24.8/g) 27th of 32,Expected W-L: 7.6-8.4,"SRS: -0.27 (19th of 32), 
+  SOS: .85
+"
+car,2002,"
+  Record: 7-9-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 258 (16.1/g) 30th of 32,Points Against: 302 (18.9/g) 5th of 32,Expected W-L: 6.5-9.5,"SRS: -3.27 (24th of 32), 
+  SOS: -0.52
+"
+chi,2002,"
+  Record: 4-12-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 281 (17.6/g) 27th of 32,Points Against: 379 (23.7/g) 25th of 32,Expected W-L: 5.3-10.7,"SRS: -5.27 (27th of 32), 
+  SOS: .86
+"
+cin,2002,"
+  Record: 2-14-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 279 (17.4/g) 28th of 32,Points Against: 456 (28.5/g) 32nd of 32,Expected W-L: 3.8-12.2,"SRS: -10.50 (32nd of 32), 
+  SOS: .56
+"
+cle,2002,"
+  Record: 9-7-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 344 (21.5/g) 19th of 32,Points Against: 320 (20.0/g) 10th of 32,Expected W-L: 8.7-7.3,"SRS: 1.23 (14th of 32), 
+  SOS: -0.27
+"
+dal,2002,"
+  Record: 5-11-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 217 (13.6/g) 31st of 32,Points Against: 329 (20.6/g) 13th of 32,Expected W-L: 4.3-11.7,"SRS: -8.48 (28th of 32), 
+  SOS: -1.48
+"
+den,2002,"
+  Record: 9-7-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 392 (24.5/g) 7th of 32,Points Against: 344 (21.5/g) 15th of 32,Expected W-L: 9.2-6.8,"SRS: 4.89 (7th of 32), 
+  SOS: 1.89
+"
+det,2002,"
+  Record: 3-13-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 306 (19.1/g) 26th of 32,Points Against: 451 (28.2/g) 31st of 32,Expected W-L: 4.6-11.4,"SRS: -9.17 (29th of 32), 
+  SOS: -0.11
+"
+gnb,2002,"
+  Record: 12-4-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 398 (24.9/g) 6th of 32,Points Against: 328 (20.5/g) 12th of 32,Expected W-L: 9.8-6.2,"SRS: 3.58 (9th of 32), 
+  SOS: -0.79
+"
+htx,2002,"
+  Record: 4-12-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 213 (13.3/g) 32nd of 32,Points Against: 356 (22.3/g) 20th of 32,Expected W-L: 3.7-12.3,"SRS: -9.44 (30th of 32), 
+  SOS: -0.50
+"
+clt,2002,"
+  Record: 10-6-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 349 (21.8/g) 17th of 32,Points Against: 313 (19.6/g) 7th of 32,Expected W-L: 9.0-7.0,"SRS: 1.17 (15th of 32), 
+  SOS: -1.08
+"
+jax,2002,"
+  Record: 6-10-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 328 (20.5/g) 21st of 32,Points Against: 315 (19.7/g) 9th of 32,Expected W-L: 8.4-7.6,"SRS: -0.20 (18th of 32), 
+  SOS: -1.01
+"
+kan,2002,"
+  Record: 8-8-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 467 (29.2/g) 1st of 32,Points Against: 399 (24.9/g) 28th of 32,Expected W-L: 9.5-6.5,"SRS: 6.11 (4th of 32), 
+  SOS: 1.86
+"
+ram,2002,"
+  Record: 7-9-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 316 (19.8/g) 23rd of 32,Points Against: 369 (23.1/g) 23rd of 32,Expected W-L: 6.5-9.5,"SRS: -3.34 (25th of 32), 
+  SOS: -0.02
+"
+mia,2002,"
+  Record: 9-7-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 378 (23.6/g) 12th of 32,Points Against: 301 (18.8/g) 4th of 32,Expected W-L: 10.1-5.9,"SRS: 6.06 (5th of 32), 
+  SOS: 1.25
+"
+min,2002,"
+  Record: 6-10-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 390 (24.4/g) 8th of 32,Points Against: 442 (27.6/g) 30th of 32,Expected W-L: 6.8-9.2,"SRS: -3.01 (23rd of 32), 
+  SOS: .24
+"
+nwe,2002,"
+  Record: 9-7-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 381 (23.8/g) 10th of 32,Points Against: 346 (21.6/g) 17th of 32,Expected W-L: 8.9-7.1,"SRS: 4.03 (8th of 32), 
+  SOS: 1.84
+"
+nor,2002,"
+  Record: 9-7-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 432 (27.0/g) 3rd of 32,Points Against: 388 (24.3/g) 26th of 32,Expected W-L: 9.0-7.0,"SRS: 2.43 (12th of 32), 
+  SOS: -0.32
+"
+nyg,2002,"
+  Record: 10-6-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 320 (20.0/g) 22nd of 32,Points Against: 279 (17.4/g) 3rd of 32,Expected W-L: 9.3-6.7,"SRS: .83 (16th of 32), 
+  SOS: -1.74
+"
+nyj,2002,"
+  Record: 9-7-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 359 (22.4/g) 15th of 32,Points Against: 336 (21.0/g) 14th of 32,Expected W-L: 8.6-7.4,"SRS: 3.17 (10th of 32), 
+  SOS: 1.73
+"
+rai,2002,"
+  Record: 11-5-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 450 (28.1/g) 2nd of 32,Points Against: 304 (19.0/g) 6th of 32,Expected W-L: 11.5-4.5,"SRS: 10.64 (1st of 32), 
+  SOS: 1.51
+"
+phi,2002,"
+  Record: 12-4-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 415 (25.9/g) 4th of 32,Points Against: 241 (15.1/g) 2nd of 32,Expected W-L: 12.5-3.5,"SRS: 8.30 (3rd of 32), 
+  SOS: -2.58
+"
+pit,2002,"
+  Record: 10-5-1, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 390 (24.4/g) 8th of 32,Points Against: 345 (21.6/g) 16th of 32,Expected W-L: 9.2-6.8,"SRS: 2.70 (11th of 32), 
+  SOS: -0.11
+"
+sdg,2002,"
+  Record: 8-8-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 333 (20.8/g) 20th of 32,Points Against: 367 (22.9/g) 22nd of 32,Expected W-L: 7.1-8.9,"SRS: -0.72 (20th of 32), 
+  SOS: 1.40
+"
+sfo,2002,"
+  Record: 10-6-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 367 (22.9/g) 13th of 32,Points Against: 351 (21.9/g) 18th of 32,Expected W-L: 8.4-7.6,"SRS: .64 (17th of 32), 
+  SOS: -0.36
+"
+sea,2002,"
+  Record: 7-9-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 355 (22.2/g) 16th of 32,Points Against: 369 (23.1/g) 23rd of 32,Expected W-L: 7.6-8.4,"SRS: -1.25 (21st of 32), 
+  SOS: -0.38
+"
+tam,2002,"
+  Record: 12-4-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 346 (21.6/g) 18th of 32,Points Against: 196 (12.3/g) 1st of 32,Expected W-L: 12.7-3.3,"SRS: 8.80 (2nd of 32), 
+  SOS: -0.57
+"
+oti,2002,"
+  Record: 11-5-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 367 (22.9/g) 13th of 32,Points Against: 324 (20.3/g) 11th of 32,Expected W-L: 9.2-6.8,"SRS: 1.76 (13th of 32), 
+  SOS: -0.92
+"
+was,2002,"
+  Record: 7-9-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 307 (19.2/g) 25th of 32,Points Against: 365 (22.8/g) 21st of 32,Expected W-L: 6.4-9.6,"SRS: -4.45 (26th of 32), 
+  SOS: -0.83
+"
+crd,2003,"
+  Record: 4-12-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 225 (14.1/g) 32nd of 32,Points Against: 452 (28.3/g) 32nd of 32,Expected W-L: 2.6-13.4,"SRS: -12.55 (32nd of 32), 
+  SOS: 1.64
+"
+atl,2003,"
+  Record: 5-11-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 299 (18.7/g) 20th of 32,Points Against: 422 (26.4/g) 30th of 32,Expected W-L: 4.9-11.1,"SRS: -7.42 (30th of 32), 
+  SOS: .27
+"
+rav,2003,"
+  Record: 10-6-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 391 (24.4/g) 8th of 32,Points Against: 281 (17.6/g) 6th of 32,Expected W-L: 11.0-5.0,"SRS: 6.26 (6th of 32), 
+  SOS: -0.61
+"
+buf,2003,"
+  Record: 6-10-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 243 (15.2/g) 30th of 32,Points Against: 279 (17.4/g) 5th of 32,Expected W-L: 6.7-9.3,"SRS: -0.99 (19th of 32), 
+  SOS: 1.26
+"
+car,2003,"
+  Record: 11-5-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 325 (20.3/g) 15th of 32,Points Against: 304 (19.0/g) 10th of 32,Expected W-L: 8.6-7.4,"SRS: -0.93 (18th of 32), 
+  SOS: -2.24
+"
+chi,2003,"
+  Record: 7-9-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 283 (17.7/g) 23rd of 32,Points Against: 346 (21.6/g) 22nd of 32,Expected W-L: 6.1-9.9,"SRS: -3.54 (24th of 32), 
+  SOS: .40
+"
+cin,2003,"
+  Record: 8-8-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 346 (21.6/g) 13th of 32,Points Against: 384 (24.0/g) 28th of 32,Expected W-L: 7.0-9.0,"SRS: -2.40 (21st of 32), 
+  SOS: -0.03
+"
+cle,2003,"
+  Record: 5-11-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 254 (15.9/g) 29th of 32,Points Against: 322 (20.1/g) 12th of 32,Expected W-L: 5.8-10.2,"SRS: -2.91 (23rd of 32), 
+  SOS: 1.34
+"
+dal,2003,"
+  Record: 10-6-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 289 (18.1/g) 21st of 32,Points Against: 260 (16.3/g) 2nd of 32,Expected W-L: 9.0-7.0,"SRS: -0.46 (16th of 32), 
+  SOS: -2.27
+"
+den,2003,"
+  Record: 10-6-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 381 (23.8/g) 10th of 32,Points Against: 301 (18.8/g) 9th of 32,Expected W-L: 10.2-5.8,"SRS: 5.47 (8th of 32), 
+  SOS: .47
+"
+det,2003,"
+  Record: 5-11-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 270 (16.9/g) 26th of 32,Points Against: 379 (23.7/g) 25th of 32,Expected W-L: 4.9-11.1,"SRS: -5.84 (27th of 32), 
+  SOS: .97
+"
+gnb,2003,"
+  Record: 10-6-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 442 (27.6/g) 4th of 32,Points Against: 307 (19.2/g) 11th of 32,Expected W-L: 11.3-4.7,"SRS: 8.13 (2nd of 32), 
+  SOS: -0.31
+"
+htx,2003,"
+  Record: 5-11-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 255 (15.9/g) 28th of 32,Points Against: 380 (23.8/g) 27th of 32,Expected W-L: 4.5-11.5,"SRS: -5.95 (28th of 32), 
+  SOS: 1.86
+"
+clt,2003,"
+  Record: 12-4-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 447 (27.9/g) 2nd of 32,Points Against: 336 (21.0/g) 20th of 32,Expected W-L: 10.6-5.4,"SRS: 6.97 (3rd of 32), 
+  SOS: .03
+"
+jax,2003,"
+  Record: 5-11-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 276 (17.3/g) 25th of 32,Points Against: 331 (20.7/g) 18th of 32,Expected W-L: 6.3-9.7,"SRS: -2.42 (22nd of 32), 
+  SOS: 1.01
+"
+kan,2003,"
+  Record: 13-3-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 484 (30.3/g) 1st of 32,Points Against: 332 (20.8/g) 19th of 32,Expected W-L: 11.4-4.6,"SRS: 8.31 (1st of 32), 
+  SOS: -1.19
+"
+ram,2003,"
+  Record: 12-4-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 447 (27.9/g) 2nd of 32,Points Against: 328 (20.5/g) 17th of 32,Expected W-L: 10.8-5.2,"SRS: 5.86 (7th of 32), 
+  SOS: -1.58
+"
+mia,2003,"
+  Record: 10-6-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 311 (19.4/g) 17th of 32,Points Against: 261 (16.3/g) 3rd of 32,Expected W-L: 9.6-6.4,"SRS: 3.43 (11th of 32), 
+  SOS: .31
+"
+min,2003,"
+  Record: 9-7-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 416 (26.0/g) 6th of 32,Points Against: 353 (22.1/g) 23rd of 32,Expected W-L: 9.5-6.5,"SRS: 2.91 (13th of 32), 
+  SOS: -1.03
+"
+nwe,2003,"
+  Record: 14-2-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 348 (21.8/g) 12th of 32,Points Against: 238 (14.9/g) 1st of 32,Expected W-L: 11.4-4.6,"SRS: 6.94 (4th of 32), 
+  SOS: .06
+"
+nor,2003,"
+  Record: 8-8-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 340 (21.3/g) 14th of 32,Points Against: 326 (20.4/g) 14th of 32,Expected W-L: 8.4-7.6,"SRS: -0.27 (15th of 32), 
+  SOS: -1.14
+"
+nyg,2003,"
+  Record: 4-12-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 243 (15.2/g) 30th of 32,Points Against: 387 (24.2/g) 29th of 32,Expected W-L: 4.0-12.0,"SRS: -8.56 (31st of 32), 
+  SOS: .44
+"
+nyj,2003,"
+  Record: 6-10-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 283 (17.7/g) 23rd of 32,Points Against: 299 (18.7/g) 8th of 32,Expected W-L: 7.5-8.5,"SRS: -0.57 (17th of 32), 
+  SOS: .43
+"
+rai,2003,"
+  Record: 4-12-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 270 (16.9/g) 26th of 32,Points Against: 379 (23.7/g) 25th of 32,Expected W-L: 4.9-11.1,"SRS: -5.48 (25th of 32), 
+  SOS: 1.34
+"
+phi,2003,"
+  Record: 12-4-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 374 (23.4/g) 11th of 32,Points Against: 287 (17.9/g) 7th of 32,Expected W-L: 10.4-5.6,"SRS: 4.40 (9th of 32), 
+  SOS: -1.03
+"
+pit,2003,"
+  Record: 6-10-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 300 (18.8/g) 19th of 32,Points Against: 327 (20.4/g) 15th of 32,Expected W-L: 7.2-8.8,"SRS: -1.08 (20th of 32), 
+  SOS: .61
+"
+sdg,2003,"
+  Record: 4-12-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 313 (19.6/g) 16th of 32,Points Against: 441 (27.6/g) 31st of 32,Expected W-L: 4.9-11.1,"SRS: -6.80 (29th of 32), 
+  SOS: 1.20
+"
+sfo,2003,"
+  Record: 7-9-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 384 (24.0/g) 9th of 32,Points Against: 337 (21.1/g) 21st of 32,Expected W-L: 9.2-6.8,"SRS: 3.08 (12th of 32), 
+  SOS: .14
+"
+sea,2003,"
+  Record: 10-6-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 404 (25.3/g) 7th of 32,Points Against: 327 (20.4/g) 15th of 32,Expected W-L: 10.0-6.0,"SRS: 4.08 (10th of 32), 
+  SOS: -0.73
+"
+tam,2003,"
+  Record: 7-9-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 301 (18.8/g) 18th of 32,Points Against: 264 (16.5/g) 4th of 32,Expected W-L: 9.2-6.8,"SRS: 1.60 (14th of 32), 
+  SOS: -0.71
+"
+oti,2003,"
+  Record: 12-4-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 435 (27.2/g) 5th of 32,Points Against: 324 (20.3/g) 13th of 32,Expected W-L: 10.7-5.3,"SRS: 6.47 (5th of 32), 
+  SOS: -0.47
+"
+was,2003,"
+  Record: 5-11-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 287 (17.9/g) 22nd of 32,Points Against: 372 (23.3/g) 24th of 32,Expected W-L: 5.6-10.4,"SRS: -5.74 (26th of 32), 
+  SOS: -0.43
+"
+crd,2004,"
+  Record: 6-10-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 284 (17.8/g) 26th of 32,Points Against: 322 (20.1/g) 12th of 32,Expected W-L: 6.8-9.2,"SRS: -4.87 (26th of 32), 
+  SOS: -2.50
+"
+atl,2004,"
+  Record: 11-5-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 340 (21.3/g) 16th of 32,Points Against: 337 (21.1/g) 14th of 32,Expected W-L: 8.1-7.9,"SRS: -2.20 (17th of 32), 
+  SOS: -2.39
+"
+rav,2004,"
+  Record: 9-7-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 317 (19.8/g) 20th of 32,Points Against: 268 (16.8/g) 6th of 32,Expected W-L: 9.6-6.4,"SRS: 6.12 (7th of 32), 
+  SOS: 3.06
+"
+buf,2004,"
+  Record: 9-7-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 395 (24.7/g) 7th of 32,Points Against: 284 (17.8/g) 8th of 32,Expected W-L: 11.0-5.0,"SRS: 8.05 (5th of 32), 
+  SOS: 1.12
+"
+car,2004,"
+  Record: 7-9-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 355 (22.2/g) 13th of 32,Points Against: 339 (21.2/g) 15th of 32,Expected W-L: 8.4-7.6,"SRS: -0.65 (15th of 32), 
+  SOS: -1.65
+"
+chi,2004,"
+  Record: 5-11-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 231 (14.4/g) 32nd of 32,Points Against: 331 (20.7/g) 13th of 32,Expected W-L: 4.8-11.2,"SRS: -8.24 (31st of 32), 
+  SOS: -1.99
+"
+cin,2004,"
+  Record: 8-8-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 374 (23.4/g) 10th of 32,Points Against: 372 (23.3/g) 21st of 32,Expected W-L: 8.1-7.9,"SRS: 2.67 (11th of 32), 
+  SOS: 2.54
+"
+cle,2004,"
+  Record: 4-12-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 276 (17.3/g) 27th of 32,Points Against: 390 (24.4/g) 24th of 32,Expected W-L: 4.9-11.1,"SRS: -3.39 (22nd of 32), 
+  SOS: 3.74
+"
+dal,2004,"
+  Record: 6-10-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 293 (18.3/g) 25th of 32,Points Against: 405 (25.3/g) 27th of 32,Expected W-L: 5.1-10.9,"SRS: -7.77 (30th of 32), 
+  SOS: -0.77
+"
+den,2004,"
+  Record: 10-6-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 381 (23.8/g) 9th of 32,Points Against: 304 (19.0/g) 9th of 32,Expected W-L: 10.1-5.9,"SRS: 5.86 (8th of 32), 
+  SOS: 1.05
+"
+det,2004,"
+  Record: 6-10-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 296 (18.5/g) 24th of 32,Points Against: 350 (21.9/g) 18th of 32,Expected W-L: 6.4-9.6,"SRS: -5.17 (27th of 32), 
+  SOS: -1.79
+"
+gnb,2004,"
+  Record: 10-6-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 424 (26.5/g) 5th of 32,Points Against: 380 (23.8/g) 23rd of 32,Expected W-L: 9.0-7.0,"SRS: .30 (13th of 32), 
+  SOS: -2.45
+"
+htx,2004,"
+  Record: 7-9-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 309 (19.3/g) 21st of 32,Points Against: 339 (21.2/g) 15th of 32,Expected W-L: 7.1-8.9,"SRS: -0.63 (14th of 32), 
+  SOS: 1.24
+"
+clt,2004,"
+  Record: 12-4-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 522 (32.6/g) 1st of 32,Points Against: 351 (21.9/g) 19th of 32,Expected W-L: 11.5-4.5,"SRS: 11.41 (2nd of 32), 
+  SOS: .73
+"
+jax,2004,"
+  Record: 9-7-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 261 (16.3/g) 29th of 32,Points Against: 280 (17.5/g) 7th of 32,Expected W-L: 7.3-8.7,"SRS: .75 (12th of 32), 
+  SOS: 1.94
+"
+kan,2004,"
+  Record: 7-9-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 483 (30.2/g) 2nd of 32,Points Against: 435 (27.2/g) 29th of 32,Expected W-L: 9.0-7.0,"SRS: 5.28 (10th of 32), 
+  SOS: 2.28
+"
+ram,2004,"
+  Record: 8-8-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 319 (19.9/g) 19th of 32,Points Against: 392 (24.5/g) 25th of 32,Expected W-L: 6.1-9.9,"SRS: -5.99 (29th of 32), 
+  SOS: -1.42
+"
+mia,2004,"
+  Record: 4-12-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 275 (17.2/g) 28th of 32,Points Against: 354 (22.1/g) 20th of 32,Expected W-L: 5.7-10.3,"SRS: -2.23 (18th of 32), 
+  SOS: 2.71
+"
+min,2004,"
+  Record: 8-8-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 405 (25.3/g) 6th of 32,Points Against: 395 (24.7/g) 26th of 32,Expected W-L: 8.2-7.8,"SRS: -1.69 (16th of 32), 
+  SOS: -2.31
+"
+nwe,2004,"
+  Record: 14-2-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 437 (27.3/g) 4th of 32,Points Against: 260 (16.3/g) 2nd of 32,Expected W-L: 12.4-3.6,"SRS: 12.84 (1st of 32), 
+  SOS: 1.78
+"
+nor,2004,"
+  Record: 8-8-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 348 (21.8/g) 14th of 32,Points Against: 405 (25.3/g) 27th of 32,Expected W-L: 6.6-9.4,"SRS: -5.56 (28th of 32), 
+  SOS: -1.99
+"
+nyg,2004,"
+  Record: 6-10-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 303 (18.9/g) 22nd of 32,Points Against: 347 (21.7/g) 17th of 32,Expected W-L: 6.7-9.3,"SRS: -3.91 (23rd of 32), 
+  SOS: -1.16
+"
+nyj,2004,"
+  Record: 10-6-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 333 (20.8/g) 17th of 32,Points Against: 261 (16.3/g) 4th of 32,Expected W-L: 10.2-5.8,"SRS: 6.55 (6th of 32), 
+  SOS: 2.05
+"
+rai,2004,"
+  Record: 5-11-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 320 (20.0/g) 18th of 32,Points Against: 442 (27.6/g) 31st of 32,Expected W-L: 5.1-10.9,"SRS: -4.27 (24th of 32), 
+  SOS: 3.35
+"
+phi,2004,"
+  Record: 13-3-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 386 (24.1/g) 8th of 32,Points Against: 260 (16.3/g) 2nd of 32,Expected W-L: 11.5-4.5,"SRS: 5.55 (9th of 32), 
+  SOS: -2.32
+"
+pit,2004,"
+  Record: 15-1-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 372 (23.3/g) 11th of 32,Points Against: 251 (15.7/g) 1st of 32,Expected W-L: 11.5-4.5,"SRS: 9.00 (4th of 32), 
+  SOS: 1.44
+"
+sdg,2004,"
+  Record: 12-4-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 446 (27.9/g) 3rd of 32,Points Against: 313 (19.6/g) 11th of 32,Expected W-L: 11.2-4.8,"SRS: 9.12 (3rd of 32), 
+  SOS: .81
+"
+sfo,2004,"
+  Record: 2-14-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 259 (16.2/g) 30th of 32,Points Against: 452 (28.3/g) 32nd of 32,Expected W-L: 3.4-12.6,"SRS: -13.62 (32nd of 32), 
+  SOS: -1.56
+"
+sea,2004,"
+  Record: 9-7-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 371 (23.2/g) 12th of 32,Points Against: 373 (23.3/g) 22nd of 32,Expected W-L: 7.9-8.1,"SRS: -2.89 (20th of 32), 
+  SOS: -2.77
+"
+tam,2004,"
+  Record: 5-11-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 301 (18.8/g) 23rd of 32,Points Against: 304 (19.0/g) 9th of 32,Expected W-L: 7.9-8.1,"SRS: -2.68 (19th of 32), 
+  SOS: -2.49
+"
+oti,2004,"
+  Record: 5-11-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 344 (21.5/g) 15th of 32,Points Against: 439 (27.4/g) 30th of 32,Expected W-L: 5.8-10.2,"SRS: -4.39 (25th of 32), 
+  SOS: 1.54
+"
+was,2004,"
+  Record: 6-10-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 240 (15.0/g) 31st of 32,Points Against: 265 (16.6/g) 5th of 32,Expected W-L: 7.1-8.9,"SRS: -3.37 (21st of 32), 
+  SOS: -1.81
+"
+crd,2005,"
+  Record: 5-11-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 311 (19.4/g) 17th of 32,Points Against: 387 (24.2/g) 26th of 32,Expected W-L: 6.0-10.0,"SRS: -4.98 (24th of 32), 
+  SOS: -0.23
+"
+atl,2005,"
+  Record: 8-8-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 351 (21.9/g) 14th of 32,Points Against: 341 (21.3/g) 18th of 32,Expected W-L: 8.3-7.7,"SRS: -1.23 (17th of 32), 
+  SOS: -1.85
+"
+rav,2005,"
+  Record: 6-10-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 265 (16.6/g) 25th of 32,Points Against: 299 (18.7/g) 10th of 32,Expected W-L: 6.9-9.1,"SRS: -1.83 (18th of 32), 
+  SOS: .29
+"
+buf,2005,"
+  Record: 5-11-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 271 (16.9/g) 24th of 32,Points Against: 367 (22.9/g) 24th of 32,Expected W-L: 5.2-10.8,"SRS: -5.85 (26th of 32), 
+  SOS: .15
+"
+car,2005,"
+  Record: 11-5-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 391 (24.4/g) 8th of 32,Points Against: 259 (16.2/g) 5th of 32,Expected W-L: 11.6-4.4,"SRS: 5.07 (9th of 32), 
+  SOS: -3.18
+"
+chi,2005,"
+  Record: 11-5-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 260 (16.3/g) 26th of 32,Points Against: 202 (12.6/g) 1st of 32,Expected W-L: 10.3-5.7,"SRS: 1.39 (14th of 32), 
+  SOS: -2.23
+"
+cin,2005,"
+  Record: 11-5-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 421 (26.3/g) 4th of 32,Points Against: 350 (21.9/g) 22nd of 32,Expected W-L: 9.7-6.3,"SRS: 3.82 (11th of 32), 
+  SOS: -0.62
+"
+cle,2005,"
+  Record: 6-10-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 232 (14.5/g) 32nd of 32,Points Against: 301 (18.8/g) 11th of 32,Expected W-L: 5.6-10.4,"SRS: -4.22 (23rd of 32), 
+  SOS: .09
+"
+dal,2005,"
+  Record: 9-7-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 325 (20.3/g) 15th of 32,Points Against: 308 (19.3/g) 12th of 32,Expected W-L: 8.5-7.5,"SRS: 3.16 (12th of 32), 
+  SOS: 2.09
+"
+den,2005,"
+  Record: 13-3-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 395 (24.7/g) 7th of 32,Points Against: 258 (16.1/g) 3rd of 32,Expected W-L: 11.7-4.3,"SRS: 10.79 (2nd of 32), 
+  SOS: 2.23
+"
+det,2005,"
+  Record: 5-11-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 254 (15.9/g) 28th of 32,Points Against: 345 (21.6/g) 21st of 32,Expected W-L: 5.2-10.8,"SRS: -6.70 (28th of 32), 
+  SOS: -1.01
+"
+gnb,2005,"
+  Record: 4-12-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 298 (18.6/g) 22nd of 32,Points Against: 344 (21.5/g) 19th of 32,Expected W-L: 6.7-9.3,"SRS: -3.72 (22nd of 32), 
+  SOS: -0.85
+"
+htx,2005,"
+  Record: 2-14-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 260 (16.3/g) 26th of 32,Points Against: 431 (26.9/g) 32nd of 32,Expected W-L: 3.7-12.3,"SRS: -10.03 (30th of 32), 
+  SOS: .66
+"
+clt,2005,"
+  Record: 14-2-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 439 (27.4/g) 2nd of 32,Points Against: 247 (15.4/g) 2nd of 32,Expected W-L: 12.7-3.3,"SRS: 10.80 (1st of 32), 
+  SOS: -1.20
+"
+jax,2005,"
+  Record: 12-4-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 361 (22.6/g) 12th of 32,Points Against: 269 (16.8/g) 6th of 32,Expected W-L: 10.7-5.3,"SRS: 4.76 (10th of 32), 
+  SOS: -0.99
+"
+kan,2005,"
+  Record: 10-6-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 403 (25.2/g) 6th of 32,Points Against: 325 (20.3/g) 16th of 32,Expected W-L: 10.0-6.0,"SRS: 7.01 (7th of 32), 
+  SOS: 2.13
+"
+ram,2005,"
+  Record: 6-10-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 363 (22.7/g) 11th of 32,Points Against: 429 (26.8/g) 31st of 32,Expected W-L: 6.4-9.6,"SRS: -5.15 (25th of 32), 
+  SOS: -1.02
+"
+mia,2005,"
+  Record: 9-7-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 318 (19.9/g) 16th of 32,Points Against: 317 (19.8/g) 15th of 32,Expected W-L: 8.0-8.0,"SRS: -0.77 (15th of 32), 
+  SOS: -0.83
+"
+min,2005,"
+  Record: 9-7-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 306 (19.1/g) 19th of 32,Points Against: 344 (21.5/g) 19th of 32,Expected W-L: 6.9-9.1,"SRS: -3.52 (21st of 32), 
+  SOS: -1.15
+"
+nwe,2005,"
+  Record: 10-6-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 379 (23.7/g) 10th of 32,Points Against: 338 (21.1/g) 17th of 32,Expected W-L: 9.1-6.9,"SRS: 3.14 (13th of 32), 
+  SOS: .58
+"
+nor,2005,"
+  Record: 3-13-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 235 (14.7/g) 31st of 32,Points Against: 398 (24.9/g) 28th of 32,Expected W-L: 3.6-12.4,"SRS: -11.09 (31st of 32), 
+  SOS: -0.90
+"
+nyg,2005,"
+  Record: 11-5-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 422 (26.4/g) 3rd of 32,Points Against: 314 (19.6/g) 14th of 32,Expected W-L: 10.7-5.3,"SRS: 7.49 (6th of 32), 
+  SOS: .74
+"
+nyj,2005,"
+  Record: 4-12-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 240 (15.0/g) 29th of 32,Points Against: 355 (22.2/g) 23rd of 32,Expected W-L: 4.5-11.5,"SRS: -6.40 (27th of 32), 
+  SOS: .79
+"
+rai,2005,"
+  Record: 4-12-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 290 (18.1/g) 23rd of 32,Points Against: 383 (23.9/g) 25th of 32,Expected W-L: 5.5-10.5,"SRS: -2.80 (20th of 32), 
+  SOS: 3.01
+"
+phi,2005,"
+  Record: 6-10-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 310 (19.4/g) 18th of 32,Points Against: 388 (24.3/g) 27th of 32,Expected W-L: 5.9-10.1,"SRS: -2.31 (19th of 32), 
+  SOS: 2.57
+"
+pit,2005,"
+  Record: 11-5-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 389 (24.3/g) 9th of 32,Points Against: 258 (16.1/g) 3rd of 32,Expected W-L: 11.6-4.4,"SRS: 7.81 (5th of 32), 
+  SOS: -0.37
+"
+sdg,2005,"
+  Record: 9-7-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 418 (26.1/g) 5th of 32,Points Against: 312 (19.5/g) 13th of 32,Expected W-L: 10.7-5.3,"SRS: 9.94 (3rd of 32), 
+  SOS: 3.32
+"
+sfo,2005,"
+  Record: 4-12-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 239 (14.9/g) 30th of 32,Points Against: 428 (26.8/g) 30th of 32,Expected W-L: 3.2-12.8,"SRS: -11.15 (32nd of 32), 
+  SOS: .67
+"
+sea,2005,"
+  Record: 13-3-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 452 (28.3/g) 1st of 32,Points Against: 271 (16.9/g) 7th of 32,Expected W-L: 12.3-3.7,"SRS: 9.11 (4th of 32), 
+  SOS: -2.20
+"
+tam,2005,"
+  Record: 11-5-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 300 (18.8/g) 20th of 32,Points Against: 274 (17.1/g) 8th of 32,Expected W-L: 8.9-7.1,"SRS: -1.00 (16th of 32), 
+  SOS: -2.63
+"
+oti,2005,"
+  Record: 4-12-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 299 (18.7/g) 21st of 32,Points Against: 421 (26.3/g) 29th of 32,Expected W-L: 4.9-11.1,"SRS: -7.57 (29th of 32), 
+  SOS: .06
+"
+was,2005,"
+  Record: 10-6-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 359 (22.4/g) 13th of 32,Points Against: 293 (18.3/g) 9th of 32,Expected W-L: 9.9-6.1,"SRS: 5.99 (8th of 32), 
+  SOS: 1.87
+"
+crd,2006,"
+  Record: 5-11-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 314 (19.6/g) 19th of 32,Points Against: 389 (24.3/g) 29th of 32,Expected W-L: 6.0-10.0,"SRS: -6.93 (29th of 32), 
+  SOS: -2.24
+"
+atl,2006,"
+  Record: 7-9-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 292 (18.3/g) 25th of 32,Points Against: 328 (20.5/g) 15th of 32,Expected W-L: 6.9-9.1,"SRS: -3.02 (20th of 32), 
+  SOS: -0.77
+"
+rav,2006,"
+  Record: 13-3-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 353 (22.1/g) 12th of 32,Points Against: 201 (12.6/g) 1st of 32,Expected W-L: 12.7-3.3,"SRS: 9.35 (3rd of 32), 
+  SOS: -0.15
+"
+buf,2006,"
+  Record: 7-9-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 300 (18.8/g) 23rd of 32,Points Against: 311 (19.4/g) 10th of 32,Expected W-L: 7.7-8.3,"SRS: 2.19 (12th of 32), 
+  SOS: 2.88
+"
+car,2006,"
+  Record: 8-8-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 270 (16.9/g) 27th of 32,Points Against: 305 (19.1/g) 8th of 32,Expected W-L: 6.9-9.1,"SRS: -2.67 (19th of 32), 
+  SOS: -0.49
+"
+chi,2006,"
+  Record: 13-3-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 427 (26.7/g) 2nd of 32,Points Against: 255 (15.9/g) 3rd of 32,Expected W-L: 12.4-3.6,"SRS: 7.90 (4th of 32), 
+  SOS: -2.85
+"
+cin,2006,"
+  Record: 8-8-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 373 (23.3/g) 8th of 32,Points Against: 331 (20.7/g) 17th of 32,Expected W-L: 9.1-6.9,"SRS: 4.08 (7th of 32), 
+  SOS: 1.46
+"
+cle,2006,"
+  Record: 4-12-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 238 (14.9/g) 30th of 32,Points Against: 356 (22.3/g) 22nd of 32,Expected W-L: 4.4-11.6,"SRS: -5.84 (27th of 32), 
+  SOS: 1.53
+"
+dal,2006,"
+  Record: 9-7-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 425 (26.6/g) 4th of 32,Points Against: 350 (21.9/g) 20th of 32,Expected W-L: 9.8-6.2,"SRS: 3.66 (9th of 32), 
+  SOS: -1.03
+"
+den,2006,"
+  Record: 9-7-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 319 (19.9/g) 17th of 32,Points Against: 305 (19.1/g) 8th of 32,Expected W-L: 8.4-7.6,"SRS: 1.32 (14th of 32), 
+  SOS: .44
+"
+det,2006,"
+  Record: 3-13-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 305 (19.1/g) 21st of 32,Points Against: 398 (24.9/g) 30th of 32,Expected W-L: 5.6-10.4,"SRS: -6.35 (28th of 32), 
+  SOS: -0.54
+"
+gnb,2006,"
+  Record: 8-8-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 301 (18.8/g) 22nd of 32,Points Against: 366 (22.9/g) 25th of 32,Expected W-L: 6.2-9.8,"SRS: -4.42 (25th of 32), 
+  SOS: -0.36
+"
+htx,2006,"
+  Record: 6-10-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 267 (16.7/g) 28th of 32,Points Against: 366 (22.9/g) 25th of 32,Expected W-L: 5.1-10.9,"SRS: -4.50 (26th of 32), 
+  SOS: 1.68
+"
+clt,2006,"
+  Record: 12-4-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 427 (26.7/g) 2nd of 32,Points Against: 360 (22.5/g) 23rd of 32,Expected W-L: 9.6-6.4,"SRS: 5.88 (6th of 32), 
+  SOS: 1.69
+"
+jax,2006,"
+  Record: 8-8-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 371 (23.2/g) 9th of 32,Points Against: 274 (17.1/g) 4th of 32,Expected W-L: 10.8-5.2,"SRS: 7.49 (5th of 32), 
+  SOS: 1.43
+"
+kan,2006,"
+  Record: 9-7-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 331 (20.7/g) 15th of 32,Points Against: 315 (19.7/g) 11th of 32,Expected W-L: 8.5-7.5,"SRS: .99 (15th of 32), 
+  SOS: -0.01
+"
+ram,2006,"
+  Record: 8-8-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 367 (22.9/g) 10th of 32,Points Against: 381 (23.8/g) 28th of 32,Expected W-L: 7.6-8.4,"SRS: -3.95 (22nd of 32), 
+  SOS: -3.08
+"
+mia,2006,"
+  Record: 6-10-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 260 (16.3/g) 29th of 32,Points Against: 283 (17.7/g) 5th of 32,Expected W-L: 7.2-8.8,"SRS: .68 (16th of 32), 
+  SOS: 2.12
+"
+min,2006,"
+  Record: 6-10-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 282 (17.6/g) 26th of 32,Points Against: 327 (20.4/g) 14th of 32,Expected W-L: 6.6-9.4,"SRS: -4.09 (24th of 32), 
+  SOS: -1.28
+"
+nwe,2006,"
+  Record: 12-4-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 385 (24.1/g) 7th of 32,Points Against: 237 (14.8/g) 2nd of 32,Expected W-L: 12.2-3.8,"SRS: 10.24 (1st of 32), 
+  SOS: .99
+"
+nor,2006,"
+  Record: 10-6-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 413 (25.8/g) 5th of 32,Points Against: 322 (20.1/g) 13th of 32,Expected W-L: 10.3-5.7,"SRS: 4.04 (8th of 32), 
+  SOS: -1.64
+"
+nyg,2006,"
+  Record: 8-8-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 355 (22.2/g) 11th of 32,Points Against: 362 (22.6/g) 24th of 32,Expected W-L: 7.8-8.2,"SRS: .08 (17th of 32), 
+  SOS: .52
+"
+nyj,2006,"
+  Record: 10-6-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 316 (19.8/g) 18th of 32,Points Against: 295 (18.4/g) 6th of 32,Expected W-L: 8.7-7.3,"SRS: 2.03 (13th of 32), 
+  SOS: .71
+"
+rai,2006,"
+  Record: 2-14-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 168 (10.5/g) 32nd of 32,Points Against: 332 (20.8/g) 18th of 32,Expected W-L: 2.7-13.3,"SRS: -9.60 (32nd of 32), 
+  SOS: .65
+"
+phi,2006,"
+  Record: 10-6-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 398 (24.9/g) 6th of 32,Points Against: 328 (20.5/g) 15th of 32,Expected W-L: 9.8-6.2,"SRS: 3.39 (11th of 32), 
+  SOS: -0.98
+"
+pit,2006,"
+  Record: 8-8-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 353 (22.1/g) 12th of 32,Points Against: 315 (19.7/g) 11th of 32,Expected W-L: 9.1-6.9,"SRS: 3.42 (10th of 32), 
+  SOS: 1.04
+"
+sdg,2006,"
+  Record: 14-2-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 492 (30.8/g) 1st of 32,Points Against: 303 (18.9/g) 7th of 32,Expected W-L: 12.1-3.9,"SRS: 10.20 (2nd of 32), 
+  SOS: -1.62
+"
+sfo,2006,"
+  Record: 7-9-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 298 (18.6/g) 24th of 32,Points Against: 412 (25.8/g) 32nd of 32,Expected W-L: 5.1-10.9,"SRS: -8.72 (31st of 32), 
+  SOS: -1.60
+"
+sea,2006,"
+  Record: 9-7-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 335 (20.9/g) 14th of 32,Points Against: 341 (21.3/g) 19th of 32,Expected W-L: 7.8-8.2,"SRS: -3.57 (21st of 32), 
+  SOS: -3.19
+"
+tam,2006,"
+  Record: 4-12-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 211 (13.2/g) 31st of 32,Points Against: 353 (22.1/g) 21st of 32,Expected W-L: 3.6-12.4,"SRS: -7.93 (30th of 32), 
+  SOS: .95
+"
+oti,2006,"
+  Record: 8-8-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 324 (20.3/g) 16th of 32,Points Against: 400 (25.0/g) 31st of 32,Expected W-L: 6.0-10.0,"SRS: -1.28 (18th of 32), 
+  SOS: 3.47
+"
+was,2006,"
+  Record: 5-11-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 307 (19.2/g) 20th of 32,Points Against: 376 (23.5/g) 27th of 32,Expected W-L: 6.1-9.9,"SRS: -4.05 (23rd of 32), 
+  SOS: .26
+"
+crd,2007,"
+  Record: 8-8-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 404 (25.3/g) 7th of 32,Points Against: 399 (24.9/g) 27th of 32,Expected W-L: 8.1-7.9,"SRS: -3.94 (22nd of 32), 
+  SOS: -4.25
+"
+atl,2007,"
+  Record: 4-12-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 259 (16.2/g) 29th of 32,Points Against: 414 (25.9/g) 29th of 32,Expected W-L: 4.0-12.0,"SRS: -10.61 (30th of 32), 
+  SOS: -0.92
+"
+rav,2007,"
+  Record: 5-11-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 275 (17.2/g) 24th of 32,Points Against: 384 (24.0/g) 22nd of 32,Expected W-L: 5.0-11.0,"SRS: -6.74 (28th of 32), 
+  SOS: .07
+"
+buf,2007,"
+  Record: 7-9-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 252 (15.8/g) 30th of 32,Points Against: 354 (22.1/g) 18th of 32,Expected W-L: 4.9-11.1,"SRS: -4.10 (24th of 32), 
+  SOS: 2.27
+"
+car,2007,"
+  Record: 7-9-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 267 (16.7/g) 26th of 32,Points Against: 347 (21.7/g) 15th of 32,Expected W-L: 5.6-10.4,"SRS: -5.80 (26th of 32), 
+  SOS: -0.80
+"
+chi,2007,"
+  Record: 7-9-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 334 (20.9/g) 18th of 32,Points Against: 348 (21.8/g) 16th of 32,Expected W-L: 7.6-8.4,"SRS: 1.22 (13th of 32), 
+  SOS: 2.10
+"
+cin,2007,"
+  Record: 7-9-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 380 (23.8/g) 11th of 32,Points Against: 385 (24.1/g) 24th of 32,Expected W-L: 7.9-8.1,"SRS: -2.38 (18th of 32), 
+  SOS: -2.07
+"
+cle,2007,"
+  Record: 10-6-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 402 (25.1/g) 8th of 32,Points Against: 382 (23.9/g) 21st of 32,Expected W-L: 8.5-7.5,"SRS: -1.06 (17th of 32), 
+  SOS: -2.31
+"
+dal,2007,"
+  Record: 13-3-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 455 (28.4/g) 2nd of 32,Points Against: 325 (20.3/g) 13th of 32,Expected W-L: 11.0-5.0,"SRS: 9.47 (3rd of 32), 
+  SOS: 1.35
+"
+den,2007,"
+  Record: 7-9-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 320 (20.0/g) 21st of 32,Points Against: 409 (25.6/g) 28th of 32,Expected W-L: 5.7-10.3,"SRS: -3.95 (23rd of 32), 
+  SOS: 1.61
+"
+det,2007,"
+  Record: 7-9-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 346 (21.6/g) 16th of 32,Points Against: 444 (27.8/g) 32nd of 32,Expected W-L: 5.7-10.3,"SRS: -3.55 (20th of 32), 
+  SOS: 2.57
+"
+gnb,2007,"
+  Record: 13-3-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 435 (27.2/g) 4th of 32,Points Against: 291 (18.2/g) 6th of 32,Expected W-L: 11.5-4.5,"SRS: 9.00 (4th of 32), 
+  SOS: .00
+"
+htx,2007,"
+  Record: 8-8-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 379 (23.7/g) 12th of 32,Points Against: 384 (24.0/g) 22nd of 32,Expected W-L: 7.9-8.1,"SRS: .02 (16th of 32), 
+  SOS: .33
+"
+clt,2007,"
+  Record: 13-3-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 450 (28.1/g) 3rd of 32,Points Against: 262 (16.4/g) 1st of 32,Expected W-L: 12.5-3.5,"SRS: 12.01 (2nd of 32), 
+  SOS: .26
+"
+jax,2007,"
+  Record: 11-5-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 411 (25.7/g) 6th of 32,Points Against: 304 (19.0/g) 10th of 32,Expected W-L: 10.7-5.3,"SRS: 6.83 (6th of 32), 
+  SOS: .14
+"
+kan,2007,"
+  Record: 4-12-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 226 (14.1/g) 31st of 32,Points Against: 335 (20.9/g) 14th of 32,Expected W-L: 4.5-11.5,"SRS: -5.46 (25th of 32), 
+  SOS: 1.35
+"
+ram,2007,"
+  Record: 3-13-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 263 (16.4/g) 28th of 32,Points Against: 438 (27.4/g) 31st of 32,Expected W-L: 3.7-12.3,"SRS: -12.97 (32nd of 32), 
+  SOS: -2.03
+"
+mia,2007,"
+  Record: 1-15-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 267 (16.7/g) 26th of 32,Points Against: 437 (27.3/g) 30th of 32,Expected W-L: 3.8-12.2,"SRS: -8.37 (29th of 32), 
+  SOS: 2.25
+"
+min,2007,"
+  Record: 8-8-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 365 (22.8/g) 15th of 32,Points Against: 311 (19.4/g) 12th of 32,Expected W-L: 9.5-6.5,"SRS: 3.79 (10th of 32), 
+  SOS: .42
+"
+nwe,2007,"
+  Record: 16-0-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 589 (36.8/g) 1st of 32,Points Against: 274 (17.1/g) 4th of 32,Expected W-L: 13.8-2.2,"SRS: 20.06 (1st of 32), 
+  SOS: .37
+"
+nor,2007,"
+  Record: 7-9-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 379 (23.7/g) 12th of 32,Points Against: 388 (24.3/g) 25th of 32,Expected W-L: 7.8-8.2,"SRS: -2.53 (19th of 32), 
+  SOS: -1.96
+"
+nyg,2007,"
+  Record: 10-6-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 373 (23.3/g) 14th of 32,Points Against: 351 (21.9/g) 17th of 32,Expected W-L: 8.6-7.4,"SRS: 3.26 (11th of 32), 
+  SOS: 1.89
+"
+nyj,2007,"
+  Record: 4-12-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 268 (16.8/g) 25th of 32,Points Against: 355 (22.2/g) 19th of 32,Expected W-L: 5.4-10.6,"SRS: -3.69 (21st of 32), 
+  SOS: 1.74
+"
+rai,2007,"
+  Record: 4-12-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 283 (17.7/g) 23rd of 32,Points Against: 398 (24.9/g) 26th of 32,Expected W-L: 4.9-11.1,"SRS: -5.98 (27th of 32), 
+  SOS: 1.21
+"
+phi,2007,"
+  Record: 8-8-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 336 (21.0/g) 17th of 32,Points Against: 300 (18.8/g) 9th of 32,Expected W-L: 9.1-6.9,"SRS: 5.25 (7th of 32), 
+  SOS: 3.00
+"
+pit,2007,"
+  Record: 10-6-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 393 (24.6/g) 9th of 32,Points Against: 269 (16.8/g) 2nd of 32,Expected W-L: 11.4-4.6,"SRS: 5.21 (8th of 32), 
+  SOS: -2.54
+"
+sdg,2007,"
+  Record: 11-5-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 412 (25.8/g) 5th of 32,Points Against: 284 (17.8/g) 5th of 32,Expected W-L: 11.3-4.7,"SRS: 8.79 (5th of 32), 
+  SOS: .79
+"
+sfo,2007,"
+  Record: 5-11-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 219 (13.7/g) 32nd of 32,Points Against: 364 (22.8/g) 20th of 32,Expected W-L: 3.7-12.3,"SRS: -11.93 (31st of 32), 
+  SOS: -2.87
+"
+sea,2007,"
+  Record: 10-6-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 393 (24.6/g) 9th of 32,Points Against: 291 (18.2/g) 6th of 32,Expected W-L: 10.7-5.3,"SRS: 1.76 (12th of 32), 
+  SOS: -4.62
+"
+tam,2007,"
+  Record: 9-7-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 334 (20.9/g) 18th of 32,Points Against: 270 (16.9/g) 3rd of 32,Expected W-L: 10.0-6.0,"SRS: 1.22 (14th of 32), 
+  SOS: -2.78
+"
+oti,2007,"
+  Record: 10-6-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 301 (18.8/g) 22nd of 32,Points Against: 297 (18.6/g) 8th of 32,Expected W-L: 8.1-7.9,"SRS: .71 (15th of 32), 
+  SOS: .46
+"
+was,2007,"
+  Record: 9-7-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 334 (20.9/g) 18th of 32,Points Against: 310 (19.4/g) 11th of 32,Expected W-L: 8.7-7.3,"SRS: 4.48 (9th of 32), 
+  SOS: 2.98
+"
+crd,2008,"
+  Record: 9-7-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 427 (26.7/g) 3rd of 32,Points Against: 426 (26.6/g) 28th of 32,Expected W-L: 8.0-8.0,"SRS: -1.89 (21st of 32), 
+  SOS: -1.95
+"
+atl,2008,"
+  Record: 11-5-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 391 (24.4/g) 10th of 32,Points Against: 325 (20.3/g) 11th of 32,Expected W-L: 9.7-6.3,"SRS: 3.81 (12th of 32), 
+  SOS: -0.31
+"
+rav,2008,"
+  Record: 11-5-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 385 (24.1/g) 11th of 32,Points Against: 244 (15.3/g) 3rd of 32,Expected W-L: 11.9-4.1,"SRS: 9.80 (1st of 32), 
+  SOS: .99
+"
+buf,2008,"
+  Record: 7-9-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 336 (21.0/g) 23rd of 32,Points Against: 342 (21.4/g) 14th of 32,Expected W-L: 7.8-8.2,"SRS: -3.34 (23rd of 32), 
+  SOS: -2.96
+"
+car,2008,"
+  Record: 12-4-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 414 (25.9/g) 7th of 32,Points Against: 329 (20.6/g) 12th of 32,Expected W-L: 10.1-5.9,"SRS: 5.63 (7th of 32), 
+  SOS: .32
+"
+chi,2008,"
+  Record: 9-7-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 375 (23.4/g) 14th of 32,Points Against: 350 (21.9/g) 16th of 32,Expected W-L: 8.7-7.3,"SRS: 2.10 (15th of 32), 
+  SOS: .54
+"
+cin,2008,"
+  Record: 4-11-1, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 204 (12.8/g) 32nd of 32,Points Against: 364 (22.8/g) 19th of 32,Expected W-L: 3.2-12.8,"SRS: -6.97 (27th of 32), 
+  SOS: 3.03
+"
+cle,2008,"
+  Record: 4-12-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 232 (14.5/g) 30th of 32,Points Against: 350 (21.9/g) 16th of 32,Expected W-L: 4.4-11.6,"SRS: -4.65 (24th of 32), 
+  SOS: 2.73
+"
+dal,2008,"
+  Record: 9-7-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 362 (22.6/g) 18th of 32,Points Against: 365 (22.8/g) 20th of 32,Expected W-L: 7.9-8.1,"SRS: .57 (16th of 32), 
+  SOS: .75
+"
+den,2008,"
+  Record: 8-8-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 370 (23.1/g) 16th of 32,Points Against: 448 (28.0/g) 30th of 32,Expected W-L: 6.2-9.8,"SRS: -5.79 (26th of 32), 
+  SOS: -0.91
+"
+det,2008,"
+  Record: 0-16-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 268 (16.8/g) 27th of 32,Points Against: 517 (32.3/g) 32nd of 32,Expected W-L: 2.8-13.2,"SRS: -13.11 (31st of 32), 
+  SOS: 2.45
+"
+gnb,2008,"
+  Record: 6-10-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 419 (26.2/g) 5th of 32,Points Against: 380 (23.8/g) 22nd of 32,Expected W-L: 8.9-7.1,"SRS: 2.89 (13th of 32), 
+  SOS: .46
+"
+htx,2008,"
+  Record: 8-8-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 366 (22.9/g) 17th of 32,Points Against: 394 (24.6/g) 27th of 32,Expected W-L: 7.3-8.7,"SRS: -0.39 (18th of 32), 
+  SOS: 1.36
+"
+clt,2008,"
+  Record: 12-4-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 377 (23.6/g) 13th of 32,Points Against: 298 (18.6/g) 7th of 32,Expected W-L: 10.2-5.8,"SRS: 6.49 (6th of 32), 
+  SOS: 1.55
+"
+jax,2008,"
+  Record: 5-11-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 302 (18.9/g) 24th of 32,Points Against: 367 (22.9/g) 21st of 32,Expected W-L: 6.2-9.8,"SRS: -2.51 (22nd of 32), 
+  SOS: 1.55
+"
+kan,2008,"
+  Record: 2-14-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 291 (18.2/g) 26th of 32,Points Against: 440 (27.5/g) 29th of 32,Expected W-L: 4.4-11.6,"SRS: -9.23 (30th of 32), 
+  SOS: .09
+"
+ram,2008,"
+  Record: 2-14-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 232 (14.5/g) 30th of 32,Points Against: 465 (29.1/g) 31st of 32,Expected W-L: 2.6-13.4,"SRS: -15.09 (32nd of 32), 
+  SOS: -0.53
+"
+mia,2008,"
+  Record: 11-5-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 345 (21.6/g) 21st of 32,Points Against: 317 (19.8/g) 9th of 32,Expected W-L: 8.8-7.2,"SRS: -0.53 (19th of 32), 
+  SOS: -2.28
+"
+min,2008,"
+  Record: 10-6-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 379 (23.7/g) 12th of 32,Points Against: 333 (20.8/g) 13th of 32,Expected W-L: 9.2-6.8,"SRS: 4.04 (10th of 32), 
+  SOS: 1.16
+"
+nwe,2008,"
+  Record: 11-5-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 410 (25.6/g) 8th of 32,Points Against: 309 (19.3/g) 8th of 32,Expected W-L: 10.6-5.4,"SRS: 3.91 (11th of 32), 
+  SOS: -2.40
+"
+nor,2008,"
+  Record: 8-8-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 463 (28.9/g) 1st of 32,Points Against: 393 (24.6/g) 26th of 32,Expected W-L: 9.5-6.5,"SRS: 4.05 (9th of 32), 
+  SOS: -0.33
+"
+nyg,2008,"
+  Record: 12-4-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 427 (26.7/g) 3rd of 32,Points Against: 294 (18.4/g) 5th of 32,Expected W-L: 11.3-4.7,"SRS: 8.37 (4th of 32), 
+  SOS: .06
+"
+nyj,2008,"
+  Record: 9-7-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 405 (25.3/g) 9th of 32,Points Against: 356 (22.3/g) 18th of 32,Expected W-L: 9.2-6.8,"SRS: .22 (17th of 32), 
+  SOS: -2.84
+"
+rai,2008,"
+  Record: 5-11-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 263 (16.4/g) 29th of 32,Points Against: 388 (24.3/g) 24th of 32,Expected W-L: 4.6-11.4,"SRS: -7.48 (28th of 32), 
+  SOS: .33
+"
+phi,2008,"
+  Record: 9-6-1, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 416 (26.0/g) 6th of 32,Points Against: 289 (18.1/g) 4th of 32,Expected W-L: 11.3-4.7,"SRS: 7.83 (5th of 32), 
+  SOS: -0.11
+"
+pit,2008,"
+  Record: 12-4-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 347 (21.7/g) 20th of 32,Points Against: 223 (13.9/g) 1st of 32,Expected W-L: 11.8-4.2,"SRS: 9.80 (2nd of 32), 
+  SOS: 2.05
+"
+sdg,2008,"
+  Record: 8-8-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 439 (27.4/g) 2nd of 32,Points Against: 347 (21.7/g) 15th of 32,Expected W-L: 10.2-5.8,"SRS: 4.96 (8th of 32), 
+  SOS: -0.79
+"
+sfo,2008,"
+  Record: 7-9-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 339 (21.2/g) 22nd of 32,Points Against: 381 (23.8/g) 23rd of 32,Expected W-L: 6.9-9.1,"SRS: -5.31 (25th of 32), 
+  SOS: -2.69
+"
+sea,2008,"
+  Record: 4-12-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 294 (18.4/g) 25th of 32,Points Against: 392 (24.5/g) 25th of 32,Expected W-L: 5.4-10.6,"SRS: -7.64 (29th of 32), 
+  SOS: -1.51
+"
+tam,2008,"
+  Record: 9-7-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 361 (22.6/g) 19th of 32,Points Against: 323 (20.2/g) 10th of 32,Expected W-L: 9.0-7.0,"SRS: 2.27 (14th of 32), 
+  SOS: -0.11
+"
+oti,2008,"
+  Record: 13-3-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 375 (23.4/g) 14th of 32,Points Against: 234 (14.6/g) 2nd of 32,Expected W-L: 12.1-3.9,"SRS: 8.94 (3rd of 32), 
+  SOS: .13
+"
+was,2008,"
+  Record: 8-8-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 265 (16.6/g) 28th of 32,Points Against: 296 (18.5/g) 6th of 32,Expected W-L: 7.0-9.0,"SRS: -1.78 (20th of 32), 
+  SOS: .16
+"
+crd,2009,"
+  Record: 10-6-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 375 (23.4/g) 11th of 32,Points Against: 325 (20.3/g) 14th of 32,Expected W-L: 9.3-6.7,"SRS: -0.28 (20th of 32), 
+  SOS: -3.41
+"
+atl,2009,"
+  Record: 9-7-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 363 (22.7/g) 13th of 32,Points Against: 325 (20.3/g) 14th of 32,Expected W-L: 9.0-7.0,"SRS: 5.03 (11th of 32), 
+  SOS: 2.66
+"
+rav,2009,"
+  Record: 9-7-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 391 (24.4/g) 9th of 32,Points Against: 261 (16.3/g) 3rd of 32,Expected W-L: 11.6-4.4,"SRS: 7.48 (4th of 32), 
+  SOS: -0.65
+"
+buf,2009,"
+  Record: 6-10-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 258 (16.1/g) 28th of 32,Points Against: 326 (20.4/g) 16th of 32,Expected W-L: 5.8-10.2,"SRS: -1.82 (21st of 32), 
+  SOS: 2.43
+"
+car,2009,"
+  Record: 8-8-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 315 (19.7/g) 21st of 32,Points Against: 308 (19.3/g) 9th of 32,Expected W-L: 8.2-7.8,"SRS: 3.91 (12th of 32), 
+  SOS: 3.47
+"
+chi,2009,"
+  Record: 7-9-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 327 (20.4/g) 19th of 32,Points Against: 375 (23.4/g) 21st of 32,Expected W-L: 6.7-9.3,"SRS: -3.89 (23rd of 32), 
+  SOS: -0.89
+"
+cin,2009,"
+  Record: 10-6-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 305 (19.1/g) 22nd of 32,Points Against: 291 (18.2/g) 6th of 32,Expected W-L: 8.4-7.6,"SRS: .66 (16th of 32), 
+  SOS: -0.21
+"
+cle,2009,"
+  Record: 5-11-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 245 (15.3/g) 29th of 32,Points Against: 375 (23.4/g) 21st of 32,Expected W-L: 4.3-11.7,"SRS: -8.38 (27th of 32), 
+  SOS: -0.26
+"
+dal,2009,"
+  Record: 11-5-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 361 (22.6/g) 14th of 32,Points Against: 250 (15.6/g) 2nd of 32,Expected W-L: 11.3-4.7,"SRS: 7.15 (7th of 32), 
+  SOS: .21
+"
+den,2009,"
+  Record: 8-8-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 326 (20.4/g) 20th of 32,Points Against: 324 (20.3/g) 12th of 32,Expected W-L: 8.1-7.9,"SRS: .32 (17th of 32), 
+  SOS: .20
+"
+det,2009,"
+  Record: 2-14-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 262 (16.4/g) 27th of 32,Points Against: 494 (30.9/g) 32nd of 32,Expected W-L: 2.9-13.1,"SRS: -14.38 (31st of 32), 
+  SOS: .12
+"
+gnb,2009,"
+  Record: 11-5-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 461 (28.8/g) 3rd of 32,Points Against: 297 (18.6/g) 7th of 32,Expected W-L: 11.8-4.2,"SRS: 7.36 (5th of 32), 
+  SOS: -2.89
+"
+htx,2009,"
+  Record: 9-7-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 388 (24.3/g) 10th of 32,Points Against: 333 (20.8/g) 17th of 32,Expected W-L: 9.4-6.6,"SRS: 1.96 (13th of 32), 
+  SOS: -1.47
+"
+clt,2009,"
+  Record: 14-2-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 416 (26.0/g) 7th of 32,Points Against: 307 (19.2/g) 8th of 32,Expected W-L: 10.8-5.2,"SRS: 5.93 (10th of 32), 
+  SOS: -0.88
+"
+jax,2009,"
+  Record: 7-9-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 290 (18.1/g) 24th of 32,Points Against: 380 (23.8/g) 24th of 32,Expected W-L: 5.5-10.5,"SRS: -6.49 (26th of 32), 
+  SOS: -0.87
+"
+kan,2009,"
+  Record: 4-12-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 294 (18.4/g) 23rd of 32,Points Against: 424 (26.5/g) 29th of 32,Expected W-L: 4.7-11.3,"SRS: -8.43 (28th of 32), 
+  SOS: -0.30
+"
+ram,2009,"
+  Record: 1-15-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 175 (10.9/g) 32nd of 32,Points Against: 436 (27.3/g) 31st of 32,Expected W-L: 1.6-14.4,"SRS: -17.44 (32nd of 32), 
+  SOS: -1.12
+"
+mia,2009,"
+  Record: 7-9-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 360 (22.5/g) 15th of 32,Points Against: 390 (24.4/g) 25th of 32,Expected W-L: 7.2-8.8,"SRS: 1.68 (15th of 32), 
+  SOS: 3.56
+"
+min,2009,"
+  Record: 12-4-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 470 (29.4/g) 2nd of 32,Points Against: 312 (19.5/g) 10th of 32,Expected W-L: 11.6-4.4,"SRS: 7.17 (6th of 32), 
+  SOS: -2.71
+"
+nwe,2009,"
+  Record: 10-6-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 427 (26.7/g) 6th of 32,Points Against: 285 (17.8/g) 5th of 32,Expected W-L: 11.6-4.4,"SRS: 11.21 (1st of 32), 
+  SOS: 2.34
+"
+nor,2009,"
+  Record: 13-3-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 510 (31.9/g) 1st of 32,Points Against: 341 (21.3/g) 20th of 32,Expected W-L: 11.6-4.4,"SRS: 10.76 (2nd of 32), 
+  SOS: .19
+"
+nyg,2009,"
+  Record: 8-8-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 402 (25.1/g) 8th of 32,Points Against: 427 (26.7/g) 30th of 32,Expected W-L: 7.4-8.6,"SRS: .08 (18th of 32), 
+  SOS: 1.65
+"
+nyj,2009,"
+  Record: 9-7-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 348 (21.8/g) 17th of 32,Points Against: 236 (14.8/g) 1st of 32,Expected W-L: 11.4-4.6,"SRS: 8.58 (3rd of 32), 
+  SOS: 1.58
+"
+rai,2009,"
+  Record: 5-11-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 197 (12.3/g) 31st of 32,Points Against: 379 (23.7/g) 23rd of 32,Expected W-L: 2.8-13.2,"SRS: -10.27 (30th of 32), 
+  SOS: 1.11
+"
+phi,2009,"
+  Record: 11-5-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 429 (26.8/g) 5th of 32,Points Against: 337 (21.1/g) 19th of 32,Expected W-L: 10.2-5.8,"SRS: 5.99 (9th of 32), 
+  SOS: .24
+"
+pit,2009,"
+  Record: 9-7-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 368 (23.0/g) 12th of 32,Points Against: 324 (20.3/g) 12th of 32,Expected W-L: 9.2-6.8,"SRS: 1.69 (14th of 32), 
+  SOS: -1.06
+"
+sdg,2009,"
+  Record: 13-3-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 454 (28.4/g) 4th of 32,Points Against: 320 (20.0/g) 11th of 32,Expected W-L: 11.1-4.9,"SRS: 6.64 (8th of 32), 
+  SOS: -1.73
+"
+sfo,2009,"
+  Record: 8-8-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 330 (20.6/g) 18th of 32,Points Against: 281 (17.6/g) 4th of 32,Expected W-L: 9.5-6.5,"SRS: .05 (19th of 32), 
+  SOS: -3.01
+"
+sea,2009,"
+  Record: 5-11-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 280 (17.5/g) 25th of 32,Points Against: 390 (24.4/g) 25th of 32,Expected W-L: 5.0-11.0,"SRS: -9.31 (29th of 32), 
+  SOS: -2.43
+"
+tam,2009,"
+  Record: 3-13-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 244 (15.3/g) 30th of 32,Points Against: 400 (25.0/g) 27th of 32,Expected W-L: 3.8-12.2,"SRS: -5.64 (25th of 32), 
+  SOS: 4.11
+"
+oti,2009,"
+  Record: 8-8-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 354 (22.1/g) 16th of 32,Points Against: 402 (25.1/g) 28th of 32,Expected W-L: 6.8-9.2,"SRS: -2.76 (22nd of 32), 
+  SOS: .24
+"
+was,2009,"
+  Record: 4-12-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 266 (16.6/g) 26th of 32,Points Against: 336 (21.0/g) 18th of 32,Expected W-L: 5.8-10.2,"SRS: -4.57 (24th of 32), 
+  SOS: -0.19
+"
+crd,2010,"
+  Record: 5-11-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 289 (18.1/g) 26th of 32,Points Against: 434 (27.1/g) 30th of 32,Expected W-L: 4.4-11.6,"SRS: -12.66 (31st of 32), 
+  SOS: -3.60
+"
+atl,2010,"
+  Record: 13-3-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 414 (25.9/g) 5th of 32,Points Against: 288 (18.0/g) 5th of 32,Expected W-L: 11.2-4.8,"SRS: 6.09 (6th of 32), 
+  SOS: -1.79
+"
+rav,2010,"
+  Record: 12-4-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 357 (22.3/g) 16th of 32,Points Against: 270 (16.9/g) 3rd of 32,Expected W-L: 10.6-5.4,"SRS: 6.44 (5th of 32), 
+  SOS: 1.00
+"
+buf,2010,"
+  Record: 4-12-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 283 (17.7/g) 28th of 32,Points Against: 425 (26.6/g) 28th of 32,Expected W-L: 4.4-11.6,"SRS: -4.61 (26th of 32), 
+  SOS: 4.27
+"
+car,2010,"
+  Record: 2-14-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 196 (12.3/g) 32nd of 32,Points Against: 408 (25.5/g) 26th of 32,Expected W-L: 2.4-13.6,"SRS: -13.19 (32nd of 32), 
+  SOS: .06
+"
+chi,2010,"
+  Record: 11-5-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 334 (20.9/g) 21st of 32,Points Against: 286 (17.9/g) 4th of 32,Expected W-L: 9.5-6.5,"SRS: 4.11 (9th of 32), 
+  SOS: 1.11
+"
+cin,2010,"
+  Record: 4-12-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 322 (20.1/g) 22nd of 32,Points Against: 395 (24.7/g) 24th of 32,Expected W-L: 6.1-9.9,"SRS: -1.42 (19th of 32), 
+  SOS: 3.14
+"
+cle,2010,"
+  Record: 5-11-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 271 (16.9/g) 31st of 32,Points Against: 332 (20.8/g) 13th of 32,Expected W-L: 6.1-9.9,"SRS: -1.47 (20th of 32), 
+  SOS: 2.34
+"
+dal,2010,"
+  Record: 6-10-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 394 (24.6/g) 7th of 32,Points Against: 436 (27.3/g) 31st of 32,Expected W-L: 7.0-9.0,"SRS: -2.15 (23rd of 32), 
+  SOS: .47
+"
+den,2010,"
+  Record: 4-12-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 344 (21.5/g) 19th of 32,Points Against: 471 (29.4/g) 32nd of 32,Expected W-L: 5.2-10.8,"SRS: -8.91 (29th of 32), 
+  SOS: -0.97
+"
+det,2010,"
+  Record: 6-10-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 362 (22.6/g) 15th of 32,Points Against: 369 (23.1/g) 19th of 32,Expected W-L: 7.8-8.2,"SRS: 1.91 (13th of 32), 
+  SOS: 2.35
+"
+gnb,2010,"
+  Record: 10-6-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 388 (24.3/g) 10th of 32,Points Against: 240 (15.0/g) 2nd of 32,Expected W-L: 12.1-3.9,"SRS: 10.94 (2nd of 32), 
+  SOS: 1.69
+"
+htx,2010,"
+  Record: 6-10-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 390 (24.4/g) 9th of 32,Points Against: 427 (26.7/g) 29th of 32,Expected W-L: 7.1-8.9,"SRS: -1.85 (22nd of 32), 
+  SOS: .47
+"
+clt,2010,"
+  Record: 10-6-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 435 (27.2/g) 4th of 32,Points Against: 388 (24.3/g) 23rd of 32,Expected W-L: 9.1-6.9,"SRS: 2.88 (10th of 32), 
+  SOS: -0.06
+"
+jax,2010,"
+  Record: 8-8-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 353 (22.1/g) 18th of 32,Points Against: 419 (26.2/g) 27th of 32,Expected W-L: 6.4-9.6,"SRS: -4.51 (25th of 32), 
+  SOS: -0.39
+"
+kan,2010,"
+  Record: 10-6-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 366 (22.9/g) 14th of 32,Points Against: 326 (20.4/g) 11th of 32,Expected W-L: 9.1-6.9,"SRS: -0.69 (18th of 32), 
+  SOS: -3.19
+"
+ram,2010,"
+  Record: 7-9-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 289 (18.1/g) 26th of 32,Points Against: 328 (20.5/g) 12th of 32,Expected W-L: 6.8-9.2,"SRS: -6.67 (28th of 32), 
+  SOS: -4.23
+"
+mia,2010,"
+  Record: 7-9-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 273 (17.1/g) 30th of 32,Points Against: 333 (20.8/g) 14th of 32,Expected W-L: 6.2-9.8,"SRS: .30 (15th of 32), 
+  SOS: 4.05
+"
+min,2010,"
+  Record: 6-10-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 281 (17.6/g) 29th of 32,Points Against: 348 (21.8/g) 18th of 32,Expected W-L: 6.0-10.0,"SRS: -1.59 (21st of 32), 
+  SOS: 2.59
+"
+nwe,2010,"
+  Record: 14-2-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 518 (32.4/g) 1st of 32,Points Against: 313 (19.6/g) 8th of 32,Expected W-L: 12.3-3.7,"SRS: 15.38 (1st of 32), 
+  SOS: 2.57
+"
+nor,2010,"
+  Record: 11-5-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 384 (24.0/g) 11th of 32,Points Against: 307 (19.2/g) 7th of 32,Expected W-L: 10.1-5.9,"SRS: 2.32 (11th of 32), 
+  SOS: -2.50
+"
+nyg,2010,"
+  Record: 10-6-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 394 (24.6/g) 7th of 32,Points Against: 347 (21.7/g) 17th of 32,Expected W-L: 9.2-6.8,"SRS: 2.11 (12th of 32), 
+  SOS: -0.83
+"
+nyj,2010,"
+  Record: 11-5-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 367 (22.9/g) 13th of 32,Points Against: 304 (19.0/g) 6th of 32,Expected W-L: 9.8-6.2,"SRS: 6.47 (4th of 32), 
+  SOS: 2.53
+"
+rai,2010,"
+  Record: 8-8-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 410 (25.6/g) 6th of 32,Points Against: 371 (23.2/g) 20th of 32,Expected W-L: 8.9-7.1,"SRS: .18 (16th of 32), 
+  SOS: -2.26
+"
+phi,2010,"
+  Record: 10-6-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 439 (27.4/g) 3rd of 32,Points Against: 377 (23.6/g) 21st of 32,Expected W-L: 9.4-6.6,"SRS: 4.22 (8th of 32), 
+  SOS: .34
+"
+pit,2010,"
+  Record: 12-4-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 375 (23.4/g) 12th of 32,Points Against: 232 (14.5/g) 1st of 32,Expected W-L: 12.1-3.9,"SRS: 10.22 (3rd of 32), 
+  SOS: 1.28
+"
+sdg,2010,"
+  Record: 9-7-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 441 (27.6/g) 2nd of 32,Points Against: 322 (20.1/g) 10th of 32,Expected W-L: 10.9-5.1,"SRS: 4.82 (7th of 32), 
+  SOS: -2.62
+"
+sfo,2010,"
+  Record: 6-10-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 305 (19.1/g) 24th of 32,Points Against: 346 (21.6/g) 16th of 32,Expected W-L: 6.8-9.2,"SRS: -5.84 (27th of 32), 
+  SOS: -3.27
+"
+sea,2010,"
+  Record: 7-9-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 310 (19.4/g) 23rd of 32,Points Against: 407 (25.4/g) 25th of 32,Expected W-L: 5.5-10.5,"SRS: -9.44 (30th of 32), 
+  SOS: -3.38
+"
+tam,2010,"
+  Record: 10-6-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 341 (21.3/g) 20th of 32,Points Against: 318 (19.9/g) 9th of 32,Expected W-L: 8.7-7.3,"SRS: -0.58 (17th of 32), 
+  SOS: -2.02
+"
+oti,2010,"
+  Record: 6-10-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 356 (22.3/g) 17th of 32,Points Against: 339 (21.2/g) 15th of 32,Expected W-L: 8.5-7.5,"SRS: 1.02 (14th of 32), 
+  SOS: -0.04
+"
+was,2010,"
+  Record: 6-10-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 302 (18.9/g) 25th of 32,Points Against: 377 (23.6/g) 21st of 32,Expected W-L: 5.9-10.1,"SRS: -3.81 (24th of 32), 
+  SOS: .88
+"
+crd,2011,"
+  Record: 8-8-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 312 (19.5/g) 24th of 32,Points Against: 348 (21.8/g) 17th of 32,Expected W-L: 7.0-9.0,"SRS: -2.21 (21st of 32), 
+  SOS: .04
+"
+atl,2011,"
+  Record: 10-6-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 402 (25.1/g) 7th of 32,Points Against: 350 (21.9/g) 18th of 32,Expected W-L: 9.3-6.7,"SRS: 3.53 (10th of 32), 
+  SOS: .28
+"
+rav,2011,"
+  Record: 12-4-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 378 (23.6/g) 12th of 32,Points Against: 266 (16.6/g) 3rd of 32,Expected W-L: 11.2-4.8,"SRS: 6.10 (5th of 32), 
+  SOS: -0.90
+"
+buf,2011,"
+  Record: 6-10-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 372 (23.3/g) 14th of 32,Points Against: 434 (27.1/g) 30th of 32,Expected W-L: 6.6-9.4,"SRS: -3.37 (22nd of 32), 
+  SOS: .50
+"
+car,2011,"
+  Record: 6-10-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 406 (25.4/g) 5th of 32,Points Against: 429 (26.8/g) 27th of 32,Expected W-L: 7.5-8.5,"SRS: -1.30 (20th of 32), 
+  SOS: .14
+"
+chi,2011,"
+  Record: 8-8-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 353 (22.1/g) 17th of 32,Points Against: 341 (21.3/g) 14th of 32,Expected W-L: 8.3-7.7,"SRS: 1.65 (11th of 32), 
+  SOS: .90
+"
+cin,2011,"
+  Record: 9-7-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 344 (21.5/g) 18th of 32,Points Against: 323 (20.2/g) 9th of 32,Expected W-L: 8.6-7.4,"SRS: .46 (18th of 32), 
+  SOS: -0.85
+"
+cle,2011,"
+  Record: 4-12-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 218 (13.6/g) 30th of 32,Points Against: 307 (19.2/g) 5th of 32,Expected W-L: 4.9-11.1,"SRS: -5.39 (26th of 32), 
+  SOS: .17
+"
+dal,2011,"
+  Record: 8-8-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 369 (23.1/g) 15th of 32,Points Against: 347 (21.7/g) 16th of 32,Expected W-L: 8.6-7.4,"SRS: 1.63 (12th of 32), 
+  SOS: .25
+"
+den,2011,"
+  Record: 8-8-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 309 (19.3/g) 25th of 32,Points Against: 390 (24.4/g) 24th of 32,Expected W-L: 5.8-10.2,"SRS: -5.30 (25th of 32), 
+  SOS: -0.23
+"
+det,2011,"
+  Record: 10-6-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 474 (29.6/g) 4th of 32,Points Against: 387 (24.2/g) 23rd of 32,Expected W-L: 9.9-6.1,"SRS: 6.07 (6th of 32), 
+  SOS: .63
+"
+gnb,2011,"
+  Record: 15-1-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 560 (35.0/g) 1st of 32,Points Against: 359 (22.4/g) 19th of 32,Expected W-L: 11.9-4.1,"SRS: 11.36 (2nd of 32), 
+  SOS: -1.21
+"
+htx,2011,"
+  Record: 10-6-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 381 (23.8/g) 10th of 32,Points Against: 278 (17.4/g) 4th of 32,Expected W-L: 10.9-5.1,"SRS: 4.54 (9th of 32), 
+  SOS: -1.90
+"
+clt,2011,"
+  Record: 2-14-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 243 (15.2/g) 28th of 32,Points Against: 430 (26.9/g) 28th of 32,Expected W-L: 3.3-12.7,"SRS: -11.28 (32nd of 32), 
+  SOS: .40
+"
+jax,2011,"
+  Record: 5-11-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 243 (15.2/g) 28th of 32,Points Against: 329 (20.6/g) 11th of 32,Expected W-L: 5.2-10.8,"SRS: -5.64 (27th of 32), 
+  SOS: -0.26
+"
+kan,2011,"
+  Record: 7-9-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 212 (13.3/g) 31st of 32,Points Against: 338 (21.1/g) 12th of 32,Expected W-L: 4.0-12.0,"SRS: -8.10 (29th of 32), 
+  SOS: -0.22
+"
+ram,2011,"
+  Record: 2-14-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 193 (12.1/g) 32nd of 32,Points Against: 407 (25.4/g) 26th of 32,Expected W-L: 2.3-13.7,"SRS: -10.45 (30th of 32), 
+  SOS: 2.93
+"
+mia,2011,"
+  Record: 6-10-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 329 (20.6/g) 20th of 32,Points Against: 313 (19.6/g) 6th of 32,Expected W-L: 8.5-7.5,"SRS: .95 (14th of 32), 
+  SOS: -0.05
+"
+min,2011,"
+  Record: 3-13-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 340 (21.3/g) 19th of 32,Points Against: 449 (28.1/g) 31st of 32,Expected W-L: 5.5-10.5,"SRS: -5.73 (28th of 32), 
+  SOS: 1.09
+"
+nwe,2011,"
+  Record: 13-3-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 513 (32.1/g) 3rd of 32,Points Against: 342 (21.4/g) 15th of 32,Expected W-L: 11.6-4.4,"SRS: 9.27 (3rd of 32), 
+  SOS: -1.42
+"
+nor,2011,"
+  Record: 13-3-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 547 (34.2/g) 2nd of 32,Points Against: 339 (21.2/g) 13th of 32,Expected W-L: 12.1-3.9,"SRS: 11.40 (1st of 32), 
+  SOS: -1.60
+"
+nyg,2011,"
+  Record: 9-7-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 394 (24.6/g) 9th of 32,Points Against: 400 (25.0/g) 25th of 32,Expected W-L: 7.9-8.1,"SRS: 1.59 (13th of 32), 
+  SOS: 1.96
+"
+nyj,2011,"
+  Record: 8-8-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 377 (23.6/g) 13th of 32,Points Against: 363 (22.7/g) 20th of 32,Expected W-L: 8.4-7.6,"SRS: .91 (15th of 32), 
+  SOS: .03
+"
+rai,2011,"
+  Record: 8-8-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 359 (22.4/g) 16th of 32,Points Against: 433 (27.1/g) 29th of 32,Expected W-L: 6.3-9.7,"SRS: -4.92 (24th of 32), 
+  SOS: -0.30
+"
+phi,2011,"
+  Record: 8-8-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 396 (24.8/g) 8th of 32,Points Against: 328 (20.5/g) 10th of 32,Expected W-L: 9.8-6.2,"SRS: 4.72 (8th of 32), 
+  SOS: .47
+"
+pit,2011,"
+  Record: 12-4-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 325 (20.3/g) 21st of 32,Points Against: 227 (14.2/g) 1st of 32,Expected W-L: 11.2-4.8,"SRS: 5.29 (7th of 32), 
+  SOS: -0.84
+"
+sdg,2011,"
+  Record: 8-8-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 406 (25.4/g) 5th of 32,Points Against: 377 (23.6/g) 22nd of 32,Expected W-L: 8.7-7.3,"SRS: .87 (16th of 32), 
+  SOS: -0.94
+"
+sfo,2011,"
+  Record: 13-3-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 380 (23.8/g) 11th of 32,Points Against: 229 (14.3/g) 2nd of 32,Expected W-L: 12.3-3.7,"SRS: 8.31 (4th of 32), 
+  SOS: -1.13
+"
+sea,2011,"
+  Record: 7-9-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 321 (20.1/g) 23rd of 32,Points Against: 315 (19.7/g) 7th of 32,Expected W-L: 8.2-7.8,"SRS: .80 (17th of 32), 
+  SOS: .42
+"
+tam,2011,"
+  Record: 4-12-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 287 (17.9/g) 27th of 32,Points Against: 494 (30.9/g) 32nd of 32,Expected W-L: 3.5-12.5,"SRS: -10.61 (31st of 32), 
+  SOS: 2.32
+"
+oti,2011,"
+  Record: 9-7-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 325 (20.3/g) 21st of 32,Points Against: 317 (19.8/g) 8th of 32,Expected W-L: 8.2-7.8,"SRS: -1.00 (19th of 32), 
+  SOS: -1.50
+"
+was,2011,"
+  Record: 5-11-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 288 (18.0/g) 26th of 32,Points Against: 367 (22.9/g) 21st of 32,Expected W-L: 5.8-10.2,"SRS: -4.12 (23rd of 32), 
+  SOS: .82
+"
+crd,2012,"
+  Record: 5-11-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 250 (15.6/g) 31st of 32,Points Against: 357 (22.3/g) 17th of 32,Expected W-L: 4.8-11.2,"SRS: -3.19 (23rd of 32), 
+  SOS: 3.50
+"
+atl,2012,"
+  Record: 13-3-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 419 (26.2/g) 7th of 32,Points Against: 299 (18.7/g) 5th of 32,Expected W-L: 11.0-5.0,"SRS: 6.44 (7th of 32), 
+  SOS: -1.06
+"
+rav,2012,"
+  Record: 10-6-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 398 (24.9/g) 10th of 32,Points Against: 344 (21.5/g) 12th of 32,Expected W-L: 9.4-6.6,"SRS: 2.91 (12th of 32), 
+  SOS: -0.47
+"
+buf,2012,"
+  Record: 6-10-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 344 (21.5/g) 21st of 32,Points Against: 435 (27.2/g) 26th of 32,Expected W-L: 5.8-10.2,"SRS: -6.65 (27th of 32), 
+  SOS: -0.96
+"
+car,2012,"
+  Record: 7-9-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 357 (22.3/g) 18th of 32,Points Against: 363 (22.7/g) 18th of 32,Expected W-L: 7.8-8.2,"SRS: .81 (15th of 32), 
+  SOS: 1.18
+"
+chi,2012,"
+  Record: 10-6-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 375 (23.4/g) 16th of 32,Points Against: 277 (17.3/g) 3rd of 32,Expected W-L: 10.8-5.2,"SRS: 6.95 (6th of 32), 
+  SOS: .82
+"
+cin,2012,"
+  Record: 10-6-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 391 (24.4/g) 12th of 32,Points Against: 320 (20.0/g) 8th of 32,Expected W-L: 9.9-6.1,"SRS: 2.08 (13th of 32), 
+  SOS: -2.35
+"
+cle,2012,"
+  Record: 5-11-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 302 (18.9/g) 24th of 32,Points Against: 368 (23.0/g) 19th of 32,Expected W-L: 6.2-9.8,"SRS: -5.29 (25th of 32), 
+  SOS: -1.17
+"
+dal,2012,"
+  Record: 8-8-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 376 (23.5/g) 15th of 32,Points Against: 400 (25.0/g) 24th of 32,Expected W-L: 7.4-8.6,"SRS: .28 (17th of 32), 
+  SOS: 1.78
+"
+den,2012,"
+  Record: 13-3-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 481 (30.1/g) 2nd of 32,Points Against: 289 (18.1/g) 4th of 32,Expected W-L: 12.3-3.7,"SRS: 10.10 (4th of 32), 
+  SOS: -1.90
+"
+det,2012,"
+  Record: 4-12-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 372 (23.3/g) 17th of 32,Points Against: 437 (27.3/g) 27th of 32,Expected W-L: 6.5-9.5,"SRS: -2.31 (20th of 32), 
+  SOS: 1.76
+"
+gnb,2012,"
+  Record: 11-5-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 433 (27.1/g) 5th of 32,Points Against: 336 (21.0/g) 11th of 32,Expected W-L: 10.3-5.7,"SRS: 7.26 (5th of 32), 
+  SOS: 1.19
+"
+htx,2012,"
+  Record: 12-4-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 416 (26.0/g) 8th of 32,Points Against: 331 (20.7/g) 9th of 32,Expected W-L: 10.1-5.9,"SRS: 3.47 (9th of 32), 
+  SOS: -1.84
+"
+clt,2012,"
+  Record: 11-5-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 357 (22.3/g) 18th of 32,Points Against: 387 (24.2/g) 21st of 32,Expected W-L: 7.2-8.8,"SRS: -4.71 (24th of 32), 
+  SOS: -2.84
+"
+jax,2012,"
+  Record: 2-14-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 255 (15.9/g) 30th of 32,Points Against: 444 (27.8/g) 29th of 32,Expected W-L: 3.4-12.6,"SRS: -12.96 (31st of 32), 
+  SOS: -1.15
+"
+kan,2012,"
+  Record: 2-14-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 211 (13.2/g) 32nd of 32,Points Against: 425 (26.6/g) 25th of 32,Expected W-L: 2.6-13.4,"SRS: -13.99 (32nd of 32), 
+  SOS: -0.61
+"
+ram,2012,"
+  Record: 7-8-1, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 299 (18.7/g) 25th of 32,Points Against: 348 (21.8/g) 14th of 32,Expected W-L: 6.6-9.4,"SRS: .36 (16th of 32), 
+  SOS: 3.42
+"
+mia,2012,"
+  Record: 7-9-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 288 (18.0/g) 27th of 32,Points Against: 317 (19.8/g) 7th of 32,Expected W-L: 7.1-8.9,"SRS: -2.62 (22nd of 32), 
+  SOS: -0.81
+"
+min,2012,"
+  Record: 10-6-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 379 (23.7/g) 14th of 32,Points Against: 348 (21.8/g) 14th of 32,Expected W-L: 8.8-7.2,"SRS: 3.35 (11th of 32), 
+  SOS: 1.42
+"
+nwe,2012,"
+  Record: 12-4-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 557 (34.8/g) 1st of 32,Points Against: 331 (20.7/g) 9th of 32,Expected W-L: 12.4-3.6,"SRS: 12.75 (1st of 32), 
+  SOS: -1.37
+"
+nor,2012,"
+  Record: 7-9-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 461 (28.8/g) 3rd of 32,Points Against: 454 (28.4/g) 31st of 32,Expected W-L: 8.1-7.9,"SRS: 1.44 (14th of 32), 
+  SOS: 1.00
+"
+nyg,2012,"
+  Record: 9-7-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 429 (26.8/g) 6th of 32,Points Against: 344 (21.5/g) 12th of 32,Expected W-L: 10.0-6.0,"SRS: 6.24 (8th of 32), 
+  SOS: .93
+"
+nyj,2012,"
+  Record: 6-10-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 281 (17.6/g) 28th of 32,Points Against: 375 (23.4/g) 20th of 32,Expected W-L: 5.4-10.6,"SRS: -5.91 (26th of 32), 
+  SOS: -0.04
+"
+rai,2012,"
+  Record: 4-12-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 290 (18.1/g) 26th of 32,Points Against: 443 (27.7/g) 28th of 32,Expected W-L: 4.3-11.7,"SRS: -10.83 (30th of 32), 
+  SOS: -1.27
+"
+phi,2012,"
+  Record: 4-12-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 280 (17.5/g) 29th of 32,Points Against: 444 (27.8/g) 29th of 32,Expected W-L: 4.0-12.0,"SRS: -8.87 (28th of 32), 
+  SOS: 1.38
+"
+pit,2012,"
+  Record: 8-8-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 336 (21.0/g) 22nd of 32,Points Against: 314 (19.6/g) 6th of 32,Expected W-L: 8.6-7.4,"SRS: -0.65 (19th of 32), 
+  SOS: -2.03
+"
+sdg,2012,"
+  Record: 7-9-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 350 (21.9/g) 20th of 32,Points Against: 350 (21.9/g) 16th of 32,Expected W-L: 8.0-8.0,"SRS: -2.35 (21st of 32), 
+  SOS: -2.35
+"
+sfo,2012,"
+  Record: 11-4-1, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 397 (24.8/g) 11th of 32,Points Against: 273 (17.1/g) 2nd of 32,Expected W-L: 11.3-4.7,"SRS: 10.21 (3rd of 32), 
+  SOS: 2.46
+"
+sea,2012,"
+  Record: 11-5-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 412 (25.8/g) 9th of 32,Points Against: 245 (15.3/g) 1st of 32,Expected W-L: 12.4-3.6,"SRS: 12.23 (2nd of 32), 
+  SOS: 1.79
+"
+tam,2012,"
+  Record: 7-9-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 389 (24.3/g) 13th of 32,Points Against: 394 (24.6/g) 23rd of 32,Expected W-L: 7.9-8.1,"SRS: .01 (18th of 32), 
+  SOS: .32
+"
+oti,2012,"
+  Record: 6-10-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 330 (20.6/g) 23rd of 32,Points Against: 471 (29.4/g) 32nd of 32,Expected W-L: 4.8-11.2,"SRS: -9.97 (29th of 32), 
+  SOS: -1.16
+"
+was,2012,"
+  Record: 10-6-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 436 (27.3/g) 4th of 32,Points Against: 388 (24.3/g) 22nd of 32,Expected W-L: 9.1-6.9,"SRS: 3.42 (10th of 32), 
+  SOS: .42
+"
+crd,2013,"
+  Record: 10-6-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 379 (23.7/g) 16th of 32,Points Against: 324 (20.3/g) 7th of 32,Expected W-L: 9.5-6.5,"SRS: 6.45 (6th of 32), 
+  SOS: 3.01
+"
+atl,2013,"
+  Record: 4-12-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 353 (22.1/g) 20th of 32,Points Against: 443 (27.7/g) 27th of 32,Expected W-L: 5.9-10.1,"SRS: -2.76 (20th of 32), 
+  SOS: 2.86
+"
+rav,2013,"
+  Record: 8-8-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 320 (20.0/g) 25th of 32,Points Against: 352 (22.0/g) 12th of 32,Expected W-L: 7.1-8.9,"SRS: -3.53 (23rd of 32), 
+  SOS: -1.53
+"
+buf,2013,"
+  Record: 6-10-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 339 (21.2/g) 22nd of 32,Points Against: 388 (24.3/g) 20th of 32,Expected W-L: 6.7-9.3,"SRS: -3.21 (22nd of 32), 
+  SOS: -0.15
+"
+car,2013,"
+  Record: 12-4-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 366 (22.9/g) 18th of 32,Points Against: 241 (15.1/g) 2nd of 32,Expected W-L: 11.7-4.3,"SRS: 9.20 (4th of 32), 
+  SOS: 1.39
+"
+chi,2013,"
+  Record: 8-8-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 445 (27.8/g) 2nd of 32,Points Against: 478 (29.9/g) 30th of 32,Expected W-L: 7.3-8.7,"SRS: -4.13 (24th of 32), 
+  SOS: -2.07
+"
+cin,2013,"
+  Record: 11-5-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 430 (26.9/g) 6th of 32,Points Against: 305 (19.1/g) 5th of 32,Expected W-L: 11.1-4.9,"SRS: 5.35 (9th of 32), 
+  SOS: -2.46
+"
+cle,2013,"
+  Record: 4-12-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 308 (19.3/g) 27th of 32,Points Against: 406 (25.4/g) 23rd of 32,Expected W-L: 5.5-10.5,"SRS: -7.69 (29th of 32), 
+  SOS: -1.56
+"
+dal,2013,"
+  Record: 8-8-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 439 (27.4/g) 5th of 32,Points Against: 432 (27.0/g) 26th of 32,Expected W-L: 8.2-7.8,"SRS: -0.69 (14th of 32), 
+  SOS: -1.13
+"
+den,2013,"
+  Record: 13-3-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 606 (37.9/g) 1st of 32,Points Against: 399 (24.9/g) 22nd of 32,Expected W-L: 11.7-4.3,"SRS: 11.37 (2nd of 32), 
+  SOS: -1.57
+"
+det,2013,"
+  Record: 7-9-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 395 (24.7/g) 13th of 32,Points Against: 376 (23.5/g) 15th of 32,Expected W-L: 8.5-7.5,"SRS: -1.64 (17th of 32), 
+  SOS: -2.83
+"
+gnb,2013,"
+  Record: 8-7-1, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 417 (26.1/g) 8th of 32,Points Against: 428 (26.8/g) 24th of 32,Expected W-L: 7.8-8.2,"SRS: -3.11 (21st of 32), 
+  SOS: -2.42
+"
+htx,2013,"
+  Record: 2-14-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 276 (17.3/g) 31st of 32,Points Against: 428 (26.8/g) 24th of 32,Expected W-L: 4.2-11.8,"SRS: -7.58 (28th of 32), 
+  SOS: 1.92
+"
+clt,2013,"
+  Record: 11-5-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 391 (24.4/g) 14th of 32,Points Against: 336 (21.0/g) 9th of 32,Expected W-L: 9.4-6.6,"SRS: 4.04 (10th of 32), 
+  SOS: .60
+"
+jax,2013,"
+  Record: 4-12-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 247 (15.4/g) 32nd of 32,Points Against: 449 (28.1/g) 28th of 32,Expected W-L: 3.1-12.9,"SRS: -11.10 (32nd of 32), 
+  SOS: 1.53
+"
+kan,2013,"
+  Record: 11-5-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 430 (26.9/g) 6th of 32,Points Against: 305 (19.1/g) 5th of 32,Expected W-L: 11.1-4.9,"SRS: 6.08 (7th of 32), 
+  SOS: -1.73
+"
+ram,2013,"
+  Record: 7-9-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 348 (21.8/g) 21st of 32,Points Against: 364 (22.8/g) 13th of 32,Expected W-L: 7.6-8.4,"SRS: 2.22 (12th of 32), 
+  SOS: 3.22
+"
+mia,2013,"
+  Record: 8-8-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 317 (19.8/g) 26th of 32,Points Against: 335 (20.9/g) 8th of 32,Expected W-L: 7.5-8.5,"SRS: -0.84 (16th of 32), 
+  SOS: .29
+"
+min,2013,"
+  Record: 5-10-1, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 391 (24.4/g) 14th of 32,Points Against: 480 (30.0/g) 32nd of 32,Expected W-L: 6.1-9.9,"SRS: -6.62 (27th of 32), 
+  SOS: -1.05
+"
+nwe,2013,"
+  Record: 12-4-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 444 (27.8/g) 3rd of 32,Points Against: 338 (21.1/g) 10th of 32,Expected W-L: 10.5-5.5,"SRS: 5.89 (8th of 32), 
+  SOS: -0.74
+"
+nor,2013,"
+  Record: 11-5-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 414 (25.9/g) 10th of 32,Points Against: 304 (19.0/g) 4th of 32,Expected W-L: 10.8-5.2,"SRS: 8.77 (5th of 32), 
+  SOS: 1.89
+"
+nyg,2013,"
+  Record: 7-9-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 294 (18.4/g) 28th of 32,Points Against: 383 (23.9/g) 18th of 32,Expected W-L: 5.6-10.4,"SRS: -5.40 (25th of 32), 
+  SOS: .16
+"
+nyj,2013,"
+  Record: 8-8-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 290 (18.1/g) 29th of 32,Points Against: 387 (24.2/g) 19th of 32,Expected W-L: 5.4-10.6,"SRS: -6.09 (26th of 32), 
+  SOS: -0.02
+"
+rai,2013,"
+  Record: 4-12-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 322 (20.1/g) 24th of 32,Points Against: 453 (28.3/g) 29th of 32,Expected W-L: 4.9-11.1,"SRS: -7.99 (30th of 32), 
+  SOS: .20
+"
+phi,2013,"
+  Record: 10-6-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 442 (27.6/g) 4th of 32,Points Against: 382 (23.9/g) 17th of 32,Expected W-L: 9.4-6.6,"SRS: 1.85 (13th of 32), 
+  SOS: -1.90
+"
+pit,2013,"
+  Record: 8-8-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 379 (23.7/g) 16th of 32,Points Against: 370 (23.1/g) 14th of 32,Expected W-L: 8.2-7.8,"SRS: -1.95 (18th of 32), 
+  SOS: -2.52
+"
+sdg,2013,"
+  Record: 9-7-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 396 (24.8/g) 12th of 32,Points Against: 348 (21.8/g) 11th of 32,Expected W-L: 9.2-6.8,"SRS: 2.66 (11th of 32), 
+  SOS: -0.34
+"
+sfo,2013,"
+  Record: 12-4-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 406 (25.4/g) 11th of 32,Points Against: 272 (17.0/g) 3rd of 32,Expected W-L: 11.5-4.5,"SRS: 10.13 (3rd of 32), 
+  SOS: 1.76
+"
+sea,2013,"
+  Record: 13-3-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 417 (26.1/g) 8th of 32,Points Against: 231 (14.4/g) 1st of 32,Expected W-L: 12.8-3.2,"SRS: 13.04 (1st of 32), 
+  SOS: 1.42
+"
+tam,2013,"
+  Record: 4-12-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 288 (18.0/g) 30th of 32,Points Against: 389 (24.3/g) 21st of 32,Expected W-L: 5.3-10.7,"SRS: -2.67 (19th of 32), 
+  SOS: 3.64
+"
+oti,2013,"
+  Record: 7-9-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 362 (22.6/g) 19th of 32,Points Against: 381 (23.8/g) 16th of 32,Expected W-L: 7.5-8.5,"SRS: -0.77 (15th of 32), 
+  SOS: .41
+"
+was,2013,"
+  Record: 3-13-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 334 (20.9/g) 23rd of 32,Points Against: 478 (29.9/g) 30th of 32,Expected W-L: 4.8-11.2,"SRS: -9.28 (31st of 32), 
+  SOS: -0.28
+"
+crd,2014,"
+  Record: 11-5-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 310 (19.4/g) 24th of 32,Points Against: 299 (18.7/g) 5th of 32,Expected W-L: 8.3-7.7,"SRS: 1.98 (14th of 32), 
+  SOS: 1.29
+"
+atl,2014,"
+  Record: 6-10-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 381 (23.8/g) 12th of 32,Points Against: 417 (26.1/g) 27th of 32,Expected W-L: 7.1-8.9,"SRS: -3.85 (24th of 32), 
+  SOS: -1.60
+"
+rav,2014,"
+  Record: 10-6-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 409 (25.6/g) 8th of 32,Points Against: 302 (18.9/g) 6th of 32,Expected W-L: 10.8-5.2,"SRS: 4.61 (8th of 32), 
+  SOS: -2.08
+"
+buf,2014,"
+  Record: 9-7-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 343 (21.4/g) 18th of 32,Points Against: 289 (18.1/g) 4th of 32,Expected W-L: 9.6-6.4,"SRS: 4.93 (7th of 32), 
+  SOS: 1.55
+"
+car,2014,"
+  Record: 7-8-1, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 339 (21.2/g) 19th of 32,Points Against: 374 (23.4/g) 21st of 32,Expected W-L: 7.1-8.9,"SRS: -3.06 (23rd of 32), 
+  SOS: -0.87
+"
+chi,2014,"
+  Record: 5-11-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 319 (19.9/g) 23rd of 32,Points Against: 442 (27.6/g) 31st of 32,Expected W-L: 5.1-10.9,"SRS: -6.71 (27th of 32), 
+  SOS: .98
+"
+cin,2014,"
+  Record: 10-5-1, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 365 (22.8/g) 15th of 32,Points Against: 344 (21.5/g) 12th of 32,Expected W-L: 8.6-7.4,"SRS: .73 (17th of 32), 
+  SOS: -0.58
+"
+cle,2014,"
+  Record: 7-9-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 299 (18.7/g) 27th of 32,Points Against: 337 (21.1/g) 9th of 32,Expected W-L: 6.9-9.1,"SRS: -3.92 (25th of 32), 
+  SOS: -1.54
+"
+dal,2014,"
+  Record: 12-4-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 467 (29.2/g) 5th of 32,Points Against: 352 (22.0/g) 15th of 32,Expected W-L: 10.6-5.4,"SRS: 5.37 (6th of 32), 
+  SOS: -1.81
+"
+den,2014,"
+  Record: 12-4-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 482 (30.1/g) 2nd of 32,Points Against: 354 (22.1/g) 16th of 32,Expected W-L: 10.8-5.2,"SRS: 9.58 (2nd of 32), 
+  SOS: 1.58
+"
+det,2014,"
+  Record: 11-5-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 321 (20.1/g) 22nd of 32,Points Against: 282 (17.6/g) 3rd of 32,Expected W-L: 9.2-6.8,"SRS: 2.06 (13th of 32), 
+  SOS: -0.38
+"
+gnb,2014,"
+  Record: 12-4-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 486 (30.4/g) 1st of 32,Points Against: 348 (21.8/g) 13th of 32,Expected W-L: 11.0-5.0,"SRS: 8.29 (4th of 32), 
+  SOS: -0.34
+"
+htx,2014,"
+  Record: 9-7-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 372 (23.3/g) 14th of 32,Points Against: 307 (19.2/g) 7th of 32,Expected W-L: 9.8-6.2,"SRS: 1.73 (16th of 32), 
+  SOS: -2.33
+"
+clt,2014,"
+  Record: 11-5-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 458 (28.6/g) 6th of 32,Points Against: 369 (23.1/g) 19th of 32,Expected W-L: 10.0-6.0,"SRS: 4.43 (9th of 32), 
+  SOS: -1.13
+"
+jax,2014,"
+  Record: 3-13-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 249 (15.6/g) 32nd of 32,Points Against: 412 (25.8/g) 26th of 32,Expected W-L: 3.7-12.3,"SRS: -10.46 (31st of 32), 
+  SOS: -0.28
+"
+kan,2014,"
+  Record: 9-7-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 353 (22.1/g) 16th of 32,Points Against: 281 (17.6/g) 2nd of 32,Expected W-L: 10.1-5.9,"SRS: 5.65 (5th of 32), 
+  SOS: 1.15
+"
+ram,2014,"
+  Record: 6-10-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 324 (20.3/g) 21st of 32,Points Against: 354 (22.1/g) 16th of 32,Expected W-L: 7.2-8.8,"SRS: -0.83 (18th of 32), 
+  SOS: 1.04
+"
+mia,2014,"
+  Record: 8-8-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 388 (24.3/g) 11th of 32,Points Against: 373 (23.3/g) 20th of 32,Expected W-L: 8.4-7.6,"SRS: 2.56 (11th of 32), 
+  SOS: 1.62
+"
+min,2014,"
+  Record: 7-9-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 325 (20.3/g) 20th of 32,Points Against: 343 (21.4/g) 11th of 32,Expected W-L: 7.5-8.5,"SRS: -1.66 (20th of 32), 
+  SOS: -0.53
+"
+nwe,2014,"
+  Record: 12-4-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 468 (29.3/g) 4th of 32,Points Against: 313 (19.6/g) 8th of 32,Expected W-L: 11.5-4.5,"SRS: 10.94 (1st of 32), 
+  SOS: 1.26
+"
+nor,2014,"
+  Record: 7-9-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 401 (25.1/g) 9th of 32,Points Against: 424 (26.5/g) 28th of 32,Expected W-L: 7.5-8.5,"SRS: -2.89 (22nd of 32), 
+  SOS: -1.46
+"
+nyg,2014,"
+  Record: 6-10-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 380 (23.8/g) 13th of 32,Points Against: 400 (25.0/g) 22nd of 32,Expected W-L: 7.5-8.5,"SRS: -1.69 (21st of 32), 
+  SOS: -0.44
+"
+nyj,2014,"
+  Record: 4-12-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 283 (17.7/g) 28th of 32,Points Against: 401 (25.1/g) 24th of 32,Expected W-L: 4.9-11.1,"SRS: -5.04 (26th of 32), 
+  SOS: 2.33
+"
+rai,2014,"
+  Record: 3-13-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 253 (15.8/g) 31st of 32,Points Against: 452 (28.3/g) 32nd of 32,Expected W-L: 3.2-12.8,"SRS: -8.99 (29th of 32), 
+  SOS: 3.44
+"
+phi,2014,"
+  Record: 10-6-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 474 (29.6/g) 3rd of 32,Points Against: 400 (25.0/g) 22nd of 32,Expected W-L: 9.6-6.4,"SRS: 3.92 (10th of 32), 
+  SOS: -0.70
+"
+pit,2014,"
+  Record: 11-5-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 436 (27.3/g) 7th of 32,Points Against: 368 (23.0/g) 18th of 32,Expected W-L: 9.6-6.4,"SRS: 2.23 (12th of 32), 
+  SOS: -2.02
+"
+sdg,2014,"
+  Record: 9-7-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 348 (21.8/g) 17th of 32,Points Against: 348 (21.8/g) 13th of 32,Expected W-L: 8.0-8.0,"SRS: 1.86 (15th of 32), 
+  SOS: 1.86
+"
+sfo,2014,"
+  Record: 8-8-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 306 (19.1/g) 25th of 32,Points Against: 340 (21.3/g) 10th of 32,Expected W-L: 7.0-9.0,"SRS: -0.95 (19th of 32), 
+  SOS: 1.17
+"
+sea,2014,"
+  Record: 12-4-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 394 (24.6/g) 10th of 32,Points Against: 254 (15.9/g) 1st of 32,Expected W-L: 11.8-4.2,"SRS: 9.54 (3rd of 32), 
+  SOS: .79
+"
+tam,2014,"
+  Record: 2-14-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 277 (17.3/g) 29th of 32,Points Against: 410 (25.6/g) 25th of 32,Expected W-L: 4.5-11.5,"SRS: -9.78 (30th of 32), 
+  SOS: -1.47
+"
+oti,2014,"
+  Record: 2-14-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 254 (15.9/g) 30th of 32,Points Against: 438 (27.4/g) 29th of 32,Expected W-L: 3.4-12.6,"SRS: -11.84 (32nd of 32), 
+  SOS: -0.34
+"
+was,2014,"
+  Record: 4-12-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 301 (18.8/g) 26th of 32,Points Against: 438 (27.4/g) 29th of 32,Expected W-L: 4.7-11.3,"SRS: -8.73 (28th of 32), 
+  SOS: -0.17
+"
+crd,2015,"
+  Record: 13-3-0, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 489 (30.6/g) 2nd of 32,Points Against: 313 (19.6/g) 7th of 32,Expected W-L: 11.9-4.1,"SRS: 12.31 (1st of 32), 
+  SOS: 1.31
+"
+atl,2015,"
+  Record: 8-8-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 339 (21.2/g) 21st of 32,Points Against: 345 (21.6/g) 14th of 32,Expected W-L: 7.8-8.2,"SRS: -3.78 (22nd of 32), 
+  SOS: -3.41
+"
+rav,2015,"
+  Record: 5-11-0, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 328 (20.5/g) 25th of 32,Points Against: 401 (25.1/g) 24th of 32,Expected W-L: 6.1-9.9,"SRS: -1.94 (19th of 32), 
+  SOS: 2.62
+"
+buf,2015,"
+  Record: 8-8-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 379 (23.7/g) 12th of 32,Points Against: 359 (22.4/g) 15th of 32,Expected W-L: 8.5-7.5,"SRS: .03 (12th of 32), 
+  SOS: -1.22
+"
+car,2015,"
+  Record: 15-1-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 500 (31.3/g) 1st of 32,Points Against: 308 (19.3/g) 6th of 32,Expected W-L: 12.1-3.9,"SRS: 8.12 (6th of 32), 
+  SOS: -3.88
+"
+chi,2015,"
+  Record: 6-10-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 335 (20.9/g) 23rd of 32,Points Against: 397 (24.8/g) 20th of 32,Expected W-L: 6.4-9.6,"SRS: -1.25 (17th of 32), 
+  SOS: 2.62
+"
+cin,2015,"
+  Record: 12-4-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 419 (26.2/g) 7th of 32,Points Against: 279 (17.4/g) 2nd of 32,Expected W-L: 11.6-4.4,"SRS: 10.65 (3rd of 32), 
+  SOS: 1.90
+"
+cle,2015,"
+  Record: 3-13-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 278 (17.4/g) 30th of 32,Points Against: 432 (27.0/g) 29th of 32,Expected W-L: 4.2-11.8,"SRS: -6.15 (25th of 32), 
+  SOS: 3.48
+"
+dal,2015,"
+  Record: 4-12-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 275 (17.2/g) 31st of 32,Points Against: 374 (23.4/g) 16th of 32,Expected W-L: 5.2-10.8,"SRS: -6.93 (29th of 32), 
+  SOS: -0.74
+"
+den,2015,"
+  Record: 12-4-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 355 (22.2/g) 19th of 32,Points Against: 296 (18.5/g) 4th of 32,Expected W-L: 9.7-6.3,"SRS: 5.78 (9th of 32), 
+  SOS: 2.09
+"
+det,2015,"
+  Record: 7-9-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 358 (22.4/g) 18th of 32,Points Against: 400 (25.0/g) 23rd of 32,Expected W-L: 7.0-9.0,"SRS: -0.23 (14th of 32), 
+  SOS: 2.40
+"
+gnb,2015,"
+  Record: 10-6-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 368 (23.0/g) 15th of 32,Points Against: 323 (20.2/g) 12th of 32,Expected W-L: 9.2-6.8,"SRS: 5.30 (10th of 32), 
+  SOS: 2.48
+"
+htx,2015,"
+  Record: 9-7-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 339 (21.2/g) 21st of 32,Points Against: 313 (19.6/g) 7th of 32,Expected W-L: 8.8-7.2,"SRS: -0.75 (16th of 32), 
+  SOS: -2.38
+"
+clt,2015,"
+  Record: 8-8-0, 2nd	AFC South Division
+   (Schedule and Results)
+",Points For: 333 (20.8/g) 24th of 32,Points Against: 408 (25.5/g) 25th of 32,Expected W-L: 6.1-9.9,"SRS: -6.65 (27th of 32), 
+  SOS: -1.96
+"
+jax,2015,"
+  Record: 5-11-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 376 (23.5/g) 14th of 32,Points Against: 448 (28.0/g) 31st of 32,Expected W-L: 6.4-9.6,"SRS: -7.54 (30th of 32), 
+  SOS: -3.04
+"
+kan,2015,"
+  Record: 11-5-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 405 (25.3/g) 9th of 32,Points Against: 287 (17.9/g) 3rd of 32,Expected W-L: 11.1-4.9,"SRS: 9.00 (4th of 32), 
+  SOS: 1.62
+"
+ram,2015,"
+  Record: 7-9-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 280 (17.5/g) 29th of 32,Points Against: 330 (20.6/g) 13th of 32,Expected W-L: 6.5-9.5,"SRS: -0.16 (13th of 32), 
+  SOS: 2.97
+"
+mia,2015,"
+  Record: 6-10-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 310 (19.4/g) 27th of 32,Points Against: 389 (24.3/g) 19th of 32,Expected W-L: 5.9-10.1,"SRS: -6.82 (28th of 32), 
+  SOS: -1.88
+"
+min,2015,"
+  Record: 11-5-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 365 (22.8/g) 16th of 32,Points Against: 302 (18.9/g) 5th of 32,Expected W-L: 9.8-6.2,"SRS: 5.82 (8th of 32), 
+  SOS: 1.88
+"
+nwe,2015,"
+  Record: 12-4-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 465 (29.1/g) 3rd of 32,Points Against: 315 (19.7/g) 10th of 32,Expected W-L: 11.5-4.5,"SRS: 6.97 (7th of 32), 
+  SOS: -2.41
+"
+nor,2015,"
+  Record: 7-9-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 408 (25.5/g) 8th of 32,Points Against: 476 (29.8/g) 32nd of 32,Expected W-L: 6.6-9.4,"SRS: -6.57 (26th of 32), 
+  SOS: -2.32
+"
+nyg,2015,"
+  Record: 6-10-0, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 420 (26.3/g) 6th of 32,Points Against: 442 (27.6/g) 30th of 32,Expected W-L: 7.5-8.5,"SRS: -3.56 (21st of 32), 
+  SOS: -2.18
+"
+nyj,2015,"
+  Record: 10-6-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 387 (24.2/g) 11th of 32,Points Against: 314 (19.6/g) 9th of 32,Expected W-L: 9.9-6.1,"SRS: 1.53 (11th of 32), 
+  SOS: -3.03
+"
+rai,2015,"
+  Record: 7-9-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 359 (22.4/g) 17th of 32,Points Against: 399 (24.9/g) 22nd of 32,Expected W-L: 7.0-9.0,"SRS: -0.24 (15th of 32), 
+  SOS: 2.26
+"
+phi,2015,"
+  Record: 7-9-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 377 (23.6/g) 13th of 32,Points Against: 430 (26.9/g) 28th of 32,Expected W-L: 6.8-9.2,"SRS: -4.62 (23rd of 32), 
+  SOS: -1.31
+"
+pit,2015,"
+  Record: 10-6-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 423 (26.4/g) 4th of 32,Points Against: 319 (19.9/g) 11th of 32,Expected W-L: 10.6-5.4,"SRS: 8.70 (5th of 32), 
+  SOS: 2.20
+"
+sdg,2015,"
+  Record: 4-12-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 320 (20.0/g) 26th of 32,Points Against: 398 (24.9/g) 21st of 32,Expected W-L: 6.0-10.0,"SRS: -2.65 (20th of 32), 
+  SOS: 2.23
+"
+sfo,2015,"
+  Record: 5-11-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 238 (14.9/g) 32nd of 32,Points Against: 387 (24.2/g) 18th of 32,Expected W-L: 3.8-12.2,"SRS: -5.53 (24th of 32), 
+  SOS: 3.78
+"
+sea,2015,"
+  Record: 10-6-0, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 423 (26.4/g) 4th of 32,Points Against: 277 (17.3/g) 1st of 32,Expected W-L: 11.7-4.3,"SRS: 11.33 (2nd of 32), 
+  SOS: 2.21
+"
+tam,2015,"
+  Record: 6-10-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 342 (21.4/g) 20th of 32,Points Against: 417 (26.1/g) 26th of 32,Expected W-L: 6.2-9.8,"SRS: -7.71 (31st of 32), 
+  SOS: -3.02
+"
+oti,2015,"
+  Record: 3-13-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 299 (18.7/g) 28th of 32,Points Against: 423 (26.4/g) 27th of 32,Expected W-L: 4.9-11.1,"SRS: -10.53 (32nd of 32), 
+  SOS: -2.78
+"
+was,2015,"
+  Record: 9-7-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 388 (24.3/g) 10th of 32,Points Against: 379 (23.7/g) 17th of 32,Expected W-L: 8.2-7.8,"SRS: -1.93 (18th of 32), 
+  SOS: -2.49
+"
+crd,2016,"
+  Record: 7-8-1, 2nd	NFC West Division
+   (Schedule and Results)
+",Points For: 418 (26.1/g) 6th of 32,Points Against: 362 (22.6/g) 14th of 32,Expected W-L: 9.4-6.6,"SRS: 1.59 (13th of 32), 
+  SOS: -1.91
+"
+atl,2016,"
+  Record: 11-5-0, 1st	NFC South Division
+   (Schedule and Results)
+",Points For: 540 (33.8/g) 1st of 32,Points Against: 406 (25.4/g) 27th of 32,Expected W-L: 10.6-5.4,"SRS: 8.48 (2nd of 32), 
+  SOS: .11
+"
+rav,2016,"
+  Record: 8-8-0, 2nd	AFC North Division
+   (Schedule and Results)
+",Points For: 343 (21.4/g) 21st of 32,Points Against: 321 (20.1/g) 9th of 32,Expected W-L: 8.6-7.4,"SRS: 1.54 (15th of 32), 
+  SOS: .16
+"
+buf,2016,"
+  Record: 7-9-0, 3rd	AFC East Division
+   (Schedule and Results)
+",Points For: 399 (24.9/g) 10th of 32,Points Against: 378 (23.6/g) 16th of 32,Expected W-L: 8.5-7.5,"SRS: -0.33 (21st of 32), 
+  SOS: -1.64
+"
+car,2016,"
+  Record: 6-10-0, 4th	NFC South Division
+   (Schedule and Results)
+",Points For: 369 (23.1/g) 15th of 32,Points Against: 402 (25.1/g) 26th of 32,Expected W-L: 7.2-8.8,"SRS: -1.00 (22nd of 32), 
+  SOS: 1.06
+"
+chi,2016,"
+  Record: 3-13-0, 4th	NFC North Division
+   (Schedule and Results)
+",Points For: 279 (17.4/g) 28th of 32,Points Against: 399 (24.9/g) 24th of 32,Expected W-L: 4.8-11.2,"SRS: -7.50 (28th of 32), 
+  SOS: -0.00
+"
+cin,2016,"
+  Record: 6-9-1, 3rd	AFC North Division
+   (Schedule and Results)
+",Points For: 325 (20.3/g) 24th of 32,Points Against: 315 (19.7/g) 8th of 32,Expected W-L: 8.3-7.7,"SRS: 1.04 (16th of 32), 
+  SOS: .42
+"
+cle,2016,"
+  Record: 1-15-0, 4th	AFC North Division
+   (Schedule and Results)
+",Points For: 264 (16.5/g) 31st of 32,Points Against: 452 (28.3/g) 30th of 32,Expected W-L: 3.5-12.5,"SRS: -10.09 (30th of 32), 
+  SOS: 1.66
+"
+dal,2016,"
+  Record: 13-3-0, 1st	NFC East Division
+   (Schedule and Results)
+",Points For: 421 (26.3/g) 5th of 32,Points Against: 306 (19.1/g) 5th of 32,Expected W-L: 10.9-5.1,"SRS: 6.97 (3rd of 32), 
+  SOS: -0.22
+"
+den,2016,"
+  Record: 9-7-0, 3rd	AFC West Division
+   (Schedule and Results)
+",Points For: 333 (20.8/g) 22nd of 32,Points Against: 297 (18.6/g) 4th of 32,Expected W-L: 9.1-6.9,"SRS: 4.05 (6th of 32), 
+  SOS: 1.80
+"
+det,2016,"
+  Record: 9-7-0, 2nd	NFC North Division
+   (Schedule and Results)
+",Points For: 346 (21.6/g) 20th of 32,Points Against: 358 (22.4/g) 13th of 32,Expected W-L: 7.7-8.3,"SRS: -1.40 (24th of 32), 
+  SOS: -0.65
+"
+gnb,2016,"
+  Record: 10-6-0, 1st	NFC North Division
+   (Schedule and Results)
+",Points For: 432 (27.0/g) 4th of 32,Points Against: 388 (24.3/g) 21st of 32,Expected W-L: 9.0-7.0,"SRS: 2.83 (9th of 32), 
+  SOS: .08
+"
+htx,2016,"
+  Record: 9-7-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 279 (17.4/g) 28th of 32,Points Against: 328 (20.5/g) 11th of 32,Expected W-L: 6.5-9.5,"SRS: -2.63 (26th of 32), 
+  SOS: .43
+"
+clt,2016,"
+  Record: 8-8-0, 3rd	AFC South Division
+   (Schedule and Results)
+",Points For: 411 (25.7/g) 8th of 32,Points Against: 392 (24.5/g) 22nd of 32,Expected W-L: 8.4-7.6,"SRS: .37 (18th of 32), 
+  SOS: -0.82
+"
+jax,2016,"
+  Record: 3-13-0, 4th	AFC South Division
+   (Schedule and Results)
+",Points For: 318 (19.9/g) 25th of 32,Points Against: 400 (25.0/g) 25th of 32,Expected W-L: 5.9-10.1,"SRS: -4.97 (27th of 32), 
+  SOS: .16
+"
+kan,2016,"
+  Record: 12-4-0, 1st	AFC West Division
+   (Schedule and Results)
+",Points For: 389 (24.3/g) 13th of 32,Points Against: 311 (19.4/g) 7th of 32,Expected W-L: 10.1-5.9,"SRS: 5.60 (4th of 32), 
+  SOS: .72
+"
+ram,2016,"
+  Record: 4-12-0, 3rd	NFC West Division
+   (Schedule and Results)
+",Points For: 224 (14.0/g) 32nd of 32,Points Against: 394 (24.6/g) 23rd of 32,Expected W-L: 3.3-12.7,"SRS: -11.09 (31st of 32), 
+  SOS: -0.46
+"
+mia,2016,"
+  Record: 10-6-0, 2nd	AFC East Division
+   (Schedule and Results)
+",Points For: 363 (22.7/g) 17th of 32,Points Against: 380 (23.8/g) 18th of 32,Expected W-L: 7.6-8.4,"SRS: -2.40 (25th of 32), 
+  SOS: -1.34
+"
+min,2016,"
+  Record: 8-8-0, 3rd	NFC North Division
+   (Schedule and Results)
+",Points For: 327 (20.4/g) 23rd of 32,Points Against: 307 (19.2/g) 6th of 32,Expected W-L: 8.6-7.4,"SRS: .94 (17th of 32), 
+  SOS: -0.31
+"
+nwe,2016,"
+  Record: 14-2-0, 1st	AFC East Division
+   (Schedule and Results)
+",Points For: 441 (27.6/g) 3rd of 32,Points Against: 250 (15.6/g) 1st of 32,Expected W-L: 12.7-3.3,"SRS: 9.29 (1st of 32), 
+  SOS: -2.65
+"
+nor,2016,"
+  Record: 7-9-0, 3rd	NFC South Division
+   (Schedule and Results)
+",Points For: 469 (29.3/g) 2nd of 32,Points Against: 454 (28.4/g) 31st of 32,Expected W-L: 8.3-7.7,"SRS: 1.54 (14th of 32), 
+  SOS: .61
+"
+nyg,2016,"
+  Record: 11-5-0, 2nd	NFC East Division
+   (Schedule and Results)
+",Points For: 310 (19.4/g) 26th of 32,Points Against: 284 (17.8/g) 2nd of 32,Expected W-L: 8.8-7.2,"SRS: 2.13 (11th of 32), 
+  SOS: .50
+"
+nyj,2016,"
+  Record: 5-11-0, 4th	AFC East Division
+   (Schedule and Results)
+",Points For: 275 (17.2/g) 30th of 32,Points Against: 409 (25.6/g) 28th of 32,Expected W-L: 4.5-11.5,"SRS: -8.52 (29th of 32), 
+  SOS: -0.14
+"
+rai,2016,"
+  Record: 12-4-0, 2nd	AFC West Division
+   (Schedule and Results)
+",Points For: 416 (26.0/g) 7th of 32,Points Against: 385 (24.1/g) 20th of 32,Expected W-L: 8.7-7.3,"SRS: 3.26 (8th of 32), 
+  SOS: 1.33
+"
+phi,2016,"
+  Record: 7-9-0, 4th	NFC East Division
+   (Schedule and Results)
+",Points For: 367 (22.9/g) 16th of 32,Points Against: 331 (20.7/g) 12th of 32,Expected W-L: 9.0-7.0,"SRS: 3.80 (7th of 32), 
+  SOS: 1.55
+"
+pit,2016,"
+  Record: 11-5-0, 1st	AFC North Division
+   (Schedule and Results)
+",Points For: 399 (24.9/g) 10th of 32,Points Against: 327 (20.4/g) 10th of 32,Expected W-L: 9.9-6.1,"SRS: 4.74 (5th of 32), 
+  SOS: .24
+"
+sdg,2016,"
+  Record: 5-11-0, 4th	AFC West Division
+   (Schedule and Results)
+",Points For: 410 (25.6/g) 9th of 32,Points Against: 423 (26.4/g) 29th of 32,Expected W-L: 7.7-8.3,"SRS: .06 (19th of 32), 
+  SOS: .87
+"
+sfo,2016,"
+  Record: 2-14-0, 4th	NFC West Division
+   (Schedule and Results)
+",Points For: 309 (19.3/g) 27th of 32,Points Against: 480 (30.0/g) 32nd of 32,Expected W-L: 4.2-11.8,"SRS: -11.21 (32nd of 32), 
+  SOS: -0.53
+"
+sea,2016,"
+  Record: 10-5-1, 1st	NFC West Division
+   (Schedule and Results)
+",Points For: 354 (22.1/g) 18th of 32,Points Against: 292 (18.3/g) 3rd of 32,Expected W-L: 9.8-6.2,"SRS: 2.13 (10th of 32), 
+  SOS: -1.74
+"
+tam,2016,"
+  Record: 9-7-0, 2nd	NFC South Division
+   (Schedule and Results)
+",Points For: 354 (22.1/g) 18th of 32,Points Against: 369 (23.1/g) 15th of 32,Expected W-L: 7.6-8.4,"SRS: -0.19 (20th of 32), 
+  SOS: .74
+"
+oti,2016,"
+  Record: 9-7-0, 1st	AFC South Division
+   (Schedule and Results)
+",Points For: 381 (23.8/g) 14th of 32,Points Against: 378 (23.6/g) 16th of 32,Expected W-L: 8.1-7.9,"SRS: -1.01 (23rd of 32), 
+  SOS: -1.19
+"
+was,2016,"
+  Record: 8-7-1, 3rd	NFC East Division
+   (Schedule and Results)
+",Points For: 396 (24.8/g) 12th of 32,Points Against: 383 (23.9/g) 19th of 32,Expected W-L: 8.3-7.7,"SRS: 1.97 (12th of 32), 
+  SOS: 1.16
+"

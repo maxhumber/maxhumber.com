@@ -13,15 +13,140 @@ opts_chunk$set(
     cache = TRUE, warning = FALSE, message = FALSE, dpi = 150, fig.show = "animate")
 ```
 
+Really wanted to write somethng for super bowl.
+don't really know anything about football.. but will watch
+
+tried to precit who will will
+
+
+Model diagnoistics
+visualizatior diagnotistics
+pred grid
+
+p-hacking .... could have find something.
+looking at pvalues and like... ooop!
+
+wanted to tell a story,
+
+that's okay 90% of my work is throw out. And it has to be that way. sometimes things just don't pan out. but that's not what textbooks tell you. everything you read has an answer. that's not how the real world works. it's messy and sometimes the data just inst there.
+
+showed what I want to show.
+
 ```{r warning=FALSE, message=FALSE}
-suppressPackageStartupMessages(library(tidyverse))
-library(rvest)
+library(tidyverse)
 library(viridis)
 ```
 
-Source: https://en.wikipedia.org/wiki/List_of_Super_Bowl_champions
+```{r include = FALSE}
+library(stringr)
+library(purrr)
+library(rvest)
 
-```{r}
+# scrape and format data
+
+pfr <- tribble(
+    ~team, ~ticker,
+    "Arizona Cardinals", "crd",
+    "Atlanta Falcons", "atl",
+    "Baltimore Ravens", "rav",
+    "Buffalo Bills", "buf",
+    "Carolina Panthers", "car",
+    "Chicago Bears", "chi",
+    "Cincinnati Bengals", "cin",
+    "Cleveland Browns", "cle",
+    "Dallas Cowboys", "dal",
+    "Denver Broncos", "den",
+    "Detroit Lions", "det",
+    "Green Bay Packers", "gnb",
+    "Houston Texans", "htx",
+    "Indianapolis Colts", "clt",
+    "Jacksonville Jaguars", "jax",
+    "Kansas City Chiefs", "kan",
+    "Los Angeles Rams", "ram",
+    "Miami Dolphins", "mia",
+    "Minnesota Vikings", "min",
+    "New England Patriots", "nwe",
+    "New Orleans Saints", "nor",
+    "New York Giants", "nyg",
+    "New York Jets", "nyj",
+    "Oakland Raiders", "rai",
+    "Philadelphia Eagles", "phi",
+    "Pittsburgh Steelers", "pit",
+    "San Diego Chargers", "sdg",
+    "San Francisco 49ers", "sfo",
+    "Seattle Seahawks", "sea",
+    "Tampa Bay Buccaneers", "tam",
+    "Tennessee Titans", "oti",
+    "Washington Redskins", "was")
+
+ticker <- pfr %>% 
+    select(ticker) %>% 
+    t(.) %>% 
+    as.vector(.)
+
+params <- expand.grid(ticker = ticker, year = 2002:2016) %>% 
+    mutate(ticker = as.character(ticker))
+
+scrape_pfr <- function(ticker = "atl", year = 2016) {
+    
+    url <- str_c(
+        "http://www.pro-football-reference.com/teams/", 
+        ticker, "/", year, ".htm")
+    
+    page <- read_html(url)
+    
+    record <- page %>%
+        html_nodes(".prevnext+ p") %>% 
+        html_text() 
+    
+    pf <- page %>%
+        html_nodes("#meta p:nth-child(5)") %>% 
+        html_text() 
+    
+    pa <- page %>%
+        html_nodes("#meta p:nth-child(6)") %>% 
+        html_text() 
+    
+    expected <- page %>%
+        html_nodes("#meta p:nth-child(7)") %>% 
+        html_text() 
+    
+    comp <- page %>%
+        html_nodes("#meta p:nth-child(8)") %>% 
+        html_text() 
+    
+    df <- tibble(ticker, year, record, pf, pa, expected, comp)
+    
+    return(df)
+}
+
+pfr_data <- params %>% 
+    pmap(scrape_pfr) %>% 
+    bind_rows()
+
+# cache
+
+write_csv(pfr_data, "pfr_data.csv")
+pfr_data <- read_csv("pfr_data.csv")
+
+# reformat
+
+record <- pfr_data %>% 
+    mutate(srs = comp) %>% 
+    mutate(srs = str_replace(srs, "^[^\\:\\s]*\\:\\s", "")) %>% 
+    mutate(srs = str_replace(srs, "\\(.*", "")) %>% 
+    mutate(srs = str_replace(srs, "\\sSOS.*$", "")) %>% 
+    mutate(srs = parse_number(srs)) %>% 
+    mutate(pa = str_replace(pa, "\\/.*$", "")) %>% 
+    mutate(pa = str_replace(pa, "^(.*?\\()", "")) %>% 
+    mutate(pf = str_replace(pf, "\\/.*$", "")) %>% 
+    mutate(pf = str_replace(pf, "^(.*?\\()", "")) %>% 
+    mutate(pf = as.numeric(pf), pa = as.numeric(pa)) %>% 
+    select(ticker, year, srs, pf, pa) %>%
+    left_join(pfr, by = "ticker")
+
+# super bowl collection
+
 superbowl <- tribble(
     ~superbowl, ~winner, ~loser,
     50, "Denver Broncos", "Carolina Panthers", 
@@ -36,116 +161,44 @@ superbowl <- tribble(
     41, "Indianapolis Colts", "Chicago Bears",
     40, "Pittsburgh Steelers", "Seattle Seahawks",
     39, "New England Patriots", "Philadelphia Eagles",
-    38, "New England Patriots", "Carolina Pathers",
-    37, "Tampa Bay Buccaneers", "Oakland Raiders",
-    36, "New England Patriots", "St. Louis Rams"
+    38, "New England Patriots", "Carolina Panthers",
+    37, "Tampa Bay Buccaneers", "Oakland Raiders"
     ) %>% 
     mutate(year_superbowl = 1966 + superbowl) %>% 
     mutate(year_season = year_superbowl - 1) %>% 
     select(-year_superbowl)
-```
 
-Source: http://www.pro-football-reference.com/years/NFL/scoring.htm
+# final format
 
-```{r}
-scrape_ppga <- function() {
-    
-    url <- "http://www.pro-football-reference.com/years/NFL/scoring.htm"
-    page <- read_html(url)
-    
-    year <- page %>%
-        html_nodes("#team_scoring_per_team .left") %>% 
-        html_text() %>% 
-        .[-1] %>% 
-        as.numeric(.)
-    
-    ppga <- page %>% 
-        html_nodes("#team_scoring_per_team :nth-child(20)") %>% 
-        html_text() %>% 
-        .[-1:-2] %>% 
-        .[-length(.)] %>% 
-        as.numeric(.)
-    
-    df <- tibble(year = year, ppga = ppga) %>% filter(year >= 2001)
-    
-    return(df)
-}
-
-ppga <- scrape_ppga()
-```
-
-Source: http://nfl-historical-teams.pointafter.com/
-
-```{r}
-pfa <- tribble(
-    ~year, ~team, ~pf, ~pa,
-    2015, "Denver Broncos", 22.2, 18.5,
-    2015, "Carolina Panthers", 31.2, 19.2, 
-    2014, "New England Patriots", 29.3, 19.6,
-    2014, "Seattle Seahawks", 24.6, 15.9, 
-    2013, "Seattle Seahawks", 26.1, 14.4, 
-    2013, "Denver Broncos", 37.9, 24.9,
-    2012, "Baltimore Ravens", 24.9, 21.5,
-    2012, "San Francisco 49ers", 24.8, 17.1, 
-    2011, "New York Giants", 24.6, 25,
-    2011, "New England Patriots", 32.1, 21.4, 
-    2010, "Green Bay Packers", 24.2, 15,
-    2010, "Pittsburgh Steelers", 23.4, 14.5,
-    2009, "New Orleans Saints", 31.9, 21.3,
-    2009, "Indianapolis Colts", 26.0, 19.2, 
-    2008, "Pittsburgh Steelers", 21.7, 13.9,
-    2008, "Arizona Cardinals", 26.7, 26.6,
-    2007, "New York Giants", 23.3, 21.9,
-    2007, "New England Patriots", 36.8, 17.1,
-    2006, "Indianapolis Colts", 26.7, 22.5, 
-    2006, "Chicago Bears", 26.7, 15.9,
-    2005, "Pittsburgh Steelers", 24.3, 16.1,
-    2005, "Seattle Seahawks", 28.2, 16.9,
-    2004, "New England Patriots", 27.3, 16.2,
-    2004, "Philadelphia Eagles", 24.1, 16.2, 
-    2003, "New England Patriots", 21.8, 14.9,
-    2003, "Carolina Pathers", 20.3, 19.0,
-    2002, "Tampa Bay Buccaneers", 21.6, 12.2, 
-    2002, "Oakland Raiders", 28.1, 19,
-    2001, "New England Patriots", 23.2, 17.0, 
-    2001, "St. Louis Rams", 31.4, 17.1
-)
-```
-
-```{r}
-df <- superbowl %>% 
+superbowl_data <- superbowl %>% 
     gather(result, team, -superbowl, -year_season) %>% 
-    left_join(pfa, by = c("team", "year_season" = "year")) %>% 
-    left_join(ppga, by = c("year_season" = "year")) %>% 
-    mutate(pf_va = pf - ppga) %>% 
-    mutate(pa_va = pa - ppga) %>% 
-    mutate(win = ifelse(result == "winner", 1, 0))
-```
+    left_join(record, by = c("team", "year_season" = "year")) %>% 
+    mutate(win = ifelse(result == "winner", 1, 0)) %>% 
+    select(superbowl, year_season, team, win, pf, pa, srs)
 
-```{r}
-df %>% 
-    ggplot(aes(x = pf, y = pa)) + 
-    # ggplot(aes(x = pf_va, y = pa_va)) + 
-    geom_point(aes(color = factor(win)))
+# cache final form
+write_csv(superbowl_data, "superbowl_data.csv")
+superbowl_data <- read_csv("superbowl_data.csv")
 ```
 
 ```{r}
 mod1 <- glm(
-    win ~ pf + pa + pf:pa,
+    win ~ pf:srs + pa:srs,
     family = "binomial",
     data = df)
 summary(mod1)
 
 pred_grid <- expand.grid(
     pf = 0:40, 
-    pa = 0:40) 
+    pa = 0:40, 
+    srs = -20:20) 
 
 pred_grid$prob <- predict(mod1, newdata = pred_grid, type = "response")
 ```
 
 ```{r}
 pred_grid %>% 
-    ggplot(aes(x = pf, y = pa)) + 
+    ggplot(aes(x = pf_diff, y = pa_diff)) + 
     geom_tile(aes(fill = prob)) + 
     geom_contour(aes(z = prob), color = "white", lty = 2, binwidth = 0.25) +
     geom_point(
@@ -155,7 +208,7 @@ pred_grid %>%
         data = (df %>% filter(win == 0)),
         color = "white", shape = 4, size = 2) +
     scale_fill_viridis(direction = 1, end = 0.85, option = "D") + 
-    coord_cartesian(xlim = c(10, 40), ylim = c(10, 40)) + 
+    # coord_cartesian(xlim = c(10, 40), ylim = c(10, 40)) + 
     theme_minimal()
 ```
 
@@ -200,7 +253,14 @@ ranking <- tribble(
 ```{r}
 df <- superbowl %>% 
     gather(result, team, -superbowl, -year_season) %>% 
-    left_join(ranking, by = c("team", "year_season" = "year")) %>% 
+    left_join(ranking, by = c("team", "year_season" = "year")) %>%
+    group_by(year_season) %>% 
+    mutate(off_percentile = 1 - (off_ranking / 32)) %>% 
+    mutate(def_percentile = 1 - (def_ranking / 32)) %>% 
+    mutate(win = ifelse(result == "winner", 1, 0)) %>% 
+    mutate(off_diff = (off_percentile - mean(off_percentile ))*2) %>% 
+    mutate(def_diff = (def_percentile - mean(def_percentile ))*2)
+    
     mutate(win = ifelse(result == "winner", 1, 0)) %>% 
     filter(win == 1) %>% 
     group_by(year_season) %>% 
@@ -210,23 +270,23 @@ df <- superbowl %>%
 
 ```{r}
 mod2 <- glm(
-    win ~ off_ranking + def_ranking,
+    win ~ off_diff + def_diff,
     family = "binomial",
     data = df)
 summary(mod2)
 
 pred_grid <- expand.grid(
-    off_ranking = 1:32, 
-    def_ranking = 1:32) 
+    off_diff = seq(-1, 1, 0.05), 
+    def_diff = seq(-1, 1, 0.05))
 
 pred_grid$prob <- predict(mod2, newdata = pred_grid, type = "response")
 ```
 
 ```{r}
 pred_grid %>% 
-    ggplot(aes(x = off_ranking, y = def_ranking)) + 
+    ggplot(aes(x = off_diff, y = def_diff)) + 
     geom_tile(aes(fill = prob)) + 
-    geom_contour(aes(z = prob), color = "white", lty = 2, binwidth = 0.0025) +
+    geom_contour(aes(z = prob), color = "white", lty = 2, binwidth = 0.2) +
     geom_point(
         data = (df %>% filter(win == 1)),
         color = "white", shape = 16, size = 2) +
