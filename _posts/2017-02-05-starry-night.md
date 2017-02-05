@@ -101,7 +101,7 @@ Now I can see that my dumb toy model thinks that "Points For" is more predictive
 
 Basically, if I put Atlanta and New England through this model the better team on paper would be expected to lose the Super Bowl (lol).
 
-I wanted to figure out my toy model was behaving so strangely, so I added in the underlying data through some `geom_point` layers (Os for actual wins, Xs for actual losses) and a bit of polish:
+I wanted to figure out why my toy model was behaving so strangely, so I added in the underlying data through a couple of `geom_point` layers (Os for actual wins, Xs for actual losses) and a bit of polish:
 
 ``` r
 br <- 0.2
@@ -129,14 +129,14 @@ pred_grid %>%
 
 ![center]({{ site.url }}/assets/img/starry_3.png)
 
-Now I can see that the behaviour of this model makes some sense (small data, and big upsets).
+The behaviour of this model suddenly makes some sense (small data, and big upsets).
 
-There's nothing really new about this type of plot. It's just a bunch of `tile`, `contour` and `point` layers and the viridis colourmap but I've been calling it the Starry Night Plot because it kind of looks like the painting. And I wanted to write about it because it has been super helpful in diagnosing and explaining model behaviour to other people.
+There's nothing really new about this type of plot. It's just a bunch of `tile`, `contour` and `point` layers and the viridis colourmap but I've been calling it the "Starry Night Plot" because it kind of looks like the painting. And I wanted to write about it because it has been super helpful in diagnosing and explaining model behaviour to other people.
 
 I guess I hope you might be able to use it.
 
 ~
 
-P.S. I also tried building models on point differntials for the exact matchups and conditioning the points for/against on Strength of Schedule... but then I just realized that I was p-hacking...
+P.S. I also tried building models on point differentials for the exact matchups and conditioning the points for/against on Strength of Schedule... but then I realized that I was p-hacking...
 
 P.S.S. Go Falcons.
