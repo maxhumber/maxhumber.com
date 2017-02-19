@@ -1,0 +1,67 @@
+I like to break things open and see how they work.
+
+So, naturally, I find it frustrating when there's nothing to actually break open.
+
+At the same time, however, I find it somewhat fun trying to reverse-engineer unbreakable things.
+
+Take Ed Hawkins' [Climate Spiral](https://www.climate-lab-book.ac.uk/spirals/), for example:
+
+[IMAGE HERE]
+http://blogs.reading.ac.uk/climate-lab-book/files/2016/06/spiral_2016_large.gif
+
+I think that this thing is pretty much peak visualization. It's powerful, compelling, and super tangible.
+
+Unfortunately, there's no source code...
+
+...Fortunately, I've reversed out the primary mechanics with `ggplot2`, `gganimate` and `ggstance`,
+and provide, to you, the source code so that you might spin up your own spirals.
+
+Here's my spiral with [StatsCan data](http://www5.statcan.gc.ca/cansim/a26) on tourists visits to Canada:
+
+[IMAGE FIRST]
+
+Admittedly, animated spirals look super cool. But there's not much too them!
+
+When you distill things down you can effectively create a spiral in 4 lines of `R`:
+
+ggplot(df, aes(x = month, y = value)) +
+    geom_line(aes(colour = year, group = year)) +
+    coord_polar(theta = "x") +
+    scale_x_continuous(breaks = seq(1, 12, 1))
+
+The hard part is getting the data to squish into those four lines.
+
+This is how I made the StatsCan data all squishy:
+
+URL <- str_c("https://raw.githubusercontent.com/maxhumber",
+    "/maxhumber.com/master/assets/data/tourists.csv")
+
+df <- read_csv(URL) %>%
+    select(Ref_Date, value = Value) %>%
+    separate(Ref_Date, into = c("year", "month"), sep = "/") %>%
+    mutate(year = as.numeric(year), month = as.numeric(month)) %>%
+    group_by(year) %>%
+    # add zeroth month with fill to make spiral actually spiral
+    complete(month = seq(0, 12, 1)) %>%
+    ungroup() %>%
+    fill(value, .direction = "down") %>%
+    arrange(year, month) %>%
+    drop_na() %>%
+    # 2 data points in first frame for geom_line to work
+    mutate(frame = lag(row_number())) %>%
+    fill(frame, .direction = "up")
+
+The trick is to split out and separate the months from the years and create a dummy linking month so that the spiral can actually spiral.
+If you're playing along at home, I would recommend running my one line at a time in order to understand the process at
+
+And here is the
+
+
+
+
+If you've enjoyed this post you might also like what I've done on:
+
+- [gganimate](http://maxhumber.com/2017/02/03/hypothetical-outcomes.html)
+- [Spirals](http://maxhumber.com/2016/12/31/sleep-circle.html)
+- [Pie charts](http://maxhumber.com/2017/01/21/THE-BEST.html)
+- [Canada](http://maxhumber.com/2017/02/15/tile_canada.html)
