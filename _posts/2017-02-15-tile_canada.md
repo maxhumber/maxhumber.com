@@ -18,6 +18,8 @@ I decided that Canada deserved one.
 
 So, here is the tile grid map template for all you Canadian useRs:
 
+![center]({{ site.url }}/assets/img/tile_canada.png)
+
 ``` r
 library(tidyverse)
 library(viridis)
@@ -66,4 +68,3 @@ canada %>%
     scale_fill_viridis(na.value = "#E1E1E1", option = "D", begin = 0.2, end = 0.8)
 ```
 
-![center]({{ site.url }}/assets/img/tile_canada.png)
