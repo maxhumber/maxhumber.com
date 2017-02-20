@@ -10,7 +10,7 @@ It's powerful, compelling, and super tangible.
 
 I wanted to apply the spiral to my own data, so I got janky with `ggplot2` and figured out how to do it.
 
-Here's my own spiral with [StatsCan data](http://www5.statcan.gc.ca/cansim/a26) on tourists visits to Canada 🍁:
+Here's my own spiral with [StatsCan data](http://www.statcan.gc.ca/daily-quotidien/170119/dq170119c-cansim-eng.htm) on tourists visits to Canada 🍁:
 
 ![center]({{ site.url }}/assets/img/canada.gif)
 
