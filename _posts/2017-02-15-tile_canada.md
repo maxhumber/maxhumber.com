@@ -1,5 +1,5 @@
 ---
-title: 'The Tile Grid Map for Canada'
+title: 'Canadian Tile Grid Maps'
 date: 2017-02-15
 tags: [r]
 ---
