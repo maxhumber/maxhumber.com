@@ -1,5 +1,5 @@
 ---
-title: 'Animated Spirals 🌀'
+title: 'Animated Spirals'
 date: 2017-02-20
 tags: [r]
 ---
