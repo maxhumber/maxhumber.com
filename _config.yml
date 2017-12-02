@@ -1,60 +1,24 @@
-# Site
-title:              Max Humber
-bio:                'Human'
-description:        'Human'
-reading_time:       true
-words_per_minute:   200
-logo:               'assets/img/logo.png'
-background:         'assets/img/placeholder-big.jpg'
-tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
-locale:             en_US
-url:                https://taylantatli.github.io/Moon
+# Site settings
+title: "Max Humber"
+description:
 
-# Jekyll
-permalink:          /:title/
-markdown:           kramdown
-highlighter:        rouge
-kramdown:
-  auto_ids:         true
-  footnote_nr:      1
-  entity_output:    as_char
-  toc_levels:       1..6
-  enable_coderay:   false
-mathjax:            true
+author: Max Humber
+email: johnny@appleseed.com
+twitter_username: maxhumber
+github_username: maxhumber
+
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://maxhumber.com" # the base hostname & protocol for your site
+
+google_analytics_id: UA-1111111111-1
+disqus_id:
+
+# Build settings
+include: [_pages]
+markdown: kramdown
+permalink: /:title
+
 sass:
-  sass_dir:         _sass
-  style:            compressed
+    style: compressed
 
-# Comments
-disqus_shortname:   taylantatli
-
-# Social
-#google:
-  #plus:            #username
-  #analytics:
-  #verify:
-  #ad-client:
-  #ad-slot:
-#email:
-twitter:            maxhumber
-#facebook:           username
-github-url:         maxhumber
-#stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
-linkedin:           maxhumber
-#instagram:          username
-#tumblr:            username
-#medium:            '@username'
-
-
-# Gems
-gems:
-  - jekyll-mentions
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-gist
-
-jekyll-mentions:
-    base_url: https://github.com
-
-# Exclude list
-exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
+exclude: [vendor]
