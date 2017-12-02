@@ -2,7 +2,7 @@
 layout: post
 title: "A Full and Comprehensive Style Test"
 description: "Test post for style"
-date: 2017-12-02
+date: 2017-12-01
 tags: test, style
 comments: true
 ---

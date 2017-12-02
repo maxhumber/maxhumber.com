@@ -3,6 +3,7 @@ layout: content
 title: About
 permalink: /about/
 ---
-Hi, I'm Max!
 
-I program and write about software development when I have the time.
+- I sometimes make code public here: [GitHub]()
+- I sometimes grow my network here: [LinkedIn]()
+- I sometimes write 140 characters here: [Twitter]()
