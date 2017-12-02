@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Repurposing the Candlestick Chart"
 date: 2017-01-15
 tags: [r]
@@ -31,21 +32,21 @@ I love this slimmed down version because it's kind of like putting notches in a 
 Anyways. Thanks for letting my play with your data, Eli! For anyone interested, this is the `ggplot2` code that I used to create the final graph. And if you want to see all of the data for this post, it's available on [GitHub](https://github.com/maxhumber/maxhumber.com/tree/master/_R):
 
 ``` r
-df %>% 
-    ggplot(aes(x = id)) + 
+df %>%
+    ggplot(aes(x = id)) +
     geom_segment(size = 1, color = "grey20", aes(
         xend = id,
-        y = jump, 
+        y = jump,
         yend = chute)) +
     geom_segment(lty = 1, size = 0.25, color = "grey40", aes(
         xend = id,
-        y = chute, 
+        y = chute,
         yend = 0)) +
-    facet_wrap(~section, scales = "free_x", ncol = 1) + 
-    labs(title = "", x = "", y = "", color = "") + 
-    scale_x_continuous(breaks = seq(0, 500, 25)) + 
+    facet_wrap(~section, scales = "free_x", ncol = 1) +
+    labs(title = "", x = "", y = "", color = "") +
+    scale_x_continuous(breaks = seq(0, 500, 25)) +
     theme(
-        panel.background = element_rect(fill = "#FFFFFF"), 
+        panel.background = element_rect(fill = "#FFFFFF"),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         strip.text = element_blank(),

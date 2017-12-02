@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Goodreads API"
 date: 2016-12-23
 tags: [r]
@@ -59,29 +60,29 @@ shelf <- get_shelf(GR_ID)
 
 get_df <- function(shelf) {
 
-    title <- shelf %>% 
-        xml_find_all("//title") %>% 
+    title <- shelf %>%
+        xml_find_all("//title") %>%
         xml_text()
-    
-    rating <- shelf %>% 
-        xml_find_all("//rating") %>% 
+
+    rating <- shelf %>%
+        xml_find_all("//rating") %>%
         xml_text()
-    
-    added <- shelf %>% 
-        xml_find_all("//date_added") %>% 
+
+    added <- shelf %>%
+        xml_find_all("//date_added") %>%
         xml_text()
-    
-    started <- shelf %>% 
-        xml_find_all("//started_at") %>% 
+
+    started <- shelf %>%
+        xml_find_all("//started_at") %>%
         xml_text()
-    
-    read <- shelf %>% 
-        xml_find_all("//read_at") %>% 
+
+    read <- shelf %>%
+        xml_find_all("//read_at") %>%
         xml_text()
-    
+
     df <- tibble(
         title, rating, added, started, read)
-    
+
     return(df)
 }
 
@@ -96,21 +97,21 @@ After getting the XML data into my IDE I tabled and cleaned the data with `dplyr
 ``` r
 get_books <- function(df) {
 
-    books <- df %>% 
-        gather(date_type, date, -title, -rating) %>% 
-        separate(date, 
-            into = c("weekday", "month", "day", "time", "zone", "year"), 
-            sep = "\\s", fill = "right") %>% 
-        mutate(date = str_c(year, "-", month, "-", day)) %>% 
-        select(title, rating, date_type, date) %>% 
-        mutate(date = as.Date(date, format = "%Y-%b-%d")) %>% 
-        spread(date_type, date) %>% 
-        mutate(title = str_replace(title, "\\:.*$|\\(.*$|\\-.*$", "")) %>% 
+    books <- df %>%
+        gather(date_type, date, -title, -rating) %>%
+        separate(date,
+            into = c("weekday", "month", "day", "time", "zone", "year"),
+            sep = "\\s", fill = "right") %>%
+        mutate(date = str_c(year, "-", month, "-", day)) %>%
+        select(title, rating, date_type, date) %>%
+        mutate(date = as.Date(date, format = "%Y-%b-%d")) %>%
+        spread(date_type, date) %>%
+        mutate(title = str_replace(title, "\\:.*$|\\(.*$|\\-.*$", "")) %>%
         mutate(started = ifelse(
-        	is.na(started), as.character(added), as.character(started))) %>% 
-        mutate(started = as.Date(started)) %>% 
+        	is.na(started), as.character(added), as.character(started))) %>%
+        mutate(started = as.Date(started)) %>%
         mutate(rating = as.integer(rating))
-    
+
     return(books)
 }
 

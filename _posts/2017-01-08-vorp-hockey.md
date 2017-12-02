@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Fantasy Hockey with rvest and purrr"
 date: 2017-01-08
 tags: [r]
@@ -35,23 +36,23 @@ I like to put everything in tibble as soon as possible and use `stringr` to adju
 
 ``` r
 p_fetch <- function(position = "C") {
-    
-    url <- str_c(sep = "", 
+
+    url <- str_c(sep = "",
         "https://www.fantasysp.com/projections/hockey/weekly/",
         position)
-    
+
     page <- read_html(url)
-    
+
     names <- page %>%
-        html_nodes("td:nth-child(2)") %>% 
+        html_nodes("td:nth-child(2)") %>%
         html_text()
-    
-    goals <- page %>% 
-        html_nodes("td:nth-child(4)") %>% 
+
+    goals <- page %>%
+        html_nodes("td:nth-child(4)") %>%
         html_text()
-    
+
     df <- tibble(name = names, goals)
-    
+
     return(df)
 }
 ```  
@@ -62,11 +63,11 @@ Instead of writing a for loop, I like to use `pmap` from `purrr` to iterate thro
 
 ``` r
 p_pull <- function() {
-    
+
     params <- tibble(position = c("C", "LW", "RW", "D"))
-    
-    df <- params %>% 
-        pmap(p_fetch) %>% 
+
+    df <- params %>%
+        pmap(p_fetch) %>%
         bind_rows()
 
     return(df)
@@ -79,21 +80,21 @@ This is a pretty janky use `separate` but it works to get everything into a form
 
 ``` r
 p_clean <- function() {
-    
-    df <- p_pull() %>% 
-        separate(name, 
-            into = c("junk", "first", "last", "meta"), 
+
+    df <- p_pull() %>%
+        separate(name,
+            into = c("junk", "first", "last", "meta"),
             sep = "(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])",
-            fill = "right", 
-            extra = "merge") %>% 
-        separate(meta, into = c("team", "position"), sep = "\\s") %>% 
-        mutate(name = str_c(first, last, sep = "")) %>% 
-        mutate(goals = as.numeric(goals)) %>% 
-        drop_na() %>% 
-        mutate(length = str_length(team)) %>% 
-        filter(length <= 3) %>% 
+            fill = "right",
+            extra = "merge") %>%
+        separate(meta, into = c("team", "position"), sep = "\\s") %>%
+        mutate(name = str_c(first, last, sep = "")) %>%
+        mutate(goals = as.numeric(goals)) %>%
+        drop_na() %>%
+        mutate(length = str_length(team)) %>%
+        filter(length <= 3) %>%
         select(name, team, position, goals)
-    
+
     return(df)
 }
 
@@ -108,33 +109,33 @@ I'm using `pmap` again to pump through each position to get the mean value for t
 
 ``` r
 p_replacement <- function(pos, slots) {
-    
-    rp <- df %>% 
-        filter(position == pos) %>% 
-        arrange(desc(goals)) %>% 
-        filter(row_number() <= slots) %>% 
-        group_by(position) %>% 
+
+    rp <- df %>%
+        filter(position == pos) %>%
+        arrange(desc(goals)) %>%
+        filter(row_number() <= slots) %>%
+        group_by(position) %>%
         summarise(goals = mean(goals))
-    
+
     return(rp)
 }
 
 p_vorp <- function() {
-    
+
     # slots depend on how many position players start for each team
     # if there are 10 teams and 2 LW per team then slots -> 10 * 2 = 20
-    
+
     params <- tribble(
         ~pos, ~slots,
         "C", 20,
-        "LW", 20, 
-        "RW", 20, 
+        "LW", 20,
+        "RW", 20,
         "D", 20)
-    
-    rp <- params %>% 
-        pmap(p_replacement) %>% 
+
+    rp <- params %>%
+        pmap(p_replacement) %>%
         bind_rows()
-    
+
     return(rp)
 }
 ```  
@@ -148,11 +149,11 @@ replacement <- p_vorp()
 
 # calculate value over replacement player
 
-vorp <- df %>% 
-    left_join(replacement, by = "position") %>% 
-    mutate(goals_vorp = goals.x - goals.y) %>% 
-    rename(goals = goals.x, goals_rp = goals.y) %>% 
-    select(-goals_rp) %>% 
+vorp <- df %>%
+    left_join(replacement, by = "position") %>%
+    mutate(goals_vorp = goals.x - goals.y) %>%
+    rename(goals = goals.x, goals_rp = goals.y) %>%
+    select(-goals_rp) %>%
     arrange(desc(goals_vorp))
 ```
 <br>
