@@ -6,7 +6,7 @@ layout: page
         <h1 class="c-article__title">{{ page.title }}</h1>
         <p class="c-article__time"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time></p>
     </header>
-    
+
     <!-- Post Tags -->
     <ul class="c-tags">
     {% for tag in page.tags %}
@@ -17,7 +17,7 @@ layout: page
     <div class="c-article__main">
         {{ content }}
     </div>
-  
+
     <!-- Previous / Next Buttons -->
     <div class="pagenav">
 		{% if page.previous.url %}
@@ -35,12 +35,4 @@ layout: page
         </div>
 		{% endif %}
 		</div>
-
-		<!-- Disqus comments view -->
-		{% if page.comments != false and site.disqus_id %}
-		<div class="post-disqus">
-				<section id="disqus_thread"></section>
-				{% include disqus.html %}
-		</div>
-		{% endif %}
 </article>

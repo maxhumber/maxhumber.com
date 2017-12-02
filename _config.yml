@@ -1,17 +1,16 @@
 # Site settings
-title: "Max Humber"
+title: 'Max Humber'
 description:
 
 author: Max Humber
-email: johnny@appleseed.com
+email: max.humber@gmail.com
 twitter_username: maxhumber
 github_username: maxhumber
 
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://maxhumber.com" # the base hostname & protocol for your site
+baseurl: '' # the subpath of your site, e.g. /blog
+url: 'https://maxhumber.com' # the base hostname & protocol for your site
 
 google_analytics_id: UA-1111111111-1
-disqus_id:
 
 # Build settings
 include: [_pages]
