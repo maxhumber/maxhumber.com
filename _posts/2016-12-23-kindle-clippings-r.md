@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Kindle Clippings"
+title: "Kindle clippings.txt with R"
 date: 2016-12-23
-tags: [r]
+tags: r
 ---
 
 I highlight a lot of junk on my Kindle. Well, it's not all junk! 💩 There's usually some good stuff buried deep within my `clippings.txt` file. But it's hard to manually parse through the file (and the junk).

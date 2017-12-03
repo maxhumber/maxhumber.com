@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Repurposing the Candlestick Chart"
+title: "Candlesticks repurposed"
 date: 2017-01-15
-tags: [r]
+tags: r
 ---
 
 My cousin Eli is way cooler than me. Well, to be fair, I don't exactly set a high bar! Eli is a skydiving enthusiast with over 200 jumps to his name. And I read books and write nonsense like this...
@@ -16,20 +16,23 @@ After some time messing around with graphical primitives in `ggplot2` I hit on a
 This was my first attempt with simulated data:
 
 ![]({{ site.url }}/assets/img/candle1.png)
+{: .center}
 
 After getting Eli's logbook to conform to and look like the simulated data I threw it all back into the `geom_segment`s and got this:
 
 ![]({{ site.url }}/assets/img/candle2.png)
+{: .center}
 
 A little busy for my tastes. So, I decided to break every rule in data visualization and strip away all the fuss. I got rid of the labels and axes and text and titles and the legends because it was all noise and getting in the way of Eli's fearlessness (stupidity?) and the data. I wanted the raw stuff to shine.
 
 This is what I finally arrived at:
 
 ![]({{ site.url }}/assets/img/candle3.png)
+{: .center}
 
 I love this slimmed down version because it's kind of like putting notches in a wall. And despite the lack of labels and text annotations you can still see a lot. For instance, you can see Eli's training exercises (two short bursts on the second and third row as well as the string of short jumps near the end of the third row). You can tease out some semblance of consistency in his free falls. And you can see where it almost all came to an end...that data point near the end of the second row where he had to pull his reserve chute.
 
-Anyways. Thanks for letting my play with your data, Eli! For anyone interested, this is the `ggplot2` code that I used to create the final graph. And if you want to see all of the data for this post, it's available on [GitHub](https://github.com/maxhumber/maxhumber.com/tree/master/_R):
+Anyways. Thanks for letting my play with your data, Eli! For those interested, this is the `ggplot2` code that I used to create the final graph:
 
 ``` r
 df %>%

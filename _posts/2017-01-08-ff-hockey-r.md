@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "Fantasy Hockey with rvest and purrr"
+title: "Fantasy Hockey with R"
+description: rvest and purrr
 date: 2017-01-08
-tags: [r]
+tags: r
 ---
 
 `rvest` and `purrr` are wonderful bedfellows. The packages share the underlying `tidyverse` API. And it feels simple and almost natural to combine them when scraping the web.
@@ -29,6 +30,7 @@ I'm going to use [Fantasy Sports Portal](https://www.fantasysp.com/projections/h
 [SelectorGadget](http://selectorgadget.com/) makes this dead simple, like so:
 
 ![]({{ site.url }}/assets/img/vorp_hockey.png)
+{: .center}
 
 **Step 3. Fetch the data elements.**
 
@@ -76,7 +78,7 @@ p_pull <- function() {
 <br>
 **Step 5. Clean and format the projection data.**
 
-This is a pretty janky use `separate` but it works to get everything into a format that I like.
+This is a pretty janky use of `separate` but it works to get everything into a format that I like.
 
 ``` r
 p_clean <- function() {
