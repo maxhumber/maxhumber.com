@@ -8,10 +8,9 @@ twitter_username: maxhumber
 github_username: maxhumber
 
 baseurl: '' # the subpath of your site, e.g. /blog
-#url: 'http://maxhumber.com' # the base hostname & protocol for your site
-url: 'http://127.0.0.1:4000' # development
+url: 'http://maxhumber.com' # the base hostname & protocol for your site
 
-google_analytics_id: UA-1111111111-1
+google_analytics_id: UA-89691472-1
 
 # Build settings
 include: [_pages]

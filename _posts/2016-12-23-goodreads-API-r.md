@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Goodreads API"
+title: "Goodreads API with R"
 date: 2016-12-23
-tags: [r]
+tags: r
 ---
 
 It's December 23rd and I've only read 49 books. Whoops. There's still time, but it's definitely getting dicey. I'm about halfway through three books right now so I think I'll be able to pull it off. Fingers crossed.
