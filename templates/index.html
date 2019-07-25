@@ -2,7 +2,7 @@
 {% block content %}
 <ul>
   {% for post in posts %}
-  <li>{{ post }}</li>
+  <li><a href="{{ config.site_url }}/ {{ post }}">{{ post }}</a></li>
   {% endfor %}
 </ul>
 {% endblock %}
