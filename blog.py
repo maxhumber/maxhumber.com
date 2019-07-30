@@ -1,16 +1,78 @@
 import re
 import os
 from pathlib import Path
-from markdown import markdown
+from markdown import markdown as md_to_html
 from jinja2 import Environment, FileSystemLoader
 
 jin = Environment(loader=FileSystemLoader('templates'))
 
-CONFIG = {
+website = {
     'title': 'Max Humber',
-    'site_url': 'http://localhost:8000/'
+    'url': 'http://localhost:8000',
+    'input_folder': 'content',
+    'output_folder': 'output'
 }
 
+def extract_and_delete(pattern, text):
+    '''Extract and delete a regex pattern from a block of text.
+    '''
+    try:
+        extract = re.search(pattern, text).group(1)
+        text = re.sub(pattern, '', text).strip()
+        return extract, text
+    except AttributeError:
+        return None, text
+
+def path_to_post(markdown_file_path):
+    '''Convert a markdown file path to a post metadata object.
+    '''
+    with markdown_file_path.open('r') as f:
+        md = f.read()
+    # extract and delete header information
+    slug = re.search('\/(.*)\.', str(markdown_file_path)).group(1)
+    title, md = extract_and_delete('title:\s(.*)\n', md)
+    date, md = extract_and_delete('date:\s(.*)\n', md)
+    tags, md = extract_and_delete('tags:\s(.*)\n', md)
+    # convert and render with jinja
+    html = md_to_html(md)
+    template = jin.get_template('post.html')
+    content = template.render(html=html, website=website)
+    # create the post metadata object container
+    post = {
+        'title': title,
+        'date': date,
+        'tags': tags,
+        'slug': f'{slug}.html',
+        'content': content
+    }
+    return post
+
+markdown_file_paths = Path(website['input_folder']).glob('*.md')
+posts = []
+for path in markdown_file_paths:
+    post = path_to_post(path)
+    posts.append(post)
+
+output_folder = Path() / website['output_folder']
+output_folder.mkdir(parents=True, exist_ok=True)
+
+for post in posts:
+    file = output_folder / f"{post['slug']}"
+    with file.open('w', encoding='utf-8') as f:
+        f.write(post["content"])
+
+template = jin.get_template('index.html')
+index = template.render(posts=posts, website=website)
+
+file = output_folder / "index.html"
+with file.open('w', encoding='utf-8') as f:
+    f.write(index)
+
+# spin up local server
+cd output; python -m http.server
+
+# push to subtree
+git subtree push --prefix output origin gh-pages
 
 # deal with configs for different viewing
 # os.environ['BLOG_ENV'] = 'GITHUB'
@@ -19,81 +81,18 @@ CONFIG = {
 # if os.environ['BLOG_ENV'] == 'LOCAL':
 #     CONFIG['url'] = 'localhost'
 
-# need to create index pages
-
-posts = Path(input_folder).glob('*.md')
-
-
-post = {
-    'title': '', # in the header
-    'date': '', # in the header
-    'tags': [], # for rss feeds should be a list
-    'content': '' # formatted as ready-to-go-html to be dropped in
-}
-
-
-
-t = jin.get_template('index.html')
-html = t.render(posts=posts, config=CONFIG)
-file = output_folder / f'{slug}.html'
-with file.open('w', encoding='utf-8') as f:
-    f.write(html)
-
-
-
-
-
-def md_to_html(file, output_folder):
-    stub = re.search('\/(.*)\.', str(file)).group(1)
-    date, slug = stub.split('_', 1)
-    with file.open('r') as f:
-        md = f.read()
-    html = markdown(md)
-    t = jin.get_template('post.html')
-    html = t.render(post=html, config=CONFIG)
-    file = output_folder / f'{slug}.html'
-    with file.open('w', encoding='utf-8') as f:
-        f.write(html)
-
-def convert(input_folder='content', output_folder='output'):
-    output_folder = Path() / output_folder / input_folder
-    output_folder.mkdir(parents=True, exist_ok=True)
-    posts = Path(input_folder).glob('*.md')
-    for post in posts:
-        md_to_html(post, output_folder)
-
-posts = Path(input_folder).glob('*.md')
-post_slugs = []
-
-p = list(posts)[0]
-for p in post:
-    stub = re.search('\/(.*)\.', str(p)).group(1)
-    date, slug = stub.split('_', 1)
-    post_slugs.append(slug)
-
-
-
-
-
-
-
-
-
 
 
 # TODO:
+# linking in the index page
 # move static files
 # replace references to stuff
-# jinja templates
-# jinja rendering
 # jupyter to html
 # python syntax highlight with pygments
 # css files
 # setup README instructions
-# fix indent bug on conversion
 # quick bootstrap mobile
 # better config file
-# linking in the index page
 # rss feeds + tags
 # setup environment
 # bring in requirements.txt
