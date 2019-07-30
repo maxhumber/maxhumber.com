@@ -2,7 +2,7 @@ title: Just Testing the Setup
 date: 2019-07-23
 tags: python
 
-# blog
+# this is the first blog
 
 This is *my* blog.
 
