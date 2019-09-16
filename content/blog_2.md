@@ -1,8 +1,9 @@
-title: The Second Blog
+---
+title: The Second Blog!
 date: 2019-07-24
-tags: quotes
-
-# blog 2
+tags: python
+slug: blog2
+---
 
 This is my second blog post.
 

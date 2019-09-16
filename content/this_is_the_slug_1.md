@@ -1,8 +1,9 @@
+---
 title: Just Testing the Setup
 date: 2019-07-23
 tags: python
-
-# this is the first blog
+slug: blog1
+---
 
 This is *my* blog.
 
@@ -21,6 +22,6 @@ So dope
 
 How about an image?
 
-![](../images/hydra.png)
+![](images/hydra.png)
 
 The image isn't working yet
