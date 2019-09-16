@@ -1,9 +1,11 @@
 import shutil
 import subprocess
 from pathlib import Path
+
 from fire import Fire
-from markdown2 import markdown_path
 from jinja2 import Environment, FileSystemLoader
+from markdown2 import markdown_path
+
 from config import website
 
 JIN = Environment(loader=FileSystemLoader('templates'))
@@ -11,6 +13,7 @@ IN = Path(website['input_folder'])
 OUT = Path(website['output_folder'])
 
 def build_posts(website):
+    '''Build, render, and write posts to the output/ folder'''
     posts = []
     template = JIN.get_template('post.html')
     for m in IN.glob('*.md'):
@@ -24,6 +27,7 @@ def build_posts(website):
     return posts
 
 def build_index(website, posts):
+    '''Build the index for all the blog posts'''
     template = JIN.get_template('index.html')
     index = template.render(posts=posts, website=website)
     file = OUT / 'index.html'
@@ -31,6 +35,7 @@ def build_index(website, posts):
         f.write(index)
 
 def build_blog(website):
+    '''Actually build the entire blog'''
     try:
         shutil.rmtree(OUT)
     except FileNotFoundError:
@@ -49,6 +54,7 @@ def shell(command):
 def preview():
     '''Preview website content'''
     website['url'] = 'localhost:8000'
+    JIN.globals['localhost'] = True
     build_blog(website)
     shell('cd output; python -m http.server')
 
@@ -58,7 +64,6 @@ def publish():
     shell([
         'git add .',
         'git commit -m "new blog post"',
-        'git push',
         'git subtree push --prefix output origin gh-pages'
     ])
 
@@ -69,15 +74,11 @@ if __name__ == '__main__':
     })
 
 # TODO:
-# local vs prod
+# remove .html on the production version
+# better theme-ing templating (bootstrap)
+# add extra pages?
 # python syntax highlight with pygments
 # jupyter to html
-# css files
 # setup README instructions
-# quick bootstrap mobile
 # rss feeds + tags
-# setup environment
-# bring in requirements.txt
-# command line everything
-# convert + local + publish
-# separate github branch folder
+# setup environment + requirements.txt
