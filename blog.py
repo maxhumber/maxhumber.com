@@ -8,7 +8,12 @@ from markdown2 import markdown_path
 
 from config import website
 
-JIN = Environment(loader=FileSystemLoader('templates'))
+JIN = Environment(
+    loader=FileSystemLoader('templates'),
+    trim_blocks=True,
+    lstrip_blocks=True
+)
+
 IN = Path(website['input_folder'])
 OUT = Path(website['output_folder'])
 
@@ -74,11 +79,9 @@ if __name__ == '__main__':
     })
 
 # TODO:
-# remove .html on the production version
+# python syntax highlight with pygments
 # better theme-ing templating (bootstrap)
 # add extra pages?
-# python syntax highlight with pygments
 # jupyter to html
 # setup README instructions
 # rss feeds + tags
-# setup environment + requirements.txt

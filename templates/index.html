@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<ul>
-  {% for post in posts|sort(attribute='date', reverse=True) %}
+  <ul>
+    {% for post in posts|sort(attribute='date', reverse=True) %}
     {% if localhost %}
-      <li><a href="{{ website.url }}/{{ post.slug }}.html">{{ post.title }}</a></li>
+    <li><a href="{{ website.url }}/{{ post.slug }}.html">{{ post.title }}</a></li>
     {% else %}
-      <li><a href="{{ website.url }}/{{ post.slug }}">{{ post.title }}</a></li>
+    <li><a href="{{ website.url }}/{{ post.slug }}">{{ post.title }}</a></li>
     {% endif %}
-  {% endfor %}
-</ul>
+    {% endfor %}
+  </ul>
 {% endblock %}
