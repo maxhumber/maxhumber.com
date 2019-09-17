@@ -16,7 +16,16 @@ JIN.globals['TITLE'] = 'Max Humber'
 IN = Path('content')
 OUT = Path('output')
 
-def build_posts():
+def build_pages():
+    '''Build, render, and write pages to the output folder'''
+    template = JIN.get_template('page.html')
+    for m in Path('pages').glob('*.md'):
+        html = template.render(html=markdown_path(m))
+        file = OUT / m.name.replace('.md', '.html')
+        with file.open('w', encoding='utf-8') as f:
+            f.write(html)
+
+def build_blog_posts():
     '''Build, render, and write posts to the output folder'''
     posts = []
     template = JIN.get_template('post.html')
@@ -30,22 +39,13 @@ def build_posts():
             f.write(container["content"])
     return posts
 
-def build_blog(posts):
+def build_blog_index(posts):
     '''Build the index for all the blog posts'''
     template = JIN.get_template('blog.html')
     index = template.render(posts=posts)
     file = OUT / 'blog.html'
     with file.open('w', encoding='utf-8') as f:
         f.write(index)
-
-def build_pages():
-    '''Build, render, and write pages to the output folder'''
-    template = JIN.get_template('page.html')
-    for m in Path('pages').glob('*.md'):
-        html = template.render(html=markdown_path(m))
-        file = OUT / m.name.replace('.md', '.html')
-        with file.open('w', encoding='utf-8') as f:
-            f.write(html)
 
 def build():
     '''Actually build the entire blog'''
@@ -55,8 +55,9 @@ def build():
         pass
     OUT.mkdir(parents=True, exist_ok=True)
     build_pages()
-    build_blog(build_posts())
+    build_blog_index(build_blog_posts())
     shutil.copyfile('CNAME', OUT / 'CNAME')
+    shutil.copyfile('favicon.ico', OUT / 'favicon.ico')
     shutil.copytree(IN / 'images', OUT / 'images')
     shutil.copytree('static', OUT / 'static')
 
@@ -89,9 +90,8 @@ if __name__ == '__main__':
     })
 
 # TODO:
-# fix the /blog.html vs /blog
 # fix code indentation problem
+# fix the /blog.html vs /blog
 # jupyter to html
 # rss feeds for python tags
 # submit to python blog aggregator
-# favicon
