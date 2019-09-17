@@ -9,7 +9,7 @@ slug: quotes2016
 
 — Jason Fried & DHH in [Rework](http://amzn.to/2iqEMZN)
 
-# On Business and Economics
+#### On Business and Economics
 
 > Mediocrity always outnumbers talent.
 
@@ -35,7 +35,7 @@ slug: quotes2016
 
  — Jason Fried & DHH in [Rework](http://amzn.to/2iqEMZN)
 
-# On Life and Living
+#### On Life and Living
 
 > Nobody is quite as smart as they think they are. Not even you.
 
@@ -73,7 +73,7 @@ slug: quotes2016
 
 — Rich Cohen in [The Sun & the Moon & the Rolling Stones](http://amzn.to/2iosBkj)
 
-# On Philosophy
+#### On Philosophy
 
 > Seizing a day and seizing a lifetime are two entirely different endeavors.
 
@@ -95,7 +95,7 @@ slug: quotes2016
 
 — Douglas Adams in [The Hitchhiker's Guide to the Galaxy](http://amzn.to/2hTnEid)
 
-# On Politics and Religion
+#### On Politics and Religion
 
 > It is a well-known fact that people who want to rule people are, ipso facto, those least suited to do it.
 
@@ -129,7 +129,7 @@ slug: quotes2016
 
 — Douglas Murray in [Islamophilia](https://www.goodreads.com/book/show/18044655-islamophilia)
 
-# On Society
+#### On Society
 
 > The representation of events in the media does not track their frequency in the world.
 
@@ -163,7 +163,7 @@ slug: quotes2016
 
 — Tom McCarthy in [Satin Island](http://amzn.to/2iov2n2)
 
-# On Statistics
+#### On Statistics
 
 > If we want to predict how long something will last, and have no other knowledge about it whatsoever, the best guess we can make is that it will continue just as long as it's gone on so far.
 
@@ -177,7 +177,7 @@ slug: quotes2016
 
 — Mark Haddon in [The Curious Incident of the Dog in the Night-Time](http://amzn.to/2i4WhCk)
 
-# On Work and Talent
+#### On Work and Talent
 
 > Don't be afraid to show your flaws. Imperfections are real and people respond to real. It's why we like real flowers that wilt, not perfect plastic ones that never change.
 
@@ -215,13 +215,13 @@ slug: quotes2016
 
 — Laszlo Bock in [Work Rules!](http://amzn.to/2iqHMW5)
 
-# Other
+#### Other
 
 > By law, no matter the substrate used to make it—grains or grapes or the classic potato—vodka is supposed to be nothing but water and ethanol; distillers can vary the ratio, but that's it. In other words, the standard bottle of vodka is just 750 milliliters of H2O and C2H6O.
 
 — Adam Rogers in [Proof: The Science of Booze](http://amzn.to/2hTbAxs)
 
-# In Closing
+#### In Closing
 
 > Try to be pleasant to one another, get plenty of fresh air, read a good book now and then, depose your government when it suspends the free press, try to use the mechanism of the state to adjudicate fairly, and employ diplomatic means wherever possible to avoid armed conflict.
 

@@ -9,7 +9,7 @@ slug: quotes2015
 
 — Austin Kleon in Show Your Work!
 
-# On Business
+#### On Business
 
 > Frogs get better and better at catching flies, while flies get better and better at escaping frogs. Each has to run as hard as it can to stay in the same place. 
 
@@ -43,7 +43,7 @@ slug: quotes2015
 
 — Richard Thaler in Misbehaving
 
-# On Love
+#### On Love
 
 > I started to despise the bar scene. I had experienced every single version of those nights. I knew all the possible outcomes, and I knew the probabilities of those outcomes. Statistically, the smartest thing for you to do when you walk into a bar is go to the bathroom, jerk off, and leave. 
 
@@ -69,7 +69,7 @@ slug: quotes2015
 
 — Sam Harris in Waking Up
 
-# On Economics(ish)
+#### On Economics(ish)
 
 > Economists pretend they’re studying a social science, and while the economy is a machine of hugely complex systems, it’s also organic, the whole a reflection of the cells that make it up, a god made in our image, prone to flights of euphoric greed and pride, choking envy, irrational fear, pettiness, stinginess, manic euphoria and senseless depression. And…guilt. Embarrassment. 
 
@@ -95,7 +95,7 @@ slug: quotes2015
 
 — Aziz Ansari in Modern Romance
 
-# On Politics
+#### On Politics
 
 > The man of system thinks he can move human beings with the same ease as the human hand can move the pieces on a chessboard. The problem is that the man of system ignores the rules of chess. He places the pieces here and there around the board as he sees fit, ignoring their natural motions given by the rules of the game. 
 
@@ -125,7 +125,7 @@ slug: quotes2015
 
 — Russ Roberts in How Adam Smith Can Change Your Life
 
-# On Religion
+#### On Religion
 
 > Desire is suffering. A simple equation, and a nice catchphrase. But flipped around, it is more troubling: suffering is desire. Not a unidirectional arrow, not causal, as in, desire leads to suffering. Desire is suffering, and therefore, by axiom, suffering is desire. 
 
@@ -143,7 +143,7 @@ slug: quotes2015
 
 — Sam Harris in Waking Up
 
-# On Consciousness
+#### On Consciousness
 
 > Everything we do is for the purpose of altering consciousness. We form friendships so that we can feel love and avoid loneliness. We eat specific foods to enjoy their fleeting presence on our tongues. We read for the pleasure of thinking another person’s thoughts. Every waking moment — and even in our dreams — we struggle to direct the flow of sensation, emotion, and cognition toward states of consciousness that we value. 
 
@@ -169,7 +169,7 @@ slug: quotes2015
 
 — Sam Harris in Waking Up
 
-# On Advice
+#### On Advice
 
 > Buy a diversified portfolio heavily tilted toward stocks, especially if you are young, and then scrupulously avoid reading anything in the newspaper aside from the sports section. 
 
@@ -195,7 +195,7 @@ slug: quotes2015
 
 — Russ Roberts in How Adam Smith Can Change Your Life
 
-# On Being Human
+#### On Being Human
 
 > Consider the biography of any ‘self-made’ man, and you will find that his success was entirely dependent on background conditions that he did not make and of which he was merely the beneficiary. 
 
@@ -221,7 +221,7 @@ slug: quotes2015
 
 — Mohsin Hamid in How to Get Filthy Rich in Rising Asia
 
-# Other
+#### Other
 
 > Concrete is literally the foundation of our whole society: it is the basis of our cities, our roads, our bridges, our power stations — it is 50 percent of everything we make. But like bone we prefer it on the inside; when it sticks out we are repulsed. 
 

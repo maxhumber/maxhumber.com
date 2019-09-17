@@ -9,7 +9,7 @@ slug: quotes2017
 
 — Jonathan Haidt in The Happiness Hypothesis
 
-# Level: micro
+#### Level: micro
 
 > You're always you, and that don't change, and you're always changing, and there's nothing you can do about it.
 
@@ -107,7 +107,7 @@ slug: quotes2017
 
 — Alain de Botton in How Proust Can Change Your Life
 
-# Level: meso
+#### Level: meso
 
 > Hell is other people. But so is heaven.
 
@@ -157,7 +157,7 @@ slug: quotes2017
 
 — Matt Parker in Things to Make and Do in the Fourth Dimension
 
-# Level: macro
+#### Level: macro
 
 > If it’s in the news, don’t worry about it. The very definition of news is ‘something that hardly ever happens.'
 
@@ -215,7 +215,7 @@ slug: quotes2017
 
 — Timothy Snyder in On Tyranny
 
-# In Closing
+#### In Closing
 
 > Work on your strengths, not your weaknesses. How many of your New Year’s resolutions have been about fixing a flaw?
 

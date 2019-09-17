@@ -9,7 +9,7 @@ slug: quotes2018
 
 —Jasper Fforde in First Among Sequels
 
-### #life
+#### #life
 
 > In an impossibly complex world, we should perhaps shun temporary stability and instead be willing to tolerate a bit of volatility in order to find a greater stability thereafter.
 
@@ -75,7 +75,7 @@ slug: quotes2018
 
 —Jasper Fforde in The Woman Who Died a Lot
 
-### #love
+#### #love
 
 > And that’s when you know it’s over. As soon as you start thinking about the beginning, it’s the end.
 
@@ -129,7 +129,7 @@ slug: quotes2018
 
 —Alain de Botton in How to Think More About Sex
 
-### #reflection
+#### #reflection
 
 > The best way to fix the world—a handyman’s dream, if ever there was one—is to fix yourself.
 
@@ -163,7 +163,7 @@ slug: quotes2018
 
 —Alain de Botton in On Love
 
-### #truth
+#### #truth
 
 > Every guy can basically be boiled down to what he wants and what he’s afraid of.
 
@@ -217,7 +217,7 @@ slug: quotes2018
 
 —Alain de Botton in On Love
 
-### #2019
+#### #2019
 
 > If the real world were a book, it would never find a publisher. Overlong, detailed to the point of distraction-and ultimately, without a major resolution.
 
