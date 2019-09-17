@@ -9,19 +9,20 @@ This is *my* blog.
 
 Isn't it **super** cool.
 
-(Python highlighting isn't working yet)
+(Python highlighting is almost working)
 
 ```python
-def hey_gurl():
-    return 'Hey Gurl Hey!'
+def preview():
+    '''Preview website content'''
+    JIN.globals['URL'] = 'localhost:8000'
+    build()
+    shell('cd output; python -m http.server')
 ```
 
 ### This is pretty dope.
 
-So dope
+So dope.
 
 How about an image?
 
 ![](images/hydra.png)
-
-The image isn't working yet

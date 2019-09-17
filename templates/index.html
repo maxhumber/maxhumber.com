@@ -2,10 +2,10 @@
 {% block content %}
   <ul>
     {% for post in posts|sort(attribute='date', reverse=True) %}
-    {% if localhost %}
-    <li><a href="{{ website.url }}/{{ post.slug }}.html">{{ post.title }}</a></li>
+    {% if "localhost" in URL %}
+    <li><a href="{{ URL }}/{{ post.slug }}.html">{{ post.title }}</a></li>
     {% else %}
-    <li><a href="{{ website.url }}/{{ post.slug }}">{{ post.title }}</a></li>
+    <li><a href="{{ URL }}/{{ post.slug }}">{{ post.title }}</a></li>
     {% endif %}
     {% endfor %}
   </ul>
