@@ -79,7 +79,7 @@ def publish():
         'git add .',
         'git commit -m "new blog post"',
         'git push',
-        'git subtree push --prefix output origin gh-pages'
+        'git push origin `git subtree split --prefix output master`:gh-pages --force'
     ])
 
 if __name__ == '__main__':
