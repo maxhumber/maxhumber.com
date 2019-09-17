@@ -1,6 +1,6 @@
+from pathlib import Path
 import shutil
 import subprocess
-from pathlib import Path
 from fire import Fire
 from jinja2 import Environment, FileSystemLoader
 from markdown2 import markdown_path
@@ -11,7 +11,6 @@ JIN = Environment(
     lstrip_blocks=True
 )
 
-# consolidated configuration
 JIN.globals['URL'] = 'https://maxhumber.github.io/blog.py'
 JIN.globals['TITLE'] = 'Max Humber'
 IN = Path('content')
