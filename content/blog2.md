@@ -2,7 +2,7 @@
 title: The Second Blog!
 date: 2019-07-24
 tags: python
-slug: blog2
+slug: ablogwithcode
 ---
 
 This is my second blog post.
