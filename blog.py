@@ -70,6 +70,7 @@ def publish():
     shell([
         'git add .',
         'git commit -m "new blog post"',
+        'git push',
         'git subtree push --prefix output origin gh-pages'
     ])
 

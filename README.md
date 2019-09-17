@@ -3,13 +3,13 @@
 View changes blog locally:
 
 ```
-python blog.py preview
+make preview
 ```
 
 Publish blog to github pages:
 
 ```
-python blog.py publish
+make publish
 ```
 
 Generate css highlight file:
