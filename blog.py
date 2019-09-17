@@ -95,4 +95,3 @@ if __name__ == '__main__':
 # jupyter to html
 # submit to python blog aggregator
 # favicons
-# move to maxhumber.com
