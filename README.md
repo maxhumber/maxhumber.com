@@ -1,14 +1,13 @@
 #### www.maxhumber.com
 
-View changes blog locally:
+View changes locally:
 
 ```
 make preview
 ```
 
-Publish blog to github pages:
+Publish to GitHub Pages:
 
 ```
 make publish
 ```
-

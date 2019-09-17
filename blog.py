@@ -56,6 +56,7 @@ def build():
     OUT.mkdir(parents=True, exist_ok=True)
     build_pages()
     build_blog(build_posts())
+    shutil.copyfile('CNAME', OUT / 'CNAME')
     shutil.copytree(IN / 'images', OUT / 'images')
     shutil.copytree('static', OUT / 'static')
 
@@ -88,10 +89,9 @@ if __name__ == '__main__':
     })
 
 # TODO:
-# fix the publish
+# fix the /blog.html vs /blog
 # fix code indentation problem
-# add talks, about, projects
-# rss feeds for python tags
 # jupyter to html
+# rss feeds for python tags
 # submit to python blog aggregator
-# favicons
+# favicon

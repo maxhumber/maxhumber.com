@@ -1,13 +1,17 @@
 ---
-title: Just Testing the Setup
-date: 2019-07-23
+title: Testing 1-2-3
+date: 2019-09-17
 tags: python
-slug: blog1
+slug: blogtest
 ---
 
 This is *my* blog.
 
 Isn't it **super** cool.
+
+Images:
+
+![](images/hydra.png)
 
 (Python highlighting is almost working)
 
@@ -22,7 +26,3 @@ def preview():
 ### This is pretty dope.
 
 So dope.
-
-How about an image?
-
-![](images/hydra.png)
