@@ -11,7 +11,7 @@ JIN = Environment(
     lstrip_blocks=True
 )
 
-JIN.globals['URL'] = 'https://maxhumber.github.io/blog.py'
+JIN.globals['URL'] = 'https://maxhumber.com'
 JIN.globals['TITLE'] = 'Max Humber'
 IN = Path('content')
 OUT = Path('output')
