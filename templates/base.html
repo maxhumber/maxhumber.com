@@ -2,9 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ website.title }}</title>
+    <title>{{ TITLE }}</title>
+    <link rel="stylesheet" type="text/css" href="static/default.css">
   </head>
   <body>
+    <h1><a href="/">{{ TITLE }}</a></h1>
     {% block content %}{% endblock %}
   </body>
 </html>

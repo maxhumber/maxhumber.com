@@ -14,41 +14,43 @@ JIN = Environment(
     lstrip_blocks=True
 )
 
+JIN.globals['URL'] = website['url']
+JIN.globals['TITLE'] = website['title']
 IN = Path(website['input_folder'])
 OUT = Path(website['output_folder'])
 
-def build_posts(website):
+def build_posts():
     '''Build, render, and write posts to the output/ folder'''
     posts = []
     template = JIN.get_template('post.html')
     for m in IN.glob('*.md'):
-        html = markdown_path(m, extras=['metadata'])
+        html = markdown_path(m, extras=['metadata', 'fenced-code-blocks'])
         container = html.metadata.copy()
-        container['content'] = template.render(html=str(html), website=website)
+        container['content'] = template.render(html=str(html))
         posts.append(container)
         file = OUT / f"{container['slug']}.html"
         with file.open('w', encoding='utf-8') as f:
             f.write(container["content"])
     return posts
 
-def build_index(website, posts):
+def build_index(posts):
     '''Build the index for all the blog posts'''
     template = JIN.get_template('index.html')
-    index = template.render(posts=posts, website=website)
+    index = template.render(posts=posts)
     file = OUT / 'index.html'
     with file.open('w', encoding='utf-8') as f:
         f.write(index)
 
-def build_blog(website):
+def build():
     '''Actually build the entire blog'''
     try:
         shutil.rmtree(OUT)
     except FileNotFoundError:
         pass
     OUT.mkdir(parents=True, exist_ok=True)
-    posts = build_posts(website)
-    build_index(website, posts)
+    build_index(build_posts())
     shutil.copytree(IN / 'images', OUT / 'images')
+    shutil.copytree('static', OUT / 'static')
 
 def shell(command):
     '''Execute bash commands'''
@@ -58,14 +60,13 @@ def shell(command):
 
 def preview():
     '''Preview website content'''
-    website['url'] = 'localhost:8000'
-    JIN.globals['localhost'] = True
-    build_blog(website)
+    JIN.globals['URL'] = 'localhost:8000'
+    build()
     shell('cd output; python -m http.server')
 
 def publish():
     '''Push content to GitHub Pages'''
-    build_blog(website)
+    build()
     shell([
         'git add .',
         'git commit -m "new blog post"',
