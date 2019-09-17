@@ -77,9 +77,8 @@ def publish():
     '''Push content to GitHub Pages'''
     build()
     shell([
-        'git add .',
+        f'git add {str(OUT)}',
         'git commit -m "new blog post"',
-        'git push',
         'git push origin `git subtree split --prefix output master`:gh-pages --force'
     ])
 
@@ -90,8 +89,9 @@ if __name__ == '__main__':
     })
 
 # TODO:
+# www
 # fix code indentation problem
 # fix the /blog.html vs /blog
 # jupyter to html
 # rss feeds for python tags
-# submit to python blog aggregator
+# blog aggregator (eventually)
