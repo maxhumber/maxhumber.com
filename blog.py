@@ -20,7 +20,7 @@ IN = Path(website['input_folder'])
 OUT = Path(website['output_folder'])
 
 def build_posts():
-    '''Build, render, and write posts to the output/ folder'''
+    '''Build, render, and write posts to the output folder'''
     posts = []
     template = JIN.get_template('post.html')
     for m in IN.glob('*.md'):
@@ -33,13 +33,22 @@ def build_posts():
             f.write(container["content"])
     return posts
 
-def build_index(posts):
+def build_blog(posts):
     '''Build the index for all the blog posts'''
-    template = JIN.get_template('index.html')
+    template = JIN.get_template('blog.html')
     index = template.render(posts=posts)
-    file = OUT / 'index.html'
+    file = OUT / 'blog.html'
     with file.open('w', encoding='utf-8') as f:
         f.write(index)
+
+def build_pages():
+    '''Build, render, and write pages to the output folder'''
+    template = JIN.get_template('page.html')
+    for m in Path('pages').glob('*.md'):
+        html = template.render(html=markdown_path(m))
+        file = OUT / m.name.replace('.md', '.html')
+        with file.open('w', encoding='utf-8') as f:
+            f.write(html)
 
 def build():
     '''Actually build the entire blog'''
@@ -48,7 +57,8 @@ def build():
     except FileNotFoundError:
         pass
     OUT.mkdir(parents=True, exist_ok=True)
-    build_index(build_posts())
+    build_pages()
+    build_blog(build_posts())
     shutil.copytree(IN / 'images', OUT / 'images')
     shutil.copytree('static', OUT / 'static')
 
@@ -81,9 +91,11 @@ if __name__ == '__main__':
     })
 
 # TODO:
-# python syntax highlight with pygments
-# better theme-ing templating (bootstrap)
-# add extra pages?
+# fix the publish
+# fix code indentation problem
+# add talks, about, projects
+# rss feeds for python tags
 # jupyter to html
-# setup README instructions
-# rss feeds + tags
+# submit to python blog aggregator
+# favicons
+# move to maxhumber.com
