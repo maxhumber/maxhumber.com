@@ -3,10 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>{{ TITLE }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="static/default.css">
   </head>
   <body>
-    <h1><a href="{{ URL }}">{{ TITLE }}</a></h1>
-    {% block content %}{% endblock %}
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" href="{{ URL }}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Talks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">RSS</a>
+      </li>
+    </ul>
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
   </body>
 </html>
