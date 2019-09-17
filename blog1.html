@@ -3,28 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>Max Humber</title>
+    <link rel="stylesheet" type="text/css" href="static/default.css">
   </head>
   <body>
+    <h1><a href="/">Max Humber</a></h1>
   <p>This is <em>my</em> blog.</p>
 
     <p>Isn't it <strong>super</strong> cool.</p>
 
-    <p>(Python highlighting isn't working yet)</p>
+    <p>(Python highlighting is almost working)</p>
 
-    <p><code>python
-    def hey_gurl():
-        return 'Hey Gurl Hey!'
-    </code></p>
+    <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">preview</span><span class="p">():</span>
+        <span class="sd">&#39;&#39;&#39;Preview website content&#39;&#39;&#39;</span>
+        <span class="n">JIN</span><span class="o">.</span><span class="n">globals</span><span class="p">[</span><span class="s1">&#39;URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;localhost:8000&#39;</span>
+        <span class="n">build</span><span class="p">()</span>
+        <span class="n">shell</span><span class="p">(</span><span class="s1">&#39;cd output; python -m http.server&#39;</span><span class="p">)</span>
+    </code></pre></div>
 
     <h3>This is pretty dope.</h3>
 
-    <p>So dope</p>
+    <p>So dope.</p>
 
     <p>How about an image?</p>
 
     <p><img src="images/hydra.png" alt="" /></p>
-
-    <p>The image isn't working yet</p>
 
   </body>
 </html>
