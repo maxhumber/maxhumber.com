@@ -1,12 +1,9 @@
 import shutil
 import subprocess
 from pathlib import Path
-
 from fire import Fire
 from jinja2 import Environment, FileSystemLoader
 from markdown2 import markdown_path
-
-from config import website
 
 JIN = Environment(
     loader=FileSystemLoader('templates'),
@@ -14,10 +11,11 @@ JIN = Environment(
     lstrip_blocks=True
 )
 
-JIN.globals['URL'] = website['url']
-JIN.globals['TITLE'] = website['title']
-IN = Path(website['input_folder'])
-OUT = Path(website['output_folder'])
+# consolidated configuration
+JIN.globals['URL'] = 'https://maxhumber.github.io/blog.py'
+JIN.globals['TITLE'] = 'Max Humber'
+IN = Path('content')
+OUT = Path('output')
 
 def build_posts():
     '''Build, render, and write posts to the output folder'''

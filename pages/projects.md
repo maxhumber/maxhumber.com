@@ -1,3 +1,0 @@
-- [mummify](https://github.com/maxhumber/mummify)
-- [chart](https://github.com/maxhumber/chart)
-- [marc](https://github.com/maxhumber/marc)

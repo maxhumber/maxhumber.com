@@ -1,5 +1,1 @@
-👋
-
-I'm Max. I like four-leaf clovers, climbing, and code. Right now, I'm teaching at [General Assembly](https://generalassemb.ly/). Previously, I pushed data at [Wealthsimple](https://wealthsimple.com) and [Borrowell](https://borrowell.com).
-
-I'm on [LinkedIn](/), [GitHub](/), [Twitter](/)
+Hi. I'm Max. I like four-leaf clovers, climbing, and code. Right now, I'm teaching at [General Assembly](https://generalassemb.ly/) and building content for [O'Reilly](https://www.oreilly.com/pub/au/7931). Previously, I pushed data at [Wealthsimple](https://wealthsimple.com) and [Borrowell](https://borrowell.com). I have a book published by [Apress](https://www.apress.com/us/book/9781484238011) and a blog right [here](/blog). You can find me online on [LinkedIn](https://www.linkedin.com/in/maxhumber/), [GitHub](https://github.com/maxhumber) and [Twitter](https://twitter.com/maxhumber).
