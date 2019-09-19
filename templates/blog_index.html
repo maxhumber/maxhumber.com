@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   {% for post in posts|sort(attribute='date', reverse=True) %}
-  {% if "localhost" in URL %}
+  {% if DEVELOPMENT %}
   <p class="text-center"><a href="/{{ post.slug }}.html">{{ post.title }}</a></p>
   {% else %}
   <p class="text-center"><a href="/{{ post.slug }}">{{ post.title }}</a></p>
