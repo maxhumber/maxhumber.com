@@ -17,6 +17,7 @@ BLOG = Path('blog')
 PAGES = Path('pages')
 OUT = Path('output')
 
+# TODO: refactor this into two parts
 def jupyter_to_container(path):
     '''Convert a Jupyter Notebook into a Markdown Container'''
     with open(path, 'r', encoding='utf-8') as f:
@@ -45,6 +46,7 @@ def build_pages():
         with file.open('w', encoding='utf-8') as f:
             f.write(html)
 
+# TODO: simplify the for loops
 def build_blog_posts():
     '''Build, render, and write blog posts to the output folder'''
     posts = []
@@ -113,7 +115,8 @@ if __name__ == '__main__':
     })
 
 # TODO:
-# fix the /blog.html vs /blog
+# refactor the jupyter and build posts functions
+# fix /blog.html vs /blog on local
 # rss feeds for python tags
 # blog aggregator (eventually)
 # only regenerate changed files
