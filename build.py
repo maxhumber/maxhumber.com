@@ -57,7 +57,7 @@ def build_blog_posts():
     for p in posts:
         file = OUT / f"{p['slug']}.html"
         with file.open('w', encoding='utf-8') as f:
-            f.write(container["content"])
+            f.write(p['content'])
     return posts
 
 def build_blog_index(posts):
