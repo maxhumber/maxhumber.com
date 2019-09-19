@@ -103,8 +103,7 @@ def publish():
     shell([
         f'git add {str(OUT)}',
         'git commit -m "new blog post"',
-        'git push origin `git subtree split --prefix output master`:gh-pages --force',
-        f'rm -rf {str(OUT)}'
+        'git push origin `git subtree split --prefix output master`:gh-pages --force'
     ])
 
 if __name__ == '__main__':
