@@ -35,98 +35,26 @@
     </ul>
     <div class="container mt-3">
       <div class="jumbotron">
-  <p>This is a notebook test</p>
+  <p>This is <em>my</em> blog.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<p>Isn't it <strong>super</strong> cool.</p>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-    <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">]</span>
-<span class="p">})</span>
+<p>Images:</p>
 
-<span class="n">df</span>
+<p><img src="images/hydra.png" alt="" /></p>
+
+<p>(Python highlighting is almost working)</p>
+
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">preview</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Preview website content&#39;&#39;&#39;</span>
+    <span class="n">JIN</span><span class="o">.</span><span class="n">globals</span><span class="p">[</span><span class="s1">&#39;URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;localhost:8000&#39;</span>
+    <span class="n">build</span><span class="p">()</span>
+    <span class="n">shell</span><span class="p">(</span><span class="s1">&#39;cd output; python -m http.server&#39;</span><span class="p">)</span>
 </code></pre></div>
 
+<h3>This is pretty dope.</h3>
 
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>a</th>
-      <th>b</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>X</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Y</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Z</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>W</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">chart</span>
-
-<span class="n">chart</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
-</code></pre></div>
-
-<pre><code>                        •
-                     •   
-                •  •     
-             •           
-           •             
-     •  •                
-   •                     
-•
-</code></pre>
-
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">));</span>
-</code></pre></div>
-
-<p><img src="output_3_0.png" alt="png" /></p>
-
-<p>And an image test:</p>
-
-<p><img src='images/yeti.png' width="200" /></p>
+<p>So dope.</p>
 
       </div>
     </div>
