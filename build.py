@@ -26,8 +26,11 @@ def jupyter_to_container(path):
     metadata = [m.split(':') for m in metadata]
     container = {m[0]:m[1].strip() for m in metadata}
     md_exporter = MarkdownExporter()
-    # TODO: FIX THE IMAGE OUTPUT PROBLEM > resources
     md, resources = md_exporter.from_notebook_node(notebook)
+    for fn, bytes in resources['outputs'].items():
+        with open(f"{BLOG}/images/{container['slug']}-{fn}", 'wb') as f:
+            f.write(bytes)
+    md = md.replace('![png](', f"![png](images/{container['slug']}-")
     html = markdown(md, extras=['fenced-code-blocks'])
     template = JIN.get_template('blog_post.html')
     container['content'] = template.render(html=html)
@@ -100,7 +103,8 @@ def publish():
     shell([
         f'git add {str(OUT)}',
         'git commit -m "new blog post"',
-        'git push origin `git subtree split --prefix output master`:gh-pages --force'
+        'git push origin `git subtree split --prefix output master`:gh-pages --force',
+        f'rm -rf {str(OUT)}'
     ])
 
 if __name__ == '__main__':
@@ -110,7 +114,7 @@ if __name__ == '__main__':
     })
 
 # TODO:
-# fix the jupyter image problem (resources)
 # fix the /blog.html vs /blog
 # rss feeds for python tags
 # blog aggregator (eventually)
+# only regenerate changed files
