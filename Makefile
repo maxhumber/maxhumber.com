@@ -1,6 +1,6 @@
 preview:
-	python blog.py preview
+	pipenv run python build.py preview
 publish:
-	python blog.py publish
+	pipenv run python build.py publish
 highlight:
-	pygmentize -S default -f html -a .codehilite > static/default.css
+	pipenv run pygmentize -S default -f html -a .codehilite > static/default.css
