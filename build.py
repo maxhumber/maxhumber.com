@@ -99,8 +99,9 @@ def preview():
 def publish():
     '''Push static website to GitHub Pages'''
     build()
-    call(f'git add {str(OUT)}', shell=True)
+    call(f'git add {str(OUT)} {str(BLOG)}', shell=True)
     call('git commit -m "new blog post"', shell=True)
+    call('git push', shell=True)
     call('git push origin `git subtree split --prefix output master`:gh-pages --force', shell=True)
 
 if __name__ == '__main__':
