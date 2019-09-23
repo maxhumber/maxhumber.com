@@ -44,37 +44,48 @@
     </ul>
     <div class="container mt-3">
       <div class="jumbotron">
-  <p>mummify just earned it's <a href="https://pypi.org/project/mummify/1.0/">v1.0</a> release!</p>
+  <p>mummify just earned it's <a href="https://pypi.org/project/mummify/1.0/"><strong>1.0</strong></a> release!</p>
 
-<p>It's kind of scary to kick software out of 0.x and label it "production ready". But after using it for a year, it feels ready... </p>
+<p>It's kind of scary to kick software out of <em>0.x</em> and label it "production ready". But after using it for a year, it feels ready... </p>
 
-<p>I started writing mummify in early 2018 and debuted it at AnacondaCON that year, in a talk titled <a href="https://github.com/maxhumber/presentations/tree/master/2018-04-09_data_engineering">'Data Engineering for Data Scientists'</a>. Though the presentation was mostly tongue-in-cheek (I was saying shit like, "You suck at git. And logging. But it's not your fault") it seemed to be well received. </p>
+<h4>Origin</h4>
 
-<p style="text-align:center;"><img src="images/mummify_slides.png" width="500" align="middle"></p>
+<p>I started writing mummify in early 2018 and debuted it at AnacondaCON that year in a talk titled <a href="https://github.com/maxhumber/presentations/tree/master/2018-04-09_data_engineering">'Data Engineering for Data Scientists'</a>. Though the presentation was mostly tongue-in-cheek, the talk and the package was well received. </p>
 
-<p><sup>Actual slides (lol)</sup></p>
+<p style="text-align:center;"><img src="images/mummify_slides.png" width="400" align="middle"></p>
 
-<p>Since, I've used mummify in several machine learning projects and have heard from several more people who use it regularly.</p>
+<p style="text-align:center;"><sup>A couple of cheeky slides from AnacondaCON</sup></p>
 
-<p>What is mummify? </p>
+<p>Since then I've used mummify in several machine learning projects and have heard from several more people who use it regularly.</p>
 
-<p><a href="https://github.com/maxhumber/mummify">mummify is git + logging for ML</a>.</p>
+<h4>About</h4>
 
-<p>The package automagically takes care of git and logging for your machine learning project so that you can focus on what's important.</p>
+<p>What is mummify? <a href="https://github.com/maxhumber/mummify">mummify is git + logging for ML</a>... </p>
 
-<p>I created mummify because I noticed that 80% of the work in Data Science doesn't actually work. Sure, you might try a bunch of things, pull on a couple of threads, build a few prototypes... but most of what you try, or pull on, or build, simply doesn't work (and won't ever work). </p>
+<p>Basically, the package takes care of git and logging for your machine learning project so that you can focus on what's important.</p>
 
-<p>The 20% that does work, though? It more than pays for the 80% doesn't. </p>
+<h4>Usage</h4>
 
-<p>This reality—the reality of work in Data Science—is best captured in the Edison quote:</p>
+<p>mummify is dead simple to use. Just import it at the top and add <code>mummify.log(&lt;string&gt;)</code> at the bottom:</p>
 
-<blockquote>
-  <p>“I have not failed. I've just found 10,000 ways that won't work.”</p>
-</blockquote>
+<pre><code>import mummify
 
-<p>mummify is that Edison quote, just wrapped in python. An audit log (that you don't have to write) that you can show your boss. Of all the things you tried. That didn't work. </p>
+...
 
-<p>I hope you'll give it a try!</p>
+model = KNeighborsClassifier()
+model.fit(X_train, y_train)
+accuracy = model.score(X_test, y_test)
+
+...
+
+mummify.log(f'Test Accuracy: {accuracy}')
+</code></pre>
+
+<p>When enabled mummify will save model snapshots and log performance after each run. </p>
+
+<h4>New</h4>
+
+<p>What's new in 1.0? Honestly, nothing. Though I rewrote the entire backend to leverage <code>subprocess.run</code> instead of older functions, the API remains the same.</p>
 
       </div>
     </div>
