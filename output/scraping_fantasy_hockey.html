@@ -15,22 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Code Hilite CSS -->
-    <link rel="stylesheet" type="text/css" href="static/default.css">
+    <!-- Highlight CSS -->
+    <link rel="stylesheet" type="text/css" href="static/highlight.css">
     <!-- Custom CSS -->
-    <style>
-      .container {
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
-          font-size: 16px;
-          font-weight: 400;
-      }
-      .jumbotron {
-        background-color:transparent !important;
-        margin-right: auto;
-        margin-left: auto;
-        max-width: 650px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
   </head>
   <body>
     <br/>
@@ -42,21 +30,16 @@
         </a>
       </li>
     </ul>
-    <div class="container mt-3">
+    <div class="container mt-2">
       <div class="jumbotron">
   <h4>How to Win Fantasy Hockey</h4>
-
 <p><em>A recipe for using python to scrape player projection data and build a value over replacement ranking model</em></p>
-
 <p>Jupyter notebook for this blog post available <a href="https://github.com/maxhumber/maxhumber.com/blob/master/blog/2019-09-28_scraping_fantasy_hockey.ipynb">here</a>
-</br>
-</br></p>
-
-<p>1) Identify a data source (<a href="https://www.cbssports.com/fantasy/hockey/stats/F/2019/season/projections/">CBS Sports</a> is a good option)</p>
-
-<p>2) get the html data with <a href="https://maxhumber.github.io/gazpacho/">gazpacho</a></p>
-
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">gazpacho</span> <span class="kn">import</span> <span class="n">get</span>
+<br/>
+<br/></p>
+<p>№1 Identify a data source (<a href="https://www.cbssports.com/fantasy/hockey/stats/F/2019/season/projections/">CBS Sports</a> is a good option)</p>
+<p>№2 <code>get</code> the html data with <a href="https://maxhumber.github.io/gazpacho/">gazpacho</a></p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gazpacho</span> <span class="kn">import</span> <span class="n">get</span>
 
 <span class="n">position</span> <span class="o">=</span> <span class="s1">&#39;F&#39;</span>
 
@@ -64,41 +47,29 @@
 <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;{base}/{position}/2019/season/projections/&#39;</span>
 
 <span class="n">html</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-</code></pre></div>
-
-
-
+</pre></div>
 <br/>
-3) Pass the captured html to a Soup parser
 
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">gazpacho</span> <span class="kn">import</span> <span class="n">Soup</span>
+<p>№3 Pass the captured html to a <code>Soup</code> parser</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gazpacho</span> <span class="kn">import</span> <span class="n">Soup</span>
 
 <span class="n">soup</span> <span class="o">=</span> <span class="n">Soup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
-</code></pre></div>
-
-
-
+</pre></div>
 <br/>
-4) find the html tags that contain player projection data
 
-<div class="codehilite"><pre><span></span><code><span class="c1"># HTML: &lt;tr class=&quot;TableBase-bodyTr &quot;&gt;</span>
+<p>№4 <code>find</code> the html tags that contain player projection data</p>
+<div class="highlight"><pre><span></span><span class="c1"># HTML: &lt;tr class=&quot;TableBase-bodyTr &quot;&gt;</span>
 <span class="n">rows</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;TableBase-bodyTr &#39;</span><span class="p">})</span>
-</code></pre></div>
-
-
-
+</pre></div>
 <br/>
-5) Capture a single row (and inspect for good measure)
 
-<div class="codehilite"><pre><span></span><code><span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</code></pre></div>
-
-
-
+<p>№5. Capture a single row (and inspect for good measure)</p>
+<div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
 <br/>
-6) Use find to grab those tags that map to player name, position, and projected Fantasy Points
 
-<div class="codehilite"><pre><span></span><code><span class="c1"># name</span>
+<p>№6 Use <code>find</code> to grab those tags that map to player name, position, and projected Fantasy Points</p>
+<div class="highlight"><pre><span></span><span class="c1"># name</span>
 <span class="n">row</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;CellPlayerName--long&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 
 <span class="c1"># position</span>
@@ -108,22 +79,16 @@
 
 <span class="c1"># points</span>
 <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;TableBase-bodyTd&#39;</span><span class="p">})[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre></div>
-
-
-
-
-
-
-    367.3
-
-
-
+</pre></div>
 <br/>
-<br/>
-7) Wrap these find operations into a function
 
-<div class="codehilite"><pre><span></span><code><span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<pre><code>367.3
+
+</code></pre>
+<br/>
+<p>№7 Wrap these <code>find</code> operations into a function</p>
+<div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">parse_row</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
     <span class="n">meta</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;CellPlayerName--long&#39;</span><span class="p">})</span>
@@ -133,35 +98,26 @@
     <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">points</span>
 
 <span class="n">parse_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-</code></pre></div>
-
-
-
-
-
-
-    ('Nikita Kucherov', 'RW', 367.3)
-
-
-
+</pre></div>
 <br/>
-<br/> 
-8) Make sure that the function works for all the captured rows
 
-<div class="codehilite"><pre><span></span><code><span class="n">forwards</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
+
+<pre><code>('Nikita Kucherov', 'RW', 367.3)
+
+</code></pre>
+<br/>
+<p>№8 Make sure that the function works for all the captured rows</p>
+<div class="highlight"><pre><span></span><span class="n">forwards</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
 <span class="k">print</span><span class="p">(</span><span class="n">forwards</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
-</code></pre></div>
-
-
-
-    [('Nick Shore', 'C', 166.6), ('Mats Zuccarello', 'RW', 165.8)]
-
-
+</pre></div>
 <br/>
-<br/>
-9) Bundle up the logic so that it can be applied to multiple pages
 
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">scrape_position</span><span class="p">(</span><span class="n">position</span><span class="p">):</span>
+
+<pre><code>[('Nick Shore', 'C', 166.6), ('Mats Zuccarello', 'RW', 165.8)]
+</code></pre>
+<br/>
+<p>№9 Bundle up the logic so that it can be applied to multiple pages</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scrape_position</span><span class="p">(</span><span class="n">position</span><span class="p">):</span>
     <span class="n">base</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;https://www.cbssports.com/fantasy/hockey/stats&#39;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;{base}/{position}/2019/season/projections/&#39;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -169,14 +125,11 @@
     <span class="n">rows</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;TableBase-bodyTr &#39;</span><span class="p">})</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">data</span>
-</code></pre></div>
-
-
-
+</pre></div>
 <br/>
-10) Scrape each page that contains player projection data
 
-<div class="codehilite"><pre><span></span><code><span class="c1"># F for Forwards</span>
+<p>№10 Scrape each page that contains player projection data</p>
+<div class="highlight"><pre><span></span><span class="c1"># F for Forwards</span>
 <span class="c1"># D for Defence</span>
 <span class="c1"># G for goalies</span>
 
@@ -187,23 +140,16 @@
     <span class="n">d</span> <span class="o">=</span> <span class="n">scrape_position</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
     <span class="n">data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></div>
-
-
-
+</pre></div>
 <br/>
-11) Stuff the captured data into a Pandas DataFrame
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<p>№11 Stuff the captured data into a pandas <code>DataFrame</code></p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</code></pre></div>
-
-
-
-
-
+</pre></div>
+<br/>
 
 <div>
 <style scoped>
@@ -230,43 +176,39 @@
   </thead>
   <tbody>
     <tr>
-      <th>205</th>
-      <td>Martin Jones</td>
-      <td>G</td>
-      <td>386.8</td>
-    </tr>
-    <tr>
-      <th>50</th>
-      <td>Matt Duchene</td>
-      <td>C</td>
-      <td>219.4</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Brad Marchand</td>
-      <td>LW</td>
-      <td>297.3</td>
-    </tr>
-    <tr>
-      <th>198</th>
-      <td>Marc-Edouard Vlasic</td>
+      <th>119</th>
+      <td>Alex Pietrangelo</td>
       <td>D</td>
-      <td>79.6</td>
+      <td>145.3</td>
     </tr>
     <tr>
-      <th>51</th>
-      <td>Vladimir Tarasenko</td>
-      <td>RW</td>
-      <td>217.7</td>
+      <th>136</th>
+      <td>Justin Faulk</td>
+      <td>D</td>
+      <td>123.5</td>
+    </tr>
+    <tr>
+      <th>177</th>
+      <td>Danny DeKeyser</td>
+      <td>D</td>
+      <td>92.4</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>Drew Doughty</td>
+      <td>D</td>
+      <td>119.8</td>
+    </tr>
+    <tr>
+      <th>176</th>
+      <td>Esa Lindell</td>
+      <td>D</td>
+      <td>92.4</td>
     </tr>
   </tbody>
 </table>
-</div>
-
-<p><br/>
-12) Calculate the <a href="https://en.wikipedia.org/wiki/Value_over_replacement_player">value over player replacement</a> score for each player</p>
-
-<div class="codehilite"><pre><span></span><code><span class="n">pool_size</span> <span class="o">=</span> <span class="mi">8</span>
+</div><p>№12 Calculate the <a href="https://en.wikipedia.org/wiki/Value_over_replacement_player">value over player replacement</a> score for each player</p>
+<div class="highlight"><pre><span></span><span class="n">pool_size</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">starters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;LW&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;RW&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
 
 <span class="k">for</span> <span class="n">position</span><span class="p">,</span> <span class="n">slots</span> <span class="ow">in</span> <span class="n">starters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -278,23 +220,14 @@
         <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="p">)</span>
     <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;position&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">position</span><span class="p">,</span> <span class="s1">&#39;vorp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;points&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">replacement</span>
-</code></pre></div>
-
-
-
-<br/>
-13) Re-rank and draft players according to their VORP rank
-<br/>
+</pre></div>
 <br/>
 
-<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;vorp_rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vorp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<p>№13 Re-rank and draft players according to their VORP rank</p>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;vorp_rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vorp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;vorp_rank&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-</code></pre></div>
-
-
-
-
-
+</pre></div>
+<br/>
 
 <div>
 <style scoped>
@@ -484,10 +417,7 @@
     </tr>
   </tbody>
 </table>
-</div>
-
-<p><br/>
-14) Profit</p>
+</div><p>№14 Profit</p>
 
       </div>
     </div>

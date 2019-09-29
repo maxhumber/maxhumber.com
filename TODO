@@ -1,0 +1,9 @@
+breaks before and after
+better output printing
+hide cells (re)
+html table formatting
+
+fix /blog.html vs /blog on local
+rss feeds for python tags
+blog aggregator (eventually)
+only regenerate changed files
