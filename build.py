@@ -1,9 +1,13 @@
 from pathlib import Path
+import re
 import shutil
-from subprocess import call
+from subprocess import run
 from fire import Fire
 from jinja2 import Environment, FileSystemLoader
-from markdown2 import markdown, markdown_path
+import mistune
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters.html import HtmlFormatter
 from nbconvert import MarkdownExporter
 import nbformat
 
@@ -16,6 +20,25 @@ JIN = Environment(
 BLOG = Path('blog')
 PAGES = Path('pages')
 OUT = Path('output')
+
+class HighlightRenderer(mistune.Renderer):
+    def block_code(self, code, lang):
+        if not lang:
+            return f'\n<pre><code>{mistune.escape(code)}</code></pre>\n'
+        lexer = get_lexer_by_name(lang, stripall=True)
+        formatter = HtmlFormatter()
+        return highlight(code, lexer, formatter)
+
+markdown = mistune.Markdown(renderer=HighlightRenderer())
+
+def extract_metadata(md):
+    dash_splits = md.split('---', maxsplit=2)
+    meta = dash_splits[1]
+    meta = meta.split('\n')[1:-1]
+    meta = [m.split(': ', 1) for m in meta]
+    meta = {k.strip(): v.strip() for k, v in meta}
+    body = dash_splits[2].strip()
+    return meta, body
 
 def extract_notebook_metadata(notebook):
     '''Extract metadata from the first Jupyter Notebook cell'''
@@ -33,8 +56,8 @@ def convert_notebook(path):
     for fn, bytes in resources['outputs'].items():
         with open(f"{BLOG}/images/{container['slug']}-{fn}", 'wb') as f:
             f.write(bytes)
-    md = md.replace('![png](', f"![png](images/{container['slug']}-")
-    return md, container
+    body = md.replace('![png](', f"![png](images/{container['slug']}-")
+    return container, body
 
 def build_blog_posts():
     '''Build and render all the blog posts'''
@@ -42,11 +65,21 @@ def build_blog_posts():
     posts = []
     for blog_post in BLOG.iterdir():
         if blog_post.name.endswith('.md'):
-            html = markdown_path(blog_post, extras=['metadata', 'fenced-code-blocks'])
-            container = html.metadata.copy()
+            with open(blog_post, 'r') as f:
+                md = f.read()
+            container, body = extract_metadata(md)
+            html = markdown(body)
         elif blog_post.name.endswith('.ipynb'):
-            md, container = convert_notebook(blog_post)
-            html = markdown(md, extras=['fenced-code-blocks'])
+            container, body = convert_notebook(blog_post)
+            html = markdown(body)
+            # break line after code
+            html = re.sub('\n</pre></div>','\n</pre></div>\n<br/>\n', html)
+            # break line after table
+            # html = re.sub('</table>','</table>\n<br/>\n', html)
+            # fix code outputs
+            html = re.sub('\n\n</code></pre>','</code></pre>\n<br/>', html)
+            # remove table style
+            html = re.sub(r'\n<div><style scoped>.*?</style>', '', html, flags=re.DOTALL)
         else:
             continue
         container['content'] = template.render(html=html)
@@ -65,7 +98,9 @@ def build_pages():
     template = JIN.get_template('page.html')
     pages = []
     for p in PAGES.glob('*.md'):
-        html = template.render(html=markdown_path(p))
+        with open(p, 'r') as f:
+            md = f.read()
+        html = template.render(html=markdown(md))
         container = {'slug': p.name.replace('.md', ''), 'content': html}
         pages.append(container)
     return pages
@@ -94,24 +129,18 @@ def preview():
     '''Preview static website'''
     JIN.globals['DEVELOPMENT'] = True
     build()
-    call('cd output; python -m http.server', shell=True)
+    run('cd output; python -m http.server', shell=True)
 
 def publish():
     '''Push static website to GitHub Pages'''
     build()
-    call(f'git add {str(OUT)} {str(BLOG)}', shell=True)
-    call('git commit -m "new blog post"', shell=True)
-    call('git push', shell=True)
-    call('git push origin `git subtree split --prefix output master`:gh-pages --force', shell=True)
+    run(f'git add {str(OUT)} {str(BLOG)}', shell=True)
+    run('git commit -m "new blog post"', shell=True)
+    run('git push', shell=True)
+    run('git push origin `git subtree split --prefix output master`:gh-pages --force', shell=True)
 
 if __name__ == '__main__':
     Fire({
         'preview': preview,
         'publish': publish,
     })
-
-# TODO:
-# fix /blog.html vs /blog on local
-# rss feeds for python tags
-# blog aggregator (eventually)
-# only regenerate changed files
