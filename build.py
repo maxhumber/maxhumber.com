@@ -59,6 +59,19 @@ def convert_notebook(path):
     body = md.replace('![png](', f"![png](images/{container['slug']}-")
     return container, body
 
+def fix_notebook_html(html):
+    # add break line after code
+    html = re.sub('\n</pre></div>','\n</pre></div>\n<br/>\n', html)
+    # fix code outputs
+    html = re.sub('\n\n\n</code></pre>','</code></pre>\n<br/>', html)
+    # remove table style
+    html = re.sub(r'\n<style scoped>.*?</style>', '', html, 0, flags=re.DOTALL)
+    # remove table border
+    html = re.sub('<table border="1"', '<table', html)
+    # add break line after table
+    html = re.sub('\n</table>\n</div>', '\n</table>\n</div>\n<br/>\n', html)
+    return html
+
 def build_blog_posts():
     '''Build and render all the blog posts'''
     template = JIN.get_template('blog_post.html')
@@ -72,14 +85,7 @@ def build_blog_posts():
         elif blog_post.name.endswith('.ipynb'):
             container, body = convert_notebook(blog_post)
             html = markdown(body)
-            # break line after code
-            html = re.sub('\n</pre></div>','\n</pre></div>\n<br/>\n', html)
-            # break line after table
-            # html = re.sub('</table>','</table>\n<br/>\n', html)
-            # fix code outputs
-            html = re.sub('\n\n</code></pre>','</code></pre>\n<br/>', html)
-            # remove table style
-            html = re.sub(r'\n<div><style scoped>.*?</style>', '', html, flags=re.DOTALL)
+            html = fix_notebook_html(html)
         else:
             continue
         container['content'] = template.render(html=html)

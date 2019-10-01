@@ -1,7 +1,6 @@
-breaks before and after
-better output printing
+no overflow for tables
+image resizing depending on the screen size
 hide cells (re)
-html table formatting
 
 fix /blog.html vs /blog on local
 rss feeds for python tags
