@@ -1,6 +1,11 @@
-no overflow for tables
+color match table to code output
+do something about quotes
+make margins slightly smaller on mobile
+refactor build script
 image resizing depending on the screen size
 hide cells (re)
+
+books, blog, projects
 
 fix /blog.html vs /blog on local
 rss feeds for python tags

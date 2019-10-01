@@ -67,9 +67,13 @@ def fix_notebook_html(html):
     # remove table style
     html = re.sub(r'\n<style scoped>.*?</style>', '', html, 0, flags=re.DOTALL)
     # remove table border
-    html = re.sub('<table border="1"', '<table', html)
+    html = re.sub('<table border="1" class="dataframe">', '<table class="table table-hover table-striped table-sm">', html)
+    # remove silly right align
+    html = re.sub('<tr style="text-align: right;">', '<tr>', html)
     # add break line after table
     html = re.sub('\n</table>\n</div>', '\n</table>\n</div>\n<br/>\n', html)
+    # add table responsive
+    html = re.sub('\n<div>\n<table', '\n<div class="table-responsive">\n<table', html)
     return html
 
 def build_blog_posts():
