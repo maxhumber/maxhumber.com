@@ -1,7 +1,8 @@
 from pathlib import Path
 import re
 import shutil
-from subprocess import run
+from subprocess import run, Popen
+import webbrowser
 from fire import Fire
 from jinja2 import Environment, FileSystemLoader
 import mistune
@@ -139,7 +140,8 @@ def preview():
     '''Preview static website'''
     JIN.globals['DEVELOPMENT'] = True
     build()
-    run('cd output; python -m http.server', shell=True)
+    Popen('cd output; python -m http.server', shell=True)
+    webbrowser.open('localhost:8000/blog.html')
 
 def publish():
     '''Push static website to GitHub Pages'''
