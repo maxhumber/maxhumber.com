@@ -44,7 +44,7 @@
 <span class="n">position</span> <span class="o">=</span> <span class="s1">&#39;F&#39;</span>
 
 <span class="n">base</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;https://www.cbssports.com/fantasy/hockey/stats&#39;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;{base}/{position}/2019/season/projections/&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;{base}/{position}/2019/restofseason/projections/&#39;</span>
 
 <span class="n">html</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
@@ -83,7 +83,7 @@
 <br/>
 
 
-<pre><code>366.5
+<pre><code>361.1
 </code></pre>
 <br/>
 <p>№7 Wrap these <code>find</code> operations into a function</p>
@@ -104,7 +104,7 @@
 <br/>
 
 
-<pre><code>('Nikita Kucherov', 'RW', 366.5)
+<pre><code>('Nikita Kucherov', 'RW', 361.1)
 </code></pre>
 <br/>
 <p>№8 Make sure that the function works for all the captured rows</p>
@@ -114,18 +114,19 @@
         <span class="n">players</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_row</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="k">pass</span>
+
 <span class="n">players</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
 </pre></div>
 <br/>
 
 
-<pre><code>[('David Perron', 'RW', 143.5), ('Dylan Strome', 'C', 143.0)]
+<pre><code>[('Brandon Pirri', 'LW', 165.4), ('Pavel Buchnevich', 'RW', 164.9)]
 </code></pre>
 <br/>
 <p>№9 Bundle up the logic so that it can be applied to multiple pages</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scrape_position</span><span class="p">(</span><span class="n">position</span><span class="p">):</span>
     <span class="n">base</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;https://www.cbssports.com/fantasy/hockey/stats&#39;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;{base}/{position}/2019/season/projections/&#39;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;{base}/{position}/2019/restofseason/projections/&#39;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">soup</span> <span class="o">=</span> <span class="n">Soup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
     <span class="n">rows</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;TableBase-bodyTr &#39;</span><span class="p">})</span>
@@ -174,34 +175,34 @@
   </thead>
   <tbody>
     <tr>
-      <th>122</th>
-      <td>Jake Muzzin</td>
+      <th>171</th>
+      <td>Mike Matheson</td>
       <td>D</td>
-      <td>163.8</td>
+      <td>92.0</td>
     </tr>
     <tr>
-      <th>239</th>
-      <td>Anders Nilsson</td>
-      <td>G</td>
-      <td>176.4</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Johnny Gaudreau</td>
-      <td>LW</td>
-      <td>270.0</td>
-    </tr>
-    <tr>
-      <th>220</th>
-      <td>Henrik Lundqvist</td>
-      <td>G</td>
-      <td>246.2</td>
-    </tr>
-    <tr>
-      <th>82</th>
-      <td>Kyle Palmieri</td>
+      <th>60</th>
+      <td>David Perron</td>
       <td>RW</td>
-      <td>150.5</td>
+      <td>196.9</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>Tomas Tatar</td>
+      <td>LW</td>
+      <td>176.1</td>
+    </tr>
+    <tr>
+      <th>190</th>
+      <td>Dennis Cholowski</td>
+      <td>D</td>
+      <td>83.0</td>
+    </tr>
+    <tr>
+      <th>257</th>
+      <td>Thatcher Demko</td>
+      <td>G</td>
+      <td>89.0</td>
     </tr>
   </tbody>
 </table>
@@ -252,141 +253,141 @@
       <th>1.0</th>
       <td>Nikita Kucherov</td>
       <td>RW</td>
-      <td>366.5</td>
-      <td>103.9375</td>
+      <td>361.1</td>
+      <td>75.38750</td>
     </tr>
     <tr>
       <th>2.0</th>
-      <td>Mark Giordano</td>
-      <td>D</td>
-      <td>322.3</td>
-      <td>93.1500</td>
+      <td>Leon Draisaitl</td>
+      <td>LW</td>
+      <td>333.1</td>
+      <td>58.51250</td>
     </tr>
     <tr>
       <th>3.0</th>
-      <td>Brent Burns</td>
-      <td>D</td>
-      <td>317.5</td>
-      <td>88.3500</td>
+      <td>Connor McDavid</td>
+      <td>C</td>
+      <td>337.1</td>
+      <td>45.13750</td>
     </tr>
     <tr>
       <th>4.0</th>
-      <td>Morgan Rielly</td>
-      <td>D</td>
-      <td>289.5</td>
-      <td>60.3500</td>
+      <td>Andrei Vasilevskiy</td>
+      <td>G</td>
+      <td>433.9</td>
+      <td>41.26250</td>
     </tr>
     <tr>
       <th>5.0</th>
-      <td>Leon Draisaitl</td>
-      <td>LW</td>
-      <td>310.0</td>
-      <td>47.6125</td>
+      <td>Brent Burns</td>
+      <td>D</td>
+      <td>225.1</td>
+      <td>34.09375</td>
     </tr>
     <tr>
       <th>6.0</th>
-      <td>John Carlson</td>
-      <td>D</td>
-      <td>271.5</td>
-      <td>42.3500</td>
+      <td>Brad Marchand</td>
+      <td>LW</td>
+      <td>302.1</td>
+      <td>27.51250</td>
     </tr>
     <tr>
       <th>7.0</th>
-      <td>Brad Marchand</td>
-      <td>LW</td>
-      <td>298.0</td>
-      <td>35.6125</td>
+      <td>Patrick Kane</td>
+      <td>RW</td>
+      <td>312.7</td>
+      <td>26.98750</td>
     </tr>
     <tr>
       <th>8.0</th>
-      <td>Andrei Vasilevskiy</td>
-      <td>G</td>
-      <td>409.5</td>
-      <td>35.1250</td>
+      <td>Dustin Byfuglien</td>
+      <td>D</td>
+      <td>216.7</td>
+      <td>25.69375</td>
     </tr>
     <tr>
       <th>9.0</th>
-      <td>Patrick Kane</td>
-      <td>RW</td>
-      <td>289.5</td>
-      <td>26.9375</td>
+      <td>Mark Giordano</td>
+      <td>D</td>
+      <td>210.2</td>
+      <td>19.19375</td>
     </tr>
     <tr>
       <th>10.0</th>
-      <td>Connor McDavid</td>
-      <td>C</td>
-      <td>300.0</td>
-      <td>19.9000</td>
+      <td>Morgan Rielly</td>
+      <td>D</td>
+      <td>208.0</td>
+      <td>16.99375</td>
     </tr>
     <tr>
       <th>11.0</th>
-      <td>Alex Ovechkin</td>
-      <td>LW</td>
-      <td>282.0</td>
-      <td>19.6125</td>
+      <td>John Carlson</td>
+      <td>D</td>
+      <td>207.0</td>
+      <td>15.99375</td>
     </tr>
     <tr>
       <th>12.0</th>
-      <td>Brayden Point</td>
-      <td>C</td>
-      <td>299.0</td>
-      <td>18.9000</td>
+      <td>Kris Letang</td>
+      <td>D</td>
+      <td>205.2</td>
+      <td>14.19375</td>
     </tr>
     <tr>
       <th>13.0</th>
-      <td>Steven Stamkos</td>
-      <td>C</td>
-      <td>294.3</td>
-      <td>14.2000</td>
+      <td>Tyson Barrie</td>
+      <td>D</td>
+      <td>203.6</td>
+      <td>12.59375</td>
     </tr>
     <tr>
       <th>14.0</th>
-      <td>Carey Price</td>
-      <td>G</td>
-      <td>386.7</td>
-      <td>12.3250</td>
+      <td>Mikko Rantanen</td>
+      <td>RW</td>
+      <td>297.2</td>
+      <td>11.48750</td>
     </tr>
     <tr>
       <th>15.0</th>
       <td>Nathan MacKinnon</td>
       <td>C</td>
-      <td>291.5</td>
-      <td>11.4000</td>
+      <td>302.8</td>
+      <td>10.83750</td>
     </tr>
     <tr>
       <th>16.0</th>
-      <td>Frederik Andersen</td>
-      <td>G</td>
-      <td>382.7</td>
-      <td>8.3250</td>
+      <td>Alex Ovechkin</td>
+      <td>LW</td>
+      <td>283.9</td>
+      <td>9.31250</td>
     </tr>
     <tr>
       <th>17.0</th>
-      <td>Johnny Gaudreau</td>
-      <td>LW</td>
-      <td>270.0</td>
-      <td>7.6125</td>
+      <td>Jordan Binnington</td>
+      <td>G</td>
+      <td>393.5</td>
+      <td>0.86250</td>
     </tr>
     <tr>
       <th>18.0</th>
-      <td>Sidney Crosby</td>
-      <td>C</td>
-      <td>286.0</td>
-      <td>5.9000</td>
+      <td>Torey Krug</td>
+      <td>D</td>
+      <td>191.8</td>
+      <td>0.79375</td>
     </tr>
     <tr>
       <th>19.0</th>
-      <td>Sergei Bobrovsky</td>
-      <td>G</td>
-      <td>380.1</td>
-      <td>5.7250</td>
+      <td>Steven Stamkos</td>
+      <td>C</td>
+      <td>292.3</td>
+      <td>0.33750</td>
     </tr>
     <tr>
       <th>20.0</th>
-      <td>Connor Hellebuyck</td>
+      <td>Tuukka Rask</td>
       <td>G</td>
-      <td>378.4</td>
-      <td>4.0250</td>
+      <td>392.7</td>
+      <td>0.06250</td>
     </tr>
   </tbody>
 </table>
