@@ -75,6 +75,8 @@ def fix_notebook_html(html):
     html = re.sub('\n</table>\n</div>', '\n</table>\n</div>\n<br/>\n', html)
     # add table responsive
     html = re.sub('\n<div>\n<table', '\n<div class="table-responsive">\n<table', html)
+    # add images responsive
+    html = re.sub('(?<=\w\")(.*)(?=alt)', ' class="img-fluid mx-auto d-block" ', html)
     return html
 
 def build_blog_posts():

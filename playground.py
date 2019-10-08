@@ -16,6 +16,8 @@ def fix_notebook_html(html):
     html = re.sub('<table border="1"', '<table', html)
     # add break line after table
     html = re.sub('\n</table>\n</div>', '\n</table>\n</div>\n<br/>\n', html)
+    # make plots and graphs responsive
+    html = re.sub('(?<=\")(.*)(?=alt)', ' class="img-fluid mx-auto d-block" ', html)
     return html
 
 
