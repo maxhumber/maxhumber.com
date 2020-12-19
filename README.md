@@ -11,11 +11,11 @@ My bespoke static site generator that works with Markdown and Jupyter
 View changes locally:
 
 ```sh
-make preview
+python blog.py preview
 ```
 
 Publish to GitHub Pages:
 
 ```sh
-make publish
+python blog.py publish
 ```
