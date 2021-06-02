@@ -10,7 +10,7 @@ jsonschema==3.2.0
 jupyter-client==6.1.7
 jupyter-core==4.7.0
 jupyterlab-pygments==0.1.2
-markdown2==2.3.10
+markdown2==2.4.0
 MarkupSafe==1.1.1
 mistune==0.8.4
 nbclient==0.5.1
