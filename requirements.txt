@@ -27,6 +27,6 @@ pyzmq==20.0.0
 six==1.15.0
 termcolor==1.1.0
 testpath==0.4.4
-tornado==6.1
+tornado==6.3.2
 traitlets==5.0.5
 webencodings==0.5.1
