@@ -1,6 +1,6 @@
 async-generator==1.10
 attrs==20.3.0
-bleach==3.2.1
+bleach==3.3.0
 defusedxml==0.6.0
 entrypoints==0.3
 enum34==1.1.10
