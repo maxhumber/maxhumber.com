@@ -1,14 +1,34 @@
 {% extends "base.html" %}
-
 {% block content %}
-<nav class="tags">
-    {% for tag in tags %}
-        <a href="/{{ tag }}" class="tag">#{{ tag }}</a>
-    {% endfor %}
-</nav>
+<section>
+    <h3>Topic Tags</h3>
+    <ul>
+        {% for tag in tags %}
+        <li><a href="/{{ tag }}">#{{ tag }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
 
-<div class="links">
-    <a href="https://github.com/maxhumber" class="link">GitHub</a>
-    <a href="https://twitter.com/maxhumber" class="link">Twitter</a>
-</div>
+<section>
+    <h3>Open Source</h3>
+    <ul>
+        <li><a href="https://github.com/maxhumber/KeychainStorageKit">KeychainStorageKit</a></li>
+        <li><a href="https://github.com/maxhumber/marc">marc</a></li>
+        <li><a href="https://github.com/maxhumber/redframes">redframes</a></li>
+        <li><a href="https://github.com/maxhumber/gazpacho">gazpacho</a></li>
+        <li><a href="https://github.com/maxhumber/gif">gif</a></li>
+    </ul>
+</section>
+
+<section>
+    <h3>Apps</h3>
+    <ul>
+        <li><a href="https://apps.apple.com/us/app/nexie/id6479674361">Nexie</a></li>
+        <li><a href="https://apps.apple.com/us/app/kingbit/id1565583669">kingbit</a></li>
+        <li><a href="https://apps.apple.com/us/app/ponkan/id1632470402">Ponkan</a></li>
+        <li><a href="https://apps.apple.com/us/app/oolong/id1549289924">Oolong</a></li>
+        <li><a href="https://apps.apple.com/us/app/graphiite/id1540277552">GRAPHIITE</a></li>
+        <li><a href="https://apps.apple.com/us/app/breadbuddy/id1620912870">BreadBuddy</a></li>
+    </ul>
+</section>
 {% endblock %}

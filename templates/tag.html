@@ -3,15 +3,10 @@
 {% block title %}{{ tag }} - Max Humber{% endblock %}
 
 {% block content %}
-<h2>{{ tag }}</h2>
-<ul class="post-list">
+<h1>{{ tag }}</h1>
+<ul>
     {% for post in posts %}
-    <li>
-        <a href="{{ post.slug }}.html">
-            <span class="post-title">{{ post.title }}</span>
-            <span class="post-date">{{ post.date }}</span>
-        </a>
-    </li>
+    <li><a href="/{{ post.slug }}">{{ post.title }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
