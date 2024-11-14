@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="tags">
+    {% for tag in tags %}
+        <a href="/{{ tag }}" class="tag">#{{ tag }}</a>
+    {% endfor %}
+</nav>
+
+<div class="links">
+    <a href="https://github.com/maxhumber" class="link">GitHub</a>
+    <a href="https://twitter.com/maxhumber" class="link">Twitter</a>
+</div>
+{% endblock %}
