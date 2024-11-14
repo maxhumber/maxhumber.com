@@ -7,10 +7,10 @@
     <header>
         <h1>{{ post.title }}</h1>
         <time>{{ post.date }}</time>
-        <div class="tags">
-            {% for tag in post.tags %}
-                <a href="/{{ tag }}" class="tag">{{ tag }}</a>
-            {% endfor %}
+        <div>
+        {% for tag in post.tags %}
+        <a href="{{ tag }}">#{{ tag }}</a>
+        {% endfor %}
         </div>
     </header>
     {{ post.content|safe }}

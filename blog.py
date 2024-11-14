@@ -56,15 +56,19 @@ def copy_file(file: Path, destination: Path) -> None:
 def setup_output(input_dir: Path, output_dir: Path) -> None:
     """Setup output directory and copy static files"""
     output_dir.mkdir(exist_ok=True)
-    # Setup syntax highlighting CSS
     static_dir = output_dir / 'static'
-    static_dir.mkdir(exist_ok=True)
-    css = HtmlFormatter(style='monokai').get_style_defs()
+    static_dir.mkdir(exist_ok=True)  # Ensure the static directory exists
+    formatter = HtmlFormatter(
+        style='default',
+        linenos=False,
+        cssclass='highlight',
+        noclasses=False,
+        nobackground=False,
+    )
+    css = formatter.get_style_defs('.highlight')
     (static_dir / 'highlight.css').write_text(css)
-    # Copy static directories
-    for item in [Path('static'), input_dir / 'images']:
-        copy_static_files(item, output_dir / item.name)
-    # Copy individual files
+    copy_static_files(Path('static'), static_dir)
+    copy_static_files(input_dir / 'images', output_dir / 'images')
     for file in ['CNAME', 'favicon.ico']:
         copy_file(Path(file), output_dir / file)
 
@@ -87,7 +91,7 @@ def build_site(input_dir: Path = Path("input"), output_dir: Path = Path("output"
     # Generate tag pages
     for tag, tag_posts in posts_by_tag.items():
         html = env.get_template('tag.html').render(tag=f"#{tag}", posts=tag_posts)
-        (output_dir / f"tag_{tag}.html").write_text(html)
+        (output_dir / f"{tag}.html").write_text(html)
     # Generate post pages
     for post in posts:
         html = env.get_template('post.html').render(post=post)
@@ -110,9 +114,9 @@ class SiteHandler(http.server.SimpleHTTPRequestHandler):
         if not path or path == '/':
             path = '/index.html'
         elif '.' not in path:
-            tag_path = f'/tag_{path.lstrip("/")}.html'
-            if Path(self.directory + tag_path).exists():
-                path = tag_path
+            # Check if it's a tag or post page
+            if Path(self.directory + f'/{path}.html').exists():
+                path = f'/{path}.html'
             else:
                 path = f'{path}.html'
         self.path = path
