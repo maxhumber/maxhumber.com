@@ -164,7 +164,10 @@ def preview_site() -> None:
 def publish_site() -> None:
     """Build and publish to GitHub Pages"""
     build_site()
-    run("gh-pages -d output", shell=True)
+    run("git add output", shell=True)
+    run('git commit -m "new blog post"', shell=True)
+    run("git push", shell=True)
+    run("git push origin `git subtree split --prefix output master`:gh-pages --force", shell=True)
 
 if __name__ == '__main__':
     command = sys.argv[1] if len(sys.argv) > 1 else 'build'
