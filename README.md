@@ -4,7 +4,7 @@
 
 #### About
 
-My bespoke static site generator for my personal website + blog
+My bespoke static site generator
 
 #### Usage
 
