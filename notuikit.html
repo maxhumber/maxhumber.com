@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftUI is not UIKit - Max Humber</title>
+    <link rel="stylesheet" href="/static/highlight.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="49865e68-5a7e-4e56-9ff3-4f1719b00f03"></script>
+</head>
+<body>
+    <main>
+        <nav>
+            <a href="/"><img src="/static/signature.png" alt="Signature"></a>
+            <div>
+                <a href="https://www.goodreads.com/author/show/18086463.Max_Humber">Goodreads</a>
+                <a href="https://linkedin.com/in/maxhumber">LinkedIn</a>
+                <a href="https://twitter.com/maxhumber">X</a>
+            </div>
+        </nav>
+<article>
+    <header>
+        <h1>SwiftUI is not UIKit</h1>
+        <time>2024-11-14</time>
+        <div>
+        <a href="code">#code</a>
+        </div>
+    </header>
+    <p>Programming basically boils down to two fundamentals: data flow and naming things. Simple in theory, easy to complicate in practice. Let's look at some code that updates an emoji on a "parent" view from a "child" view action. </p>
+<h4>Boilerplate UIKit</h4>
+<p>In UIKit it's whole song and dance:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">UIKit</span>
+
+<span class="kd">class</span> <span class="nc">ParentViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">labelText</span> <span class="p">=</span> <span class="s">&quot;🐶&quot;</span> <span class="p">{</span>
+        <span class="kr">didSet</span> <span class="p">{</span>
+            <span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">labelText</span><span class="si">)</span><span class="s">&quot;</span>
+            <span class="n">childViewController</span><span class="p">?.</span><span class="n">updateLabel</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">labelText</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">label</span> <span class="p">=</span> <span class="bp">UILabel</span><span class="p">()</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">childContainer</span> <span class="p">=</span> <span class="bp">UIView</span><span class="p">()</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">childViewController</span><span class="p">:</span> <span class="n">ChildViewController</span><span class="p">?</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+        <span class="n">setupUI</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">setupUI</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">white</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">borderColor</span> <span class="p">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">orange</span><span class="p">.</span><span class="n">cgColor</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">borderWidth</span> <span class="p">=</span> <span class="mi">1</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">layoutMargins</span> <span class="p">=</span> <span class="n">UIEdgeInsets</span><span class="p">(</span><span class="n">top</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="kr">left</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">bottom</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="kr">right</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">parentStack</span> <span class="p">=</span> <span class="bp">UIStackView</span><span class="p">(</span><span class="n">arrangedSubviews</span><span class="p">:</span> <span class="p">[</span>
+          <span class="n">createParentLabelStack</span><span class="p">(),</span> <span class="n">childContainer</span>
+        <span class="p">])</span>
+        <span class="n">parentStack</span><span class="p">.</span><span class="n">axis</span> <span class="p">=</span> <span class="p">.</span><span class="n">vertical</span>
+        <span class="n">parentStack</span><span class="p">.</span><span class="n">spacing</span> <span class="p">=</span> <span class="mi">8</span>
+        <span class="n">parentStack</span><span class="p">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="p">=</span> <span class="kc">false</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">parentStack</span><span class="p">)</span>
+        <span class="bp">NSLayoutConstraint</span><span class="p">.</span><span class="n">activate</span><span class="p">([</span>
+            <span class="n">parentStack</span><span class="p">.</span><span class="n">centerXAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="p">.</span><span class="n">centerXAnchor</span><span class="p">),</span>
+            <span class="n">parentStack</span><span class="p">.</span><span class="n">centerYAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="p">.</span><span class="n">centerYAnchor</span><span class="p">),</span>
+            <span class="n">childContainer</span><span class="p">.</span><span class="n">heightAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalToConstant</span><span class="p">:</span> <span class="mi">100</span><span class="p">),</span>
+            <span class="n">childContainer</span><span class="p">.</span><span class="n">widthAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalToConstant</span><span class="p">:</span> <span class="mi">150</span><span class="p">)</span>
+        <span class="p">])</span>
+        <span class="kd">let</span> <span class="nv">childVC</span> <span class="p">=</span> <span class="n">ChildViewController</span><span class="p">()</span>
+        <span class="n">childVC</span><span class="p">.</span><span class="n">labelText</span> <span class="p">=</span> <span class="n">labelText</span>
+        <span class="n">childVC</span><span class="p">.</span><span class="n">onUpdateText</span> <span class="p">=</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="n">newText</span> <span class="k">in</span>
+            <span class="kc">self</span><span class="p">?.</span><span class="n">labelText</span> <span class="p">=</span> <span class="n">newText</span>
+        <span class="p">}</span>
+        <span class="n">addChild</span><span class="p">(</span><span class="n">childVC</span><span class="p">)</span>
+        <span class="n">childContainer</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">childVC</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+        <span class="n">childVC</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="p">=</span> <span class="n">childContainer</span><span class="p">.</span><span class="n">bounds</span>
+        <span class="n">childVC</span><span class="p">.</span><span class="n">didMove</span><span class="p">(</span><span class="n">toParent</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="n">childViewController</span> <span class="p">=</span> <span class="n">childVC</span>
+        <span class="n">childContainer</span><span class="p">.</span><span class="n">layoutMargins</span> <span class="p">=</span> <span class="n">UIEdgeInsets</span><span class="p">(</span>
+            <span class="n">top</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="kr">left</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">bottom</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="kr">right</span><span class="p">:</span> <span class="mi">10</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">createParentLabelStack</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="bp">UIView</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">parentLabel</span> <span class="p">=</span> <span class="bp">UILabel</span><span class="p">()</span>
+        <span class="n">parentLabel</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&quot;Parent&quot;</span>
+        <span class="kd">let</span> <span class="nv">stack</span> <span class="p">=</span> <span class="bp">UIStackView</span><span class="p">(</span><span class="n">arrangedSubviews</span><span class="p">:</span> <span class="p">[</span><span class="n">parentLabel</span><span class="p">,</span> <span class="n">label</span><span class="p">])</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">axis</span> <span class="p">=</span> <span class="p">.</span><span class="n">vertical</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">alignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">center</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">spacing</span> <span class="p">=</span> <span class="mi">4</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">borderColor</span> <span class="p">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">cgColor</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">borderWidth</span> <span class="p">=</span> <span class="mi">1</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">layoutMargins</span> <span class="p">=</span> <span class="n">UIEdgeInsets</span><span class="p">(</span><span class="n">top</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="kr">left</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">bottom</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="kr">right</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">isLayoutMarginsRelativeArrangement</span> <span class="p">=</span> <span class="kc">true</span>
+        <span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">labelText</span><span class="si">)</span><span class="s">&quot;</span>
+        <span class="n">label</span><span class="p">.</span><span class="n">textAlignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">center</span>
+        <span class="k">return</span> <span class="n">stack</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">ChildViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">labelText</span> <span class="p">=</span> <span class="s">&quot;🐶&quot;</span> <span class="p">{</span>
+        <span class="kr">didSet</span> <span class="p">{</span>
+            <span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">labelText</span><span class="si">)</span><span class="s">&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">onUpdateText</span><span class="p">:</span> <span class="p">((</span><span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)?</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">label</span> <span class="p">=</span> <span class="bp">UILabel</span><span class="p">()</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">updateButton</span> <span class="p">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="n">type</span><span class="p">:</span> <span class="p">.</span><span class="n">system</span><span class="p">)</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+        <span class="n">setupUI</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">setupUI</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">borderColor</span> <span class="p">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">green</span><span class="p">.</span><span class="n">cgColor</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">borderWidth</span> <span class="p">=</span> <span class="mi">1</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">layoutMargins</span> <span class="p">=</span> <span class="n">UIEdgeInsets</span><span class="p">(</span><span class="n">top</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="kr">left</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">bottom</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="kr">right</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">labelText</span><span class="si">)</span><span class="s">&quot;</span>
+        <span class="n">label</span><span class="p">.</span><span class="n">textAlignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">center</span>
+        <span class="n">updateButton</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;Update&quot;</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="p">.</span><span class="n">normal</span><span class="p">)</span>
+        <span class="n">updateButton</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="n">handleUpdateButtonTap</span><span class="p">),</span> <span class="k">for</span><span class="p">:</span> <span class="p">.</span><span class="n">touchUpInside</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">childLabel</span> <span class="p">=</span> <span class="bp">UILabel</span><span class="p">()</span>
+        <span class="n">childLabel</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">&quot;Child&quot;</span>
+        <span class="kd">let</span> <span class="nv">stack</span> <span class="p">=</span> <span class="bp">UIStackView</span><span class="p">(</span><span class="n">arrangedSubviews</span><span class="p">:</span> <span class="p">[</span><span class="n">childLabel</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">updateButton</span><span class="p">])</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">axis</span> <span class="p">=</span> <span class="p">.</span><span class="n">vertical</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">alignment</span> <span class="p">=</span> <span class="p">.</span><span class="n">center</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">spacing</span> <span class="p">=</span> <span class="mi">4</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="p">=</span> <span class="kc">false</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">isLayoutMarginsRelativeArrangement</span> <span class="p">=</span> <span class="kc">true</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+        <span class="bp">NSLayoutConstraint</span><span class="p">.</span><span class="n">activate</span><span class="p">([</span>
+            <span class="n">stack</span><span class="p">.</span><span class="n">centerXAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="p">.</span><span class="n">centerXAnchor</span><span class="p">),</span>
+            <span class="n">stack</span><span class="p">.</span><span class="n">centerYAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="p">.</span><span class="n">centerYAnchor</span><span class="p">)</span>
+        <span class="p">])</span>
+    <span class="p">}</span>
+
+    <span class="kr">@objc</span> <span class="kd">private</span> <span class="kd">func</span> <span class="nf">handleUpdateButtonTap</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">labelText</span> <span class="p">=</span> <span class="s">&quot;🐈&quot;</span>
+        <span class="n">onUpdateText</span><span class="p">?(</span><span class="n">labelText</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">updateLabel</span><span class="p">(</span><span class="n">with</span> <span class="n">text</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">labelText</span> <span class="p">=</span> <span class="n">text</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Only required for Xcode Previews</span>
+<span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="kd">struct</span> <span class="nc">ParentViewControllerWrapper</span><span class="p">:</span> <span class="n">UIViewControllerRepresentable</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Binding</span> <span class="kd">var</span> <span class="nv">text</span><span class="p">:</span> <span class="nb">String</span>
+
+    <span class="kd">func</span> <span class="nf">makeUIViewController</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">ParentViewController</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">parentVC</span> <span class="p">=</span> <span class="n">ParentViewController</span><span class="p">()</span>
+        <span class="n">parentVC</span><span class="p">.</span><span class="n">labelText</span> <span class="p">=</span> <span class="n">text</span>
+        <span class="k">return</span> <span class="n">parentVC</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">updateUIViewController</span><span class="p">(</span><span class="kc">_</span> <span class="n">uiViewController</span><span class="p">:</span> <span class="n">ParentViewController</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">uiViewController</span><span class="p">.</span><span class="n">labelText</span> <span class="p">=</span> <span class="n">text</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Previewable</span> <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">text</span> <span class="p">=</span> <span class="s">&quot;🐶&quot;</span>
+    <span class="n">ParentViewControllerWrapper</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="err">$</span><span class="n">text</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">frame</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">220</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>All of that to change an emoji from "🐶" to "🐈"!</p>
+<h4>"SwiftUIKit"</h4>
+<p>Many seasoned UIKit developers transitioning to SwiftUI treat the framework as “UIKit with different syntax.” The result? Bloated SwiftUI code that looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="c1">// Unnecessary coordinator pattern</span>
+<span class="kd">class</span> <span class="nc">ParentCoordinator</span> <span class="p">{</span>
+    <span class="c1">// Unneccessary nesting</span>
+    <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">parentViewModel</span><span class="p">:</span> <span class="n">ParentViewModel</span><span class="p">?</span>
+    <span class="kd">var</span> <span class="nv">childCoordinator</span><span class="p">:</span> <span class="n">ChildCoordinator</span><span class="p">?</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">parentViewModel</span><span class="p">:</span> <span class="n">ParentViewModel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">parentViewModel</span> <span class="p">=</span> <span class="n">parentViewModel</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">childCoordinator</span> <span class="p">=</span> <span class="n">ChildCoordinator</span><span class="p">(</span><span class="n">childViewModel</span><span class="p">:</span> <span class="n">parentViewModel</span><span class="p">.</span><span class="n">childViewModel</span><span class="p">)</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">childCoordinator</span><span class="p">?.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Unneccessary delegate pattern</span>
+<span class="kd">extension</span> <span class="nc">ParentCoordinator</span><span class="p">:</span> <span class="n">ChildCoordinatorDelegate</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">childCoordinatorDidUpdateLabelText</span><span class="p">(</span><span class="kc">_</span> <span class="n">newText</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">parentViewModel</span><span class="p">?.</span><span class="n">labelText</span> <span class="p">=</span> <span class="n">newText</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Unneccessary protocol</span>
+<span class="kd">protocol</span> <span class="nc">ChildCoordinatorDelegate</span><span class="p">:</span> <span class="nb">AnyObject</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">childCoordinatorDidUpdateLabelText</span><span class="p">(</span><span class="kc">_</span> <span class="n">newText</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Unneccessary child coordinator</span>
+<span class="kd">class</span> <span class="nc">ChildCoordinator</span> <span class="p">{</span>
+    <span class="c1">// Unneccessary nesting</span>
+    <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">childViewModel</span><span class="p">:</span> <span class="n">ChildViewModel</span><span class="p">?</span>
+    <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="n">ChildCoordinatorDelegate</span><span class="p">?</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">childViewModel</span><span class="p">:</span> <span class="n">ChildViewModel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">childViewModel</span> <span class="p">=</span> <span class="n">childViewModel</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Unnecessary @MainActor</span>
+    <span class="p">@</span><span class="n">MainActor</span> <span class="kd">func</span> <span class="nf">updateText</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">childViewModel</span><span class="p">?.</span><span class="n">updateText</span><span class="p">()</span>
+        <span class="n">delegate</span><span class="p">?.</span><span class="n">childCoordinatorDidUpdateLabelText</span><span class="p">(</span><span class="n">childViewModel</span><span class="p">!.</span><span class="n">labelText</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Unneccessary view model</span>
+<span class="p">@</span><span class="n">Observable</span>
+<span class="kd">class</span> <span class="nc">ParentViewModel</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">labelText</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="c1">// Unneccessary nesting</span>
+    <span class="kd">var</span> <span class="nv">childViewModel</span><span class="p">:</span> <span class="n">ChildViewModel</span>
+    <span class="kd">var</span> <span class="nv">coordinator</span><span class="p">:</span> <span class="n">ParentCoordinator</span><span class="p">?</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">labelText</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;🐶&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">labelText</span> <span class="p">=</span> <span class="n">labelText</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">childViewModel</span> <span class="p">=</span> <span class="n">ChildViewModel</span><span class="p">(</span><span class="n">labelText</span><span class="p">:</span> <span class="n">labelText</span><span class="p">)</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">coordinator</span> <span class="p">=</span> <span class="n">ParentCoordinator</span><span class="p">(</span><span class="n">parentViewModel</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Unneccessary view model</span>
+<span class="p">@</span><span class="n">Observable</span>
+<span class="kd">class</span> <span class="nc">ChildViewModel</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">labelText</span><span class="p">:</span> <span class="nb">String</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">labelText</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">labelText</span> <span class="p">=</span> <span class="n">labelText</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Unneccessary @MainActor</span>
+    <span class="p">@</span><span class="n">MainActor</span> <span class="kd">func</span> <span class="nf">updateText</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">labelText</span> <span class="p">=</span> <span class="s">&quot;🐈&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Overly complex view hierarchy</span>
+<span class="kd">struct</span> <span class="nc">ParentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="n">ParentViewModel</span>
+
+    <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">viewModel</span> <span class="p">=</span> <span class="n">ParentViewModel</span><span class="p">()</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">viewModel</span> <span class="p">=</span> <span class="n">viewModel</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span> <span class="p">{</span>
+            <span class="n">VStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Parent&quot;</span><span class="p">)</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">labelText</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">red</span><span class="p">))</span>
+            <span class="n">ChildView</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">childViewModel</span><span class="p">,</span> <span class="n">coordinator</span><span class="p">:</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">coordinator</span><span class="p">!.</span><span class="n">childCoordinator</span><span class="p">!)</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">orange</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Child view with direct connection to the coordinator</span>
+<span class="kd">struct</span> <span class="nc">ChildView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="n">ChildViewModel</span>
+    <span class="kd">var</span> <span class="nv">coordinator</span><span class="p">:</span> <span class="n">ChildCoordinator</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span> <span class="p">{</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Child&quot;</span><span class="p">)</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">labelText</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="n">Button</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">coordinator</span><span class="p">.</span><span class="n">updateText</span><span class="p">()</span>
+            <span class="p">})</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Update&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">green</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
+    <span class="n">ParentView</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Coordinators, delegates, nested view models... enough boilerplate to sink a ship!</p>
+<h4>Vanilla SwiftUI</h4>
+<p>Here's the exact same problem solved with some vanilla SwiftUI:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="kd">struct</span> <span class="nc">ParentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="c1">// Single source of truth using @State</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">text</span> <span class="p">=</span> <span class="s">&quot;🐶&quot;</span>
+
+    <span class="c1">// Simple, declarative view hierarchy</span>
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span> <span class="p">{</span>
+            <span class="n">VStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Parent&quot;</span><span class="p">)</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">text</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(.</span><span class="n">red</span><span class="p">))</span>
+            <span class="n">ChildView</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="err">$</span><span class="n">text</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(.</span><span class="n">orange</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">ChildView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="c1">// Direct connection to parent state using @Binding</span>
+    <span class="p">@</span><span class="n">Binding</span> <span class="kd">var</span> <span class="nv">text</span><span class="p">:</span> <span class="nb">String</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span> <span class="p">{</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Child&quot;</span><span class="p">)</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">text</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="n">Button</span> <span class="p">{</span>
+                <span class="n">text</span> <span class="p">=</span> <span class="s">&quot;🐈&quot;</span>
+            <span class="p">}</span> <span class="n">label</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Update&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(.</span><span class="n">green</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
+    <span class="n">ParentView</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>No coordinators. No delegates. No view models. Just <code>@State</code> and <code>@Binding</code> doing what they were designed to do. And letting SwiftUI handle all the complexity that had to be handled manually in UIKit.</p>
+<h4>MVVM</h4>
+<p>If you <em>must</em> (a topic for another time) use MVVM here's how the architecture might be used with SwiftUI:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="p">@</span><span class="n">Observable</span>
+<span class="kd">class</span> <span class="nc">ViewModel</span> <span class="p">{</span>
+    <span class="c1">// Single source of truth at the model layer</span>
+    <span class="kd">var</span> <span class="nv">text</span> <span class="p">=</span> <span class="s">&quot;🐶&quot;</span>
+
+    <span class="kd">func</span> <span class="nf">update</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">text</span> <span class="p">=</span> <span class="s">&quot;🐈&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">ParentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="c1">// View owns the model instance</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">viewModel</span> <span class="p">=</span> <span class="n">ViewModel</span><span class="p">()</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span> <span class="p">{</span>
+            <span class="n">VStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Parent&quot;</span><span class="p">)</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">text</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(.</span><span class="n">red</span><span class="p">))</span>
+            <span class="n">ChildView</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(.</span><span class="n">orange</span><span class="p">))</span>
+        <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="n">viewModel</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">ChildView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="c1">// Child accesses shared model through environment</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="n">ViewModel</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="n">ViewModel</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span> <span class="p">{</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Child&quot;</span><span class="p">)</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Label: </span><span class="si">\(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">text</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="n">Button</span> <span class="p">{</span>
+                <span class="n">viewModel</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="p">}</span> <span class="n">label</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Update&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(.</span><span class="n">green</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
+    <span class="n">ParentView</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>At least the thing given the ViewModel name is actually a view model this time!</p>
+<h4>The Bottom Line</h4>
+<p>SwiftUI isn’t just a new UI framework—it’s a completely different way of thinking. A brand new way of building. UIKit patterns worked well... in UIKit. Forcing them into SwiftUI only creates complexity.</p>
+<p><strong>Less code == more value.</strong></p>
+</article>
+    </main>
+</body>
+</html>
