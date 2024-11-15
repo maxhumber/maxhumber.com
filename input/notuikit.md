@@ -9,7 +9,7 @@ Programming basically boils down to two fundamentals: data flow and naming thing
 
 #### Boilerplate UIKit
 
-In UIKit it's whole song and dance:
+In UIKit it's a whole song and dance:
 
 ```swift
 import UIKit
