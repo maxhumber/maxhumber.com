@@ -1,6 +1,6 @@
 ---
 title: Quotes 2022
-date: 2021-12-31
+date: 2022-12-31
 tags: quotes
 slug: quotes2022
 ---

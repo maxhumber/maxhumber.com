@@ -89,6 +89,12 @@ li {
   margin: 0.1rem 0;
 }
 
+li span {
+  color: #999;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+}
+
 article header {
   margin-bottom: 2rem;  /* Reduced from 2.5rem */
 }
@@ -131,6 +137,16 @@ blockquote {
   padding-left: 1rem;
   margin: 1rem 0;
   opacity: 0.8;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tags a {
+  color: var(--fg);
 }
 
 @media (max-width: 600px) {

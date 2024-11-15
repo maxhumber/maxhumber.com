@@ -1,21 +1,15 @@
 <a href="https://maxhumber.com/">
-  <img src="static/signature.png" height="75">
+  <img src="static/signature.png" height="31">
 </a>
 
 #### About
 
-My bespoke static site generator that works with Markdown and Jupyter
+My bespoke static site generator for my personal website + blog
 
 #### Usage
 
-View changes locally:
-
-```sh
-python blog.py preview
-```
-
-Publish to GitHub Pages:
-
-```sh
-python blog.py publish
-```
+- `make build`
+- `make preview`
+- `make kill`
+- `make clean`
+- `make publish`
