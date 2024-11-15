@@ -1,6 +1,7 @@
 # Custom
 .DS_Store
 playground.py
+drafts/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
