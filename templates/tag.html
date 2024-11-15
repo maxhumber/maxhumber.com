@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}{{ tag }} - Max Humber{% endblock %}
+{% block title %}#{{ tag }} - Max Humber{% endblock %}
 
 {% block content %}
 <h1>{{ tag }}</h1>
 <ul>
     {% for post in posts %}
-    <li><a href="/{{ post.slug }}">{{ post.title }}</a></li>
+    <li><a href="/{{ post.slug }}">{{ post.title }}</a> <span>{{ post.date }}</span></li>
     {% endfor %}
 </ul>
 {% endblock %}
