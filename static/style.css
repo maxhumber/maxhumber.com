@@ -1,13 +1,13 @@
 :root {
   --bg: #fff;
-  --fg: #444;  /* Changed from #222 to #444 */
+  --fg: #444;
   --link: #0581ff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #222;
-    --fg: #ddd;  /* Changed from #fff to #ddd */
+    --fg: #ddd;
     --link: #0581ff;
   }
 }
@@ -38,41 +38,39 @@ a:hover {
 }
 
 nav > p {
-  margin-bottom: 0.8rem;  /* Reduced from 1.5rem */
+  margin-bottom: 0.8rem;
 }
 
 nav a {
-  color: inherit;
+  color: var(--link);
 }
 
 nav img {
-  height: 31px;  /* Increased from 20px */
+  height: 31px;
   width: auto;
 }
 
-.nav-container {
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.8rem;
 }
 
-.nav-right {
+nav div {
   display: flex;
   gap: 1rem;
-}
-
-.nav-right a {
-  color: var(--link);
-  font-size: 0.9rem;
+  margin-left: auto;
+  flex-grow: 1;
+  justify-content: flex-end;
 }
 
 section {
-  margin: 1rem 0 1.5rem 0;  /* Changed from 2rem 0 1.5rem 0 */
+  margin: 1rem 0 1.5rem 0;
 }
 
 h1 {
-  margin-top: 1rem;  /* Changed from 2rem */
+  margin-top: 1rem;
 }
 
 h1, h3 {
@@ -96,7 +94,7 @@ li span {
 }
 
 article header {
-  margin-bottom: 2rem;  /* Reduced from 2.5rem */
+  margin-bottom: 2rem;
 }
 
 time, article header div {
@@ -107,7 +105,7 @@ time, article header div {
 }
 
 pre, code {
-  border-radius: 8px;  /* Increased from 4px */
+  border-radius: 8px;
   padding: 0.2rem 0.4rem;
   overflow-x: auto;
   font-family: ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
@@ -146,7 +144,7 @@ blockquote {
 }
 
 .tags a {
-  color: var(--fg);
+  color: var(--link);
 }
 
 @media (max-width: 600px) {
