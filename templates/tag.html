@@ -3,7 +3,7 @@
 {% block title %}{{ tag }} - Max Humber{% endblock %}
 
 {% block content %}
-<h1>{{ tag }}</h1>
+<h3>{{ tag }}</h3>
 <ul>
     {% for post in posts %}
     <li><a href="/{{ post.slug }}">{{ post.title }}</a> <span>{{ post.date }}</span></li>

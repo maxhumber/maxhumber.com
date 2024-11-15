@@ -1,8 +1,12 @@
+from dataclasses import dataclass
+from datetime import datetime
+from email.utils import format_datetime
 from pathlib import Path
 from typing import Dict, List
-from dataclasses import dataclass
 from shutil import copytree, copy2
 from subprocess import run
+from xml.etree import ElementTree as ET
+
 import http.server
 import socketserver
 import signal
@@ -103,9 +107,31 @@ def build_site(
     for post in posts:
         html = env.get_template("post.html").render(post=post)
         (output_dir / f"{post.slug}.html").write_text(html)
+    # Generate RSS feed
+    # generate_rss_feed(posts, output_dir) # Uncomment to generate RSS feed
     # Generate index
     html = env.get_template("index.html").render(tags=sorted(tags), is_index=True)
     (output_dir / "index.html").write_text(html)
+
+
+def generate_rss_feed(posts: List[Post], output_dir: Path) -> None:
+    """Generate RSS feed for posts tagged with 'code'"""
+    rss = ET.Element("rss", version="2.0")
+    channel = ET.SubElement(rss, "channel")
+    ET.SubElement(channel, "title").text = "Max Humber - Code Posts"
+    ET.SubElement(channel, "link").text = "https://maxhumber.com"
+    ET.SubElement(channel, "description").text = "Posts about coding by Max Humber"
+    code_posts = [post for post in posts if "code" in post.tags]
+    for post in code_posts:
+        item = ET.SubElement(channel, "item")
+        ET.SubElement(item, "title").text = post.title
+        ET.SubElement(item, "link").text = f"https://maxhumber.com/{post.slug}"
+        ET.SubElement(item, "description").text = post.content
+        pub_date = datetime.strptime(post.date, "%Y-%m-%d")
+        ET.SubElement(item, "pubDate").text = format_datetime(pub_date)
+        ET.SubElement(item, "guid").text = f"https://maxhumber.com/{post.slug}"
+    tree = ET.ElementTree(rss)
+    tree.write(output_dir / "feed.xml", encoding="utf-8", xml_declaration=True)
 
 
 class SiteHandler(http.server.SimpleHTTPRequestHandler):
