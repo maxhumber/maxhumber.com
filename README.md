@@ -4,12 +4,12 @@
 
 #### About
 
-My bespoke static site generator
+My stupidly bespoke static site generator
 
 #### Usage
 
 - `make build`
+- `make clean`
 - `make preview`
 - `make kill`
-- `make clean`
 - `make publish`

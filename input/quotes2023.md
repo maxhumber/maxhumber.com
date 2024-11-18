@@ -5,7 +5,7 @@ tags: quotes
 slug: quotes2023
 ---
 
-<p><img src='images/books_2023.png' class="img-fluid mx-auto d-block"/></p>
+<p><img src='images/books_2023.jpg'/></p>
 
 <br/>
 

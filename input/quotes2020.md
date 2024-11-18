@@ -5,7 +5,7 @@ tags: quotes
 slug: quotes2020
 ---
 
-<p><img src='images/books_2020.png' class="img-fluid mx-auto d-block"/></p>
+<p><img src='images/books_2020.png'/></p>
 <br/>
 
 
