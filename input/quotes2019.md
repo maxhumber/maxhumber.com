@@ -5,7 +5,7 @@ tags: quotes
 slug: quotes2019
 ---
 
-<p><img src='images/books_2019.png' class="img-fluid mx-auto d-block"/></p>
+<p><img src='images/books_2019.png'/></p>
 
 > It is tempting to quote authors when they express our very own thoughts but with a clarity and psychological accuracy we cannot match. They know us better than we know ourselves.
 

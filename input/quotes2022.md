@@ -5,7 +5,7 @@ tags: quotes
 slug: quotes2022
 ---
 
-<p><img src='images/books_2022.png' class="img-fluid mx-auto d-block"/></p>
+<p><img src='images/books_2022.png'/></p>
 
 <br/>
 

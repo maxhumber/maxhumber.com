@@ -1,3 +1,5 @@
+PYTHON := venv/bin/python
+
 .PHONY: build preview clean kill publish ensure-killed
 
 # Ensure process is really killed with retries
@@ -19,11 +21,11 @@ kill: ensure-killed
 
 # Build the static site
 build:
-	python blog.py
+	$(PYTHON) blog.py
 
 # Start preview server (killing existing one if needed)
 preview: kill
-	python blog.py preview
+	$(PYTHON) blog.py preview
 
 # Clean generated files
 clean:
@@ -31,4 +33,4 @@ clean:
 
 # Publish to GitHub Pages
 publish:
-	python blog.py publish
+	$(PYTHON) blog.py publish

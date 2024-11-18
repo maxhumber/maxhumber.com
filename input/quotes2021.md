@@ -5,7 +5,7 @@ tags: quotes
 slug: quotes2021
 ---
 
-<p><img src='images/books_2021.png' class="img-fluid mx-auto d-block"/></p>
+<p><img src='images/books_2021.png'/></p>
 <br/>
 
 <p>My favourite pearls of 2021, curated from the 69 books that I read and 1736 highlights that I clipped. Click to expand for the original quote and source:</p>
