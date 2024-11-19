@@ -82,7 +82,7 @@ def setup_output(input_dir: Path, output_dir: Path) -> None:
     copy_static_files(Path("static"), static_dir)
     copy_static_files(input_dir / "images", output_dir / "images")
     for file in ["CNAME", "favicon.ico", "blog.html"]:
-        copy_file(Path(file) if file != "blog.html" else input_dir / file, output_dir / file)
+        copy_file(Path(file), output_dir / file)
 
 
 def build_site(
