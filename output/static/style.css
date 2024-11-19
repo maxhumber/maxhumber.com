@@ -154,8 +154,16 @@ pre code {
 blockquote {
   border-left: 2px solid;
   padding-left: 1rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   opacity: 0.8;
+}
+
+blockquote + blockquote {
+  margin-top: 2rem;
+}
+
+blockquote p + p {
+  margin-top: 1rem;
 }
 
 .tags {
