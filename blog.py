@@ -204,11 +204,9 @@ def publish_site() -> None:
     build_site()
     run("git add output", shell=True)
     run('git commit -m "new blog post"', shell=True)
-    run("git push", shell=True)
-    run(
-        "git push origin `git subtree split --prefix output master`:gh-pages --force",
-        shell=True,
-    )
+    run("git subtree split --prefix output -b gh-pages", shell=True)
+    run("git push -f origin gh-pages:gh-pages", shell=True)
+    run("git branch -D gh-pages", shell=True)
 
 
 if __name__ == "__main__":
