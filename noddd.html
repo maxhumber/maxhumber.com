@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Say No to DDD - Max Humber</title>
+    <link rel="stylesheet" href="/static/highlight.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="49865e68-5a7e-4e56-9ff3-4f1719b00f03"></script>
+</head>
+<body>
+    <main>
+        <nav>
+            <a href="/"><img src="/static/signature.png" alt="Signature"></a>
+            <div>
+                <a href="https://www.goodreads.com/author/show/18086463.Max_Humber">Goodreads</a>
+                <a href="https://linkedin.com/in/maxhumber">LinkedIn</a>
+                <a href="https://twitter.com/maxhumber">X</a>
+            </div>
+        </nav>
+<article>
+    <header>
+        <h3>Just Say No to DDD</h3>
+        <time>2024-11-19</time>
+        <div>
+        <a href="code">#code</a>
+        </div>
+    </header>
+    <p>Domain-driven Design (DDD) is a software design approach that attempts to structure code to "match a domain". It promises "adaptable", "scalable", and "maintainable" software by dividing apps into "bounded contexts" and by "aligning code" with "business needs". It sounds great, in theory. But in reality, it's a trap... especially when applied to SwiftUI.</p>
+<h4>Code as a Liability</h4>
+<p>Code is a liability, not an asset. Every line of code is another line to debug, test, and maintain. And every line of code introduces new opportunities for new bugs. Despite the promises, DDD increases this liability by adding layers of unnecessary code and making a mess of everything. </p>
+<h4>Broken Promises</h4>
+<p>DDD might be okay for massive legacy enterprise Java systems from the early aughts. But it's overkill for modern SwiftUI apps. Positioned as a way to make code adaptable, scalable, and maintainable, DDD simply fails on all three fronts:</p>
+<ul>
+<li>
+<p><strong>Not Adaptable</strong> - DDD makes even small changes slow and tedious. Features that should take minutes can take days because changes because every layer must be re-adjusted and re-aligned.</p>
+</li>
+<li>
+<p><strong>Not Scalable</strong> - Client-side apps don't face the same scalability challenges as backends. DDD's attempt to "scale for the future" just ends up adding unnecessary cruft in the present. </p>
+</li>
+<li><strong>Not Maintainable</strong> - DDD buries logic under so many abstractions that understanding or updating code becomes a chore. Instead of simplifying maintenance, it creates friction and confusion.</li>
+</ul>
+<h4>Code Comparison</h4>
+<p>Instead of just telling you that DDD is bad, let me show you... Consider this <em>vanilla</em> implementation for fetching and displaying Todos using the <a href="https://jsonplaceholder.typicode.com/todos/">jsonplaceholder</a> API:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="c1">// 1. Model</span>
+
+<span class="kd">struct</span> <span class="nc">Todo</span><span class="p">:</span> <span class="n">Codable</span><span class="p">,</span> <span class="n">Identifiable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">let</span> <span class="nv">title</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">completed</span><span class="p">:</span> <span class="nb">Bool</span>
+<span class="p">}</span>
+
+<span class="c1">// 2. Client (fetch todos)</span>
+
+<span class="kd">struct</span> <span class="nc">TodoClient</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">fetchTodos</span><span class="p">:</span> <span class="p">@</span><span class="n">Sendable</span> <span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">Todo</span><span class="p">]</span>
+
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">live</span> <span class="p">=</span> <span class="kc">Self</span><span class="p">(</span>
+        <span class="n">fetchTodos</span><span class="p">:</span> <span class="p">{</span>
+            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">&quot;https://jsonplaceholder.typicode.com/todos/&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span> <span class="k">throw</span> <span class="n">URLError</span><span class="p">(.</span><span class="n">badURL</span><span class="p">)</span> <span class="p">}</span>
+            <span class="kd">let</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="kc">_</span><span class="p">)</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+            <span class="kd">let</span> <span class="nv">todos</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">([</span><span class="n">Todo</span><span class="p">].</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">todos</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 3. View (display todos, handle errors)</span>
+
+<span class="kd">struct</span> <span class="nc">TodoView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">todos</span><span class="p">:</span> <span class="p">[</span><span class="n">Todo</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">errorMessage</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">client</span><span class="p">:</span> <span class="n">TodoClient</span> <span class="p">=</span> <span class="p">.</span><span class="n">live</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">List</span> <span class="p">{</span>
+            <span class="n">ForEach</span><span class="p">(</span><span class="n">todos</span><span class="p">)</span> <span class="p">{</span> <span class="n">todo</span> <span class="k">in</span>
+                <span class="n">HStack</span> <span class="p">{</span>
+                    <span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span> <span class="n">todo</span><span class="p">.</span><span class="n">completed</span> <span class="p">?</span> <span class="s">&quot;checkmark.circle&quot;</span><span class="p">:</span> <span class="s">&quot;circle&quot;</span><span class="p">)</span>
+                        <span class="p">.</span><span class="n">foregroundStyle</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">completed</span> <span class="p">?</span> <span class="p">.</span><span class="n">green</span> <span class="p">:</span> <span class="p">.</span><span class="n">gray</span><span class="p">)</span>
+                    <span class="n">Text</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">todo</span><span class="p">.</span><span class="n">title</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">navigationTitle</span><span class="p">(</span><span class="s">&quot;Todo List&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">task</span> <span class="p">{</span> <span class="k">await</span> <span class="n">fetch</span><span class="p">()</span> <span class="p">}</span>
+        <span class="p">.</span><span class="n">alert</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">,</span> <span class="n">isPresented</span><span class="p">:</span> <span class="p">.</span><span class="n">constant</span><span class="p">(</span><span class="n">errorMessage</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">Button</span><span class="p">(</span><span class="s">&quot;OK&quot;</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="p">.</span><span class="n">cancel</span><span class="p">)</span> <span class="p">{</span> <span class="n">errorMessage</span> <span class="p">=</span> <span class="kc">nil</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="n">message</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">Text</span><span class="p">(</span><span class="n">errorMessage</span> <span class="p">??</span> <span class="s">&quot;No Error&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">fetch</span><span class="p">()</span> <span class="k">async</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="n">todos</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="n">fetchTodos</span><span class="p">()</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="n">errorMessage</span> <span class="p">=</span> <span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
+    <span class="n">NavigationStack</span> <span class="p">{</span>
+        <span class="n">TodoView</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Full DDD</strong></p>
+<p>And here's what the same code might look like when you go "full DDD" (based on <a href="https://paulallies.medium.com/clean-architecture-in-the-flavour-of-swiftui-5-5-8430786a83">this popular Medium article</a>). Honestly, don't even try to read or understand all of it. Just notice that it's wayyyyyy more code: </p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="c1">// 1. Models</span>
+<span class="c1">// TodoDTO: The raw data from the API</span>
+<span class="c1">// TodoDMO: A &quot;cleaned-up&quot; version of the data for actual app use</span>
+
+<span class="kd">struct</span> <span class="nc">TodoDTO</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">let</span> <span class="nv">title</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">completed</span><span class="p">:</span> <span class="nb">Bool</span>
+
+    <span class="kd">func</span> <span class="nf">toDomainModelObject</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">TodoDMO</span> <span class="p">{</span>
+        <span class="n">TodoDMO</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="n">id</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="n">isCompleted</span><span class="p">:</span> <span class="n">completed</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">TodoDMO</span><span class="p">:</span> <span class="n">Identifiable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">let</span> <span class="nv">label</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">isCompleted</span><span class="p">:</span> <span class="nb">Bool</span>
+<span class="p">}</span>
+
+<span class="c1">// 2. &quot;Data Source&quot;</span>
+<span class="c1">// Fetches TodoDTOs from an API, making things more complicated than they need to be</span>
+
+<span class="kd">protocol</span> <span class="nc">TodoDataSource</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fetchTodos</span><span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">TodoDTO</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="nc">TodoDataSourceError</span><span class="p">:</span> <span class="n">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">badUrl</span>
+    <span class="k">case</span> <span class="n">requestError</span>
+    <span class="k">case</span> <span class="n">decodingError</span>
+    <span class="k">case</span> <span class="n">statusNotOK</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">TodoDataSourceImplementation</span><span class="p">:</span> <span class="n">TodoDataSource</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fetchTodos</span><span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">TodoDTO</span><span class="p">]</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">urlString</span> <span class="p">=</span> <span class="s">&quot;https://jsonplaceholder.typicode.com/todos/&quot;</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">urlString</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">badUrl</span>
+        <span class="p">}</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="k">await</span> <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">requestError</span>
+        <span class="p">}</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">httpResponse</span> <span class="p">=</span> <span class="n">response</span> <span class="k">as</span><span class="p">?</span> <span class="n">HTTPURLResponse</span><span class="p">,</span> <span class="n">httpResponse</span><span class="p">.</span><span class="n">statusCode</span> <span class="p">==</span> <span class="mi">200</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">statusNotOK</span>
+        <span class="p">}</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">todos</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">([</span><span class="n">TodoDTO</span><span class="p">].</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">decodingError</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">todos</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 3. &quot;Repository&quot;</span>
+<span class="c1">// Converts TodoDTOs to TodoDMOs while adding an extra layer for no obvious reason</span>
+
+<span class="kd">protocol</span> <span class="nc">TodoRepository</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fetchTodos</span><span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">TodoDMO</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="nc">TodoRepositoryError</span><span class="p">:</span> <span class="n">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">decodingError</span>
+    <span class="k">case</span> <span class="n">networkError</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">TodoRepositoryImplementation</span><span class="p">:</span> <span class="n">TodoRepository</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">dataSource</span><span class="p">:</span> <span class="n">TodoDataSource</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">dataSource</span><span class="p">:</span> <span class="n">TodoDataSource</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">dataSource</span> <span class="p">=</span> <span class="n">dataSource</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">fetchTodos</span><span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">TodoDMO</span><span class="p">]</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">todosDTO</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">dataSource</span><span class="p">.</span><span class="n">fetchTodos</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">todosDTO</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">toDomainModelObject</span><span class="p">()</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">decodingError</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">TodoRepositoryError</span><span class="p">.</span><span class="n">decodingError</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">TodoRepositoryError</span><span class="p">.</span><span class="n">networkError</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 4. &quot;UseCase&quot;</span>
+<span class="c1">// A glorified wrapper to call the repository and handle errors in a slightly different way</span>
+
+<span class="kd">protocol</span> <span class="nc">TodoGetUseCase</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">execute</span><span class="p">()</span> <span class="k">async</span> <span class="p">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="n">TodoDMO</span><span class="p">],</span> <span class="n">TodoGetUseCaseError</span><span class="p">&gt;</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="nc">TodoGetUseCaseError</span><span class="p">:</span> <span class="n">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">networkError</span>
+    <span class="k">case</span> <span class="n">decodingError</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">TodoGetUseCaseImplementation</span><span class="p">:</span> <span class="n">TodoGetUseCase</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">repository</span><span class="p">:</span> <span class="n">TodoRepository</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span> <span class="n">TodoRepository</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">repository</span> <span class="p">=</span> <span class="n">repository</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">execute</span><span class="p">()</span> <span class="k">async</span> <span class="p">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="n">TodoDMO</span><span class="p">],</span> <span class="n">TodoGetUseCaseError</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">todos</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">repository</span><span class="p">.</span><span class="n">fetchTodos</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="n">todos</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="n">error</span> <span class="k">is</span> <span class="n">TodoRepositoryError</span> <span class="p">?</span> <span class="p">.</span><span class="n">decodingError</span> <span class="p">:</span> <span class="p">.</span><span class="n">networkError</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 5. &quot;ViewModel&quot;</span>
+<span class="c1">// Mediates between the UseCase and the View, because we always need more layers!</span>
+
+<span class="p">@</span><span class="n">Observable</span>
+<span class="kd">class</span> <span class="nc">TodoListViewModel</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">todos</span><span class="p">:</span> <span class="p">[</span><span class="n">TodoDMO</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="kd">var</span> <span class="nv">errorMessage</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
+    <span class="kd">var</span> <span class="nv">hasError</span> <span class="p">=</span> <span class="kc">false</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">useCase</span><span class="p">:</span> <span class="n">TodoGetUseCase</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">useCase</span><span class="p">:</span> <span class="n">TodoGetUseCase</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">useCase</span> <span class="p">=</span> <span class="n">useCase</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">loadTodos</span><span class="p">()</span> <span class="k">async</span> <span class="p">{</span>
+        <span class="n">errorMessage</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
+        <span class="n">hasError</span> <span class="p">=</span> <span class="kc">false</span>
+        <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="k">await</span> <span class="n">useCase</span><span class="p">.</span><span class="n">execute</span><span class="p">()</span>
+        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="kd">let</span> <span class="nv">todos</span><span class="p">):</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">todos</span> <span class="p">=</span> <span class="n">todos</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="kd">let</span> <span class="nv">error</span><span class="p">):</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">todos</span> <span class="p">=</span> <span class="p">[]</span>
+            <span class="n">errorMessage</span> <span class="p">=</span> <span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span>
+            <span class="n">hasError</span> <span class="p">=</span> <span class="kc">true</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 6. View</span>
+<span class="c1">// Finally, something useful: displays todos and errors, cleaning up after all the other layers</span>
+
+<span class="kd">struct</span> <span class="nc">DDDTodoView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="n">TodoListViewModel</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span> <span class="n">TodoListViewModel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">viewModel</span> <span class="p">=</span> <span class="n">viewModel</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">List</span> <span class="p">{</span>
+            <span class="n">ForEach</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">todos</span><span class="p">)</span> <span class="p">{</span> <span class="n">todo</span> <span class="k">in</span>
+                <span class="n">HStack</span> <span class="p">{</span>
+                    <span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span> <span class="n">todo</span><span class="p">.</span><span class="n">isCompleted</span> <span class="p">?</span> <span class="s">&quot;checkmark.circle&quot;</span> <span class="p">:</span> <span class="s">&quot;circle&quot;</span><span class="p">)</span>
+                        <span class="p">.</span><span class="n">foregroundColor</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">isCompleted</span> <span class="p">?</span> <span class="p">.</span><span class="n">green</span> <span class="p">:</span> <span class="p">.</span><span class="n">gray</span><span class="p">)</span>
+                    <span class="n">Text</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">label</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">navigationTitle</span><span class="p">(</span><span class="s">&quot;Todo List&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">task</span> <span class="p">{</span> <span class="k">await</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">loadTodos</span><span class="p">()</span> <span class="p">}</span>
+        <span class="p">.</span><span class="n">alert</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">,</span> <span class="n">isPresented</span><span class="p">:</span> <span class="err">$</span><span class="n">viewModel</span><span class="p">.</span><span class="n">hasError</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Button</span><span class="p">(</span><span class="s">&quot;OK&quot;</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="p">.</span><span class="n">cancel</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="p">}</span> <span class="n">message</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">Text</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">errorMessage</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Previewable</span> <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">viewModel</span> <span class="p">=</span> <span class="n">TodoListViewModel</span><span class="p">(</span>
+        <span class="n">useCase</span><span class="p">:</span> <span class="n">TodoGetUseCaseImplementation</span><span class="p">(</span>
+            <span class="n">repository</span><span class="p">:</span> <span class="n">TodoRepositoryImplementation</span><span class="p">(</span>
+                <span class="n">dataSource</span><span class="p">:</span> <span class="n">TodoDataSourceImplementation</span><span class="p">()</span>
+            <span class="p">)</span>
+        <span class="p">))</span>
+    <span class="n">NavigationView</span> <span class="p">{</span>
+        <span class="n">DDDTodoView</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span> <span class="n">viewModel</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Both implementations do <strong>the exact same thing</strong>! Seriously, copy-and-paste both blocks into Xcode and see for yourself! All the extra layers—the repository, use case, and view model—add <strong>bloat without benefit.</strong> But what about testing? Fair. To test the vanilla version, just create a <code>TodoClient.mock</code> extension and inject it where needed. Done.</p>
+<h4>HackerNews</h4>
+<p>If the code comparison isn't enough to convince you that DDD is unnecessary and actively counterproductive, these collected quotes from various HackerNews threads should:</p>
+<blockquote>
+<p>"In my 22 years of career in software starting as a developer, I have seen DDD used only one time successfully and appropriately. All other attempts were <strong>half-baked</strong> and <strong>over-engineered messes</strong>. The problem was that over several years, it was <strong>hard to get new hires up to speed</strong> to maintain the <strong>complex code</strong> and test it."</p>
+<p>"DDD strikes me as the software version of Agile sometimes. The ideas and philosophy behind are good, but end up being taken as a silver bullet. I’ve seen DDD being branded together with CQRS as 'Clean Architecture,' which in reality turns out to be a <strong>mess of layers and separations</strong>."</p>
+<p>"We use DDD at the current company I work in, and to be honest, <strong>I detest it so much</strong> that sometimes it <strong>makes me wonder if I even want to continue in the programming space</strong> (been at it for 20 years). Don’t get me wrong, DDD has meaning and purpose, but some companies are applying it as a badge to be obtained instead of pondering the question: Do you really need to rewrite everything following DDD?"</p>
+<p>"DDD seems to be one of those things where 'what it’s meant to mean' is very different from 'how it’s actually practiced.' Reading about what it’s meant to mean, it seems pretty common sense. As often implemented, however, it seems to lead to <strong>a lot of accidental complexity</strong> and <strong>a bunch of dubious usefulness abstraction layers</strong>."</p>
+<p>"In my experience, the most useful part of DDD is to have a common vocabulary for your projects—developers and end users should have some common terminology. For complex business domains, it is good to have a glossary and for your code to always use those words in the same way the business uses them. Other than that, <strong>most DDD concepts are a bit dated, and really oriented around JAVA/C# in the early 2000s.</strong>"</p>
+<p>"All principles help you to model your software in a way that’s highly cohesive and loosely coupled. My suggestion: Stay away from all these design patterns. In my experience, they lead to <strong>overly complex code</strong> because of all the structure. <strong>The best structure is the most simple</strong>."</p>
+<p>"I thought the DDD hype had died down a bit, but I guess not. Eric Evans (inventor of DDD) has said in recent years that, unfortunately, once a team is big enough, all the invisible conceptual boundaries between domains blur and disappear. <strong>People do NOT have the discipline to do DDD correctly.</strong>"</p>
+<p>"When you start thinking in abstractions and create abstractions in your code, either top-down or bottom-up, you will end up producing a good software design. This, to me, is the most untrue statement you could make about software. <strong>Abstractions introduce more complexity</strong>. <strong>The more complex, the less stable and maintainable your software becomes</strong>."</p>
+<p>"<strong>Domain-Driven Design is a poison</strong>. The book is one of the most poorly written technical books out there. There are a handful of good ideas buried in the 1,000-page unedited verbose rambling slog. The whole book should only have been 10 pages. Besides Eric Evans’s inability to write, the poison of DDD comes from locking in businesses/domain concepts into your core technology, making them inflexible and making it difficult for the business to iterate on new ideas."</p>
+<p>"The biggest flaw of DDD I’ve run into is there’s no emphasis on when not to use it. There’s no mention that over-coding business rules into modules and services <strong>locks you into business processes that are slow or impossible to update</strong>. There’s no mention that most times you want to build services that offer platform capabilities, not focus on what 'domain' they fall into. Never mind that 'domain' is basically undefined and can mean many different concepts and different types of concepts."</p>
+</blockquote>
+<h4>Go for Simple</h4>
+<p>SwiftUI thrives on simplicity. Not endless layers of abstractions. Instead of wasting time on "domains", "repositories", and "use cases". Let's all focus on delivering features quickly with less code.</p>
+</article>
+    </main>
+</body>
+</html>
