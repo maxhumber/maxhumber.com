@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Client Pattern - Max Humber</title>
+    <link rel="stylesheet" href="/static/highlight.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="49865e68-5a7e-4e56-9ff3-4f1719b00f03"></script>
+</head>
+<body>
+    <main>
+        <nav>
+            <a href="/"><img src="/static/signature.png" alt="Signature"></a>
+            <div>
+                <a href="https://www.goodreads.com/author/show/18086463.Max_Humber">Goodreads</a>
+                <a href="https://linkedin.com/in/maxhumber">LinkedIn</a>
+                <a href="https://twitter.com/maxhumber">X</a>
+            </div>
+        </nav>
+<article>
+    <header>
+        <h3>The Client Pattern</h3>
+        <time>2024-11-20</time>
+        <div>
+        <a href="code">#code</a>
+        </div>
+    </header>
+    <p>I recently wrapped up some work on a client project that used <a href="https://github.com/pointfreeco/swift-composable-architecture">TCA</a>. While I didn't love the framework, I'm thankful for the opportunity because it introduced me to something brilliant: the Client Pattern.</p>
+<h4>The Client Pattern</h4>
+<p>The thing I'm calling the Client Pattern is really just a simplified version of Point-Free's <code>DependencyClient</code> from their <a href="https://github.com/pointfreeco/swift-dependencies"><code>swift-dependencies</code></a> library. While the benefits are well articulated in <a href="https://www.pointfree.co/blog/posts/120-macro-bonanza-dependencies">this blog post</a>, you can get most of the value with just a few lines of Swift:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="kd">struct</span> <span class="nc">MyClient</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">fetch</span><span class="p">:</span> <span class="p">@</span><span class="n">Sendable</span> <span class="p">(</span><span class="kc">_</span> <span class="n">value</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="nb">String</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">MyClient</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">live</span> <span class="p">=</span> <span class="kc">Self</span><span class="p">(</span>
+        <span class="n">fetch</span><span class="p">:</span> <span class="p">{</span> <span class="n">value</span> <span class="k">in</span>
+            <span class="c1">// Implementation here...</span>
+            <span class="k">return</span> <span class="s">&quot;Fetched value: </span><span class="si">\(</span><span class="n">value</span><span class="si">)</span><span class="s">&quot;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">fetch</span><span class="p">(</span><span class="n">with</span> <span class="n">client</span><span class="p">:</span> <span class="n">MyClient</span> <span class="p">=</span> <span class="p">.</span><span class="n">live</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>No protocols. No abstractions. No third-party dependencies to manage... dependencies. Just structs and closures to make testing downstream dead simple.</p>
+<h4>A "Real" Example</h4>
+<p>To demonstrate the real power of the Client Pattern, let's build a client for the <a href="https://sunrise-sunset.org/api">Sunrise-Sunset API</a>.</p>
+<p>First, define the response type:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="kd">struct</span> <span class="nc">SuntimesResponse</span><span class="p">:</span> <span class="n">Decodable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">results</span><span class="p">:</span> <span class="n">Results</span>
+
+    <span class="kd">struct</span> <span class="nc">Results</span><span class="p">:</span> <span class="n">Decodable</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">sunrise</span><span class="p">:</span> <span class="n">Date</span>
+        <span class="kd">let</span> <span class="nv">sunset</span><span class="p">:</span> <span class="n">Date</span>
+
+        <span class="kd">enum</span> <span class="nc">CodingKeys</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">CodingKey</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="n">sunrise</span>
+            <span class="k">case</span> <span class="n">sunset</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Then create the client interface:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">SuntimesClient</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">fetchSunrise</span><span class="p">:</span> <span class="p">@</span><span class="n">Sendable</span> <span class="p">(</span><span class="kc">_</span> <span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="kc">_</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span>
+    <span class="kd">var</span> <span class="nv">fetchSunset</span><span class="p">:</span> <span class="p">@</span><span class="n">Sendable</span> <span class="p">(</span><span class="kc">_</span> <span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="kc">_</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Extend the client with a <code>.live</code> implementation (to do the actual networking):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">extension</span> <span class="nc">SuntimesClient</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">live</span> <span class="p">=</span> <span class="kc">Self</span><span class="p">(</span>
+        <span class="n">fetchSunrise</span><span class="p">:</span> <span class="p">{</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="k">in</span>
+            <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="kc">Self</span><span class="p">.</span><span class="n">fetchSuntimes</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="n">longitude</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">.</span><span class="n">sunrise</span>
+        <span class="p">},</span>
+        <span class="n">fetchSunset</span><span class="p">:</span> <span class="p">{</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="k">in</span>
+            <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="kc">Self</span><span class="p">.</span><span class="n">fetchSuntimes</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="n">longitude</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">.</span><span class="n">sunset</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">fetchSuntimes</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">SuntimesResponse</span><span class="p">.</span><span class="n">Results</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">components</span> <span class="p">=</span> <span class="n">URLComponents</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">&quot;https://api.sunrise-sunset.org/json&quot;</span><span class="p">)</span>
+        <span class="n">components</span><span class="p">?.</span><span class="n">queryItems</span> <span class="p">=</span> <span class="p">[</span>
+            <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;lat&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">\(</span><span class="n">latitude</span><span class="si">)</span><span class="s">&quot;</span><span class="p">),</span>
+            <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;lng&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">\(</span><span class="n">longitude</span><span class="si">)</span><span class="s">&quot;</span><span class="p">),</span>
+            <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;formatted&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;0&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">components</span><span class="p">?.</span><span class="n">url</span> <span class="k">else</span> <span class="p">{</span> <span class="k">throw</span> <span class="n">URLError</span><span class="p">(.</span><span class="n">badURL</span><span class="p">)</span> <span class="p">}</span>
+        <span class="kd">let</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="kc">_</span><span class="p">)</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">decoder</span> <span class="p">=</span> <span class="n">JSONDecoder</span><span class="p">()</span>
+        <span class="n">decoder</span><span class="p">.</span><span class="n">dateDecodingStrategy</span> <span class="p">=</span> <span class="p">.</span><span class="n">iso8601</span>
+        <span class="kd">let</span> <span class="nv">response</span> <span class="p">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">SuntimesResponse</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">results</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Use the <code>@Entry</code> macro to inject the <code>.live</code> implementation into the SwiftUI environment:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="kd">extension</span> <span class="nc">EnvironmentValues</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Entry</span> <span class="kd">var</span> <span class="nv">suntimesClient</span><span class="p">:</span> <span class="n">SuntimesClient</span> <span class="p">=</span> <span class="p">.</span><span class="n">live</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>And create a view that picks up the injected client:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">SuntimesClientView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">suntimesClient</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">client</span><span class="p">:</span> <span class="n">SuntimesClient</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">sunset</span><span class="p">:</span> <span class="n">Date</span><span class="p">?</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span> <span class="p">{</span>
+            <span class="n">Text</span><span class="p">(</span><span class="n">sunset</span><span class="p">?.</span><span class="n">formatted</span><span class="p">()</span> <span class="p">??</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Fetch Sunset&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Task</span> <span class="p">{</span> <span class="k">await</span> <span class="n">fetchSunset</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">fetchSunset</span><span class="p">()</span> <span class="k">async</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="n">sunset</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="n">fetchSunset</span><span class="p">(</span><span class="mf">43.6532</span><span class="p">,</span> <span class="o">-</span><span class="mf">79.3832</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
+    <span class="n">SuntimesClientView</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>With the Client Pattern in place, testing and previews become incredibly simple. Just define a mock client:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">extension</span> <span class="nc">SuntimesClient</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">preview</span> <span class="p">=</span> <span class="kc">Self</span><span class="p">(</span>
+        <span class="n">fetchSunrise</span><span class="p">:</span> <span class="p">{</span> <span class="kc">_</span><span class="p">,</span> <span class="kc">_</span> <span class="k">in</span> <span class="k">throw</span> <span class="n">URLError</span><span class="p">(.</span><span class="n">badServerResponse</span><span class="p">)</span> <span class="p">},</span> <span class="c1">// Simulates an error</span>
+        <span class="n">fetchSunset</span><span class="p">:</span> <span class="p">{</span> <span class="kc">_</span><span class="p">,</span> <span class="kc">_</span> <span class="k">in</span> <span class="p">.</span><span class="n">now</span> <span class="p">}</span> <span class="c1">// Returns the current time for sunset</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>And inject it into previews:</p>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="n">Preview</span><span class="p">(</span><span class="s">&quot;Client Pattern (Mock)&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">SuntimesClientView</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">suntimesClient</span><span class="p">,</span> <span class="p">.</span><span class="n">preview</span><span class="p">)</span> <span class="c1">// Injects mock client</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4>Copy-and-paste</h4>
+<p>Here's all of the code in a single block that you can copy-and-paste directly into Xcode to try out the Client Pattern for yourself:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="kd">struct</span> <span class="nc">SuntimesResponse</span><span class="p">:</span> <span class="n">Decodable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">results</span><span class="p">:</span> <span class="n">Results</span>
+
+    <span class="kd">struct</span> <span class="nc">Results</span><span class="p">:</span> <span class="n">Decodable</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">sunrise</span><span class="p">:</span> <span class="n">Date</span>
+        <span class="kd">let</span> <span class="nv">sunset</span><span class="p">:</span> <span class="n">Date</span>
+
+        <span class="kd">enum</span> <span class="nc">CodingKeys</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">CodingKey</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="n">sunrise</span>
+            <span class="k">case</span> <span class="n">sunset</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Client Definition</span>
+<span class="c1">// Provides async closures for fetching sunrise and sunset data (Swift 6 ready!)</span>
+<span class="kd">struct</span> <span class="nc">SuntimesClient</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">fetchSunrise</span><span class="p">:</span> <span class="p">@</span><span class="n">Sendable</span> <span class="p">(</span><span class="kc">_</span> <span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="kc">_</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span>
+    <span class="kd">var</span> <span class="nv">fetchSunset</span><span class="p">:</span> <span class="p">@</span><span class="n">Sendable</span> <span class="p">(</span><span class="kc">_</span> <span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="kc">_</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span>
+<span class="p">}</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Live Implementation</span>
+<span class="c1">// Implements live API calls for sunrise and sunset</span>
+<span class="kd">extension</span> <span class="nc">SuntimesClient</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">live</span> <span class="p">=</span> <span class="kc">Self</span><span class="p">(</span>
+        <span class="n">fetchSunrise</span><span class="p">:</span> <span class="p">{</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="k">in</span>
+            <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="kc">Self</span><span class="p">.</span><span class="n">fetchSuntimes</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="n">longitude</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">.</span><span class="n">sunrise</span>
+        <span class="p">},</span>
+        <span class="n">fetchSunset</span><span class="p">:</span> <span class="p">{</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="k">in</span>
+            <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="kc">Self</span><span class="p">.</span><span class="n">fetchSuntimes</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="n">longitude</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">.</span><span class="n">sunset</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="c1">// Helper: Makes the API call to retrieve sunrise and sunset data</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">fetchSuntimes</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">SuntimesResponse</span><span class="p">.</span><span class="n">Results</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">components</span> <span class="p">=</span> <span class="n">URLComponents</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">&quot;https://api.sunrise-sunset.org/json&quot;</span><span class="p">)</span>
+        <span class="n">components</span><span class="p">?.</span><span class="n">queryItems</span> <span class="p">=</span> <span class="p">[</span>
+            <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;lat&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">\(</span><span class="n">latitude</span><span class="si">)</span><span class="s">&quot;</span><span class="p">),</span>
+            <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;lng&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">\(</span><span class="n">longitude</span><span class="si">)</span><span class="s">&quot;</span><span class="p">),</span>
+            <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;formatted&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;0&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">components</span><span class="p">?.</span><span class="n">url</span> <span class="k">else</span> <span class="p">{</span> <span class="k">throw</span> <span class="n">URLError</span><span class="p">(.</span><span class="n">badURL</span><span class="p">)</span> <span class="p">}</span>
+        <span class="kd">let</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="kc">_</span><span class="p">)</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">decoder</span> <span class="p">=</span> <span class="n">JSONDecoder</span><span class="p">()</span>
+        <span class="n">decoder</span><span class="p">.</span><span class="n">dateDecodingStrategy</span> <span class="p">=</span> <span class="p">.</span><span class="n">iso8601</span>
+        <span class="kd">let</span> <span class="nv">response</span> <span class="p">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">SuntimesResponse</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">results</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Preview Implementation</span>
+<span class="c1">// Simulates sunrise and sunset fetching for previews and testing</span>
+<span class="kd">extension</span> <span class="nc">SuntimesClient</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">preview</span> <span class="p">=</span> <span class="kc">Self</span><span class="p">(</span>
+        <span class="n">fetchSunrise</span><span class="p">:</span> <span class="p">{</span> <span class="kc">_</span><span class="p">,</span> <span class="kc">_</span> <span class="k">in</span> <span class="k">throw</span> <span class="n">URLError</span><span class="p">(.</span><span class="n">badServerResponse</span><span class="p">)</span> <span class="p">},</span> <span class="c1">// Simulates an error</span>
+        <span class="n">fetchSunset</span><span class="p">:</span> <span class="p">{</span> <span class="kc">_</span><span class="p">,</span> <span class="kc">_</span> <span class="k">in</span> <span class="p">.</span><span class="n">now</span> <span class="p">}</span> <span class="c1">// Returns the current time for sunset</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Environment Values Extension</span>
+<span class="c1">// Adds `@Environment(\.suntimesClient) var suntimesClient` to the SwiftUI environment (default to .live)</span>
+<span class="kd">extension</span> <span class="nc">EnvironmentValues</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Entry</span> <span class="kd">var</span> <span class="nv">suntimesClient</span><span class="p">:</span> <span class="n">SuntimesClient</span> <span class="p">=</span> <span class="p">.</span><span class="n">live</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">SuntimesClientView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">suntimesClient</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">client</span><span class="p">:</span> <span class="n">SuntimesClient</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">sunset</span><span class="p">:</span> <span class="n">Date</span><span class="p">?</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span> <span class="p">{</span>
+            <span class="n">Text</span><span class="p">(</span><span class="n">sunset</span><span class="p">?.</span><span class="n">formatted</span><span class="p">()</span> <span class="p">??</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Fetch Sunset&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Task</span> <span class="p">{</span> <span class="k">await</span> <span class="n">fetchSunset</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Fetches sunset data asynchronously and updates the state</span>
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">fetchSunset</span><span class="p">()</span> <span class="k">async</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="n">sunset</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="n">fetchSunset</span><span class="p">(</span><span class="mf">43.6532</span><span class="p">,</span> <span class="o">-</span><span class="mf">79.3832</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Previews</span>
+<span class="p">#</span><span class="n">Preview</span><span class="p">(</span><span class="s">&quot;Client Pattern (Live)&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">SuntimesClientView</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span><span class="p">(</span><span class="s">&quot;Client Pattern (Mock)&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">SuntimesClientView</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">suntimesClient</span><span class="p">,</span> <span class="p">.</span><span class="n">preview</span><span class="p">)</span> <span class="c1">// Injects mock client</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4>The Old Way (Don't Do This)</h4>
+<p>For comparison, here's the protocol-based <a href="https://medium.com/livefront/creating-a-service-layer-in-swift-ea771088fb66">Service Pattern</a> I've previously used for app networking:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+<span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Protocol Definition</span>
+<span class="c1">// Enables mocking and testing of sunrise/sunset fetching</span>
+<span class="kd">protocol</span> <span class="nc">SuntimesServiceable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fetchSunrise</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span>
+    <span class="kd">func</span> <span class="nf">fetchSunset</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span>
+<span class="p">}</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Live Service Implementation</span>
+<span class="c1">// Implements the SuntimesServiceable protocol for actual API calls</span>
+<span class="kd">struct</span> <span class="nc">SuntimesService</span><span class="p">:</span> <span class="n">SuntimesServiceable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fetchSunrise</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">results</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">fetchSuntimes</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="n">longitude</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span><span class="p">.</span><span class="n">sunrise</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">fetchSunset</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">results</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">fetchSuntimes</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="n">longitude</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span><span class="p">.</span><span class="n">sunset</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper: Makes the API call to retrieve sunrise and sunset data</span>
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">fetchSuntimes</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">SuntimesResponse</span><span class="p">.</span><span class="n">Results</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">components</span> <span class="p">=</span> <span class="n">URLComponents</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">&quot;https://api.sunrise-sunset.org/json&quot;</span><span class="p">)</span>
+        <span class="n">components</span><span class="p">?.</span><span class="n">queryItems</span> <span class="p">=</span> <span class="p">[</span>
+            <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;lat&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">\(</span><span class="n">latitude</span><span class="si">)</span><span class="s">&quot;</span><span class="p">),</span>
+            <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;lng&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">\(</span><span class="n">longitude</span><span class="si">)</span><span class="s">&quot;</span><span class="p">),</span>
+            <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;formatted&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;0&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">components</span><span class="p">?.</span><span class="n">url</span> <span class="k">else</span> <span class="p">{</span> <span class="k">throw</span> <span class="n">URLError</span><span class="p">(.</span><span class="n">badURL</span><span class="p">)</span> <span class="p">}</span>
+        <span class="kd">let</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="kc">_</span><span class="p">)</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">decoder</span> <span class="p">=</span> <span class="n">JSONDecoder</span><span class="p">()</span>
+        <span class="n">decoder</span><span class="p">.</span><span class="n">dateDecodingStrategy</span> <span class="p">=</span> <span class="p">.</span><span class="n">iso8601</span>
+        <span class="kd">let</span> <span class="nv">response</span> <span class="p">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">SuntimesResponse</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">results</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Mock Service for Testing</span>
+<span class="c1">// Provides predictable behavior for testing without actual API calls</span>
+<span class="kd">struct</span> <span class="nc">MockSuntimesService</span><span class="p">:</span> <span class="n">SuntimesServiceable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fetchSunrise</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span> <span class="p">{</span>
+        <span class="p">.</span><span class="n">now</span> <span class="c1">// Returns the current time for sunrise</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">fetchSunset</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Date</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="n">URLError</span><span class="p">(.</span><span class="n">badServerResponse</span><span class="p">)</span> <span class="c1">// Simulates an error</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">SuntimesServiceView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">sunrise</span><span class="p">:</span> <span class="n">Date</span><span class="p">?</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">service</span><span class="p">:</span> <span class="n">SuntimesServiceable</span>
+
+    <span class="c1">// Injects the dependency, defaulting to the live service</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">service</span><span class="p">:</span> <span class="n">SuntimesServiceable</span> <span class="p">=</span> <span class="n">SuntimesService</span><span class="p">())</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">service</span> <span class="p">=</span> <span class="n">service</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span> <span class="p">{</span>
+            <span class="n">Text</span><span class="p">(</span><span class="n">sunrise</span><span class="p">?.</span><span class="n">formatted</span><span class="p">()</span> <span class="p">??</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Fetch Sunrise&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Task</span> <span class="p">{</span> <span class="k">await</span> <span class="n">fetchSunrise</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Fetches sunrise data asynchronously</span>
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">fetchSunrise</span><span class="p">()</span> <span class="k">async</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="c1">// Warning: Swift 6 Error (Sending &#39;self.service&#39; risks causing data races)</span>
+            <span class="c1">// Sending main actor-isolated &#39;self.service&#39; to nonisolated instance method &#39;fetchSunrise(latitude:longitude:)&#39; risks causing data races between nonisolated and main actor-isolated uses</span>
+            <span class="n">sunrise</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">service</span><span class="p">.</span><span class="n">fetchSunrise</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="mf">43.6532</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">79.3832</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Previews</span>
+<span class="p">#</span><span class="n">Preview</span><span class="p">(</span><span class="s">&quot;Service Pattern (Live)&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">SuntimesServiceView</span><span class="p">(</span><span class="n">service</span><span class="p">:</span> <span class="n">SuntimesService</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span><span class="p">(</span><span class="s">&quot;Service Pattern (Preview)&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">SuntimesServiceView</span><span class="p">(</span><span class="n">service</span><span class="p">:</span> <span class="n">MockSuntimesService</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4>Keeping It Simple</h4>
+<p>For me, I love the the Client Pattern over the Service Pattern because it:</p>
+<ul>
+<li>Removes protocol overhead</li>
+<li>Makes testing easier with closures </li>
+<li>Integrates well with SwiftUI</li>
+<li>And requires less code</li>
+</ul>
+<p>I'm excited to use the pattern going forward because it leverages the best parts of Swift/SwiftUI and helps to keep my code as simple as possible!</p>
+</article>
+    </main>
+</body>
+</html>

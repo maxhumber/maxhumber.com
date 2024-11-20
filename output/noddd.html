@@ -29,20 +29,20 @@
     </header>
     <p>Domain-driven Design (DDD) is a software design approach that attempts to structure code to "match a domain". It promises "adaptable", "scalable", and "maintainable" software by dividing apps into "bounded contexts" and by "aligning code" with "business needs". It sounds great, in theory. But in reality, it's a trap... especially when applied to SwiftUI.</p>
 <h4>Code as a Liability</h4>
-<p>Code is a liability, not an asset. Every line of code is another line to debug, test, and maintain. And every line of code introduces new opportunities for new bugs. Despite the promises, DDD increases this liability by adding layers of unnecessary code and making a mess of everything. </p>
+<p>Code isn't an asset. It's a liability. Every line of code is another line to test, debug, and maintain. And every line of code introduces new opportunities for new bugs. Despite the promises, DDD increases this liability by adding layers of unnecessary code and generally making a mess of everything. </p>
 <h4>Broken Promises</h4>
-<p>DDD might be okay for massive legacy enterprise Java systems from the early aughts. But it's overkill for modern SwiftUI apps. Positioned as a way to make code adaptable, scalable, and maintainable, DDD simply fails on all three fronts:</p>
+<p>DDD might be okay for massive, legacy, enterprise Java systems from the early aughts. But it's overkill for modern SwiftUI apps. Positioned as a way to make code adaptable, scalable, and maintainable, DDD simply fails on all three fronts:</p>
 <ul>
 <li>
 <p><strong>Not Adaptable</strong> - DDD makes even small changes slow and tedious. Features that should take minutes can take days because changes because every layer must be re-adjusted and re-aligned.</p>
 </li>
 <li>
-<p><strong>Not Scalable</strong> - Client-side apps don't face the same scalability challenges as backends. DDD's attempt to "scale for the future" just ends up adding unnecessary cruft in the present. </p>
+<p><strong>Not Scalable</strong> - Client-side apps don't face the same scalability challenges as backend systems. DDD's attempt to "scale for the future" just ends up adding unnecessary cruft. </p>
 </li>
 <li><strong>Not Maintainable</strong> - DDD buries logic under so many abstractions that understanding or updating code becomes a chore. Instead of simplifying maintenance, it creates friction and confusion.</li>
 </ul>
 <h4>Code Comparison</h4>
-<p>Instead of just telling you that DDD is bad, let me show you... Consider this <em>vanilla</em> implementation for fetching and displaying Todos using the <a href="https://jsonplaceholder.typicode.com/todos/">jsonplaceholder</a> API:</p>
+<p>Instead of me just telling you that DDD is bad, let me show you... Consider this vanilla implementation for fetching and displaying Todos using the <a href="https://jsonplaceholder.typicode.com/todos/">jsonplaceholder</a> API:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
 
 <span class="c1">// 1. Model</span>
@@ -300,7 +300,7 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<p>Both implementations do <strong>the exact same thing</strong>! Seriously, copy-and-paste both blocks into Xcode and see for yourself! All the extra layers—the repository, use case, and view model—add <strong>bloat without benefit.</strong> But what about testing? Fair. To test the vanilla version, just create a <code>TodoClient.mock</code> extension and inject it where needed. Done.</p>
+<p>Both implementations do <strong>the exact same thing</strong>! Seriously, copy-and-paste both blocks into Xcode and see for yourself! All the extra layers—the repository, use case, and view model—add <strong>bloat without benefit.</strong> But what about testing? Okay. Fair. To test the vanilla version, just create a <code>TodoClient.mock</code> extension and inject it where needed. Done.</p>
 <h4>HackerNews</h4>
 <p>If the code comparison isn't enough to convince you that DDD is unnecessary and actively counterproductive, these collected quotes from various HackerNews threads should:</p>
 <blockquote>
@@ -316,7 +316,7 @@
 <p>"The biggest flaw of DDD I’ve run into is there’s no emphasis on when not to use it. There’s no mention that over-coding business rules into modules and services <strong>locks you into business processes that are slow or impossible to update</strong>. There’s no mention that most times you want to build services that offer platform capabilities, not focus on what 'domain' they fall into. Never mind that 'domain' is basically undefined and can mean many different concepts and different types of concepts."</p>
 </blockquote>
 <h4>Go for Simple</h4>
-<p>SwiftUI thrives on simplicity. Not endless layers of abstractions. Instead of wasting time on "domains", "repositories", and "use cases". Let's all focus on delivering features quickly with less code.</p>
+<p>SwiftUI thrives on simplicity. Not endless layers of abstractions. Instead of wasting time on "domains", "repositories", and "use cases". Let's focus on delivering features quickly with less code.</p>
 </article>
     </main>
 </body>
