@@ -9,20 +9,20 @@ Domain-driven Design (DDD) is a software design approach that attempts to struct
 
 #### Code as a Liability
 
-Code is a liability, not an asset. Every line of code is another line to debug, test, and maintain. And every line of code introduces new opportunities for new bugs. Despite the promises, DDD increases this liability by adding layers of unnecessary code and making a mess of everything. 
+Code isn't an asset. It's a liability. Every line of code is another line to test, debug, and maintain. And every line of code introduces new opportunities for new bugs. Despite the promises, DDD increases this liability by adding layers of unnecessary code and generally making a mess of everything. 
 
 #### Broken Promises
 
-DDD might be okay for massive legacy enterprise Java systems from the early aughts. But it's overkill for modern SwiftUI apps. Positioned as a way to make code adaptable, scalable, and maintainable, DDD simply fails on all three fronts:
+DDD might be okay for massive, legacy, enterprise Java systems from the early aughts. But it's overkill for modern SwiftUI apps. Positioned as a way to make code adaptable, scalable, and maintainable, DDD simply fails on all three fronts:
 
 - **Not Adaptable** - DDD makes even small changes slow and tedious. Features that should take minutes can take days because changes because every layer must be re-adjusted and re-aligned.
 
-- **Not Scalable** - Client-side apps don't face the same scalability challenges as backends. DDD's attempt to "scale for the future" just ends up adding unnecessary cruft in the present. 
+- **Not Scalable** - Client-side apps don't face the same scalability challenges as backend systems. DDD's attempt to "scale for the future" just ends up adding unnecessary cruft. 
 - **Not Maintainable** - DDD buries logic under so many abstractions that understanding or updating code becomes a chore. Instead of simplifying maintenance, it creates friction and confusion.
 
 #### Code Comparison
 
-Instead of just telling you that DDD is bad, let me show you... Consider this *vanilla* implementation for fetching and displaying Todos using the [jsonplaceholder](https://jsonplaceholder.typicode.com/todos/) API:
+Instead of me just telling you that DDD is bad, let me show you... Consider this vanilla implementation for fetching and displaying Todos using the [jsonplaceholder](https://jsonplaceholder.typicode.com/todos/) API:
 
 ```swift
 import SwiftUI
@@ -285,7 +285,7 @@ struct DDDTodoView: View {
 }
 ```
 
-Both implementations do **the exact same thing**! Seriously, copy-and-paste both blocks into Xcode and see for yourself! All the extra layers—the repository, use case, and view model—add **bloat without benefit.** But what about testing? Fair. To test the vanilla version, just create a `TodoClient.mock` extension and inject it where needed. Done.
+Both implementations do **the exact same thing**! Seriously, copy-and-paste both blocks into Xcode and see for yourself! All the extra layers—the repository, use case, and view model—add **bloat without benefit.** But what about testing? Okay. Fair. To test the vanilla version, just create a `TodoClient.mock` extension and inject it where needed. Done.
 
 #### HackerNews
 
@@ -313,4 +313,4 @@ If the code comparison isn't enough to convince you that DDD is unnecessary and 
 
 #### Go for Simple
 
-SwiftUI thrives on simplicity. Not endless layers of abstractions. Instead of wasting time on "domains", "repositories", and "use cases". Let's all focus on delivering features quickly with less code.
+SwiftUI thrives on simplicity. Not endless layers of abstractions. Instead of wasting time on "domains", "repositories", and "use cases". Let's focus on delivering features quickly with less code.
