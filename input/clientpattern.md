@@ -8,7 +8,7 @@ slug: clientpattern
 I recently wrapped up some work on a client project that used [TCA](https://github.com/pointfreeco/swift-composable-architecture). While I didn't love the framework, I'm thankful for the opportunity because it introduced me to something brilliant: the Client Pattern.
 
 #### The Client Pattern
-The thing I'm calling the Client Pattern is really just a simplified version of Point-Free's `DependencyClient` from their [`swift-dependencies`](https://github.com/pointfreeco/swift-dependencies) library. While the benefits are well articulated in [this blog post](https://www.pointfree.co/blog/posts/120-macro-bonanza-dependencies), you can get most of the value with just a few lines of Swift:
+The thing that I'm calling the Client Pattern is really just a simplified version of Point-Free's `DependencyClient` from their [`swift-dependencies`](https://github.com/pointfreeco/swift-dependencies) library. While the benefits are well articulated in [this blog post](https://www.pointfree.co/blog/posts/120-macro-bonanza-dependencies), you can get most of the value with just a few lines of Swift:
 
 ```swift
 import Foundation
@@ -344,7 +344,8 @@ struct SuntimesServiceView: View {
     private func fetchSunrise() async {
         do {
             // Warning: Swift 6 Error (Sending 'self.service' risks causing data races)
-            // Sending main actor-isolated 'self.service' to nonisolated instance method 'fetchSunrise(latitude:longitude:)' risks causing data races between nonisolated and main actor-isolated uses
+            // Sending main actor-isolated 'self.service' to nonisolated instance method 'fetchSunrise(latitude:longitude:)' 
+            // risks causing data races between nonisolated and main actor-isolated uses
             sunrise = try await service.fetchSunrise(latitude: 43.6532, longitude: -79.3832)
         } catch {
             print(error)
@@ -364,11 +365,9 @@ struct SuntimesServiceView: View {
 
 #### Keeping It Simple
 
-For me, I love the the Client Pattern over the Service Pattern because it:
+I'm really excited about the Client Pattern going forward as it:
 
 - Removes protocol overhead
 - Makes testing easier with closures 
 - Integrates well with SwiftUI
 - And requires less code
-
-I'm excited to use the pattern going forward because it leverages the best parts of Swift/SwiftUI and helps to keep my code as simple as possible!
