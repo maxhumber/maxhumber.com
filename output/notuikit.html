@@ -27,9 +27,9 @@
         <a href="code">#code</a>
         </div>
     </header>
-    <p>Programming basically boils down to two fundamentals: data flow and naming things. Simple in theory, easy to complicate in practice. Let's look at some code that updates an emoji on a "parent" view from a "child" view action. </p>
+    <p>Programming basically boils down to two things: data flow and naming stuff. Simple in theory. Super easy to complicate in practice. To illustrate the point let's look at some iOS code that updates an emoji on a "parent" view from a "child" view action. </p>
 <h4>Boilerplate UIKit</h4>
-<p>In UIKit it's a whole song and dance:</p>
+<p>In UIKit this relatively simple task becomes a whole sad song and dance:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">UIKit</span>
 
 <span class="kd">class</span> <span class="nc">ParentViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
@@ -172,7 +172,7 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<p>All of that to change an emoji from "🐶" to "🐈"!</p>
+<p>Seriously?! All of that to change an emoji from "🐶" to "🐈"!</p>
 <h4>"SwiftUIKit"</h4>
 <p>Many seasoned UIKit developers transitioning to SwiftUI treat the framework as “UIKit with different syntax.” The result? Bloated SwiftUI code that looks like this:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
@@ -298,9 +298,9 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<p>Coordinators, delegates, nested view models... enough boilerplate to sink a ship!</p>
+<p>Coordinators, delegates, nested view models... and enough boilerplate to sink a ship!</p>
 <h4>Vanilla SwiftUI</h4>
-<p>Here's the exact same problem solved with some vanilla SwiftUI:</p>
+<p>Here's the exact same problem solved with just a few lines of SwiftUI:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
 
 <span class="kd">struct</span> <span class="nc">ParentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
@@ -347,9 +347,9 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<p>No coordinators. No delegates. No view models. Just <code>@State</code> and <code>@Binding</code> doing what they were designed to do. And letting SwiftUI handle all the complexity that had to be handled manually in UIKit.</p>
+<p>No coordinators. No delegates. No view models. Just <code>@State</code> and <code>@Binding</code> doing what they were designed to do. SwiftUI is able to handle all of the complexity that had to be manually orchestrated in UIKit.</p>
 <h4>MVVM</h4>
-<p>If you <em>must</em> (a topic for another time) use MVVM here's how the architecture might be used with SwiftUI:</p>
+<p>Some might complain, but what about MVVM? Well, if you <em>must</em> (a topic for another time) use MVVM with SwiftUI here's what that might look like:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
 
 <span class="p">@</span><span class="n">Observable</span>
@@ -406,10 +406,9 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<p>At least the thing given the ViewModel name is actually a view model this time!</p>
+<p>At least the thing given the ViewModel name this time is actually a view model!</p>
 <h4>The Bottom Line</h4>
 <p>SwiftUI isn’t just a new UI framework—it’s a completely different way of thinking. A brand new way of building. UIKit patterns worked well... in UIKit. Forcing them into SwiftUI only creates complexity.</p>
-<p><strong>Less code == more value.</strong></p>
 </article>
     </main>
 </body>
