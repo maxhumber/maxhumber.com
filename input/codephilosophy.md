@@ -38,4 +38,4 @@ The humans in the software development loop are just as important as the "loops"
 - **Obviousness in Code**: "If someone reading your code says it’s not obvious, then it’s not obvious, no matter how clear it may seem to you."
 - **Choosing Good Names**: "Choosing a mediocre name for a particular variable... will have a significant impact on complexity and manageability."
 
-Taken together all of these quotes stress that software is as much about managing complexity as it is about writing code.
+Taken together these quotes stress that software is as much about managing complexity as it is about writing code.

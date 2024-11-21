@@ -5,11 +5,11 @@ tags: code
 slug: notuikit
 ---
 
-Programming basically boils down to two fundamentals: data flow and naming things. Simple in theory, easy to complicate in practice. Let's look at some code that updates an emoji on a "parent" view from a "child" view action. 
+Programming basically boils down to two things: data flow and naming stuff. Simple in theory. Super easy to complicate in practice. To illustrate the point let's look at some iOS code that updates an emoji on a "parent" view from a "child" view action. 
 
 #### Boilerplate UIKit
 
-In UIKit it's a whole song and dance:
+In UIKit this relatively simple task becomes a whole sad song and dance:
 
 ```swift
 import UIKit
@@ -154,7 +154,7 @@ struct ParentViewControllerWrapper: UIViewControllerRepresentable {
 }
 ```
 
-All of that to change an emoji from "🐶" to "🐈"!
+Seriously?! All of that to change an emoji from "🐶" to "🐈"!
 
 #### "SwiftUIKit"
 
@@ -284,11 +284,11 @@ struct ChildView: View {
 }
 ```
 
-Coordinators, delegates, nested view models... enough boilerplate to sink a ship!
+Coordinators, delegates, nested view models... and enough boilerplate to sink a ship!
 
 #### Vanilla SwiftUI
 
-Here's the exact same problem solved with some vanilla SwiftUI:
+Here's the exact same problem solved with just a few lines of SwiftUI:
 
 ```swift
 import SwiftUI
@@ -337,11 +337,11 @@ struct ChildView: View {
 }
 ```
 
-No coordinators. No delegates. No view models. Just `@State` and `@Binding` doing what they were designed to do. And letting SwiftUI handle all the complexity that had to be handled manually in UIKit.
+No coordinators. No delegates. No view models. Just `@State` and `@Binding` doing what they were designed to do. SwiftUI is able to handle all of the complexity that had to be manually orchestrated in UIKit.
 
 #### MVVM
 
-If you *must* (a topic for another time) use MVVM here's how the architecture might be used with SwiftUI:
+Some might complain, but what about MVVM? Well, if you *must* (a topic for another time) use MVVM with SwiftUI here's what that might look like:
 
 ```swift
 import SwiftUI
@@ -400,10 +400,8 @@ struct ChildView: View {
 }
 ```
 
-At least the thing given the ViewModel name is actually a view model this time!
+At least the thing given the ViewModel name this time is actually a view model!
 
 #### The Bottom Line
 
 SwiftUI isn’t just a new UI framework—it’s a completely different way of thinking. A brand new way of building. UIKit patterns worked well... in UIKit. Forcing them into SwiftUI only creates complexity.
-
-**Less code == more value.**

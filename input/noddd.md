@@ -5,7 +5,7 @@ tags: code
 slug: noddd
 ---
 
-Domain-driven Design (DDD) is a software design approach that attempts to structure code to "match a domain". It promises "adaptable", "scalable", and "maintainable" software by dividing apps into "bounded contexts" and by "aligning code" with "business needs". It sounds great, in theory. But in reality, it's a trap... especially when applied to SwiftUI.
+Domain-driven Design (DDD) is a software design approach that attempts to structure code to "match a domain". It promises "adaptable", "scalable", and "maintainable" software by dividing apps into "bounded contexts" and by "aligning code" with "business needs". It *sounds* great, in theory. But in reality, it's a trap... especially when applied to SwiftUI.
 
 #### Code as a Liability
 

@@ -41,7 +41,7 @@ grug think "why nest view model like angry babushka doll??!"
 
 grug say "view model not nest. view model hold state for one thing, not many things!"
 
-nest not just throw rock in river but dam of despair
+nest not just throw rock in river but build dam of despair
 
 #### llm
 
