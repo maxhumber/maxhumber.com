@@ -29,7 +29,7 @@
     </header>
     <p>I recently wrapped up some work on a client project that used <a href="https://github.com/pointfreeco/swift-composable-architecture">TCA</a>. While I didn't love the framework, I'm thankful for the opportunity because it introduced me to something brilliant: the Client Pattern.</p>
 <h4>The Client Pattern</h4>
-<p>The thing I'm calling the Client Pattern is really just a simplified version of Point-Free's <code>DependencyClient</code> from their <a href="https://github.com/pointfreeco/swift-dependencies"><code>swift-dependencies</code></a> library. While the benefits are well articulated in <a href="https://www.pointfree.co/blog/posts/120-macro-bonanza-dependencies">this blog post</a>, you can get most of the value with just a few lines of Swift:</p>
+<p>The thing that I'm calling the Client Pattern is really just a simplified version of Point-Free's <code>DependencyClient</code> from their <a href="https://github.com/pointfreeco/swift-dependencies"><code>swift-dependencies</code></a> library. While the benefits are well articulated in <a href="https://www.pointfree.co/blog/posts/120-macro-bonanza-dependencies">this blog post</a>, you can get most of the value with just a few lines of Swift:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
 
 <span class="kd">struct</span> <span class="nc">MyClient</span> <span class="p">{</span>
@@ -342,7 +342,8 @@
     <span class="kd">private</span> <span class="kd">func</span> <span class="nf">fetchSunrise</span><span class="p">()</span> <span class="k">async</span> <span class="p">{</span>
         <span class="k">do</span> <span class="p">{</span>
             <span class="c1">// Warning: Swift 6 Error (Sending &#39;self.service&#39; risks causing data races)</span>
-            <span class="c1">// Sending main actor-isolated &#39;self.service&#39; to nonisolated instance method &#39;fetchSunrise(latitude:longitude:)&#39; risks causing data races between nonisolated and main actor-isolated uses</span>
+            <span class="c1">// Sending main actor-isolated &#39;self.service&#39; to nonisolated instance method &#39;fetchSunrise(latitude:longitude:)&#39; </span>
+            <span class="c1">// risks causing data races between nonisolated and main actor-isolated uses</span>
             <span class="n">sunrise</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">service</span><span class="p">.</span><span class="n">fetchSunrise</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="mf">43.6532</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">79.3832</span><span class="p">)</span>
         <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
             <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
@@ -361,14 +362,13 @@
 </code></pre></div>
 
 <h4>Keeping It Simple</h4>
-<p>For me, I love the the Client Pattern over the Service Pattern because it:</p>
+<p>I'm really excited about the Client Pattern going forward as it:</p>
 <ul>
 <li>Removes protocol overhead</li>
 <li>Makes testing easier with closures </li>
 <li>Integrates well with SwiftUI</li>
 <li>And requires less code</li>
 </ul>
-<p>I'm excited to use the pattern going forward because it leverages the best parts of Swift/SwiftUI and helps to keep my code as simple as possible!</p>
 </article>
     </main>
 </body>
