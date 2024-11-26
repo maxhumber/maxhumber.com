@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern SwiftUI Data Flow - Max Humber</title>
+    <link rel="stylesheet" href="/static/highlight.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="49865e68-5a7e-4e56-9ff3-4f1719b00f03"></script>
+</head>
+<body>
+    <main>
+        <nav>
+            <a href="/"><img src="/static/signature.png" alt="Signature"></a>
+            <div>
+                <a href="https://www.goodreads.com/author/show/18086463.Max_Humber">Goodreads</a>
+                <a href="https://linkedin.com/in/maxhumber">LinkedIn</a>
+                <a href="https://twitter.com/maxhumber">X</a>
+            </div>
+        </nav>
+<article>
+    <header>
+        <h3>Modern SwiftUI Data Flow</h3>
+        <time>2024-11-25</time>
+        <div>
+        <a href="code">#code</a>
+        </div>
+    </header>
+    <p>SwiftUI is over 5 years old. While a lot has changed since its introduction at WWDC19, the fundamentals— especially with respect to data flow—remain pretty much the same. Sure, there's some new <a href="https://developer.apple.com/documentation/Observation">Observation</a> framework syntax to learn, but Apple has done a great job at "simplifying" and "unifying" APIs while maintaining backwards compatibility.</p>
+<p>This post is meant to serve as a reference guide for modern (iOS 17/18+) SwiftUI data flow. It ought to be particularly useful for working with LLMs that might crank out outdated code.</p>
+<h4>Data Flow</h4>
+<p>By "data flow" I mean: how data moves through an app and updates the UI. Data flow in SwiftUI is actually quite simple... as long as you keep two principles in mind: views automatically update when their data changes, and every piece of data needs a single source of truth. </p>
+<p>Since its release Apple has produced hundreds of hours of WWDC videos on SwiftUI. If you just watch these three videos you'll be like 90% up to speed:</p>
+<ul>
+<li><a href="https://developer.apple.com/videos/play/wwdc2019/226/">Data Flow Through SwiftUI (WWDC19)</a></li>
+<li><a href="https://developer.apple.com/videos/play/wwdc2020/10040/">Data Essentials in SwiftUI (WWDC20)</a></li>
+<li><a href="https://developer.apple.com/videos/play/wwdc2023/10115/">Discover Observation in SwiftUI (WWDC23)</a></li>
+</ul>
+<h4>Value vs Reference</h4>
+<p>I don't want to get too in the weeds, but in order to see and understand how data flow has changed we have to differentiate between value types (📦) and reference types (🔗). </p>
+<p>Value types like Strings and Ints and Doubles and Bools and structs and enums, create independent copies when assigned. In contrast, reference types, like classes, share the same instance. </p>
+<p>Apple <a href="https://www.swift.org/documentation/articles/value-and-reference-types.html">strongly recommends</a> using value types for most cases. If we followed this advice more often I wouldn't have even need to write this post as most of the data flow changes in SwiftUI (from iOS 13/14 to iOS 17/18+) are related to reference types!</p>
+<h4>Timeline</h4>
+<p>Legend: <code>✅</code> = current, <code>⛔</code> = avoid, <code>📦</code> = value, <code>🔗</code> = reference</p>
+<p><strong>iOS 13 / WWDC19</strong></p>
+<ul>
+<li><code>✅</code> <code>📦</code> <strong><code>@State</code></strong></li>
+<li><code>✅</code> <code>📦</code> <strong><code>@Binding</code></strong> </li>
+<li><code>⛔</code> <code>🔗</code> <code>ObservableObject</code> <em>replaced with </em><em><code>@Observable</code></em><em> in iOS 17+</em></li>
+<li><code>⛔</code> <code>🔗</code> <strong><code>@Published</code></strong> <em>redundant when using </em><em><code>@Observable</code></em><em> in iOS 17+</em></li>
+<li><code>⛔</code> <code>🔗</code> <strong><code>@ObservedObject</code></strong> <em>replaced with </em><em><code>@Bindable</code></em><em> in iOS 17+</em></li>
+<li><code>⛔</code> <code>🔗</code> <strong><code>@EnvironmentObject</code></strong> <em>replaced with </em><em><code>@Environment</code></em><em> in iOS 17+</em></li>
+<li><code>✅</code> <code>📦</code> <strong><code>@Environment</code></strong></li>
+<li><code>⛔</code> <code>📦</code> <code>EnvironmentKey</code> <em>replaced with <code>@Entry</code> in iOS 18+</em></li>
+<li><code>⛔</code> <code>PreviewProvider</code> <em>replaced with <code>#Preview</code> in iOS 17+</em></li>
+</ul>
+<p><strong>iOS 14 / WWDC20</strong></p>
+<ul>
+<li><code>⛔</code> <code>🔗</code> <strong><code>@StateObject</code></strong> <em>replaced with <code>@State</code> in iOS 17+</em></li>
+</ul>
+<p><strong>iOS 15 / WWDC21</strong></p>
+<ul>
+<li>No significant data flow changes</li>
+</ul>
+<p><strong>iOS 16 / WWDC22</strong></p>
+<ul>
+<li>No significant data flow changes</li>
+</ul>
+<p><strong>iOS 17 / WWDC23</strong></p>
+<ul>
+<li><code>✅</code> <code>🔗</code> <strong><code>@Observable</code></strong> <em>replaces <code>ObservableObject</code></em></li>
+<li><code>✅</code> <code>🔗</code> <strong><code>@State</code></strong> <em>replaces <code>@StateObject</code></em></li>
+<li><code>✅</code> <code>🔗</code> <strong><code>@Bindable</code></strong>† <em>replaces <code>@ObservedObject</code></em></li>
+<li><code>✅</code> <code>🔗</code> <strong><code>@Environment</code></strong> <em>replaces <code>@EnvironmentObject</code></em></li>
+<li><code>✅</code> <code>#Preview</code> <em>replaces <code>PreviewProvider</code></em></li>
+</ul>
+<p><strong>iOS 18 / WWDC24</strong></p>
+<ul>
+<li><code>✅</code> <code>📦</code> <code>@Entry</code> <em>replaces <code>EnvironmentKey</code></em></li>
+</ul>
+<h4>Rosetta Code</h4>
+<p>Here's a simple, but practical, example of modern data flow in SwiftUI (I'd encourage you to copy-and-paste this block of code into Xcode to experiment with the syntax for yourself):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// iOS 17/18+</span>
+<span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="kd">extension</span> <span class="nc">EnvironmentValues</span> <span class="p">{</span>
+    <span class="c1">// ✅ 📦 replaces `EnvironmentKey`</span>
+    <span class="p">@</span><span class="n">Entry</span> <span class="kd">var</span> <span class="nv">lastRefresh</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="p">.</span><span class="n">now</span>
+<span class="p">}</span>
+
+<span class="c1">// ✅ 🔗 replaces `ObservableObject`</span>
+<span class="p">@</span><span class="n">Observable</span>
+<span class="kd">class</span> <span class="nc">UserStore</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">username</span> <span class="p">=</span> <span class="s">&quot;max&quot;</span> <span class="c1">// ✅ 🔗 replaces @Published</span>
+    <span class="kd">var</span> <span class="nv">hasPremium</span> <span class="p">=</span> <span class="kc">false</span> <span class="c1">// ✅ 🔗 replaces @Published</span>
+
+    <span class="kd">func</span> <span class="nf">randomize</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">username</span> <span class="p">=</span> <span class="nb">String</span><span class="p">((</span><span class="mf">0.</span><span class="p">.&lt;</span><span class="mi">3</span><span class="p">).</span><span class="bp">map</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span> <span class="s">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span><span class="p">.</span><span class="n">randomElement</span><span class="p">()</span><span class="o">!</span> <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ✅ 🔗 replaces `ObservableObject`</span>
+<span class="p">@</span><span class="n">Observable</span>
+<span class="kd">class</span> <span class="nc">EmojiStore</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">emoji</span> <span class="p">=</span> <span class="s">&quot;😀&quot;</span> <span class="c1">// ✅ 🔗 replaces @Published</span>
+
+    <span class="kd">func</span> <span class="nf">update</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">emoji</span> <span class="p">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">UnicodeScalar</span><span class="p">(</span><span class="nb">Int</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="k">in</span><span class="p">:</span> <span class="mh">0x1F600</span><span class="p">...</span><span class="mh">0x1F64F</span><span class="p">))</span><span class="o">!</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">ParentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">lastRefresh</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="p">.</span><span class="n">now</span> <span class="c1">// ✅ 📦 unchanged</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">userStore</span> <span class="p">=</span> <span class="n">UserStore</span><span class="p">()</span> <span class="c1">// ✅ 🔗 replaces `StateObject`</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">emojiStore</span> <span class="p">=</span> <span class="n">EmojiStore</span><span class="p">()</span> <span class="c1">// ✅ 🔗 replaces `StateObject`</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">0</span> <span class="c1">// ✅ 📦 unchanged</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span><span class="p">(</span><span class="n">spacing</span><span class="p">:</span> <span class="mi">15</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Last Refresh: </span><span class="si">\(</span><span class="n">lastRefresh</span><span class="p">.</span><span class="n">formatted</span><span class="si">(</span><span class="n">date</span><span class="p">:</span> <span class="p">.</span><span class="n">omitted</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="p">.</span><span class="n">complete</span><span class="si">))</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Refresh&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">lastRefresh</span> <span class="p">=</span> <span class="p">.</span><span class="n">now</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Username: </span><span class="si">\(</span><span class="n">userStore</span><span class="p">.</span><span class="n">username</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Randomize&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">userStore</span><span class="p">.</span><span class="n">randomize</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Has premium: </span><span class="si">\(</span><span class="n">userStore</span><span class="p">.</span><span class="n">hasPremium</span> <span class="p">?</span> <span class="s">&quot;Yes&quot;</span> <span class="p">:</span> <span class="s">&quot;No!&quot;</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Toggle&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">userStore</span><span class="p">.</span><span class="n">hasPremium</span><span class="p">.</span><span class="n">toggle</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Emoji: </span><span class="si">\(</span><span class="n">emojiStore</span><span class="p">.</span><span class="n">emoji</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Update&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">emojiStore</span><span class="p">.</span><span class="n">update</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Count: </span><span class="si">\(</span><span class="bp">count</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;+1&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="bp">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="p">}</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;-1&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="bp">count</span> <span class="o">-=</span> <span class="mi">1</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">ChildView</span><span class="p">(</span>
+                <span class="n">emojiStore</span><span class="p">:</span> <span class="n">emojiStore</span><span class="p">,</span> <span class="c1">// ✅ 🔗 unchanged</span>
+                <span class="bp">count</span><span class="p">:</span> <span class="err">$</span><span class="bp">count</span> <span class="c1">// ✅ 📦 unchanged</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(.</span><span class="n">purple</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">lastRefresh</span><span class="p">,</span> <span class="n">lastRefresh</span><span class="p">)</span> <span class="c1">// ✅ 📦 unchanged</span>
+        <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="n">userStore</span><span class="p">)</span> <span class="c1">// ✅ 🔗 replaces `.environmentObject`</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">ChildView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">lastRefresh</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">lastRefresh</span><span class="p">:</span> <span class="n">Date</span> <span class="c1">// ✅ 📦 unchanged</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="n">UserStore</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">userStore</span><span class="p">:</span> <span class="n">UserStore</span> <span class="c1">// ✅ 🔗 replaces `@EnvironmentObject`</span>
+    <span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">emojiStore</span><span class="p">:</span> <span class="n">EmojiStore</span> <span class="c1">// ✅ 🔗 replaces `@ObservedObject`</span>
+    <span class="p">@</span><span class="n">Binding</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span> <span class="c1">// ✅ 📦 unchanged</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span><span class="p">(</span><span class="n">spacing</span><span class="p">:</span> <span class="mi">15</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Last Refresh: </span><span class="si">\(</span><span class="n">lastRefresh</span><span class="p">.</span><span class="n">formatted</span><span class="si">(</span><span class="n">date</span><span class="p">:</span> <span class="p">.</span><span class="n">omitted</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="p">.</span><span class="n">complete</span><span class="si">))</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Edit username:&quot;</span><span class="p">)</span>
+                <span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">userStore</span> <span class="p">=</span> <span class="n">userStore</span> <span class="c1">// ⚠️ 🔗 FRUSTRATING!</span>
+                <span class="n">TextField</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="err">$</span><span class="n">userStore</span><span class="p">.</span><span class="n">username</span><span class="p">)</span>
+                    <span class="p">.</span><span class="n">textInputAutocapitalization</span><span class="p">(.</span><span class="n">never</span><span class="p">)</span>
+                    <span class="p">.</span><span class="n">fixedSize</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Has premium: </span><span class="si">\(</span><span class="n">userStore</span><span class="p">.</span><span class="n">hasPremium</span> <span class="p">?</span> <span class="s">&quot;Yes&quot;</span> <span class="p">:</span> <span class="s">&quot;No!&quot;</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Toggle&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">userStore</span><span class="p">.</span><span class="n">hasPremium</span><span class="p">.</span><span class="n">toggle</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Emoji: </span><span class="si">\(</span><span class="n">emojiStore</span><span class="p">.</span><span class="n">emoji</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Update&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">emojiStore</span><span class="p">.</span><span class="n">update</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Count: </span><span class="si">\(</span><span class="bp">count</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;+1&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="bp">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="p">}</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;-1&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="bp">count</span> <span class="o">-=</span> <span class="mi">1</span> <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(.</span><span class="n">mint</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ✅ replaces `PreviewProvider`</span>
+<span class="p">#</span><span class="n">Preview</span><span class="p">(</span><span class="s">&quot;Parent&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ParentView</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// ✅ replaces `PreviewProvider`</span>
+<span class="p">#</span><span class="n">Preview</span><span class="p">(</span><span class="s">&quot;Child&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Previewable</span> <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">userStore</span> <span class="p">=</span> <span class="n">UserStore</span><span class="p">()</span> <span class="c1">// ✅ 🔗 replaces `StateObject`</span>
+    <span class="p">@</span><span class="n">Previewable</span> <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">emojiStore</span> <span class="p">=</span> <span class="n">EmojiStore</span><span class="p">()</span> <span class="c1">// ✅ 🔗 replaces `StateObject`</span>
+    <span class="p">@</span><span class="n">Previewable</span> <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">count</span> <span class="p">=</span> <span class="mi">10</span> <span class="c1">// ✅ 📦 unchanged</span>
+    <span class="n">ChildView</span><span class="p">(</span><span class="n">emojiStore</span><span class="p">:</span> <span class="n">emojiStore</span><span class="p">,</span> <span class="bp">count</span><span class="p">:</span> <span class="err">$</span><span class="bp">count</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">lastRefresh</span><span class="p">,</span> <span class="p">.</span><span class="n">now</span><span class="p">)</span> <span class="c1">// ✅ 📦 unchanged</span>
+        <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="n">userStore</span><span class="p">)</span> <span class="c1">// ✅ 🔗 replaces `.environmentObject`</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>And here's the same example as above, just painted with the old, outdated syntax:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// iOS 13/14/15/16</span>
+<span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="c1">// ⛔️ 📦 replaced with `@Entry`</span>
+<span class="kd">private</span> <span class="kd">struct</span> <span class="nc">LastRefreshKey</span><span class="p">:</span> <span class="n">EnvironmentKey</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="p">.</span><span class="n">now</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">EnvironmentValues</span> <span class="p">{</span>
+    <span class="c1">// ⛔️ 📦 replaced with `@Entry`</span>
+    <span class="kd">var</span> <span class="nv">lastRefresh</span><span class="p">:</span> <span class="n">Date</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span> <span class="kc">self</span><span class="p">[</span><span class="n">LastRefreshKey</span><span class="p">.</span><span class="kc">self</span><span class="p">]</span> <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span> <span class="kc">self</span><span class="p">[</span><span class="n">LastRefreshKey</span><span class="p">.</span><span class="kc">self</span><span class="p">]</span> <span class="p">=</span> <span class="n">newValue</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ⛔️ 🔗 replaced by `@Observable`</span>
+<span class="kd">class</span> <span class="nc">UserStore</span><span class="p">:</span> <span class="n">ObservableObject</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Published</span> <span class="kd">var</span> <span class="nv">username</span> <span class="p">=</span> <span class="s">&quot;max&quot;</span> <span class="c1">// ⛔️ 🔗 redundant when using `@Observable`</span>
+    <span class="p">@</span><span class="n">Published</span> <span class="kd">var</span> <span class="nv">hasPremium</span> <span class="p">=</span> <span class="kc">false</span> <span class="c1">// ⛔️ 🔗 redundant when using `@Observable`</span>
+
+    <span class="kd">func</span> <span class="nf">randomize</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">username</span> <span class="p">=</span> <span class="nb">String</span><span class="p">((</span><span class="mf">0.</span><span class="p">.&lt;</span><span class="mi">3</span><span class="p">).</span><span class="bp">map</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span> <span class="s">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span><span class="p">.</span><span class="n">randomElement</span><span class="p">()</span><span class="o">!</span> <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ⛔️ 🔗 replaced by `@Observable`</span>
+<span class="kd">class</span> <span class="nc">EmojiStore</span><span class="p">:</span> <span class="n">ObservableObject</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Published</span> <span class="kd">var</span> <span class="nv">emoji</span> <span class="p">=</span> <span class="s">&quot;😀&quot;</span> <span class="c1">// ⛔️ 🔗 redundant when using `@Observable`</span>
+
+    <span class="kd">func</span> <span class="nf">update</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">emoji</span> <span class="p">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">UnicodeScalar</span><span class="p">(</span><span class="nb">Int</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="k">in</span><span class="p">:</span> <span class="mh">0x1F600</span><span class="p">...</span><span class="mh">0x1F64F</span><span class="p">))</span><span class="o">!</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">ParentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">lastRefresh</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="p">.</span><span class="n">now</span> <span class="c1">// ✅ 📦 unchanged</span>
+    <span class="p">@</span><span class="n">StateObject</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">userStore</span> <span class="p">=</span> <span class="n">UserStore</span><span class="p">()</span> <span class="c1">// ⛔️ 🔗 replaced with `@State`</span>
+    <span class="p">@</span><span class="n">StateObject</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">emojiStore</span> <span class="p">=</span> <span class="n">EmojiStore</span><span class="p">()</span> <span class="c1">// ⛔️ 🔗 replaced with `@State`</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">0</span> <span class="c1">// ✅ 📦 unchanged</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span><span class="p">(</span><span class="n">spacing</span><span class="p">:</span> <span class="mi">15</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Last Refresh: </span><span class="si">\(</span><span class="n">lastRefresh</span><span class="p">.</span><span class="n">formatted</span><span class="si">(</span><span class="n">date</span><span class="p">:</span> <span class="p">.</span><span class="n">omitted</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="p">.</span><span class="n">complete</span><span class="si">))</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Refresh&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">lastRefresh</span> <span class="p">=</span> <span class="p">.</span><span class="n">now</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Username: </span><span class="si">\(</span><span class="n">userStore</span><span class="p">.</span><span class="n">username</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Randomize&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">userStore</span><span class="p">.</span><span class="n">randomize</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Has premium: </span><span class="si">\(</span><span class="n">userStore</span><span class="p">.</span><span class="n">hasPremium</span> <span class="p">?</span> <span class="s">&quot;Yes&quot;</span> <span class="p">:</span> <span class="s">&quot;No!&quot;</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Toggle&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">userStore</span><span class="p">.</span><span class="n">hasPremium</span><span class="p">.</span><span class="n">toggle</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Emoji: </span><span class="si">\(</span><span class="n">emojiStore</span><span class="p">.</span><span class="n">emoji</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Update&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">emojiStore</span><span class="p">.</span><span class="n">update</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Count: </span><span class="si">\(</span><span class="bp">count</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;+1&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="bp">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="p">}</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;-1&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="bp">count</span> <span class="o">-=</span> <span class="mi">1</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">ChildView</span><span class="p">(</span>
+                <span class="n">emojiStore</span><span class="p">:</span> <span class="n">emojiStore</span><span class="p">,</span> <span class="c1">// ✅ 📦 unchanged</span>
+                <span class="bp">count</span><span class="p">:</span> <span class="err">$</span><span class="bp">count</span> <span class="c1">// ✅ 📦 unchanged</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">purple</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">lastRefresh</span><span class="p">,</span> <span class="n">lastRefresh</span><span class="p">)</span> <span class="c1">// ✅ 📦 unchanged</span>
+        <span class="p">.</span><span class="n">environmentObject</span><span class="p">(</span><span class="n">userStore</span><span class="p">)</span> <span class="c1">// ⛔️ 🔗 replaced with `.environment`</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">ChildView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">lastRefresh</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">lastRefresh</span><span class="p">:</span> <span class="n">Date</span> <span class="c1">// ✅ 📦 unchanged</span>
+    <span class="p">@</span><span class="n">EnvironmentObject</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">userStore</span><span class="p">:</span> <span class="n">UserStore</span> <span class="c1">// ⛔️ 🔗 replaced with `@Environment`</span>
+    <span class="p">@</span><span class="n">ObservedObject</span> <span class="kd">var</span> <span class="nv">emojiStore</span><span class="p">:</span> <span class="n">EmojiStore</span> <span class="c1">// ⛔️ 🔗 replaced with `@Bindable`</span>
+    <span class="p">@</span><span class="n">Binding</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span> <span class="c1">// ✅ 📦 unchanged</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">VStack</span><span class="p">(</span><span class="n">spacing</span><span class="p">:</span> <span class="mi">15</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Last Refresh: </span><span class="si">\(</span><span class="n">lastRefresh</span><span class="p">.</span><span class="n">formatted</span><span class="si">(</span><span class="n">date</span><span class="p">:</span> <span class="p">.</span><span class="n">omitted</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="p">.</span><span class="n">complete</span><span class="si">))</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Edit username:&quot;</span><span class="p">)</span>
+                <span class="n">TextField</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="err">$</span><span class="n">userStore</span><span class="p">.</span><span class="n">username</span><span class="p">)</span>
+                    <span class="p">.</span><span class="n">textInputAutocapitalization</span><span class="p">(.</span><span class="n">never</span><span class="p">)</span>
+                    <span class="p">.</span><span class="n">fixedSize</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Has premium: </span><span class="si">\(</span><span class="n">userStore</span><span class="p">.</span><span class="n">hasPremium</span> <span class="p">?</span> <span class="s">&quot;Yes&quot;</span> <span class="p">:</span> <span class="s">&quot;No!&quot;</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Toggle&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">userStore</span><span class="p">.</span><span class="n">hasPremium</span><span class="p">.</span><span class="n">toggle</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Emoji: </span><span class="si">\(</span><span class="n">emojiStore</span><span class="p">.</span><span class="n">emoji</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Update&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">emojiStore</span><span class="p">.</span><span class="n">update</span><span class="p">()</span> <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">HStack</span> <span class="p">{</span>
+                <span class="n">Text</span><span class="p">(</span><span class="s">&quot;Count: </span><span class="si">\(</span><span class="bp">count</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;+1&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="bp">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="p">}</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;-1&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="bp">count</span> <span class="o">-=</span> <span class="mi">1</span> <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">.</span><span class="n">padding</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">().</span><span class="n">stroke</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">mint</span><span class="p">,</span> <span class="n">lineWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ⛔️ replaced with `#Preview`</span>
+<span class="kd">struct</span> <span class="nc">ParentView_Previews</span><span class="p">:</span> <span class="n">PreviewProvider</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">previews</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">ParentView</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ⛔️ replaced with `#Preview`</span>
+<span class="kd">struct</span> <span class="nc">ChildView_Previews</span><span class="p">:</span> <span class="n">PreviewProvider</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">previews</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">Preview</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">struct</span> <span class="nc">Preview</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="p">@</span><span class="n">StateObject</span> <span class="kd">var</span> <span class="nv">userStore</span> <span class="p">=</span> <span class="n">UserStore</span><span class="p">()</span> <span class="c1">// ⛔️ 🔗 replaced with `@State`</span>
+        <span class="p">@</span><span class="n">StateObject</span> <span class="kd">var</span> <span class="nv">emojiStore</span> <span class="p">=</span> <span class="n">EmojiStore</span><span class="p">()</span> <span class="c1">// ⛔️ 🔗 replaced with `@State`</span>
+        <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">10</span> <span class="c1">// ✅ 📦 unchanged</span>
+
+        <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+            <span class="n">ChildView</span><span class="p">(</span><span class="n">emojiStore</span><span class="p">:</span> <span class="n">emojiStore</span><span class="p">,</span> <span class="bp">count</span><span class="p">:</span> <span class="err">$</span><span class="bp">count</span><span class="p">)</span>
+                <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">lastRefresh</span><span class="p">,</span> <span class="p">.</span><span class="n">now</span><span class="p">)</span> <span class="c1">// ✅ 📦 unchanged</span>
+                <span class="p">.</span><span class="n">environmentObject</span><span class="p">(</span><span class="n">userStore</span><span class="p">)</span> <span class="c1">// ⛔️ 🔗 replaced with `.environment`</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4>Between the Lines</h4>
+<p>As you can see, the two blocks of code are largely the same. The only real differences are in the reference type data flow. Thanks to Observation and <code>@Observable</code> things are a little more simple and a little better aligned with how value types have been handled since iOS 13:</p>
+<p><strong>1. Source of Truth</strong></p>
+<ul>
+<li>📦 <code>@State</code> </li>
+<li>🔗 <code>@State</code> <em>replacing <code>@StateObject</code></em></li>
+</ul>
+<p><strong>2. Read/Write Access</strong></p>
+<ul>
+<li>📦 <code>@Binding</code></li>
+<li>🔗 <code>@Bindable</code> <em>replacing <code>@ObservedObject</code></em></li>
+</ul>
+<p><strong>3. Global Access</strong></p>
+<ul>
+<li>📦 <code>@Environment</code></li>
+<li>🔗 <code>@Environment</code> <em>replacing <code>@EnvironmentObject</code></em></li>
+</ul>
+<h4>Rough Edges</h4>
+<p>Observation framework is a great improvement to data flow in SwiftUI, but there are still some awkward parts. The most notable is that we need two different two-way read-write binding mechanisms (<code>@Binding</code> and <code>@Bindable</code>) instead of one unified approach. Even more frustrating is the explicit "rebinding" requirement for working with environment objects:</p>
+<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="n">UserStore</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">userStore</span>
+<span class="c1">// ...</span>
+<span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">userStore</span> <span class="p">=</span> <span class="n">userStore</span> <span class="c1">// Required &quot;rebinding&quot;</span>
+</code></pre></div>
+
+<p>Hopefully Apple unifies these binding mechanisms in the future, similar to how they've deftly consolidated State and Environment handling!</p>
+</article>
+    </main>
+</body>
+</html>
