@@ -104,6 +104,11 @@ ul {
   margin: 1rem 0 1rem 0;
 }
 
+article > ul {
+  list-style: disc;
+  padding-left: 2rem;
+}
+
 li {
   margin: 0.1rem 0;
 }
@@ -203,4 +208,8 @@ img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+}
+
+p + p {
+  margin-top: 1.0rem;
 }
