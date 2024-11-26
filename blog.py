@@ -70,8 +70,9 @@ def setup_output(input_dir: Path, output_dir: Path) -> None:
     output_dir.mkdir(exist_ok=True)
     static_dir = output_dir / "static"
     static_dir.mkdir(exist_ok=True)
+    # Syntax highlighting CSS
     formatter = HtmlFormatter(
-        style="default",
+        style="lovelace",
         linenos=False,
         cssclass="highlight",
         noclasses=False,
@@ -79,10 +80,14 @@ def setup_output(input_dir: Path, output_dir: Path) -> None:
     )
     css = formatter.get_style_defs(".highlight")
     (static_dir / "highlight.css").write_text(css)
+    # Copy static assets
+    copy_file(Path("assets/signature.png"), static_dir / "signature.png")
+    copy_file(Path("assets/style.css"), static_dir / "style.css")
     copy_static_files(Path("static"), static_dir)
     copy_static_files(input_dir / "images", output_dir / "images")
+    # Copy root assets
     for file in ["CNAME", "favicon.ico", "blog.html"]:
-        copy_file(Path(file), output_dir / file)
+        copy_file(Path("assets") / file, output_dir / file)
 
 
 def build_site(

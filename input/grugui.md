@@ -1,7 +1,7 @@
 ---
 title: Grug Brained SwiftUI
 date: 2024-11-16
-tags: code
+tags: code,swift
 slug: grugui
 ---
 
