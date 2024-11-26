@@ -1,7 +1,7 @@
 ---
 title: SwiftUI is not UIKit
 date: 2024-11-14
-tags: code
+tags: code,swift
 slug: notuikit
 ---
 

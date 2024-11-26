@@ -1,8 +1,8 @@
 ---
 title: The Client Pattern
 date: 2024-11-20
-tags: code
-slug: clientpattern 
+tags: code,swift
+slug: clientpattern
 ---
 
 I recently wrapped up some work on a client project that used [TCA](https://github.com/pointfreeco/swift-composable-architecture). While I didn't love the framework, I'm thankful for the opportunity because it introduced me to something brilliant: the Client Pattern.
