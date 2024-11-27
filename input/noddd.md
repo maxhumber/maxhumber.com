@@ -1,5 +1,5 @@
 ---
-title: Just Say No to DDD
+title: Against DDD
 date: 2024-11-19
 tags: code
 slug: noddd

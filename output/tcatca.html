@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Case Against TCA - Max Humber</title>
+    <link rel="stylesheet" href="/static/highlight.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="49865e68-5a7e-4e56-9ff3-4f1719b00f03"></script>
+</head>
+<body>
+    <main>
+        <nav>
+            <a href="/"><img src="/static/signature.png" alt="Signature"></a>
+            <div>
+                <a href="https://www.goodreads.com/author/show/18086463.Max_Humber">Goodreads</a>
+                <a href="https://linkedin.com/in/maxhumber">LinkedIn</a>
+                <a href="https://twitter.com/maxhumber">X</a>
+            </div>
+        </nav>
+<article>
+    <header>
+        <h3>The Case Against TCA</h3>
+        <time>2024-11-27</time>
+        <div>
+        <a href="code">#code</a>
+        <a href="swift">#swift</a>
+        </div>
+    </header>
+    <p>The Composable Architecture (<a href="https://github.com/pointfreeco/swift-composable-architecture">TCA</a>) is an iOS app development framework that promises "better state management", "modular design", and "testable side effects". After doing some consulting with a startup looking to adopt the framework, I can confidently say: TCA creates more problems than it solves.</p>
+<h4>Pain.</h4>
+<p>TCA is packed with unnecessary complexity, redundant abstractions, and frustrating quirks. The startup I worked with ultimately abandoned the framework for the following reasons:</p>
+<ul>
+<li><strong>Steep Learning Curve</strong>: Requires mastering "reducers", "stores", and "test stores", making onboarding difficult.</li>
+<li><strong>Excessive Boilerplate</strong>: Even simple features require excessive code, slowing development.</li>
+<li><strong>Performance Problems</strong>: Slow builds, indexing, and crashing Xcode previews waste time.</li>
+<li><strong>Compiler Issues</strong>: Reducers often break the compiler with hard-to-diagnose errors.</li>
+<li><strong>Maintenance Burden</strong>: Frequent updates break code and demand costly refactoring.</li>
+<li><strong>Hard to Remove</strong>: Hard to rip out once adopted.</li>
+<li><strong>Third-Party Risk</strong>: Maintained by essentially two people with no long-term guarantee.</li>
+<li><strong>Outpaced by SwiftUI</strong>: SwiftUI now handles most problems TCA was built to solve.</li>
+</ul>
+<p>I contend that the only good idea in TCA is the <code>DependencyClient</code> pattern. But you don't actually need TCA to implement the pattern, you can do it with just a few lines of swift (see my post on <a href="/clientpattern">the Client Pattern</a>).</p>
+<h4>Obnoxious Dependencies</h4>
+<p>Importing TCA brings in 16 additional dependencies, most of which are other Point-Free libraries. While these libraries might have the <code>swift-</code> prefix, only <code>swift-collections</code> and <code>swift-syntax</code> are actually from Apple:</p>
+<div class="highlight"><pre><span></span><code>swift-composable-architecture 1.16.1
+  ├── combine-schedulers 1.0.2
+  ├── swift-case-paths 1.5.5
+  ├── swift-clocks 1.0.5
+  ├── swift-collections 1.1.3
+  ├── swift-concurrency-extras 1.2.0
+  ├── swift-custom-dump 1.3.3
+  ├── swift-dependencies 1.4.0
+  ├── swift-identified-collections 1.1.0
+  ├── swift-macro-testing 0.5.2
+  ├── swift-navigation 2.2.2
+  ├── swift-perception 1.3.5
+  ├── swift-snapshot-testing 1.17.5
+  ├── swift-syntax 600.0.0-prerelease-2024-09-04
+  ├── SwiftDocCPlugin 1.4.3
+  ├── SymbolKit 1.0.0
+  └── xctest-dynamic-overlay 1.4.0
+</code></pre></div>
+
+<p>This level of bloat is overkill for what TCA claims to solve, and the naming convention (<code>swift-navigation</code> instead of <code>point-free-navigation</code>) feels deliberately obnoxious and super disingenuous.</p>
+<h4>Online Sentiment</h4>
+<p>Looking through reddit (and elsewhere online) it seems that my frustrations with TCA are widely shared:</p>
+<p><strong><a href="https://www.reddit.com/r/SwiftUI/comments/16pab2x/have_you_used_tca_in_production_whats_your/k1vwlad/">Reddit: Have you used TCA in production?</a></strong></p>
+<ul>
+<li>"TCA is basically an <strong>extra layer of complexity</strong> in order to do what SwiftUI already does under the hood."</li>
+<li>"Watch the first three [TCA] videos on how to make a checklist… The solution is <strong>sooooo complicated.</strong>"</li>
+<li>"[TCA] seems <strong>needlessly complex</strong> to jump through 5+ files just to figure out what’s happening on one simple screen."</li>
+</ul>
+<p><strong><a href="https://www.reddit.com/r/iOSProgramming/comments/1c1o5jx/i_hate_the_composable_architecture/">Reddit: I hate the Composable Architecture</a></strong></p>
+<ul>
+<li>"[TCA] adds <strong>unnecessary complexity</strong> and a central dependency."</li>
+<li>"Everything [in TCA] is so tightly connected, <strong>any change leads to changes everywhere else.</strong>"</li>
+<li>"Working two years with that [TCA] shit was <strong>one of the reasons I quit the project.</strong>"</li>
+</ul>
+<p><strong><a href="https://rodschmidt.com/posts/composable-architecture-experience/">Rod Schmidt: Composable Architecture Experience</a></strong></p>
+<ul>
+<li>"TCA is a 3rd party framework. This means <strong>Apple doesn’t support it or care about it.</strong>"</li>
+<li>"You have to <strong>constantly re-learn things</strong> as the [TCA] framework gets updated."</li>
+<li>"You can be <strong>much more productive with MVVM</strong> and get the same benefits [as TCA]."</li>
+</ul>
+<h4>Survey Results</h4>
+<p>Despite the criticism TCA is pretty popular. So who actually uses the framework? And why do they like it? To find out, I put up a <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvFSCfHlHi3zjX643ZVv8Q0mBiqwBcf9FgBc4PJ-EOeZCvkw/viewanalytics">survey</a> in a few iOS/Swift subreddits and got 100 responses:</p>
+<div class="highlight"><pre><span></span><code><span class="o">|</span><span class="w"> </span><span class="nx">TCA</span><span class="w"> </span><span class="nx">Opinion</span><span class="w">                                        </span><span class="o">|</span><span class="w"> </span><span class="nx">SwiftUI</span><span class="o">-</span><span class="nx">first</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">UIKit</span><span class="o">-</span><span class="nx">first</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="o">--------------------------------------------------</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-------------</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-----------</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">I</span><span class="w"> </span><span class="nx">dont</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="nx">it</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">avoid</span><span class="w"> </span><span class="nx">using</span><span class="w"> </span><span class="nx">it</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="mi">8</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">18</span><span class="w">          </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">I</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="nx">it</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">lot</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">prefer</span><span class="w"> </span><span class="nx">it</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="nx">architecture</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">5</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">19</span><span class="w">          </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">Its</span><span class="w"> </span><span class="nx">acceptable</span><span class="w"> </span><span class="nx">but</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">my</span><span class="w"> </span><span class="nx">preferred</span><span class="w"> </span><span class="kd">choice</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">19</span><span class="w">          </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">applicable</span><span class="w"> </span><span class="p">(</span><span class="nx">I</span><span class="w"> </span><span class="nx">havent</span><span class="w"> </span><span class="nx">used</span><span class="w"> </span><span class="nx">TCA</span><span class="p">)</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">27</span><span class="w">          </span><span class="o">|</span>
+</code></pre></div>
+
+<p>Key insights:</p>
+<ul>
+<li><strong>83%</strong> of survey respondents started with UIKit, while only <strong>17%</strong> started with SwiftUI.</li>
+<li><strong>47%</strong> of SwiftUI-first developers avoid TCA, compared to only <strong>22%</strong> of UIKit-first developers.</li>
+</ul>
+<p>TCA's appeal seems rooted in its familiarity to UIKit-first developers, offering a structured, UIKit-like experience. For SwiftUI-first developers, TCA likely feels unnecessary and redundant, solving problems that SwiftUI already natively solves. </p>
+<h4>Vanilla</h4>
+<p>So what's the alternative? Honestly, just vanilla SwiftUI! Frustrated with TCA, I recreated their <a href="https://github.com/pointfreeco/swift-composable-architecture/tree/1.16.1/Examples/SpeechRecognition">SpeechRecognition</a> example to prove that you don't actually need the framework. Here's my <a href="https://github.com/maxhumber/VanillaSpeechRecognition/">vanilla implementation</a> that works with <strong>Swift 6</strong>, <strong>Xcode 16</strong>, and <strong>iOS 18</strong>.</p>
+<div class="highlight"><pre><span></span><code>| Metric                      | Vanilla    | TCA             |
+| --------------------------- | ---------- | --------------- |
+| Dependencies                | 0          | 16              |
+| &quot;Cold&quot; Build Time (seconds) | 1.1        | 32.4            |
+| &quot;Warm&quot; Build Time (seconds) | 0.1        | 0.4             |
+| Indexing Time               | Negligible | Several minutes |
+| Lines of Code               | 319        | 579             |
+</code></pre></div>
+
+<p>Importantly, both implementations achieve the exact same results. And my vanilla version delivers identical functionality and tests—without the complexity, boilerplate, or quirks.</p>
+<h4>TL;DR:</h4>
+<p>The Composable Architecture might have been useful in 2019 when SwiftUI was still immature, but Apple's yearly updates have rendered it obsolete for most apps. TCA is a perfect example of over-engineering that actively makes code worse while claiming to make it better. If you're transitioning to SwiftUI, focus on mastering its native tools in lieu of adopting TCA just because it feels familiar.</p>
+</article>
+    </main>
+</body>
+</html>

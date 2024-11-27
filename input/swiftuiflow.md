@@ -1,5 +1,5 @@
 ---
-title: Modern SwiftUI Data Flow
+title: SwiftUI Data Flow
 date: 2024-11-26
 tags: code,swift
 slug: swiftuiflow
