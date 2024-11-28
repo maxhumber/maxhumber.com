@@ -32,7 +32,7 @@
 <h4>Pain.</h4>
 <p>TCA is packed with unnecessary complexity, redundant abstractions, and frustrating quirks. The startup I worked with ultimately abandoned the framework for the following reasons:</p>
 <ul>
-<li><strong>Steep Learning Curve</strong>: Requires mastering "reducers", "stores", and "test stores", making onboarding difficult.</li>
+<li><strong>Steep Learning Curve</strong>: Requires mastering "reducers" and "stores" making onboarding difficult.</li>
 <li><strong>Excessive Boilerplate</strong>: Even simple features require excessive code, slowing development.</li>
 <li><strong>Performance Problems</strong>: Slow builds, indexing, and crashing Xcode previews waste time.</li>
 <li><strong>Compiler Issues</strong>: Reducers often break the compiler with hard-to-diagnose errors.</li>
@@ -66,7 +66,7 @@
 <p>This level of bloat is overkill for what TCA claims to solve, and the naming convention (<code>swift-navigation</code> instead of <code>point-free-navigation</code>) feels super obnoxious and deliberately disingenuous.</p>
 <h4>Online Sentiment</h4>
 <p>Looking through reddit (and elsewhere online) it seems that my frustrations are widely shared:</p>
-<p><strong><a href="https://www.reddit.com/r/SwiftUI/comments/16pab2x/have_you_used_tca_in_production_whats_your/k1vwlad/">Reddit: Have you used TCA in production?</a></strong></p>
+<p><strong><a href="https://www.reddit.com/r/SwiftUI/comments/16pab2x/have_you_used_tca_in_production_whats_your/">Reddit: Have you used TCA in production?</a></strong></p>
 <ul>
 <li>"TCA is basically an <strong>extra layer of complexity</strong> in order to do what SwiftUI already does under the hood."</li>
 <li>"Watch the first three [TCA] videos on how to make a checklist… The solution is <strong>sooooo complicated.</strong>"</li>
@@ -86,12 +86,12 @@
 </ul>
 <h4>Survey Results</h4>
 <p>Despite the criticism TCA is pretty popular. So who actually uses the framework? And why do they like it? To find out, I put up a <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvFSCfHlHi3zjX643ZVv8Q0mBiqwBcf9FgBc4PJ-EOeZCvkw/viewanalytics">survey</a> in a few iOS/Swift subreddits and got 100 responses:</p>
-<div class="highlight"><pre><span></span><code><span class="o">|</span><span class="w"> </span><span class="nx">TCA</span><span class="w"> </span><span class="nx">Opinion</span><span class="w">                                        </span><span class="o">|</span><span class="w"> </span><span class="nx">SwiftUI</span><span class="o">-</span><span class="nx">first</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">UIKit</span><span class="o">-</span><span class="nx">first</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="o">--------------------------------------------------</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-------------</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-----------</span><span class="w"> </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="nx">I</span><span class="w"> </span><span class="nx">dont</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="nx">it</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">avoid</span><span class="w"> </span><span class="nx">using</span><span class="w"> </span><span class="nx">it</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="mi">8</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">18</span><span class="w">          </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="nx">I</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="nx">it</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">lot</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">prefer</span><span class="w"> </span><span class="nx">it</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="nx">architecture</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">5</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">19</span><span class="w">          </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="nx">Its</span><span class="w"> </span><span class="nx">acceptable</span><span class="w"> </span><span class="nx">but</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">my</span><span class="w"> </span><span class="nx">preferred</span><span class="w"> </span><span class="kd">choice</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">19</span><span class="w">          </span><span class="o">|</span>
-<span class="o">|</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">applicable</span><span class="w"> </span><span class="p">(</span><span class="nx">I</span><span class="w"> </span><span class="nx">havent</span><span class="w"> </span><span class="nx">used</span><span class="w"> </span><span class="nx">TCA</span><span class="p">)</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="mi">27</span><span class="w">          </span><span class="o">|</span>
+<div class="highlight"><pre><span></span><code>| TCA Opinion                                        | SwiftUI-first | UIKit-first |
+| -------------------------------------------------- | ------------- | ----------- |
+| I dont like it and avoid using it                  | 8             | 18          |
+| I like it a lot and prefer it for app architecture | 5             | 19          |
+| Its acceptable but not my preferred choice         | 1             | 19          |
+| Not applicable (I havent used TCA)                 | 3             | 27          |
 </code></pre></div>
 
 <p>Key insights:</p>
@@ -101,7 +101,8 @@
 </ul>
 <p>TCA's appeal seems rooted in its familiarity to UIKit-first developers, offering a structured, UIKit-like experience. For SwiftUI-first developers, TCA likely feels unnecessary and redundant, solving problems that SwiftUI already natively solves. </p>
 <h4>Vanilla</h4>
-<p>So what's the alternative? Honestly, just vanilla SwiftUI! Frustrated with TCA, I recreated their <a href="https://github.com/pointfreeco/swift-composable-architecture/tree/1.16.1/Examples/SpeechRecognition">SpeechRecognition</a> example to prove that you don't actually need the framework. Here's my <a href="https://github.com/maxhumber/VanillaSpeechRecognition/">vanilla implementation</a> that works with <strong>Swift 6</strong>, <strong>Xcode 16</strong>, and <strong>iOS 18</strong>.</p>
+<p>So what's the alternative? Honestly, just vanilla SwiftUI! Frustrated with TCA, I decided to recreate the <a href="https://github.com/pointfreeco/swift-composable-architecture/tree/1.16.1/Examples/SpeechRecognition">SpeechRecognition</a> example to prove that the framework is unnecessary.</p>
+<p>Check out <a href="https://github.com/maxhumber/VanillaSpeechRecognition/blob/master/VanillaSpeechRecognition/SpeechRecognitionView.swift">my vanilla implementation</a>. Most of the code is in a single file (just for ease of comparison) and works seamlessly with <strong>Xcode 16</strong>, <strong>Swift 6</strong>, and <strong>iOS 18</strong>. Here are the important benchmarks:</p>
 <div class="highlight"><pre><span></span><code>| Metric                      | Vanilla    | TCA             |
 | --------------------------- | ---------- | --------------- |
 | Dependencies                | 0          | 16              |
@@ -111,7 +112,7 @@
 | Lines of Code               | 319        | 579             |
 </code></pre></div>
 
-<p>Importantly, both implementations achieve the exact same results. And my vanilla version delivers identical functionality and tests—without the complexity, boilerplate, or quirks.</p>
+<p>Given that the vanilla version delivers the same functionality and testing capabilities without the complexity, boilerplate, or quirks, I just don't see the advantage of using TCA.</p>
 <h4>TL;DR:</h4>
 <p>The Composable Architecture might have been useful in 2019 when SwiftUI was still immature, but Apple's yearly updates have rendered it obsolete for most apps. TCA is a perfect example of over-engineering that actively makes code worse while claiming to make it better. If you're transitioning to SwiftUI, focus on mastering its native tools in lieu of adopting TCA just because it feels familiar.</p>
 </article>

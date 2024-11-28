@@ -44,10 +44,12 @@ def generate_post(file_path: Path) -> Post:
     content = file_path.read_text()
     meta, html = convert_markdown(content)
     slug = file_path.stem.split("_", 1)[-1]
+    tags_str = meta.get("tags", "").strip()
+    tags = [t.strip() for t in tags_str.split(",")] if tags_str else []
     return Post(
         title=meta.get("title", ""),
         date=meta.get("date", ""),
-        tags=meta.get("tags", "").split(","),
+        tags=tags,
         content=html,
         slug=slug,
     )
@@ -99,24 +101,26 @@ def build_site(
     )
     setup_output(input_dir, output_dir)
     # Process all posts
-    posts = [generate_post(f) for f in input_dir.glob("*.md")]
-    posts.sort(key=lambda x: x.date, reverse=True)
-    # Get all tags
-    tags = {tag for post in posts for tag in post.tags}
-    posts_by_tag = {tag: [p for p in posts if tag in p.tags] for tag in tags}
+    all_posts = [generate_post(f) for f in input_dir.glob("*.md")]
+    # Generate all post pages, regardless of tags
+    for post in all_posts:
+        html = env.get_template("post.html").render(post=post)
+        (output_dir / f"{post.slug}.html").write_text(html)
+    # Filter posts for tag pages and index
+    tagged_posts = [post for post in all_posts if post.tags]
+    tagged_posts.sort(key=lambda x: x.date, reverse=True)
+    # Get all tags, excluding empty strings
+    tags = {tag for post in tagged_posts for tag in post.tags if tag}
+    posts_by_tag = {tag: [p for p in tagged_posts if tag in p.tags] for tag in tags}
     # Generate tag pages
     for tag, tag_posts in posts_by_tag.items():
         html = env.get_template("tag.html").render(tag=f"#{tag}", posts=tag_posts)
         (output_dir / f"{tag}.html").write_text(html)
-    # Generate post pages
-    for post in posts:
-        html = env.get_template("post.html").render(post=post)
-        (output_dir / f"{post.slug}.html").write_text(html)
-    # Generate RSS feed
-    # generate_rss_feed(posts, output_dir) # Uncomment to generate RSS feed
-    # Generate index
+    # Generate index with only tagged posts
     html = env.get_template("index.html").render(tags=sorted(tags), is_index=True)
     (output_dir / "index.html").write_text(html)
+    # Generate RSS feed (if uncommented)
+    # generate_rss_feed(tagged_posts, output_dir)
 
 
 def generate_rss_feed(posts: List[Post], output_dir: Path) -> None:
