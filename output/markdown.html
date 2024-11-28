@@ -83,10 +83,10 @@
 <h2>Code</h2>
 <p>Inline <code>code</code></p>
 <p>Indented code</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Some comments</span>
-<span class="n">line</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">code</span>
-<span class="n">line</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">code</span>
-<span class="n">line</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">code</span>
+<div class="highlight"><pre><span></span><code>// Some comments
+line 1 of code
+line 2 of code
+line 3 of code
 </code></pre></div>
 
 <p>Block code "fences"</p>
@@ -102,17 +102,51 @@
 </code></pre></div>
 
 <h2>Tables</h2>
-<p>| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>path to data files to supply the data that will be passed into templates.</td>
+</tr>
+<tr>
+<td>engine</td>
+<td>engine to be used for processing templates. Handlebars is the default.</td>
+</tr>
+<tr>
+<td>ext</td>
+<td>extension to be used for dest files.</td>
+</tr>
+</tbody>
+</table>
 <p>Right aligned columns</p>
-<p>| Option | Description |
-| ------:| -----------:|
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Option</th>
+<th style="text-align: right;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">data</td>
+<td style="text-align: right;">path to data files to supply the data that will be passed into templates.</td>
+</tr>
+<tr>
+<td style="text-align: right;">engine</td>
+<td style="text-align: right;">engine to be used for processing templates. Handlebars is the default.</td>
+</tr>
+<tr>
+<td style="text-align: right;">ext</td>
+<td style="text-align: right;">extension to be used for dest files.</td>
+</tr>
+</tbody>
+</table>
 <h2>Links</h2>
 <p><a href="http://dev.nodeca.com">link text</a>
 <a href="http://nodeca.github.io/pica/demo/" title="title text!">link with title</a></p>

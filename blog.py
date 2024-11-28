@@ -15,6 +15,7 @@ import sys
 import markdown
 from jinja2 import Environment, FileSystemLoader
 from pygments.formatters import HtmlFormatter
+from pygments.lexers.objective import SwiftLexer
 
 
 @dataclass
@@ -29,9 +30,14 @@ class Post:
 def convert_markdown(content: str) -> tuple[Dict, str]:
     """Convert markdown to HTML and extract metadata"""
     md = markdown.Markdown(
-        extensions=["fenced_code", "meta", "codehilite"],
+        extensions=["fenced_code", "meta", "codehilite", "tables"],
         extension_configs={
-            "codehilite": {"css_class": "highlight", "use_pygments": True}
+            "codehilite": {
+                "css_class": "highlight", 
+                "use_pygments": True,
+                "guess_lang": False,
+                "lexer": SwiftLexer() if "swift" in content.lower() else None
+            }
         },
     )
     html = md.convert(content)
@@ -131,9 +137,9 @@ def generate_rss_feed(posts: List[Post], tag: str, output_dir: Path) -> None:
     """Generate RSS feed for a specific tag"""
     rss = ET.Element("rss", version="2.0")
     channel = ET.SubElement(rss, "channel")
-    ET.SubElement(channel, "title").text = f"Max Humber - {tag} Posts"
+    ET.SubElement(channel, "title").text = f"Max Humber's #{tag} Posts"
     ET.SubElement(channel, "link").text = f"https://maxhumber.com/{tag}"
-    ET.SubElement(channel, "description").text = f"Posts tagged with {tag} by Max Humber"
+    ET.SubElement(channel, "description").text = f"Posts tagged with #{tag} by Max Humber"
     for post in posts:
         item = ET.SubElement(channel, "item")
         ET.SubElement(item, "title").text = post.title

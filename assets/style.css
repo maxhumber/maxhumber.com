@@ -186,12 +186,33 @@ pre code {
   background: none;
 }
 
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th, td {
+  padding: 0.5rem;
+  border: 1px solid var(--muted);
+  text-align: left;
+}
+
+th {
+  background-color: var(--code-bg);
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: var(--code-bg);
+}
+
 /* Other Components */
 blockquote {
   border-left: 2px solid;
   padding-left: 1rem;
   margin: 1.5rem 0;
-  opacity: 0.8;
 }
 
 blockquote + blockquote {
