@@ -11,7 +11,7 @@ The Composable Architecture ([TCA](https://github.com/pointfreeco/swift-composab
 
 TCA is packed with unnecessary complexity, redundant abstractions, and frustrating quirks. The startup I worked with ultimately abandoned the framework for the following reasons:
 
-- **Steep Learning Curve**: Requires mastering "reducers", "stores", and "test stores", making onboarding difficult.
+- **Steep Learning Curve**: Requires mastering "reducers" and "stores" making onboarding difficult.
 - **Excessive Boilerplate**: Even simple features require excessive code, slowing development.
 - **Performance Problems**: Slow builds, indexing, and crashing Xcode previews waste time.
 - **Compiler Issues**: Reducers often break the compiler with hard-to-diagnose errors.
@@ -52,7 +52,7 @@ This level of bloat is overkill for what TCA claims to solve, and the naming con
 
 Looking through reddit (and elsewhere online) it seems that my frustrations are widely shared:
 
-**[Reddit: Have you used TCA in production?](https://www.reddit.com/r/SwiftUI/comments/16pab2x/have_you_used_tca_in_production_whats_your/k1vwlad/)**
+**[Reddit: Have you used TCA in production?](https://www.reddit.com/r/SwiftUI/comments/16pab2x/have_you_used_tca_in_production_whats_your/)**
 
 - "TCA is basically an **extra layer of complexity** in order to do what SwiftUI already does under the hood."
 - "Watch the first three [TCA] videos on how to make a checklist… The solution is **sooooo complicated.**"
@@ -74,7 +74,7 @@ Looking through reddit (and elsewhere online) it seems that my frustrations are 
 
 Despite the criticism TCA is pretty popular. So who actually uses the framework? And why do they like it? To find out, I put up a [survey](https://docs.google.com/forms/d/e/1FAIpQLSdvFSCfHlHi3zjX643ZVv8Q0mBiqwBcf9FgBc4PJ-EOeZCvkw/viewanalytics) in a few iOS/Swift subreddits and got 100 responses:
 
-```
+```markdown
 | TCA Opinion                                        | SwiftUI-first | UIKit-first |
 | -------------------------------------------------- | ------------- | ----------- |
 | I dont like it and avoid using it                  | 8             | 18          |
@@ -92,9 +92,11 @@ TCA's appeal seems rooted in its familiarity to UIKit-first developers, offering
 
 #### Vanilla
 
-So what's the alternative? Honestly, just vanilla SwiftUI! Frustrated with TCA, I recreated their [SpeechRecognition](https://github.com/pointfreeco/swift-composable-architecture/tree/1.16.1/Examples/SpeechRecognition) example to prove that you don't actually need the framework. Here's my [vanilla implementation](https://github.com/maxhumber/VanillaSpeechRecognition/) that works with **Swift 6**, **Xcode 16**, and **iOS 18**.
+So what's the alternative? Honestly, just vanilla SwiftUI! Frustrated with TCA, I decided to recreate the [SpeechRecognition](https://github.com/pointfreeco/swift-composable-architecture/tree/1.16.1/Examples/SpeechRecognition) example to prove that the framework is unnecessary.
 
-```
+Check out [my vanilla implementation](https://github.com/maxhumber/VanillaSpeechRecognition/blob/master/VanillaSpeechRecognition/SpeechRecognitionView.swift). Most of the code is in a single file (just for ease of comparison) and works seamlessly with **Xcode 16**, **Swift 6**, and **iOS 18**. Here are the important benchmarks:
+
+```markdown
 | Metric                      | Vanilla    | TCA             |
 | --------------------------- | ---------- | --------------- |
 | Dependencies                | 0          | 16              |
@@ -104,7 +106,7 @@ So what's the alternative? Honestly, just vanilla SwiftUI! Frustrated with TCA, 
 | Lines of Code               | 319        | 579             |
 ```
 
-Importantly, both implementations achieve the exact same results. And my vanilla version delivers identical functionality and tests—without the complexity, boilerplate, or quirks.
+Given that the vanilla version delivers the same functionality and testing capabilities without the complexity, boilerplate, or quirks, I just don't see the advantage of using TCA.
 
 #### TL;DR:
 
