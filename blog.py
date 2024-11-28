@@ -124,7 +124,7 @@ def build_site(
         html = env.get_template("tag.html").render(
             tag=tag, 
             posts=tag_posts,
-            rss_path=f"/feeds/{tag}.xml"
+            rss_path=f"/feed/{tag}.xml"
         )
         (output_dir / f"{tag}.html").write_text(html)
         generate_rss_feed(tag_posts, tag, output_dir)
@@ -149,9 +149,9 @@ def generate_rss_feed(posts: List[Post], tag: str, output_dir: Path) -> None:
         ET.SubElement(item, "pubDate").text = format_datetime(pub_date)
         ET.SubElement(item, "guid").text = f"https://maxhumber.com/{post.slug}"
     tree = ET.ElementTree(rss)
-    feeds_dir = output_dir / "feeds"
-    feeds_dir.mkdir(exist_ok=True)
-    tree.write(feeds_dir / f"{tag}.xml", encoding="utf-8", xml_declaration=True)
+    feed_dir = output_dir / "feed"
+    feed_dir.mkdir(exist_ok=True)
+    tree.write(feed_dir / f"{tag}.xml", encoding="utf-8", xml_declaration=True)
 
 
 class SiteHandler(http.server.SimpleHTTPRequestHandler):
