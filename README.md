@@ -1,5 +1,5 @@
 <a href="https://maxhumber.com/">
-  <img src="static/signature.png" height="31">
+  <img src="assets/signature.png" height="31">
 </a>
 
 #### About
