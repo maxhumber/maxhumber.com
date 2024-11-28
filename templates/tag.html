@@ -3,7 +3,7 @@
 {% block title %}{{ tag }} - Max Humber{% endblock %}
 
 {% block content %}
-<h3>{{ tag }}</h3>
+<h3>#{{ tag }} <a href="{{ rss_path }}" class="rss"><img src="/static/rss.svg" width="20" height="20" alt="RSS"></a></h3>
 <ul>
     {% for post in posts %}
     <li><a href="/{{ post.slug }}">{{ post.title }}</a> <span>{{ post.date }}</span></li>

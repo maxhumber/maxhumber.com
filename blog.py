@@ -85,6 +85,7 @@ def setup_output(input_dir: Path, output_dir: Path) -> None:
     # Copy static assets
     copy_file(Path("assets/signature.png"), static_dir / "signature.png")
     copy_file(Path("assets/style.css"), static_dir / "style.css")
+    copy_file(Path("assets/rss.svg"), static_dir / "rss.svg")
     copy_static_files(Path("static"), static_dir)
     copy_static_files(input_dir / "images", output_dir / "images")
     # Copy root assets
@@ -112,26 +113,28 @@ def build_site(
     # Get all tags, excluding empty strings
     tags = {tag for post in tagged_posts for tag in post.tags if tag}
     posts_by_tag = {tag: [p for p in tagged_posts if tag in p.tags] for tag in tags}
-    # Generate tag pages
+    # Generate tag pages and RSS feeds
     for tag, tag_posts in posts_by_tag.items():
-        html = env.get_template("tag.html").render(tag=f"#{tag}", posts=tag_posts)
+        html = env.get_template("tag.html").render(
+            tag=tag, 
+            posts=tag_posts,
+            rss_path=f"/feeds/{tag}.xml"
+        )
         (output_dir / f"{tag}.html").write_text(html)
+        generate_rss_feed(tag_posts, tag, output_dir)
     # Generate index with only tagged posts
     html = env.get_template("index.html").render(tags=sorted(tags), is_index=True)
     (output_dir / "index.html").write_text(html)
-    # Generate RSS feed (if uncommented)
-    # generate_rss_feed(tagged_posts, output_dir)
 
 
-def generate_rss_feed(posts: List[Post], output_dir: Path) -> None:
-    """Generate RSS feed for posts tagged with 'code'"""
+def generate_rss_feed(posts: List[Post], tag: str, output_dir: Path) -> None:
+    """Generate RSS feed for a specific tag"""
     rss = ET.Element("rss", version="2.0")
     channel = ET.SubElement(rss, "channel")
-    ET.SubElement(channel, "title").text = "Max Humber - Code Posts"
-    ET.SubElement(channel, "link").text = "https://maxhumber.com"
-    ET.SubElement(channel, "description").text = "Posts about coding by Max Humber"
-    code_posts = [post for post in posts if "code" in post.tags]
-    for post in code_posts:
+    ET.SubElement(channel, "title").text = f"Max Humber - {tag} Posts"
+    ET.SubElement(channel, "link").text = f"https://maxhumber.com/{tag}"
+    ET.SubElement(channel, "description").text = f"Posts tagged with {tag} by Max Humber"
+    for post in posts:
         item = ET.SubElement(channel, "item")
         ET.SubElement(item, "title").text = post.title
         ET.SubElement(item, "link").text = f"https://maxhumber.com/{post.slug}"
@@ -140,7 +143,9 @@ def generate_rss_feed(posts: List[Post], output_dir: Path) -> None:
         ET.SubElement(item, "pubDate").text = format_datetime(pub_date)
         ET.SubElement(item, "guid").text = f"https://maxhumber.com/{post.slug}"
     tree = ET.ElementTree(rss)
-    tree.write(output_dir / "feed.xml", encoding="utf-8", xml_declaration=True)
+    feeds_dir = output_dir / "feeds"
+    feeds_dir.mkdir(exist_ok=True)
+    tree.write(feeds_dir / f"{tag}.xml", encoding="utf-8", xml_declaration=True)
 
 
 class SiteHandler(http.server.SimpleHTTPRequestHandler):
