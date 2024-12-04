@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updating Sankey - Max Humber</title>
+    <link rel="stylesheet" href="/static/highlight.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="49865e68-5a7e-4e56-9ff3-4f1719b00f03"></script>
+</head>
+<body>
+    <main>
+        <nav>
+            <a href="/"><img src="/static/signature.png" alt="Signature"></a>
+            <div>
+                <a href="https://www.goodreads.com/author/show/18086463.Max_Humber">Goodreads</a>
+                <a href="https://linkedin.com/in/maxhumber">LinkedIn</a>
+                <a href="https://twitter.com/maxhumber">X</a>
+            </div>
+        </nav>
+<article>
+    <header>
+        <h3>Updating Sankey</h3>
+        <time>2024-12-04</time>
+        <div>
+        <a href="code">#code</a>
+        <a href="swift">#swift</a>
+        </div>
+    </header>
+    <p>Just released <a href="https://github.com/maxhumber/Sankey/tree/2.0">Sankey 2.0</a>, an open-source package for building Sankey diagrams in SwiftUI.</p>
+<h4>What?</h4>
+<p>A Sankey diagram visualizes flow: where stuff is coming from, where it's going, and how much stuff is moving. Thick and thin bands represent the volume of flow. Sankey diagrams are perfect for showing money, user behavior, energy usage—basically anything involving inputs, outputs, and the in-between.</p>
+<h4>Why + What's New?</h4>
+<p>I originally built <a href="https://github.com/maxhumber/Sankey/tree/1.0">Sankey 1.0</a> in May 2022 for a contract project (no other options existed at the time). Then I forgot about it—until a couple of weeks ago when I needed a Sankey diagram for a new app.</p>
+<p>This new project requires offline rendering and Dark Mode support. So, while adding these features to Sankey, I also streamlined the API to make it dead simple to create beautiful charts like this:</p>
+<p><img alt="" src="https://github.com/maxhumber/Sankey/raw/master/Images/quick.png" /></p>
+<p>With code that is a simple as this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Sankey</span>
+<span class="kd">import</span> <span class="nc">SwiftUI</span>
+
+<span class="kd">struct</span> <span class="nc">ContentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="n">SankeyData</span><span class="p">(</span>
+        <span class="n">nodes</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">blue</span><span class="p">),</span>
+            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">purple</span><span class="p">),</span>
+            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;X&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">red</span><span class="p">),</span>
+            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">yellow</span><span class="p">),</span>
+            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;Z&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">green</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">links</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;X&quot;</span><span class="p">),</span>
+            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;Y&quot;</span><span class="p">),</span>
+            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;Z&quot;</span><span class="p">),</span>
+            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;X&quot;</span><span class="p">),</span>
+            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;Y&quot;</span><span class="p">),</span>
+            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;Z&quot;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">SankeyDiagram</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">nodeOpacity</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">linkColorMode</span><span class="p">(.</span><span class="n">gradient</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">padding</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">frame</span><span class="p">(</span><span class="n">height</span><span class="p">:</span> <span class="mi">350</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
+    <span class="n">ContentView</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4>All "Old" Code is "Bad" Code</h4>
+<p><img alt="" src="https://i.redd.it/djajn2o19ca81.jpg" /></p>
+<p>Revisiting old code is always a fun (and humbling) exercise. Because the code in 1.0 was bad! (If you're not embarrassed by your past work, are you even learning?)</p>
+<p>While the core feature of Sankey—connecting source nodes to target nodes— remains 90% of the code in 2.0 is new. Mostly, this is a consequence of replacing the <a href="https://developers.google.com/chart">Google Charts</a> rendering engine with <a href="https://d3js.org/">D3.js</a>. But also because I removed a lot of the over-engineered "organization", limited excessive configuration options, and fixed a lot of color handling mistakes.</p>
+<p>Despite these major changes, I was able to maintain a good bit of backwards compatibility (the original Quickstart still works)!</p>
+<h4>Too Much Structure!</h4>
+<p>The Sankey package <em>should</em> be simple. It's just a <code>SankeyDiagram</code> SwiftUI component. And a few other structs that help in its construction. In 1.0, I went overboard trying to organize everything for "future extensibility", creating this convoluted mess:</p>
+<div class="highlight"><pre><span></span><code>--Package.swift
+--Sources
+----Sankey/
+------Options/
+--------Tooltip/
+----------TextStyle/
+------------SankeyOptions.Tooltip.TextStyle.swift
+----------SankeyOptions.Tooltip.swift
+--------Sankey/
+----------SankeyOptions.Sankey.swift
+----------Link/
+------------Color/
+--------------SankeyOptions.Sankey.Link.Color.swift
+------------SankeyOptions.Sankey.Link.swift
+------------ColorMode/
+--------------SankeyOptions.Sankey.Link.ColorMode.swift
+----------Node/
+------------Label/
+--------------SankeyOptions.Sankey.Node.Label.swift
+------------ColorMode/
+--------------SankeyOptions.Sankey.Node.ColorMode.swift
+------------SankeyOptions.Sankey.Node.swift
+--------SankeyOptions.swift
+--------SankeyOptions+CustomStringConvertible.swift
+--------SankeyOptions+init.swift
+------Diagram/
+--------SankeyDiagram.swift
+--------SankeyDiagram+init.swift
+------Link/
+--------SankeyLink.swift
+--------SankeyLink+ExpressibleByArrayLiteral.swift
+--------SankeyLink+CustomStringConvertible.swift
+------Node/
+--------SankeyNode.swift
+</code></pre></div>
+
+<p>Now that we're in "the future" I can say that all this "organization" wasn't just unhelpful—it actively hindered my ability add to and update the package! For 2.0, I streamlined as much as possible:</p>
+<div class="highlight"><pre><span></span><code>--Package.swift
+--Sources/
+----Deprecated/
+------SankeyDiagram+deprecated.swift
+------SankeyLink+deprecated.swift
+----Helpers/
+------Color+.swift
+------HexColor.swift
+----Resources/
+------d3.min.js
+------d3-sankey.min.js
+----SankeyData.swift
+----SankeyDiagram.swift
+----SankeyLink.swift
+----SankeyNode.swift
+----SankeyOptions.swift
+----SankeyResources.swift
+</code></pre></div>
+
+<p>Easier to work with. But more importantly, easier to delete! Because, let's be honest—future me will probably throw it all out in another two years!</p>
+<h4>"WWAD"</h4>
+<p>While the original "structure" slowed me down, exposing too many configuration options to users was an even bigger mistake. Look at this old init signature:</p>
+<div class="highlight"><pre><span></span><code><span class="n">SankeyDiagram</span><span class="p">(</span>
+    <span class="kc">_</span> <span class="n">data</span><span class="p">:</span> <span class="p">[</span><span class="n">SankeyLink</span><span class="p">],</span>
+    <span class="n">nodeColors</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">]?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">nodeColorMode</span><span class="p">:</span> <span class="n">SankeyOptions</span><span class="p">.</span><span class="n">Sankey</span><span class="p">.</span><span class="n">Node</span><span class="p">.</span><span class="n">ColorMode</span> <span class="p">=</span> <span class="p">.</span><span class="n">unique</span><span class="p">,</span>
+    <span class="n">nodeWidth</span><span class="p">:</span> <span class="nb">Double</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">nodePadding</span><span class="p">:</span> <span class="nb">Double</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">nodeLabelColor</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span>
+    <span class="n">nodeLabelFontSize</span><span class="p">:</span> <span class="nb">Double</span> <span class="p">=</span> <span class="mi">24</span><span class="p">,</span>
+    <span class="n">nodeLabelFontName</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">nodeLabelBold</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">nodeLabelItalic</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">nodeLabelPadding</span><span class="p">:</span> <span class="nb">Double</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">nodeInteractivity</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">linkColors</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">]?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">linkColorMode</span><span class="p">:</span> <span class="n">SankeyOptions</span><span class="p">.</span><span class="n">Sankey</span><span class="p">.</span><span class="n">Link</span><span class="p">.</span><span class="n">ColorMode</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">linkColorFill</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">linkColorFillOpacity</span><span class="p">:</span> <span class="nb">Double</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">linkColorStroke</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">linkColorStrokeWidth</span><span class="p">:</span> <span class="nb">Double</span> <span class="p">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">tooltipValueLabel</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">tooltipTextColor</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span>
+    <span class="n">tooltipTextFontSize</span><span class="p">:</span> <span class="nb">Double</span> <span class="p">=</span> <span class="mi">24</span><span class="p">,</span>
+    <span class="n">tooltipTextFontName</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">tooltipTextBold</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">tooltipTextItalic</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">layoutIterations</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">32</span>
+<span class="p">)</span> 
+</code></pre></div>
+
+<p>Can you tell I was just blindly trying to recreating someone else's API?</p>
+<p>Now when I build for SwiftUI I typically ask myself: "What Would Apple Do?" (WWAD). If this piece of code were native Apple component, what would it look and feel like? I must say, I think I nailed it in 2.0:</p>
+<div class="highlight"><pre><span></span><code><span class="n">SankeyDiagram</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">nodeAlignment</span><span class="p">(.</span><span class="n">justify</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">nodeWidth</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">nodePadding</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">nodeDefaultColor</span><span class="p">(.</span><span class="n">gray</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">nodeOpacity</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">linkDefaultColor</span><span class="p">(.</span><span class="n">gray</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">linkOpacity</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">linkColorMode</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">labelPadding</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">labelColor</span><span class="p">(.</span><span class="n">primary</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">labelOpacity</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">labelFontSize</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">labelFontFamily</span><span class="p">(</span><span class="s">&quot;Times&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>All customization options are now exposed as "Modifiers" on the SankeyDiagram object itself. This is enabled by hiding the SankeyOptions struct from the user and exposing modifiers that look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ...</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">nodeOpacity</span><span class="p">(</span><span class="kc">_</span> <span class="n">value</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">SankeyDiagram</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">new</span> <span class="p">=</span> <span class="kc">self</span>
+    <span class="n">new</span><span class="p">.</span><span class="n">options</span><span class="p">.</span><span class="n">nodeOpacity</span> <span class="p">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">new</span>
+<span class="p">}</span>
+<span class="c1">// ...</span>
+</code></pre></div>
+
+<p>I also replaced all externally facing hex codes with native SwiftUI colors. While implementing this was complex, I thought it was better to handle the complexity myself than burden users with it. Now Dark Mode and using a "color" like <code>Color.primary</code> will just work! </p>
+<h4>Conclusion</h4>
+<p>The code in Sankey 2.0 is easier to read, use, and built to be thrown away! While it's not perfect—future me will probably laugh at it in the future—it works well today. And that's all that matters. If you need to visualize flows in any of your apps I hope you give it a try!</p>
+</article>
+    </main>
+</body>
+</html>
