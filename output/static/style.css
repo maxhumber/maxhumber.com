@@ -220,3 +220,20 @@ blockquote + blockquote {
 img[src*="rss.svg"] {
   border-radius: 0;
 }
+
+/* Quotes */
+p + details {
+  margin-top: 1rem;
+}
+
+details p {
+  padding-left: 1rem;
+}
+
+details summary + p {
+  margin-top: 1rem;
+}
+
+details p:last-child {
+  margin-bottom: 1rem;
+}
