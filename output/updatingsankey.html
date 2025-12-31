@@ -36,39 +36,39 @@
 <p>This new project requires offline rendering and Dark Mode support. So, while adding these features to Sankey, I also streamlined the API to make it dead simple to create beautiful charts like this:</p>
 <p><img alt="" src="https://github.com/maxhumber/Sankey/raw/master/Images/quick.png" /></p>
 <p>With code that is a simple as this:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Sankey</span>
-<span class="kd">import</span> <span class="nc">SwiftUI</span>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">Sankey</span>
+<span class="kd">import</span><span class="w"> </span><span class="nc">SwiftUI</span>
 
-<span class="kd">struct</span> <span class="nc">ContentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="n">SankeyData</span><span class="p">(</span>
-        <span class="n">nodes</span><span class="p">:</span> <span class="p">[</span>
-            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">blue</span><span class="p">),</span>
-            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">purple</span><span class="p">),</span>
-            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;X&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">red</span><span class="p">),</span>
-            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">yellow</span><span class="p">),</span>
-            <span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;Z&quot;</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">.</span><span class="n">green</span><span class="p">),</span>
-        <span class="p">],</span>
-        <span class="n">links</span><span class="p">:</span> <span class="p">[</span>
-            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;X&quot;</span><span class="p">),</span>
-            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;Y&quot;</span><span class="p">),</span>
-            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;Z&quot;</span><span class="p">),</span>
-            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;X&quot;</span><span class="p">),</span>
-            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;Y&quot;</span><span class="p">),</span>
-            <span class="n">SankeyLink</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="s">&quot;Z&quot;</span><span class="p">),</span>
-        <span class="p">]</span>
-    <span class="p">)</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">ContentView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SankeyData</span><span class="p">(</span>
+<span class="w">        </span><span class="n">nodes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">blue</span><span class="p">),</span>
+<span class="w">            </span><span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">purple</span><span class="p">),</span>
+<span class="w">            </span><span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">red</span><span class="p">),</span>
+<span class="w">            </span><span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;Y&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">yellow</span><span class="p">),</span>
+<span class="w">            </span><span class="n">SankeyNode</span><span class="p">(</span><span class="s">&quot;Z&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">green</span><span class="p">),</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="n">links</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="n">SankeyLink</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;X&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">SankeyLink</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Y&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">SankeyLink</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Z&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">SankeyLink</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;X&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">SankeyLink</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Y&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">SankeyLink</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Z&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">)</span>
 
-    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
-        <span class="n">SankeyDiagram</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">nodeOpacity</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">linkColorMode</span><span class="p">(.</span><span class="n">gradient</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">padding</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">frame</span><span class="p">(</span><span class="n">height</span><span class="p">:</span> <span class="mi">350</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">SankeyDiagram</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="n">nodeOpacity</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="n">linkColorMode</span><span class="p">(.</span><span class="n">gradient</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="n">padding</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="n">frame</span><span class="p">(</span><span class="n">height</span><span class="p">:</span><span class="w"> </span><span class="mi">350</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
-    <span class="n">ContentView</span><span class="p">()</span>
+<span class="p">#</span><span class="n">Preview</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ContentView</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -139,58 +139,58 @@
 <h4>"WWAD"</h4>
 <p>While the original "structure" slowed me down, exposing too many configuration options to users was an even bigger mistake. Look at this old init signature:</p>
 <div class="highlight"><pre><span></span><code><span class="n">SankeyDiagram</span><span class="p">(</span>
-    <span class="kc">_</span> <span class="n">data</span><span class="p">:</span> <span class="p">[</span><span class="n">SankeyLink</span><span class="p">],</span>
-    <span class="n">nodeColors</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">]?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">nodeColorMode</span><span class="p">:</span> <span class="n">SankeyOptions</span><span class="p">.</span><span class="n">Sankey</span><span class="p">.</span><span class="n">Node</span><span class="p">.</span><span class="n">ColorMode</span> <span class="p">=</span> <span class="p">.</span><span class="n">unique</span><span class="p">,</span>
-    <span class="n">nodeWidth</span><span class="p">:</span> <span class="nb">Double</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">nodePadding</span><span class="p">:</span> <span class="nb">Double</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">nodeLabelColor</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span>
-    <span class="n">nodeLabelFontSize</span><span class="p">:</span> <span class="nb">Double</span> <span class="p">=</span> <span class="mi">24</span><span class="p">,</span>
-    <span class="n">nodeLabelFontName</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">nodeLabelBold</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="n">nodeLabelItalic</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="n">nodeLabelPadding</span><span class="p">:</span> <span class="nb">Double</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">nodeInteractivity</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="n">linkColors</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">]?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">linkColorMode</span><span class="p">:</span> <span class="n">SankeyOptions</span><span class="p">.</span><span class="n">Sankey</span><span class="p">.</span><span class="n">Link</span><span class="p">.</span><span class="n">ColorMode</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">linkColorFill</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">linkColorFillOpacity</span><span class="p">:</span> <span class="nb">Double</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">linkColorStroke</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">linkColorStrokeWidth</span><span class="p">:</span> <span class="nb">Double</span> <span class="p">=</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">tooltipValueLabel</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">tooltipTextColor</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span>
-    <span class="n">tooltipTextFontSize</span><span class="p">:</span> <span class="nb">Double</span> <span class="p">=</span> <span class="mi">24</span><span class="p">,</span>
-    <span class="n">tooltipTextFontName</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="n">tooltipTextBold</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="n">tooltipTextItalic</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="n">layoutIterations</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">32</span>
-<span class="p">)</span> 
+<span class="w">    </span><span class="kc">_</span><span class="w"> </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">SankeyLink</span><span class="p">],</span>
+<span class="w">    </span><span class="n">nodeColors</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">]?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodeColorMode</span><span class="p">:</span><span class="w"> </span><span class="n">SankeyOptions</span><span class="p">.</span><span class="n">Sankey</span><span class="p">.</span><span class="n">Node</span><span class="p">.</span><span class="n">ColorMode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">unique</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodeWidth</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodePadding</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodeLabelColor</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodeLabelFontSize</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodeLabelFontName</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodeLabelBold</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodeLabelItalic</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodeLabelPadding</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nodeInteractivity</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">linkColors</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">]?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">linkColorMode</span><span class="p">:</span><span class="w"> </span><span class="n">SankeyOptions</span><span class="p">.</span><span class="n">Sankey</span><span class="p">.</span><span class="n">Link</span><span class="p">.</span><span class="n">ColorMode</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">linkColorFill</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">linkColorFillOpacity</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">linkColorStroke</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">linkColorStrokeWidth</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tooltipValueLabel</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tooltipTextColor</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tooltipTextFontSize</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tooltipTextFontName</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tooltipTextBold</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tooltipTextItalic</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">layoutIterations</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">32</span>
+<span class="p">)</span><span class="w"> </span>
 </code></pre></div>
 
 <p>Can you tell I was just blindly trying to recreating someone else's API?</p>
 <p>Now when I build for SwiftUI I typically ask myself: "What Would Apple Do?" (WWAD). If this piece of code were native Apple component, what would it look and feel like? I must say, I think I nailed it in 2.0:</p>
 <div class="highlight"><pre><span></span><code><span class="n">SankeyDiagram</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">nodeAlignment</span><span class="p">(.</span><span class="n">justify</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">nodeWidth</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">nodePadding</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">nodeDefaultColor</span><span class="p">(.</span><span class="n">gray</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">nodeOpacity</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">linkDefaultColor</span><span class="p">(.</span><span class="n">gray</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">linkOpacity</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">linkColorMode</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">labelPadding</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">labelColor</span><span class="p">(.</span><span class="n">primary</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">labelOpacity</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">labelFontSize</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
-    <span class="p">.</span><span class="n">labelFontFamily</span><span class="p">(</span><span class="s">&quot;Times&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">nodeAlignment</span><span class="p">(.</span><span class="n">justify</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">nodeWidth</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">nodePadding</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">nodeDefaultColor</span><span class="p">(.</span><span class="n">gray</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">nodeOpacity</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">linkDefaultColor</span><span class="p">(.</span><span class="n">gray</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">linkOpacity</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">linkColorMode</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">labelPadding</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">labelColor</span><span class="p">(.</span><span class="n">primary</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">labelOpacity</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">labelFontSize</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">labelFontFamily</span><span class="p">(</span><span class="s">&quot;Times&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <p>All customization options are now exposed as "Modifiers" on the SankeyDiagram object itself. This is enabled by hiding the SankeyOptions struct from the user and exposing modifiers that look like this:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// ...</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">nodeOpacity</span><span class="p">(</span><span class="kc">_</span> <span class="n">value</span><span class="p">:</span> <span class="nb">Double</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">SankeyDiagram</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">new</span> <span class="p">=</span> <span class="kc">self</span>
-    <span class="n">new</span><span class="p">.</span><span class="n">options</span><span class="p">.</span><span class="n">nodeOpacity</span> <span class="p">=</span> <span class="n">value</span>
-    <span class="k">return</span> <span class="n">new</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="nf">nodeOpacity</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="nb">Double</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">SankeyDiagram</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">self</span>
+<span class="w">    </span><span class="n">new</span><span class="p">.</span><span class="n">options</span><span class="p">.</span><span class="n">nodeOpacity</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">value</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">new</span>
 <span class="p">}</span>
 <span class="c1">// ...</span>
 </code></pre></div>
