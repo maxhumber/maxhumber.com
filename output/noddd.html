@@ -43,260 +43,260 @@
 </ul>
 <h4>Code Comparison</h4>
 <p>Instead of me just telling you that DDD is bad, let me show you... Consider this vanilla implementation for fetching and displaying Todos using the <a href="https://jsonplaceholder.typicode.com/todos/">jsonplaceholder</a> API:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">SwiftUI</span>
 
 <span class="c1">// 1. Model</span>
 
-<span class="kd">struct</span> <span class="nc">Todo</span><span class="p">:</span> <span class="n">Codable</span><span class="p">,</span> <span class="n">Identifiable</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span>
-    <span class="kd">let</span> <span class="nv">title</span><span class="p">:</span> <span class="nb">String</span>
-    <span class="kd">let</span> <span class="nv">completed</span><span class="p">:</span> <span class="nb">Bool</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">Todo</span><span class="p">:</span><span class="w"> </span><span class="n">Codable</span><span class="p">,</span><span class="w"> </span><span class="n">Identifiable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">title</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">completed</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
 <span class="p">}</span>
 
 <span class="c1">// 2. Client (fetch todos)</span>
 
-<span class="kd">struct</span> <span class="nc">TodoClient</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">fetchTodos</span><span class="p">:</span> <span class="p">@</span><span class="n">Sendable</span> <span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">Todo</span><span class="p">]</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">TodoClient</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">fetchTodos</span><span class="p">:</span><span class="w"> </span><span class="p">@</span><span class="n">Sendable</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">Todo</span><span class="p">]</span>
 
-    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">live</span> <span class="p">=</span> <span class="kc">Self</span><span class="p">(</span>
-        <span class="n">fetchTodos</span><span class="p">:</span> <span class="p">{</span>
-            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">&quot;https://jsonplaceholder.typicode.com/todos/&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span> <span class="k">throw</span> <span class="n">URLError</span><span class="p">(.</span><span class="n">badURL</span><span class="p">)</span> <span class="p">}</span>
-            <span class="kd">let</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="kc">_</span><span class="p">)</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
-            <span class="kd">let</span> <span class="nv">todos</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">([</span><span class="n">Todo</span><span class="p">].</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">todos</span>
-        <span class="p">}</span>
-    <span class="p">)</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">live</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">Self</span><span class="p">(</span>
+<span class="w">        </span><span class="n">fetchTodos</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://jsonplaceholder.typicode.com/todos/&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">URLError</span><span class="p">(.</span><span class="n">badURL</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kc">_</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="n">url</span><span class="p">)</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">todos</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">([</span><span class="n">Todo</span><span class="p">].</span><span class="kc">self</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">todos</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1">// 3. View (display todos, handle errors)</span>
 
-<span class="kd">struct</span> <span class="nc">TodoView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
-    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">todos</span><span class="p">:</span> <span class="p">[</span><span class="n">Todo</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
-    <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">errorMessage</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span>
-    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">client</span><span class="p">:</span> <span class="n">TodoClient</span> <span class="p">=</span> <span class="p">.</span><span class="n">live</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">TodoView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">@</span><span class="n">State</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">todos</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Todo</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">@</span><span class="n">State</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">client</span><span class="p">:</span><span class="w"> </span><span class="n">TodoClient</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">live</span>
 
-    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
-        <span class="n">List</span> <span class="p">{</span>
-            <span class="n">ForEach</span><span class="p">(</span><span class="n">todos</span><span class="p">)</span> <span class="p">{</span> <span class="n">todo</span> <span class="k">in</span>
-                <span class="n">HStack</span> <span class="p">{</span>
-                    <span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span> <span class="n">todo</span><span class="p">.</span><span class="n">completed</span> <span class="p">?</span> <span class="s">&quot;checkmark.circle&quot;</span><span class="p">:</span> <span class="s">&quot;circle&quot;</span><span class="p">)</span>
-                        <span class="p">.</span><span class="n">foregroundStyle</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">completed</span> <span class="p">?</span> <span class="p">.</span><span class="n">green</span> <span class="p">:</span> <span class="p">.</span><span class="n">gray</span><span class="p">)</span>
-                    <span class="n">Text</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">todo</span><span class="p">.</span><span class="n">title</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="p">.</span><span class="n">navigationTitle</span><span class="p">(</span><span class="s">&quot;Todo List&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="n">task</span> <span class="p">{</span> <span class="k">await</span> <span class="n">fetch</span><span class="p">()</span> <span class="p">}</span>
-        <span class="p">.</span><span class="n">alert</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">,</span> <span class="n">isPresented</span><span class="p">:</span> <span class="p">.</span><span class="n">constant</span><span class="p">(</span><span class="n">errorMessage</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">Button</span><span class="p">(</span><span class="s">&quot;OK&quot;</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="p">.</span><span class="n">cancel</span><span class="p">)</span> <span class="p">{</span> <span class="n">errorMessage</span> <span class="p">=</span> <span class="kc">nil</span> <span class="p">}</span>
-        <span class="p">}</span> <span class="n">message</span><span class="p">:</span> <span class="p">{</span>
-            <span class="n">Text</span><span class="p">(</span><span class="n">errorMessage</span> <span class="p">??</span> <span class="s">&quot;No Error&quot;</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">List</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ForEach</span><span class="p">(</span><span class="n">todos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">todo</span><span class="w"> </span><span class="k">in</span>
+<span class="w">                </span><span class="n">HStack</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span><span class="w"> </span><span class="n">todo</span><span class="p">.</span><span class="n">completed</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="s">&quot;checkmark.circle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;circle&quot;</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="n">foregroundStyle</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">completed</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="p">.</span><span class="n">green</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">todo</span><span class="p">.</span><span class="n">title</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">.</span><span class="n">navigationTitle</span><span class="p">(</span><span class="s">&quot;Todo List&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">task</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">fetch</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">.</span><span class="n">alert</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">isPresented</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">constant</span><span class="p">(</span><span class="n">errorMessage</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;OK&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">role</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">cancel</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">errorMessage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="n">errorMessage</span><span class="w"> </span><span class="p">??</span><span class="w"> </span><span class="s">&quot;No Error&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">func</span> <span class="nf">fetch</span><span class="p">()</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">do</span> <span class="p">{</span>
-            <span class="n">todos</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="n">fetchTodos</span><span class="p">()</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
-            <span class="n">errorMessage</span> <span class="p">=</span> <span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">fetch</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">todos</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">fetchTodos</span><span class="p">()</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">errorMessage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
-    <span class="n">NavigationStack</span> <span class="p">{</span>
-        <span class="n">TodoView</span><span class="p">()</span>
-    <span class="p">}</span>
+<span class="p">#</span><span class="n">Preview</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">NavigationStack</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">TodoView</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p><strong>Full DDD</strong></p>
 <p>And here's what the same code might look like when you go "full DDD" (based on <a href="https://paulallies.medium.com/clean-architecture-in-the-flavour-of-swiftui-5-5-8430786a83">this popular Medium article</a>). Honestly, don't even try to read or understand all of it. Just notice that it's wayyyyyy more code: </p>
-<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span><span class="w"> </span><span class="nc">SwiftUI</span>
 
 <span class="c1">// 1. Models</span>
 <span class="c1">// TodoDTO: The raw data from the API</span>
 <span class="c1">// TodoDMO: A &quot;cleaned-up&quot; version of the data for actual app use</span>
 
-<span class="kd">struct</span> <span class="nc">TodoDTO</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span>
-    <span class="kd">let</span> <span class="nv">title</span><span class="p">:</span> <span class="nb">String</span>
-    <span class="kd">let</span> <span class="nv">completed</span><span class="p">:</span> <span class="nb">Bool</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">TodoDTO</span><span class="p">:</span><span class="w"> </span><span class="n">Codable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">title</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">completed</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
 
-    <span class="kd">func</span> <span class="nf">toDomainModelObject</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">TodoDMO</span> <span class="p">{</span>
-        <span class="n">TodoDMO</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="n">id</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="n">isCompleted</span><span class="p">:</span> <span class="n">completed</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">toDomainModelObject</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">TodoDMO</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">TodoDMO</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="p">:</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">isCompleted</span><span class="p">:</span><span class="w"> </span><span class="n">completed</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">struct</span> <span class="nc">TodoDMO</span><span class="p">:</span> <span class="n">Identifiable</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span>
-    <span class="kd">let</span> <span class="nv">label</span><span class="p">:</span> <span class="nb">String</span>
-    <span class="kd">let</span> <span class="nv">isCompleted</span><span class="p">:</span> <span class="nb">Bool</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">TodoDMO</span><span class="p">:</span><span class="w"> </span><span class="n">Identifiable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">label</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">isCompleted</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
 <span class="p">}</span>
 
 <span class="c1">// 2. &quot;Data Source&quot;</span>
 <span class="c1">// Fetches TodoDTOs from an API, making things more complicated than they need to be</span>
 
-<span class="kd">protocol</span> <span class="nc">TodoDataSource</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">fetchTodos</span><span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">TodoDTO</span><span class="p">]</span>
+<span class="kd">protocol</span><span class="w"> </span><span class="nc">TodoDataSource</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">fetchTodos</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">TodoDTO</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="kd">enum</span> <span class="nc">TodoDataSourceError</span><span class="p">:</span> <span class="n">Error</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="n">badUrl</span>
-    <span class="k">case</span> <span class="n">requestError</span>
-    <span class="k">case</span> <span class="n">decodingError</span>
-    <span class="k">case</span> <span class="n">statusNotOK</span>
+<span class="kd">enum</span><span class="w"> </span><span class="nc">TodoDataSourceError</span><span class="p">:</span><span class="w"> </span><span class="n">Error</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">badUrl</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">requestError</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">decodingError</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">statusNotOK</span>
 <span class="p">}</span>
 
-<span class="kd">struct</span> <span class="nc">TodoDataSourceImplementation</span><span class="p">:</span> <span class="n">TodoDataSource</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">fetchTodos</span><span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">TodoDTO</span><span class="p">]</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nv">urlString</span> <span class="p">=</span> <span class="s">&quot;https://jsonplaceholder.typicode.com/todos/&quot;</span>
-        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">urlString</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">badUrl</span>
-        <span class="p">}</span>
-        <span class="k">guard</span> <span class="kd">let</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="k">await</span> <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">requestError</span>
-        <span class="p">}</span>
-        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">httpResponse</span> <span class="p">=</span> <span class="n">response</span> <span class="k">as</span><span class="p">?</span> <span class="n">HTTPURLResponse</span><span class="p">,</span> <span class="n">httpResponse</span><span class="p">.</span><span class="n">statusCode</span> <span class="p">==</span> <span class="mi">200</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">statusNotOK</span>
-        <span class="p">}</span>
-        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">todos</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">([</span><span class="n">TodoDTO</span><span class="p">].</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">decodingError</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">todos</span>
-    <span class="p">}</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">TodoDataSourceImplementation</span><span class="p">:</span><span class="w"> </span><span class="n">TodoDataSource</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">fetchTodos</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">TodoDTO</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">urlString</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;https://jsonplaceholder.typicode.com/todos/&quot;</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span><span class="w"> </span><span class="n">urlString</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">badUrl</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="p">?</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="n">url</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">requestError</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">httpResponse</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="k">as</span><span class="p">?</span><span class="w"> </span><span class="n">HTTPURLResponse</span><span class="p">,</span><span class="w"> </span><span class="n">httpResponse</span><span class="p">.</span><span class="n">statusCode</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">statusNotOK</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">todos</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="p">?</span><span class="w"> </span><span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">([</span><span class="n">TodoDTO</span><span class="p">].</span><span class="kc">self</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">decodingError</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">todos</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">// 3. &quot;Repository&quot;</span>
 <span class="c1">// Converts TodoDTOs to TodoDMOs while adding an extra layer for no obvious reason</span>
 
-<span class="kd">protocol</span> <span class="nc">TodoRepository</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">fetchTodos</span><span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">TodoDMO</span><span class="p">]</span>
+<span class="kd">protocol</span><span class="w"> </span><span class="nc">TodoRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">fetchTodos</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">TodoDMO</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="kd">enum</span> <span class="nc">TodoRepositoryError</span><span class="p">:</span> <span class="n">Error</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="n">decodingError</span>
-    <span class="k">case</span> <span class="n">networkError</span>
+<span class="kd">enum</span><span class="w"> </span><span class="nc">TodoRepositoryError</span><span class="p">:</span><span class="w"> </span><span class="n">Error</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">decodingError</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">networkError</span>
 <span class="p">}</span>
 
-<span class="kd">struct</span> <span class="nc">TodoRepositoryImplementation</span><span class="p">:</span> <span class="n">TodoRepository</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">dataSource</span><span class="p">:</span> <span class="n">TodoDataSource</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">TodoRepositoryImplementation</span><span class="p">:</span><span class="w"> </span><span class="n">TodoRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">dataSource</span><span class="p">:</span><span class="w"> </span><span class="n">TodoDataSource</span>
 
-    <span class="kd">init</span><span class="p">(</span><span class="n">dataSource</span><span class="p">:</span> <span class="n">TodoDataSource</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">dataSource</span> <span class="p">=</span> <span class="n">dataSource</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">init</span><span class="p">(</span><span class="n">dataSource</span><span class="p">:</span><span class="w"> </span><span class="n">TodoDataSource</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">dataSource</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">dataSource</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">func</span> <span class="nf">fetchTodos</span><span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="n">TodoDMO</span><span class="p">]</span> <span class="p">{</span>
-        <span class="k">do</span> <span class="p">{</span>
-            <span class="kd">let</span> <span class="nv">todosDTO</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">dataSource</span><span class="p">.</span><span class="n">fetchTodos</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">todosDTO</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">toDomainModelObject</span><span class="p">()</span> <span class="p">}</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">decodingError</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="n">TodoRepositoryError</span><span class="p">.</span><span class="n">decodingError</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="n">TodoRepositoryError</span><span class="p">.</span><span class="n">networkError</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">fetchTodos</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">TodoDMO</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">todosDTO</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">dataSource</span><span class="p">.</span><span class="n">fetchTodos</span><span class="p">()</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">todosDTO</span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">$0</span><span class="p">.</span><span class="n">toDomainModelObject</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="n">TodoDataSourceError</span><span class="p">.</span><span class="n">decodingError</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">TodoRepositoryError</span><span class="p">.</span><span class="n">decodingError</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">TodoRepositoryError</span><span class="p">.</span><span class="n">networkError</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">// 4. &quot;UseCase&quot;</span>
 <span class="c1">// A glorified wrapper to call the repository and handle errors in a slightly different way</span>
 
-<span class="kd">protocol</span> <span class="nc">TodoGetUseCase</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">execute</span><span class="p">()</span> <span class="k">async</span> <span class="p">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="n">TodoDMO</span><span class="p">],</span> <span class="n">TodoGetUseCaseError</span><span class="p">&gt;</span>
+<span class="kd">protocol</span><span class="w"> </span><span class="nc">TodoGetUseCase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">execute</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="n">TodoDMO</span><span class="p">],</span><span class="w"> </span><span class="n">TodoGetUseCaseError</span><span class="p">&gt;</span>
 <span class="p">}</span>
 
-<span class="kd">enum</span> <span class="nc">TodoGetUseCaseError</span><span class="p">:</span> <span class="n">Error</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="n">networkError</span>
-    <span class="k">case</span> <span class="n">decodingError</span>
+<span class="kd">enum</span><span class="w"> </span><span class="nc">TodoGetUseCaseError</span><span class="p">:</span><span class="w"> </span><span class="n">Error</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">networkError</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">decodingError</span>
 <span class="p">}</span>
 
-<span class="kd">struct</span> <span class="nc">TodoGetUseCaseImplementation</span><span class="p">:</span> <span class="n">TodoGetUseCase</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">repository</span><span class="p">:</span> <span class="n">TodoRepository</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">TodoGetUseCaseImplementation</span><span class="p">:</span><span class="w"> </span><span class="n">TodoGetUseCase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">TodoRepository</span>
 
-    <span class="kd">init</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span> <span class="n">TodoRepository</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">repository</span> <span class="p">=</span> <span class="n">repository</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">init</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span><span class="w"> </span><span class="n">TodoRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">repository</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">repository</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">func</span> <span class="nf">execute</span><span class="p">()</span> <span class="k">async</span> <span class="p">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="n">TodoDMO</span><span class="p">],</span> <span class="n">TodoGetUseCaseError</span><span class="p">&gt;</span> <span class="p">{</span>
-        <span class="k">do</span> <span class="p">{</span>
-            <span class="kd">let</span> <span class="nv">todos</span> <span class="p">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">repository</span><span class="p">.</span><span class="n">fetchTodos</span><span class="p">()</span>
-            <span class="k">return</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="n">todos</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="n">error</span> <span class="k">is</span> <span class="n">TodoRepositoryError</span> <span class="p">?</span> <span class="p">.</span><span class="n">decodingError</span> <span class="p">:</span> <span class="p">.</span><span class="n">networkError</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">execute</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="n">TodoDMO</span><span class="p">],</span><span class="w"> </span><span class="n">TodoGetUseCaseError</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">todos</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="n">fetchTodos</span><span class="p">()</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="n">todos</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">TodoRepositoryError</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="p">.</span><span class="n">decodingError</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">networkError</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">// 5. &quot;ViewModel&quot;</span>
 <span class="c1">// Mediates between the UseCase and the View, because we always need more layers!</span>
 
 <span class="p">@</span><span class="n">Observable</span>
-<span class="kd">class</span> <span class="nc">TodoListViewModel</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">todos</span><span class="p">:</span> <span class="p">[</span><span class="n">TodoDMO</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
-    <span class="kd">var</span> <span class="nv">errorMessage</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
-    <span class="kd">var</span> <span class="nv">hasError</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">TodoListViewModel</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">todos</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">TodoDMO</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">errorMessage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">hasError</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
 
-    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">useCase</span><span class="p">:</span> <span class="n">TodoGetUseCase</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">useCase</span><span class="p">:</span><span class="w"> </span><span class="n">TodoGetUseCase</span>
 
-    <span class="kd">init</span><span class="p">(</span><span class="n">useCase</span><span class="p">:</span> <span class="n">TodoGetUseCase</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">useCase</span> <span class="p">=</span> <span class="n">useCase</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">init</span><span class="p">(</span><span class="n">useCase</span><span class="p">:</span><span class="w"> </span><span class="n">TodoGetUseCase</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">useCase</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">useCase</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">func</span> <span class="nf">loadTodos</span><span class="p">()</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="n">errorMessage</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
-        <span class="n">hasError</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="k">await</span> <span class="n">useCase</span><span class="p">.</span><span class="n">execute</span><span class="p">()</span>
-        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="kd">let</span> <span class="nv">todos</span><span class="p">):</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">todos</span> <span class="p">=</span> <span class="n">todos</span>
-        <span class="k">case</span> <span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="kd">let</span> <span class="nv">error</span><span class="p">):</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">todos</span> <span class="p">=</span> <span class="p">[]</span>
-            <span class="n">errorMessage</span> <span class="p">=</span> <span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span>
-            <span class="n">hasError</span> <span class="p">=</span> <span class="kc">true</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">loadTodos</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">errorMessage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="n">hasError</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">useCase</span><span class="p">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nv">todos</span><span class="p">):</span>
+<span class="w">            </span><span class="kc">self</span><span class="p">.</span><span class="n">todos</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">todos</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nv">error</span><span class="p">):</span>
+<span class="w">            </span><span class="kc">self</span><span class="p">.</span><span class="n">todos</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">            </span><span class="n">errorMessage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span>
+<span class="w">            </span><span class="n">hasError</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">// 6. View</span>
 <span class="c1">// Finally, something useful: displays todos and errors, cleaning up after all the other layers</span>
 
-<span class="kd">struct</span> <span class="nc">DDDTodoView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
-    <span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="n">TodoListViewModel</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">DDDTodoView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">@</span><span class="n">Bindable</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TodoListViewModel</span>
 
-    <span class="kd">init</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span> <span class="n">TodoListViewModel</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">viewModel</span> <span class="p">=</span> <span class="n">viewModel</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">init</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TodoListViewModel</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">viewModel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">viewModel</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
-        <span class="n">List</span> <span class="p">{</span>
-            <span class="n">ForEach</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">todos</span><span class="p">)</span> <span class="p">{</span> <span class="n">todo</span> <span class="k">in</span>
-                <span class="n">HStack</span> <span class="p">{</span>
-                    <span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span> <span class="n">todo</span><span class="p">.</span><span class="n">isCompleted</span> <span class="p">?</span> <span class="s">&quot;checkmark.circle&quot;</span> <span class="p">:</span> <span class="s">&quot;circle&quot;</span><span class="p">)</span>
-                        <span class="p">.</span><span class="n">foregroundColor</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">isCompleted</span> <span class="p">?</span> <span class="p">.</span><span class="n">green</span> <span class="p">:</span> <span class="p">.</span><span class="n">gray</span><span class="p">)</span>
-                    <span class="n">Text</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">label</span><span class="p">)</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="p">.</span><span class="n">navigationTitle</span><span class="p">(</span><span class="s">&quot;Todo List&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="n">task</span> <span class="p">{</span> <span class="k">await</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">loadTodos</span><span class="p">()</span> <span class="p">}</span>
-        <span class="p">.</span><span class="n">alert</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">,</span> <span class="n">isPresented</span><span class="p">:</span> <span class="err">$</span><span class="n">viewModel</span><span class="p">.</span><span class="n">hasError</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">Button</span><span class="p">(</span><span class="s">&quot;OK&quot;</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="p">.</span><span class="n">cancel</span><span class="p">)</span> <span class="p">{}</span>
-        <span class="p">}</span> <span class="n">message</span><span class="p">:</span> <span class="p">{</span>
-            <span class="n">Text</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">errorMessage</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">List</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ForEach</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">todos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">todo</span><span class="w"> </span><span class="k">in</span>
+<span class="w">                </span><span class="n">HStack</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span><span class="w"> </span><span class="n">todo</span><span class="p">.</span><span class="n">isCompleted</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="s">&quot;checkmark.circle&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;circle&quot;</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="n">foregroundColor</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">isCompleted</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="p">.</span><span class="n">green</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="w">                    </span><span class="n">Text</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">label</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">.</span><span class="n">navigationTitle</span><span class="p">(</span><span class="s">&quot;Todo List&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">task</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="n">loadTodos</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">.</span><span class="n">alert</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">isPresented</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="n">viewModel</span><span class="p">.</span><span class="n">hasError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;OK&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">role</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">cancel</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="n">viewModel</span><span class="p">.</span><span class="n">errorMessage</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="p">#</span><span class="n">Preview</span> <span class="p">{</span>
-    <span class="p">@</span><span class="n">Previewable</span> <span class="p">@</span><span class="n">State</span> <span class="kd">var</span> <span class="nv">viewModel</span> <span class="p">=</span> <span class="n">TodoListViewModel</span><span class="p">(</span>
-        <span class="n">useCase</span><span class="p">:</span> <span class="n">TodoGetUseCaseImplementation</span><span class="p">(</span>
-            <span class="n">repository</span><span class="p">:</span> <span class="n">TodoRepositoryImplementation</span><span class="p">(</span>
-                <span class="n">dataSource</span><span class="p">:</span> <span class="n">TodoDataSourceImplementation</span><span class="p">()</span>
-            <span class="p">)</span>
-        <span class="p">))</span>
-    <span class="n">NavigationView</span> <span class="p">{</span>
-        <span class="n">DDDTodoView</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span> <span class="n">viewModel</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="p">#</span><span class="n">Preview</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">@</span><span class="n">Previewable</span><span class="w"> </span><span class="p">@</span><span class="n">State</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">viewModel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TodoListViewModel</span><span class="p">(</span>
+<span class="w">        </span><span class="n">useCase</span><span class="p">:</span><span class="w"> </span><span class="n">TodoGetUseCaseImplementation</span><span class="p">(</span>
+<span class="w">            </span><span class="n">repository</span><span class="p">:</span><span class="w"> </span><span class="n">TodoRepositoryImplementation</span><span class="p">(</span>
+<span class="w">                </span><span class="n">dataSource</span><span class="p">:</span><span class="w"> </span><span class="n">TodoDataSourceImplementation</span><span class="p">()</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">))</span>
+<span class="w">    </span><span class="n">NavigationView</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DDDTodoView</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">viewModel</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
