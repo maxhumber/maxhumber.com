@@ -11,6 +11,7 @@
     <meta property="og:url" content="{{ url }}">
     <meta property="og:image" content="{{ image }}">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="{{ url }}">
     <link rel="stylesheet" href="/static/highlight.css">
     <link rel="stylesheet" href="/static/style.css">
     {% block feeds %}
@@ -21,15 +22,22 @@
     <script defer src="https://cloud.umami.is/script.js" data-website-id="49865e68-5a7e-4e56-9ff3-4f1719b00f03"></script>
 </head>
 <body>
-    <main>
-        <nav>
-            <a href="/"><img src="/static/signature.png" alt="Max Humber"></a>
-            <div>
-                <a href="https://bracket.ltd/">Apps</a>
-                <a href="https://linkedin.com/in/maxhumber">LinkedIn</a>
-                <a href="https://github.com/maxhumber">GitHub</a>
-            </div>
+    <header>
+        <nav aria-label="Site">
+            <a href="/">
+                <picture>
+                    <source media="(prefers-color-scheme: dark)" srcset="/static/signature-dark.png">
+                    <img src="/static/signature.png" alt="Max Humber">
+                </picture>
+            </a>
+            <ul>
+                <li><a href="https://bracket.ltd/">Apps</a></li>
+                <li><a href="https://linkedin.com/in/maxhumber">LinkedIn</a></li>
+                <li><a href="https://github.com/maxhumber">GitHub</a></li>
+            </ul>
         </nav>
+    </header>
+    <main>
         {% block content %}{% endblock %}
     </main>
 </body>

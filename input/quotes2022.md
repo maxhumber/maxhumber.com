@@ -5,8 +5,8 @@ tags: quotes
 slug: quotes2022
 ---
 
-<p><img src='images/books_2022.jpg'/></p>
-<p>I read a bunch of books in 2022... here's what I learned from them:</p>
+![Books read in 2022](images/books_2022.jpg)
+I read a bunch of books in 2022... here's what I learned from them:
 
 <details markdown="1">
 <summary>You can either control the algorithm or be controlled by it.</summary>
@@ -280,4 +280,4 @@ slug: quotes2022
 — Russ Roberts (Wild Problems)
 
 </details>
-<p>While I make these compilations for myself, I hope you find them useful!</p>
+While I make these compilations for myself, I hope you find them useful!

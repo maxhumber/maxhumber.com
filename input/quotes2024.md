@@ -5,7 +5,7 @@ tags: quotes
 slug: quotes2024
 ---
 
-<p>I read a bunch of books again this year! Here are the best ideas that I mined from all of them:</p>
+I read a bunch of books again this year! Here are the best ideas that I mined from all of them:
 
 <details markdown="1">
 <summary>The output of any LLM will be middle of the road... unless you steer it toward the edges.</summary>

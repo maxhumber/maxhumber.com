@@ -35,13 +35,13 @@ class Post:
 
 def summarise(content: str, limit: int = 160) -> str:
     """First paragraph of a post, flattened for a meta description"""
-    match = re.search(r"<p>(.*?)</p>", content, re.S)
-    if not match:
-        return BLURB
-    text = " ".join(unescape(re.sub(r"<[^>]+>", "", match.group(1))).split())
-    if len(text) <= limit:
-        return text
-    return text[:limit].rsplit(" ", 1)[0] + "…"
+    for paragraph in re.findall(r"<p>(.*?)</p>", content, re.S):
+        text = " ".join(unescape(re.sub(r"<[^>]+>", "", paragraph)).split())
+        if text:
+            if len(text) <= limit:
+                return text
+            return text[:limit].rsplit(" ", 1)[0] + "…"
+    return BLURB
 
 
 def absolute_url(url: str) -> str:

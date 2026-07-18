@@ -5,7 +5,7 @@ tags: quotes
 slug: quotes2025
 ---
 
-<p>A couple of highlights from this year's reading, ordered from "in" to "out":</p>
+A couple of highlights from this year's reading, ordered from "in" to "out":
 
 <details markdown="1">
 <summary>A dog is a mirror.</summary>

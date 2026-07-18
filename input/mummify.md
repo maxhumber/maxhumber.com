@@ -13,9 +13,9 @@ It's kind of scary to kick software out of *0.x* and label it "production ready"
 
 I started writing mummify in early 2018 and debuted it at AnacondaCON that year in a talk titled ['Data Engineering for Data Scientists'](https://github.com/maxhumber/presentations/tree/master/2018-04-09_data_engineering). Though the presentation was mostly tongue-in-cheek, the talk and the package was well received.
 
-<p style="text-align:center;"><img src="images/mummify_slides.png" width="400" align="middle"></p>
+![Slides from AnacondaCON](images/mummify_slides.png){: width=400 }
 
-<p style="text-align:center;"><sup>A couple of cheeky slides from AnacondaCON</sup></p>
+*A couple of cheeky slides from AnacondaCON*
 
 Since then I've used mummify in several machine learning projects and have heard from several more people who use it regularly.
 

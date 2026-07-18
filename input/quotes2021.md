@@ -5,8 +5,8 @@ tags: quotes
 slug: quotes2021
 ---
 
-<p><img src='images/books_2021.jpg'/></p>
-<p>My favourite pearls of 2021, curated from the 69 books that I read and 1736 highlights that I clipped. Click to expand for the original quote and source:</p>
+![Books read in 2021](images/books_2021.jpg)
+My favourite pearls of 2021, curated from the 69 books that I read and 1736 highlights that I clipped. Click to expand for the original quote and source:
 
 <details markdown="1">
 <summary>You can do anything, not everything.</summary>
@@ -240,4 +240,4 @@ slug: quotes2021
 — Steve Thomas (Mid-Lich Crisis)
 
 </details>
-<p>While this list is mostly to help set the tone for who I want to be and what I want do in 2022, I hope you find it valuable.</p>
+While this list is mostly to help set the tone for who I want to be and what I want do in 2022, I hope you find it valuable.

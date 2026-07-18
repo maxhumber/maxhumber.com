@@ -5,8 +5,8 @@ tags: quotes
 slug: quotes2023
 ---
 
-<p><img src='images/books_2023.jpg'/></p>
-<p>The best ideas from all the books I read in 2023:</p>
+![Books read in 2023](images/books_2023.jpg)
+The best ideas from all the books I read in 2023:
 <details markdown="1">
 <summary>Expectations before happiness.</summary>
 

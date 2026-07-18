@@ -74,14 +74,12 @@ Looking through reddit (and elsewhere online) it seems that my frustrations are 
 
 Despite the criticism TCA is pretty popular. So who actually uses the framework? And why do they like it? To find out, I put up a [survey](https://docs.google.com/forms/d/e/1FAIpQLSdvFSCfHlHi3zjX643ZVv8Q0mBiqwBcf9FgBc4PJ-EOeZCvkw/viewanalytics) in a few iOS/Swift subreddits and got 100 responses:
 
-```markdown
 | TCA Opinion                                        | SwiftUI-first | UIKit-first |
 | -------------------------------------------------- | ------------- | ----------- |
 | I dont like it and avoid using it                  | 8             | 18          |
 | I like it a lot and prefer it for app architecture | 5             | 19          |
 | Its acceptable but not my preferred choice         | 1             | 19          |
 | Not applicable (I havent used TCA)                 | 3             | 27          |
-```
 
 Key insights:
 
@@ -96,7 +94,6 @@ So what's the alternative? Honestly, just vanilla SwiftUI! Frustrated with TCA, 
 
 Check out [my vanilla implementation](https://github.com/maxhumber/VanillaSpeechRecognition/blob/master/VanillaSpeechRecognition/SpeechRecognitionView.swift). Most of the code is in a single file (just for ease of comparison) and works seamlessly with **Xcode 16**, **Swift 6**, and **iOS 18**. Here are the important benchmarks:
 
-```markdown
 | Metric                      | Vanilla    | TCA             |
 | --------------------------- | ---------- | --------------- |
 | Dependencies                | 0          | 16              |
@@ -104,7 +101,6 @@ Check out [my vanilla implementation](https://github.com/maxhumber/VanillaSpeech
 | "Warm" Build Time (seconds) | 0.1        | 0.4             |
 | Indexing Time               | Negligible | Several minutes |
 | Lines of Code               | 319        | 579             |
-```
 
 Given that the vanilla version delivers the same functionality and testing capabilities without the complexity, boilerplate, or quirks, I just don't see the advantage of using TCA.
 
