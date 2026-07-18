@@ -13,3 +13,13 @@ My stupidly bespoke static site generator
 - `make clean` — delete `output/`
 
 Pushing to `master` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`.
+
+#### Images
+
+Drop them in `input/images/`, resized to 900px wide. `sips` ships with macOS:
+
+```
+sips -Z 900 -s format jpeg -s formatOptions 85 big.png --out input/images/small.jpg
+```
+
+Prefer JPEG — the book collages saved as PNG run ~800KB versus ~130KB as JPEG.
