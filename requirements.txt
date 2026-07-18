@@ -1,4 +1,6 @@
 Jinja2==3.1.6
-Markdown==3.10
-Pygments==2.19.2
-pillow==11.0.0
+Markdown==3.10.2
+Pygments==2.20.0
+
+# optimize_images.py only, not needed to build the site:
+# pillow==12.3.0
