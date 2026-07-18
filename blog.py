@@ -55,7 +55,8 @@ def render_rss(posts: list[Post], tag: str) -> bytes:
     channel = ET.SubElement(rss, "channel")
     ET.SubElement(channel, "title").text = f"Max Humber's #{tag} Posts"
     ET.SubElement(channel, "link").text = f"{SITE}/{tag}"
-    ET.SubElement(channel, "description").text = f"Posts tagged with #{tag} by Max Humber"
+    description = f"Posts tagged with #{tag} by Max Humber"
+    ET.SubElement(channel, "description").text = description
     for post in posts:
         item = ET.SubElement(channel, "item")
         ET.SubElement(item, "title").text = post.title
@@ -82,9 +83,7 @@ def build() -> None:
         (OUTPUT / f"{post.slug}.html").write_text(html)
 
     # Only tagged posts are listed on tag pages, feeds, and the index
-    tagged = sorted(
-        (p for p in posts if p.tags), key=lambda p: p.date, reverse=True
-    )
+    tagged = sorted((p for p in posts if p.tags), key=lambda p: p.date, reverse=True)
     tags = sorted({tag for post in tagged for tag in post.tags})
     (OUTPUT / "feed").mkdir(exist_ok=True)
     for tag in tags:
@@ -109,7 +108,9 @@ def preview(port: int = 8000) -> None:
                 return local + ".html"
             return local
 
-    handler = lambda *args: Handler(*args, directory=str(OUTPUT))
+    def handler(*args):
+        return Handler(*args, directory=str(OUTPUT))
+
     with http.server.ThreadingHTTPServer(("", port), handler) as httpd:
         print(f"Serving at http://localhost:{port}")
         try:
