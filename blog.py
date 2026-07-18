@@ -46,7 +46,7 @@ def read_post(path: Path) -> Post:
         date=meta.get("date", ""),
         tags=tags,
         content=content,
-        slug=path.stem,
+        slug=meta.get("slug", path.stem),
     )
 
 
