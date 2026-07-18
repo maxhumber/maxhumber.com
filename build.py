@@ -8,6 +8,7 @@ from xml.etree import ElementTree as ET
 
 import http.server
 import sys
+import webbrowser
 
 import markdown
 from jinja2 import Environment, FileSystemLoader
@@ -111,6 +112,7 @@ def preview(port: int = 8000) -> None:
     handler = partial(Handler, directory=str(OUTPUT))
     with http.server.ThreadingHTTPServer(("", port), handler) as httpd:
         print(f"Serving at http://localhost:{port}")
+        webbrowser.open(f"http://localhost:{port}")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
