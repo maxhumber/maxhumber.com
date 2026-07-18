@@ -75,7 +75,7 @@ Looking through reddit (and elsewhere online) it seems that my frustrations are 
 Despite the criticism TCA is pretty popular. So who actually uses the framework? And why do they like it? To find out, I put up a [survey](https://docs.google.com/forms/d/e/1FAIpQLSdvFSCfHlHi3zjX643ZVv8Q0mBiqwBcf9FgBc4PJ-EOeZCvkw/viewanalytics) in a few iOS/Swift subreddits and got 100 responses:
 
 | TCA Opinion                                        | SwiftUI-first | UIKit-first |
-| -------------------------------------------------- | ------------- | ----------- |
+| -------------------------------------------------- | ------------: | ----------: |
 | I dont like it and avoid using it                  | 8             | 18          |
 | I like it a lot and prefer it for app architecture | 5             | 19          |
 | Its acceptable but not my preferred choice         | 1             | 19          |

@@ -16,7 +16,7 @@ body {
   font-family: system-ui, sans-serif;
   font-size: 1.125rem;
   line-height: 1.6;
-  max-width: 75ch;
+  max-width: 70ch;
   margin-inline: auto;
   padding: 2rem 1rem;
   background: var(--background);
@@ -31,7 +31,10 @@ body {
   text-wrap: balance;
 }
 
-h1 { font-size: 1.9em; }
+h1 {
+  margin-block: 0 0.25rem;
+  font-size: 1.6em;
+}
 h2 { font-size: 1.4em; }
 h3 { font-size: 1.2em; }
 :is(h4, h5, h6) { font-size: 1.05em; }
@@ -49,7 +52,7 @@ a {
   }
 }
 
-:is(a, pre):focus-visible {
+:is(a, pre, table):focus-visible {
   outline: 2px solid var(--link);
   outline-offset: 3px;
 }
@@ -110,10 +113,20 @@ article {
   padding-block-end: 3rem;
 
   & header {
-    margin-block-end: 2rem;
+    margin-block-end: 1.5rem;
 
     & time {
-      display: block;
+      display: inline;
+    }
+
+    & .tags {
+      display: inline-flex;
+      gap: 0.5rem;
+      margin-inline-start: 0.75rem;
+
+      & a {
+        color: var(--muted);
+      }
     }
   }
 
@@ -187,6 +200,9 @@ pre {
 /* Tables */
 
 table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
   width: 100%;
   border-collapse: collapse;
 }
