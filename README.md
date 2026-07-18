@@ -14,6 +14,22 @@ My stupidly bespoke static site generator
 
 Pushing to `master` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 
+#### Posts
+
+One markdown file per post in `input/`, with frontmatter:
+
+```
+---
+title: Books 2024
+date: 2024-12-31
+tags: books
+slug: books2024
+---
+```
+
+`slug` sets the URL and defaults to the filename — set it only to override.
+Untagged posts still render, but stay off tag pages, feeds, and the index.
+
 #### Images
 
 Drop them in `input/images/`, resized to 900px wide. `sips` ships with macOS:
