@@ -1,12 +1,16 @@
 PYTHON := venv/bin/python
 
-.PHONY: build preview image
+.PHONY: build preview highlight image
 
 build:
 	$(PYTHON) build.py
 
 preview:
 	$(PYTHON) build.py preview
+
+# regenerate syntax highlighting colours (rarely needed)
+highlight:
+	$(PYTHON) highlight.py > assets/static/highlight.css
 
 # make image IMG=~/Desktop/books_2025.png
 image:

@@ -1,37 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<section>
-    <h3>Blog Tags</h3>
-    <div class="tags">
-        {% for tag in tags %}
-        <a href="/{{ tag }}">#{{ tag }}</a>
-        {% endfor %}
-    </div>
-</section>
-
-<section>
-    <h3>Open Source</h3>
-    <ul>
-        <li><a href="https://github.com/maxhumber/Sankey">Sankey</a> <span>Sankey diagrams in SwiftUI, powered by D3</span></li>
-        <li><a href="https://github.com/maxhumber/KeychainStorageKit">KeychainStorageKit</a> <span>@KeychainStorage property wrapper</span></li>
-        <li><a href="https://github.com/maxhumber/marc">marc</a> <span>Markov chain generator for Python and/or Swift</span></li>
-        <li><a href="https://github.com/maxhumber/redframes">redframes</a> <span>Data wrangling library that prioritizes syntax and simplicity</span></li>
-        <li><a href="https://github.com/maxhumber/gazpacho">gazpacho</a> <span>Web scraping that won't make you cry</span></li>
-        <li><a href="https://github.com/maxhumber/gif">gif</a> <span>The matplotlib Animation Extension</span></li>
-    </ul>
-</section>
-
-<section>
-    <h3>Apps</h3>
-    <ul>
-        <li><a href="https://apps.apple.com/us/app/timeseal/id6739646488">timeseal</a> <span>Time-locked message encryption</span></li>
-        <li><a href="https://apps.apple.com/us/app/uvu/id6477720856">uvu</a> <span>Stylized reddit user profile viewer</span></li>
-        <li><a href="https://apps.apple.com/us/app/nexie/id6479674361">Nexie</a> <span>Track your favorite TV shows and upcoming episodes</span></li>
-        <li><a href="https://apps.apple.com/us/app/kingbit/id1565583669">kingbit</a> <span>Turn-based multiplayer game in 100% SwiftUI</span></li>
-        <li><a href="https://apps.apple.com/us/app/ponkan/id1632470402">Ponkan</a> <span>Speech-to-Pinyin learning tool</span></li>
-        <li><a href="https://apps.apple.com/us/app/oolong/id1549289924">Oolong</a> <span>Budget tool that helps you take control of your finances</span></li>
-        <li><a href="https://apps.apple.com/us/app/graphiite/id1540277552">GRAPHIITE</a> <span>The Best 7 Minute HIIT Workout App</span></li>
-        <li><a href="https://apps.apple.com/us/app/breadbuddy/id1620912870">BreadBuddy</a> <span>Recipe scheduler for baked goods</span></li>
-    </ul>
-</section>
+<ul>
+    {% for post in posts %}
+    <li><a href="/{{ post.slug }}">{{ post.title }}</a> <span>{{ post.date }}</span></li>
+    {% endfor %}
+</ul>
 {% endblock %}

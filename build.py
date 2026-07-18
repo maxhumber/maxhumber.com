@@ -93,7 +93,7 @@ def build() -> None:
         )
         (OUTPUT / f"{tag}.html").write_text(html)
         (OUTPUT / "feed" / f"{tag}.xml").write_bytes(render_rss(tag_posts, tag))
-    html = env.get_template("index.html").render(tags=tags, is_index=True)
+    html = env.get_template("index.html").render(posts=tagged)
     (OUTPUT / "index.html").write_text(html)
 
 
