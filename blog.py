@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from email.utils import format_datetime
+from functools import partial
 from pathlib import Path
 from shutil import copytree
 from xml.etree import ElementTree as ET
@@ -76,13 +77,10 @@ def build() -> None:
     OUTPUT.mkdir(exist_ok=True)
     copytree("assets", OUTPUT, dirs_exist_ok=True)
     copytree(INPUT / "images", OUTPUT / "images", dirs_exist_ok=True)
-
     posts = [read_post(f) for f in INPUT.glob("*.md")]
     for post in posts:
         html = env.get_template("post.html").render(post=post)
         (OUTPUT / f"{post.slug}.html").write_text(html)
-
-    # Only tagged posts are listed on tag pages, feeds, and the index
     tagged = sorted((p for p in posts if p.tags), key=lambda p: p.date, reverse=True)
     tags = sorted({tag for post in tagged for tag in post.tags})
     (OUTPUT / "feed").mkdir(exist_ok=True)
@@ -93,24 +91,23 @@ def build() -> None:
         )
         (OUTPUT / f"{tag}.html").write_text(html)
         (OUTPUT / "feed" / f"{tag}.xml").write_bytes(render_rss(tag_posts, tag))
-
     html = env.get_template("index.html").render(tags=tags, is_index=True)
     (OUTPUT / "index.html").write_text(html)
 
 
+class Handler(http.server.SimpleHTTPRequestHandler):
+    """Resolve extensionless URLs the way GitHub Pages does"""
+
+    def translate_path(self, path):
+        local = super().translate_path(path)
+        if not Path(local).exists() and Path(local + ".html").exists():
+            return local + ".html"
+        return local
+
+
 def preview(port: int = 8000) -> None:
-    """Serve output/, resolving extensionless URLs the way GitHub Pages does"""
-
-    class Handler(http.server.SimpleHTTPRequestHandler):
-        def translate_path(self, path):
-            local = super().translate_path(path)
-            if not Path(local).exists() and Path(local + ".html").exists():
-                return local + ".html"
-            return local
-
-    def handler(*args):
-        return Handler(*args, directory=str(OUTPUT))
-
+    """Serve output/ locally"""
+    handler = partial(Handler, directory=str(OUTPUT))
     with http.server.ThreadingHTTPServer(("", port), handler) as httpd:
         print(f"Serving at http://localhost:{port}")
         try:
