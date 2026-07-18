@@ -3,10 +3,10 @@ PYTHON := venv/bin/python
 .PHONY: build preview clean
 
 build:
-	$(PYTHON) blog.py
+	$(PYTHON) build.py
 
 preview:
-	$(PYTHON) blog.py preview
+	$(PYTHON) build.py preview
 
 clean:
 	rm -rf output/
