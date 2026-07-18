@@ -33,10 +33,9 @@ Untagged posts still render, but stay off tag pages, feeds, and the index.
 
 #### Images
 
-Drop them in `input/images/`, resized to 900px wide. `sips` ships with macOS:
-
 ```
-sips -Z 900 -s format jpeg -s formatOptions 85 big.png --out input/images/small.jpg
+make image IMG=~/Desktop/books_2025.png
 ```
 
-Prefer JPEG — the book collages saved as PNG run ~800KB versus ~130KB as JPEG.
+Resizes to 900px wide, converts to JPEG, and drops it in `input/images/`.
+Reference it as `images/books_2025.jpg`. Uses `sips`, which ships with macOS.
