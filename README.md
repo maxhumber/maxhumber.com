@@ -10,7 +10,8 @@ My stupidly bespoke static site generator
 
 - `make build` — render `input/*.md` into `output/`
 - `make preview` — build, then serve at http://localhost:8000
-- `make clean` — delete `output/`
+
+Every build wipes `output/` first, so stale pages never linger.
 
 Pushing to `master` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 

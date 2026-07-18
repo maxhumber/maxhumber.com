@@ -26,7 +26,7 @@ jobs:
       - uses: actions/configure-pages@v6
       - uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
+          python-version: "3.14"
           cache: pip
       - run: pip install -r requirements.txt
       - run: python build.py

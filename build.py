@@ -3,7 +3,7 @@ from datetime import datetime
 from email.utils import format_datetime
 from functools import partial
 from pathlib import Path
-from shutil import copytree
+from shutil import copytree, rmtree
 from xml.etree import ElementTree as ET
 
 import http.server
@@ -74,7 +74,8 @@ def build() -> None:
     env = Environment(
         loader=FileSystemLoader("templates"), trim_blocks=True, lstrip_blocks=True
     )
-    OUTPUT.mkdir(exist_ok=True)
+    rmtree(OUTPUT, ignore_errors=True)
+    OUTPUT.mkdir()
     copytree("assets", OUTPUT, dirs_exist_ok=True)
     copytree(INPUT / "images", OUTPUT / "images", dirs_exist_ok=True)
     posts = [read_post(f) for f in INPUT.glob("*.md")]
