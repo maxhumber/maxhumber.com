@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from datetime import datetime
 from email.utils import format_datetime
 from functools import partial
-from html import unescape
 from pathlib import Path
 from shutil import copytree, rmtree
 from xml.etree import ElementTree as ET
@@ -18,7 +17,6 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 INPUT = Path("input")
 OUTPUT = Path("output")
 SITE = "https://maxhumber.com"
-BLURB = "Writing about code, books, and quotes by Max Humber"
 
 MARKDOWN_EXTENSIONS = [
     "extra",  # fenced code, tables, footnotes, attributes, and Markdown in HTML
@@ -41,7 +39,6 @@ class Post:
     tags: list[str]
     content: str
     slug: str
-    description: str
 
 
 def markdown_parser() -> markdown.Markdown:
@@ -59,15 +56,6 @@ def clean_html(content: str) -> str:
     return re.sub(r'<span class="w">(\s*)</span>', r"\1", content)
 
 
-def summarise(content: str, limit: int = 160) -> str:
-    """Return the first non-empty paragraph as a meta description."""
-    for paragraph in re.findall(r"<p>(.*?)</p>", content, re.S):
-        text = " ".join(unescape(re.sub(r"<[^>]+>", "", paragraph)).split())
-        if text:
-            return text if len(text) <= limit else text[:limit].rsplit(" ", 1)[0] + "…"
-    return BLURB
-
-
 def read_post(path: Path) -> Post:
     """Parse one Markdown post and its frontmatter."""
     parser = markdown_parser()
@@ -80,7 +68,6 @@ def read_post(path: Path) -> Post:
         tags=tags,
         content=content,
         slug=meta.get("slug", path.stem),
-        description=meta.get("description") or summarise(content),
     )
 
 
@@ -122,38 +109,15 @@ def render_rss(posts: list[Post], tag: str) -> bytes:
     return ET.tostring(rss, encoding="utf-8", xml_declaration=True)
 
 
-def sitemap_pages(posts: list[Post], tags: list[str]):
-    """Yield every indexable URL and its optional last-modified date."""
-    yield SITE, None
-    yield from ((f"{SITE}/{post.slug}", post.date) for post in posts)
-    yield from ((f"{SITE}/{tag}", None) for tag in tags)
-
-
-def render_sitemap(posts: list[Post], tags: list[str]) -> bytes:
-    """Build a sitemap of every page worth indexing."""
-    urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
-    for location, date in sitemap_pages(posts, tags):
-        url = ET.SubElement(urlset, "url")
-        ET.SubElement(url, "loc").text = location
-        if date:
-            ET.SubElement(url, "lastmod").text = date
-    return ET.tostring(urlset, encoding="utf-8", xml_declaration=True)
-
-
 def site_environment(tags: list[str]) -> Environment:
-    """Return templates with the metadata every page shares."""
+    """Return templates with the values every page shares."""
     environment = Environment(
         loader=FileSystemLoader("templates"),
         trim_blocks=True,
         lstrip_blocks=True,
         autoescape=select_autoescape(["html", "xml"]),
     )
-    environment.globals.update(
-        description=BLURB,
-        og_type="website",
-        tags=tags,
-        url=SITE,
-    )
+    environment.globals.update(tags=tags)
     return environment
 
 
@@ -183,9 +147,6 @@ def write_posts(environment: Environment, posts: list[Post]) -> None:
             "post.html",
             OUTPUT / f"{post.slug}.html",
             post=post,
-            description=post.description,
-            og_type="article",
-            url=f"{SITE}/{post.slug}",
         )
 
 
@@ -202,8 +163,6 @@ def write_tags(environment: Environment, posts: list[Post], tags: list[str]) -> 
             tag=tag,
             posts=tagged,
             rss_path=f"/feed/{tag}.xml",
-            description=f"Posts tagged with #{tag} by Max Humber",
-            url=f"{SITE}/{tag}",
         )
         (feed_directory / f"{tag}.xml").write_bytes(render_rss(tagged, tag))
 
@@ -226,10 +185,7 @@ def build() -> None:
         environment,
         "404.html",
         OUTPUT / "404.html",
-        description="The requested page could not be found.",
-        url=f"{SITE}/404",
     )
-    (OUTPUT / "sitemap.xml").write_bytes(render_sitemap(tagged, tags))
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
