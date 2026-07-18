@@ -12,7 +12,6 @@ suppressPackageStartupMessages(library(tidyverse))
 library(gganimate)
 # install image magick in terminal >> "brew install image magick"
 ```
-<br>
 
 If the Weatherman says that there is 30% chance of rain tomorrow. And it rains. Was he wrong? It's an important question. Because it rained on November 8th. And a lot of people think that it wasn't supposed to.
 
@@ -31,7 +30,6 @@ df <- tibble(
     gather(team, polling, -simulation) %>% 
     mutate(polling = ifelse(polling >= 100, 100, polling) / 100)
 ```
-<br>
 
 Imagine that this data was generated from some model. How might we represent the uncertainty in our model and around our predictions?
 

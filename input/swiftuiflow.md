@@ -9,7 +9,7 @@ SwiftUI is over 5 years old. While a lot has changed since its introduction at W
 
 This post is meant to serve as a reference guide for modern (iOS 17/18+) SwiftUI data flow. It ought to be particularly useful for working with LLMs that might crank out outdated code.
 
-#### Data Flow
+## Data Flow
 
 By "data flow" I mean: how data moves through an app and updates the UI. Data flow in SwiftUI is actually quite simple... as long as you keep two principles in mind: views automatically update when their data changes, and every piece of data needs a single source of truth. 
 
@@ -20,7 +20,7 @@ Since its release Apple has produced hundreds of hours of WWDC videos on SwiftUI
 - [Discover Observation in SwiftUI (WWDC23)](https://developer.apple.com/videos/play/wwdc2023/10115/)
 
 
-#### Value vs Reference
+## Value vs Reference
 
 I don't want to get too in the weeds, but in order to see and understand how data flow has changed we have to differentiate between value types (📦) and reference types (🔗). 
 
@@ -28,7 +28,7 @@ Value types like Strings and Ints and Doubles and Bools and structs and enums, c
 
 Apple [strongly recommends](https://www.swift.org/documentation/articles/value-and-reference-types.html) using value types for most cases. If we followed this advice more often I wouldn't have even need to write this post as most of the data flow changes in SwiftUI (from iOS 13/14 to iOS 17/18+) are related to reference types!
 
-#### Timeline
+## Timeline
 
 Legend: `✅` = current, `⛔` = avoid, `📦` = value, ` 🔗` = reference
 
@@ -69,7 +69,7 @@ Legend: `✅` = current, `⛔` = avoid, `📦` = value, ` 🔗` = reference
 - `✅` `📦` `@Entry` *replaces `EnvironmentKey`*
 
 
-#### Rosetta Code
+## Rosetta Code
 
 Here's a simple, but practical, example of modern data flow in SwiftUI (I'd encourage you to copy-and-paste this block of code into Xcode to experiment with the syntax for yourself):
 
@@ -339,7 +339,7 @@ struct ChildView_Previews: PreviewProvider {
 }
 ```
 
-#### Between the Lines
+## Between the Lines
 
 As you can see, the two blocks of code are largely the same. The only real differences are in the reference type data flow. Thanks to Observation and `@Observable` things are a little more simple and a little better aligned with how value types have been handled since iOS 13:
 
@@ -358,7 +358,7 @@ As you can see, the two blocks of code are largely the same. The only real diffe
 - 📦 `@Environment`
 - 🔗 `@Environment` *replacing `@EnvironmentObject`*
 
-#### Rough Edges
+## Rough Edges
 
 Observation framework is a great improvement to data flow in SwiftUI, but there are still some awkward parts. The most notable is that we need two different two-way read-write binding mechanisms (`@Binding` and `@Bindable`) instead of one unified approach. Even more frustrating is the explicit "rebinding" requirement for working with environment objects:
 

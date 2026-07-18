@@ -70,9 +70,7 @@ plt.scatter(x, y, c='r', alpha=1/5);
 
 And embedded images:
 
-<img src='images/yeti.png' class="img-fluid mx-auto d-block"/>
+<img src='images/yeti.png'/>
 
 I've ostensibly removed all of the barriers that historically prevented me from updating my blog regularly over the past couple of years. So expect me to write more? Hopefully? We'll see...
-<br/>
-<br/>
 <sup>*nothing is ever finished</sup>

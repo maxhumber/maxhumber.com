@@ -7,7 +7,7 @@ slug: codephilosophy
 
 John Ousterhout's [A Philosophy of Software Design](https://www.amazon.com/Philosophy-Software-Design-John-Ousterhout/dp/1732102201) is a masterpiece of software engineering wisdom. Here are some of the most impactful quotes from the book, organized by theme.
 
-#### Complexity
+## Complexity
 
 Complexity is the heart of most software engineering challenges.
 
@@ -17,7 +17,7 @@ Complexity is the heart of most software engineering challenges.
 - **Incremental Complexity**: "Complexity is incremental: you have to sweat the small stuff."
 - **Accumulating Complexity**: "Over time, complexity accumulates, and it becomes harder and harder for programmers to keep all of the relevant factors in their minds as they modify the system."
 
-#### Code Design
+## Code Design
 
 Good design is all about making the right tradeoffs and choosing the appropriate abstractions.
 
@@ -28,7 +28,7 @@ Good design is all about making the right tradeoffs and choosing the appropriate
 - **Information Hiding**: "Information hiding makes it easier to evolve the system."
 - **Avoiding Config Parameters**: "You should avoid configuration parameters as much as possible."
 
-#### DX (Developer Experience)
+## DX (Developer Experience)
 
 The humans in the software development loop are just as important as the "loops" themselves.
 

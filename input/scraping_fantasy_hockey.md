@@ -5,13 +5,11 @@ tags: code
 slug: scraping_fantasy_hockey
 ---
 
-#### How to Win Fantasy Hockey
+## How to Win Fantasy Hockey
 
 *A recipe for using python to scrape player projection data and build a value over replacement ranking model*
 
 Jupyter notebook for this blog post available [here](https://github.com/maxhumber/maxhumber.com/blob/master/blog/2019-09-28_scraping_fantasy_hockey.ipynb)
-<br/>
-<br/>
 
 №1 Identify a data source ([CBS Sports](https://www.cbssports.com/fantasy/hockey/stats/F/2019/season/projections/) is a good option)
 

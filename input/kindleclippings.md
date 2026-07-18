@@ -78,6 +78,5 @@ parse_clippings <- function(txt) {
 clippings <- parse_clippings(txt)
 ```
 
-<br />
 
 I've just pumped my clippings from 2016 through the script and everything seems to be working! I'm sifting through each highlight right now, trying to curate them down my to annual "Favourite Quotes of YYYY" post. Should have it up tomorrow!

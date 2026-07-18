@@ -15,8 +15,7 @@ Now, Shakespeare at the Stratford Festival has become an incredibly rich traditi
 
 This year, Stratford is running *Twelfth Night*, *Romeo and Juliet* and *Timon of Athens*. I was sure we had seen *Twelfth Night* and *Romeo and Juliet* so our decision was pretty easy. But still, I was kind of curious about what was still left...
 
-Data Investigation
-------------------
+## Data Investigation
 
 Simply pulling and graphing the runs for every play for single season didn't really get me anywhere...
 

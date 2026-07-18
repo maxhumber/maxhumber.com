@@ -7,11 +7,11 @@ slug: updatingsankey
 
 Just released [Sankey 2.0](https://github.com/maxhumber/Sankey/tree/2.0), an open-source package for building Sankey diagrams in SwiftUI.
 
-#### What?
+## What?
 
 A Sankey diagram visualizes flow: where stuff is coming from, where it's going, and how much stuff is moving. Thick and thin bands represent the volume of flow. Sankey diagrams are perfect for showing money, user behavior, energy usage—basically anything involving inputs, outputs, and the in-between.
 
-#### Why + What's New?
+## Why + What's New?
 
 I originally built [Sankey 1.0](https://github.com/maxhumber/Sankey/tree/1.0) in May 2022 for a contract project (no other options existed at the time). Then I forgot about it—until a couple of weeks ago when I needed a Sankey diagram for a new app.
 
@@ -58,7 +58,7 @@ struct ContentView: View {
 }
 ```
 
-#### All "Old" Code is "Bad" Code
+## All "Old" Code is "Bad" Code
 
 ![](https://i.redd.it/djajn2o19ca81.jpg)
 
@@ -68,7 +68,7 @@ While the core feature of Sankey—connecting source nodes to target nodes— re
 
 Despite these major changes, I was able to maintain a good bit of backwards compatibility (the original Quickstart still works)!
 
-#### Too Much Structure! 
+## Too Much Structure! 
 
 The Sankey package *should* be simple. It's just a `SankeyDiagram` SwiftUI component. And a few other structs that help in its construction. In 1.0, I went overboard trying to organize everything for "future extensibility", creating this convoluted mess:
 
@@ -133,7 +133,7 @@ Now that we're in "the future" I can say that all this "organization" wasn't jus
 
 Easier to work with. But more importantly, easier to delete! Because, let's be honest—future me will probably throw it all out in another two years!
 
-#### "WWAD"
+## "WWAD"
 
 While the original "structure" slowed me down, exposing too many configuration options to users was an even bigger mistake. Look at this old init signature:
 
@@ -202,6 +202,6 @@ public func nodeOpacity(_ value: Double) -> SankeyDiagram {
 
 I also replaced all externally facing hex codes with native SwiftUI colors. While implementing this was complex, I thought it was better to handle the complexity myself than burden users with it. Now Dark Mode and using a "color" like `Color.primary` will just work! 
 
-#### Conclusion
+## Conclusion
 
 The code in Sankey 2.0 is easier to read, use, and built to be thrown away! While it's not perfect—future me will probably laugh at it in the future—it works well today. And that's all that matters. If you need to visualize flows in any of your apps I hope you give it a try!

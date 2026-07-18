@@ -19,29 +19,24 @@ But then it struck me. This is perfect. I was able to catch and diagnose a garba
 
 So. Here's my monkey script and the "Starry Night Plot" that helped me throw it out:
 
-SETUP
------
+## SETUP
 
 ``` r
 library(tidyverse)
 library(viridis)
 ```
-<br>
 
-DATA
-----
+## DATA
 
 ``` r
 df <- read_csv(paste0(
     "https://raw.githubusercontent.com/maxhumber/",
     "maxhumber.com/master/assets/data/superbowl_data.csv"))
 ```
-<br>
 
 These data are scraped from [pro-football-reference.com](http://www.pro-football-reference.com/) with `purrr` and `rvest`. If you want to learn more about webscraping within the *tidverse* I have a quick post on the process [here](http://maxhumber.com/2017/01/08/vorp-hockey.html).
 
-MODEL
------
+## MODEL
 
 I was trying to build a toy model to predict who might win Super Bowl LI. I don't know much about the NFL, but I thought that I might be able to do something with "Season Average Points For" and "Season Average Points Against". Basically, I wanted to tease out the relative importance of Defense and Offense for past Super Bowl contenders:
 
@@ -53,7 +48,6 @@ mod1 <- glm(
 
 # summary(mod1)
 ```
-<br>
 
 If you run `summary(mod1)` you can see that the p-values aren't traditionally "significant", however, `pf` hits 0.1 which gets you a little `.` if you're "star-gazing" the printout.
 
@@ -67,7 +61,6 @@ pred_grid <- expand.grid(
 pred_grid$prob <- predict(
     mod1, newdata = pred_grid, type = "response")
 ```
-<br>
 
 And the putting that grid through a Tile Plot gets you:
 

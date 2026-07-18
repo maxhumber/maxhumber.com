@@ -1,5 +1,4 @@
 /* lovelace (light) + github-dark (dark), see highlight.py */
-.highlight .w { color: light-dark(#a89028, #6e7681) }
 .highlight .esc { color: light-dark(currentColor, #e6edf3) }
 .highlight .err { color: light-dark(currentColor, #f85149) }
 .highlight .x { color: light-dark(currentColor, #e6edf3) }

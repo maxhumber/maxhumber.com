@@ -19,7 +19,6 @@ library(rvest)
 library(purrr)
 library(stringr)
 ```
-<br>
 **Step 1. Find a data source.**
 
 I'm going to use [Fantasy Sports Portal](https://www.fantasysp.com/projections/hockey/weekly/) for this example.
@@ -56,7 +55,6 @@ p_fetch <- function(position = "C") {
     return(df)
 }
 ```  
-<br>
 **Step 4. Iterate through each page.**
 
 Instead of writing a for loop, I like to use `pmap` from `purrr` to iterate through the Centre, Left-Wing, Right-Wing and Defense position projection pages (I left out the Goalies for obvious reasons).
@@ -73,7 +71,6 @@ p_pull <- function() {
     return(df)
 }
 ```  
-<br>
 **Step 5. Clean and format the projection data.**
 
 This is a pretty janky use `separate` but it works to get everything into a format that I like.
@@ -139,7 +136,6 @@ p_vorp <- function() {
     return(rp)
 }
 ```  
-<br>
 **Step 7. Calculate the VORP for each player.**
 
 Simple join at this point...
@@ -156,5 +152,4 @@ vorp <- df %>%
     select(-goals_rp) %>%
     arrange(desc(goals_vorp))
 ```
-<br>
 And that's it!

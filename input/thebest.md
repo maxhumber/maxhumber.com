@@ -27,8 +27,7 @@ Worry not! We've finally reached the part where I present a method for finding "
 
 All that is required is the `tidyverse` and `forcats`
 
-Basketball
-==========
+## Basketball
 
 Step 1: Spin up the data
 
@@ -54,7 +53,6 @@ df <- tribble(
         rebounds = "REBOUND\nRATE")) %>% 
     mutate(stat = factor(stat))
 ```
-<br>
 
 Step 2: Graph!
 
@@ -111,8 +109,7 @@ df %>%
 
 Like, I can sort of tell that all the blue bars are really tall, but I can't see much beyond that. It's hard to jump back and forth between the stats and the players and tease out patterns.
 
-Pokemon
-=======
+## Pokemon
 
 Moving to the Pokemon question we can grab data from <http://pokemondb.net/>
 
@@ -127,7 +124,6 @@ df <- tribble(
     mutate(order = recode(stat, 
         HP = 6, Attack = 1, SpAtt = 2, Defense = 3, SpDef = 4, Speed = 5))
 ```
-<br>
 
 Display it in the same way:
 
@@ -164,8 +160,7 @@ df %>%
 
 And we can see that there really is no objective "Best" this time. It totally depends on what measures are important to us. Perhaps, I really value Speed and Attack in my Pokemon. Well, looking at the graph I can see that I ought to grab Charizard. And you might decide to go with Blastoise because you like big tanky defense pokemon. It totally depends! And single point value would be incredibly misleading here.
 
-Cities
-======
+## Cities
 
 Just one last example to wrap it all up. Using the PWC [Cities of Opportunity Index](http://www.pwc.com/us/en/cities-of-opportunity.html) I can grab the measures that are important me, like, Broadband Quality (need that fast internet!), Entertainment, Quality of Living, Ease of Starting a Business, and Cost of Living to generate similar comparisons.
 

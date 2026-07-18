@@ -9,7 +9,7 @@ mummify just earned it's [**1.0**](https://pypi.org/project/mummify/1.0/) releas
 
 It's kind of scary to kick software out of *0.x* and label it "production ready". But after using it for a year, it feels ready...
 
-#### Origin
+## Origin
 
 I started writing mummify in early 2018 and debuted it at AnacondaCON that year in a talk titled ['Data Engineering for Data Scientists'](https://github.com/maxhumber/presentations/tree/master/2018-04-09_data_engineering). Though the presentation was mostly tongue-in-cheek, the talk and the package was well received.
 
@@ -19,13 +19,13 @@ I started writing mummify in early 2018 and debuted it at AnacondaCON that year 
 
 Since then I've used mummify in several machine learning projects and have heard from several more people who use it regularly.
 
-#### About
+## About
 
 What is mummify? [mummify is git + logging for ML](https://github.com/maxhumber/mummify)...
 
 Basically, the package takes care of git and logging for your machine learning project so that you can focus on what's important.
 
-#### Usage
+## Usage
 
 mummify is dead simple to use. Just import it at the top and add `mummify.log(<string>)` at the bottom:
 
@@ -45,6 +45,6 @@ mummify.log(f'Test Accuracy: {accuracy}')
 
 When enabled mummify will save model snapshots and log performance after each run.
 
-#### New
+## New
 
 What's new in 1.0? Honestly, nothing. Though I rewrote the entire backend to leverage `subprocess.run` instead of older functions, the API remains the same.

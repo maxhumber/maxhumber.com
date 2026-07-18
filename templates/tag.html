@@ -2,11 +2,15 @@
 
 {% block title %}#{{ tag }} - Max Humber{% endblock %}
 
+{% block feeds %}
+<link rel="alternate" type="application/rss+xml" title="#{{ tag }}" href="{{ rss_path }}">
+{% endblock %}
+
 {% block content %}
-<h3>#{{ tag }} <a href="{{ rss_path }}" class="rss"><img src="/static/rss.svg" width="14" height="14" alt="RSS"></a></h3>
+<h1>#{{ tag }} <a href="{{ rss_path }}"><img src="/static/rss.svg" width="14" height="14" alt="RSS"></a></h1>
 <ul>
     {% for post in posts %}
-    <li><a href="/{{ post.slug }}">{{ post.title }}</a> <span>{{ post.date }}</span></li>
+    <li><a href="/{{ post.slug }}">{{ post.title }}</a> <time datetime="{{ post.date }}">{{ post.date }}</time></li>
     {% endfor %}
 </ul>
 {% endblock %}

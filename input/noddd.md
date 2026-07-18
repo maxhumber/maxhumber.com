@@ -7,11 +7,11 @@ slug: noddd
 
 Domain-driven Design (DDD) is a software design approach that attempts to structure code to "match a domain". It promises "adaptable", "scalable", and "maintainable" software by dividing apps into "bounded contexts" and by "aligning code" with "business needs". It *sounds* great, in theory. But in reality, it's a trap... especially when applied to SwiftUI.
 
-#### Code as a Liability
+## Code as a Liability
 
 Code isn't an asset. It's a liability. Every line of code is another line to test, debug, and maintain. And every line of code introduces new opportunities for new bugs. Despite the promises, DDD increases this liability by adding layers of unnecessary code and generally making a mess of everything. 
 
-#### Broken Promises
+## Broken Promises
 
 DDD might be okay for massive, legacy, enterprise Java systems from the early aughts. But it's overkill for modern SwiftUI apps. Positioned as a way to make code adaptable, scalable, and maintainable, DDD simply fails on all three fronts:
 
@@ -20,7 +20,7 @@ DDD might be okay for massive, legacy, enterprise Java systems from the early au
 - **Not Scalable** - Client-side apps don't face the same scalability challenges as backend systems. DDD's attempt to "scale for the future" just ends up adding unnecessary cruft. 
 - **Not Maintainable** - DDD buries logic under so many abstractions that understanding or updating code becomes a chore. Instead of simplifying maintenance, it creates friction and confusion.
 
-#### Code Comparison
+## Code Comparison
 
 Instead of me just telling you that DDD is bad, let me show you... Consider this vanilla implementation for fetching and displaying Todos using the [jsonplaceholder](https://jsonplaceholder.typicode.com/todos/) API:
 
@@ -287,7 +287,7 @@ struct DDDTodoView: View {
 
 Both implementations do **the exact same thing**! Seriously, copy-and-paste both blocks into Xcode and see for yourself! All the extra layers—the repository, use case, and view model—add **bloat without benefit.** But what about testing? Okay. Fair. To test the vanilla version, just create a `TodoClient.mock` extension and inject it where needed. Done.
 
-#### HackerNews
+## HackerNews
 
 If the code comparison isn't enough to convince you that DDD is unnecessary and actively counterproductive, these collected quotes from various HackerNews threads should:
 
@@ -311,6 +311,6 @@ If the code comparison isn't enough to convince you that DDD is unnecessary and 
 
 > "The biggest flaw of DDD I’ve run into is there’s no emphasis on when not to use it. There’s no mention that over-coding business rules into modules and services **locks you into business processes that are slow or impossible to update**. There’s no mention that most times you want to build services that offer platform capabilities, not focus on what 'domain' they fall into. Never mind that 'domain' is basically undefined and can mean many different concepts and different types of concepts."
 
-#### Go for Simple
+## Go for Simple
 
 SwiftUI thrives on simplicity. Not endless layers of abstractions. Instead of wasting time on "domains", "repositories", and "use cases". Let's focus on delivering features quickly with less code.

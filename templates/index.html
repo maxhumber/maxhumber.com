@@ -2,7 +2,7 @@
 {% block content %}
 <ul>
     {% for post in posts %}
-    <li><a href="/{{ post.slug }}">{{ post.title }}</a> <span>{{ post.date }}</span></li>
+    <li><a href="/{{ post.slug }}">{{ post.title }}</a> <time datetime="{{ post.date }}">{{ post.date }}</time></li>
     {% endfor %}
 </ul>
 {% endblock %}

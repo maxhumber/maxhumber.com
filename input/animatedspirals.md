@@ -25,7 +25,6 @@ ggplot(df, aes(x = month, y = value)) +
     coord_polar(theta = "x") +
     scale_x_continuous(breaks = seq(1, 12, 1))
 ```
-<br>
 
 The hard part is getting the data to squish into those four lines.
 
@@ -54,7 +53,6 @@ df <- read_csv(URL) %>%
     mutate(frame = lag(row_number())) %>%
     fill(frame, .direction = "up")
 ```
-<br>
 
 The trick, I figured out, is to split out and separate the months from the years and create a dummy linking month so that the spiral can actually spiral. If you're playing along at home, I'd recommend running things one line at a time to see the intermediate wrangling steps.
 
@@ -134,7 +132,6 @@ draw_spiral <- function(i=1) {
 
 # draw_spiral(i=219)
 ```
-<br>
 
 And, finally, you can wrap the function with an `animation` snippet to make the spiral actually spiral. (I initially tried to use `gganimate` but things started to get weird (@drob), so I fell back on vanilla `animation`):
 
@@ -149,7 +146,6 @@ saveGIF({
     ani.height = 600
 )
 ```
-<br>
 
 Hope to see your spirals soon 🌀. And I hope to see you in July 🍁!
 

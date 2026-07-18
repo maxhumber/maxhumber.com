@@ -7,7 +7,7 @@ slug: grugui
 
 A SwiftUI tribute to the timeless wisdom of "[The Grug Brained Developer](https://grugbrain.dev/)", a guide that shows simplicity is not just a choice but a way of life.
 
-#### swiftui
+## swiftui
 
 one day grug find swiftui
 
@@ -27,7 +27,7 @@ but some dev not listen
 
 some dev throw rock in river again and again
 
-#### mvvm
+## mvvm
 
 grug see dev who fight river also use mvvm
 
@@ -43,7 +43,7 @@ grug say "view model not nest. view model hold state for one thing, not many thi
 
 nest not just throw rock in river but build dam of despair
 
-#### llm
+## llm
 
 grug see dev who fight river also use llm for swiftui
 
@@ -67,7 +67,7 @@ grug say "llm only good if dev know good llm code from bad"
 
 boat sink if not
 
-#### complexity
+## complexity
 
 grug know all swiftui struggles come from one thing: complexity
 

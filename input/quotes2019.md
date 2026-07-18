@@ -5,13 +5,13 @@ tags: quotes
 slug: quotes2019
 ---
 
-<p><img src='images/books_2019.png'/></p>
+<p><img src='images/books_2019.jpg'/></p>
 
 > It is tempting to quote authors when they express our very own thoughts but with a clarity and psychological accuracy we cannot match. They know us better than we know ourselves.
 
 —Alain de Botton in *The Consolations of Philosophy*
 
-#### Things I learned this `past` year
+## Things I learned this `past` year
 
 > Writing helps me decide what I want to say.
 
@@ -77,7 +77,7 @@ slug: quotes2019
 
 —The School of Life in *An Emotional Education*
 
-#### Things to be mindful of in this `present`
+## Things to be mindful of in this `present`
 
 > Being properly mature involves a frank, unfrightened relationship with one’s own darkness, complexity and ambition. It involves accepting that not everything that makes us happy will please others or be honoured as especially ‘nice’, but it can be important to explore and hold on to it nevertheless.
 
@@ -143,7 +143,7 @@ slug: quotes2019
 
 —Sheryl Sandberg in *Option B*
 
-#### Things to remember for the `future`
+## Things to remember for the `future`
 
 > Life is like reading a novel or running a marathon. It’s not so much about reaching a goal but rather about the journey itself and the experiences along the way.
 
@@ -217,7 +217,7 @@ slug: quotes2019
 
 —Titania McGrath in *Woke*
 
-#### For the next `52` books
+## For the next `52` books
 
 > He soon came to learn that books were not the solution in entirety. They were about life, but they were not life itself, and he closed them up and put them away.
 

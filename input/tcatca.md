@@ -7,7 +7,7 @@ slug: tcatca
 
 The Composable Architecture ([TCA](https://github.com/pointfreeco/swift-composable-architecture)) is an iOS app development framework that promises "better state management", "modular design", and "testable side effects". After doing some consulting with a startup looking to adopt the framework, I can confidently say: TCA creates more problems than it solves.
 
-#### Pain.
+## Pain.
 
 TCA is packed with unnecessary complexity, redundant abstractions, and frustrating quirks. The startup I worked with ultimately abandoned the framework for the following reasons:
 
@@ -22,7 +22,7 @@ TCA is packed with unnecessary complexity, redundant abstractions, and frustrati
 
 I contend that the only good idea in TCA is the `DependencyClient` pattern. But you don't actually need TCA to implement the pattern, you can do it with just a few lines of swift (see my post on [the Client Pattern](/clientpattern)).
 
-#### Obnoxious Dependencies
+## Obnoxious Dependencies
 
 Importing TCA brings in 16 additional dependencies, most of which are other Point-Free libraries. While these libraries might have the `swift-` prefix, only `swift-collections` and `swift-syntax` are actually from Apple:
 
@@ -48,7 +48,7 @@ swift-composable-architecture 1.16.1
 
 This level of bloat is overkill for what TCA claims to solve, and the naming convention (`swift-navigation` instead of `point-free-navigation`) feels super obnoxious and deliberately disingenuous.
 
-#### Online Sentiment
+## Online Sentiment
 
 Looking through reddit (and elsewhere online) it seems that my frustrations are widely shared:
 
@@ -70,7 +70,7 @@ Looking through reddit (and elsewhere online) it seems that my frustrations are 
 - "You have to **constantly re-learn things** as the [TCA] framework gets updated."
 - "You can be **much more productive with MVVM** and get the same benefits [as TCA]."
 
-#### Survey Results
+## Survey Results
 
 Despite the criticism TCA is pretty popular. So who actually uses the framework? And why do they like it? To find out, I put up a [survey](https://docs.google.com/forms/d/e/1FAIpQLSdvFSCfHlHi3zjX643ZVv8Q0mBiqwBcf9FgBc4PJ-EOeZCvkw/viewanalytics) in a few iOS/Swift subreddits and got 100 responses:
 
@@ -90,7 +90,7 @@ Key insights:
 
 TCA's appeal seems rooted in its familiarity to UIKit-first developers, offering a structured, UIKit-like experience. For SwiftUI-first developers, TCA likely feels unnecessary and redundant, solving problems that SwiftUI already natively solves. 
 
-#### Vanilla
+## Vanilla
 
 So what's the alternative? Honestly, just vanilla SwiftUI! Frustrated with TCA, I decided to recreate the [SpeechRecognition](https://github.com/pointfreeco/swift-composable-architecture/tree/1.16.1/Examples/SpeechRecognition) example to prove that the framework is unnecessary.
 
@@ -108,6 +108,6 @@ Check out [my vanilla implementation](https://github.com/maxhumber/VanillaSpeech
 
 Given that the vanilla version delivers the same functionality and testing capabilities without the complexity, boilerplate, or quirks, I just don't see the advantage of using TCA.
 
-#### TL;DR:
+## TL;DR:
 
 The Composable Architecture might have been useful in 2019 when SwiftUI was still immature, but Apple's yearly updates have rendered it obsolete for most apps. TCA is a perfect example of over-engineering that actively makes code worse while claiming to make it better. If you're transitioning to SwiftUI, focus on mastering its native tools in lieu of adopting TCA just because it feels familiar.

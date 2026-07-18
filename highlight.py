@@ -21,7 +21,8 @@ def colour(style, token) -> str:
 
 print("/* lovelace (light) + github-dark (dark), see highlight.py */")
 for token, name in STANDARD_TYPES.items():
-    if not name or name in ("hll", "lineno"):
+    # "w" is whitespace, colouring it achieves nothing
+    if not name or name in ("hll", "lineno", "w"):
         continue
     light, dark = colour(LIGHT, token), colour(DARK, token)
     if light == dark == "currentColor":

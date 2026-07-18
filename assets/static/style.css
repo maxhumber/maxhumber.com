@@ -14,6 +14,7 @@
 
 body {
   font-family: system-ui, sans-serif;
+  font-size: 1.125rem;
   line-height: 1.6;
   max-width: 75ch;
   margin-inline: auto;
@@ -30,10 +31,10 @@ body {
   text-wrap: balance;
 }
 
-h1 { font-size: 1.8rem; }
-h2 { font-size: 1.4rem; }
-h3 { font-size: 1.2rem; }
-:is(h4, h5, h6) { font-size: 1rem; }
+h1 { font-size: 1.9em; }
+h2 { font-size: 1.4em; }
+h3 { font-size: 1.2em; }
+:is(h4, h5, h6) { font-size: 1.05em; }
 
 :is(p, ul, ol, pre, table, details) {
   margin-block: 1rem;
@@ -78,11 +79,19 @@ nav {
 ul {
   list-style: none;
   padding: 0;
+}
 
-  & span {
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
+main > ul > li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 1rem;
+  align-items: baseline;
+}
+
+time {
+  color: var(--muted);
+  font-size: 0.85em;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Posts */
@@ -95,8 +104,6 @@ article {
 
     & time {
       display: block;
-      color: var(--muted);
-      font-size: 0.9rem;
     }
   }
 
@@ -106,8 +113,10 @@ article {
   }
 
   & img {
+    display: block;
     max-width: 100%;
     height: auto;
+    margin-inline: auto;
     border-radius: 8px;
   }
 }
@@ -127,8 +136,8 @@ details {
 /* Code */
 
 :is(pre, code, .highlight) {
-  font-family: 'Fira Code', ui-monospace, monospace;
-  font-size: 0.9em;
+  font-family: ui-monospace, monospace;
+  font-size: 0.95em;
   border-radius: 8px;
 }
 
@@ -141,6 +150,7 @@ pre {
   padding: 1rem;
   background: var(--code-bg);
   overflow-x: auto;
+  line-height: 1.5;
 
   & code {
     padding: 0;
@@ -176,7 +186,7 @@ table {
 
 /* RSS */
 
-.rss {
+a[href$=".xml"] {
   display: inline-flex;
   align-items: center;
   margin-inline-start: 0.35rem;

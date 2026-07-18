@@ -13,8 +13,7 @@ As I've been logging all my activity on [Goodreads](https://www.goodreads.com/us
 
 If you happen to use Goodreads and want to do the same here's how I did it:
 
-Setup
-=====
+## Setup
 
 (Man, I love Hadley)
 
@@ -31,8 +30,7 @@ library(knitr)
 opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE)
 ```
 
-API Guide
-=========
+## API Guide
 
 I've censored my `API_KEY` and `GR_ID` but if you replace the `"XXXXXXXXXXXXX"`s with your KEY and your ID you should be good to go!
 
@@ -43,8 +41,7 @@ I've censored my `API_KEY` and `GR_ID` but if you replace the `"XXXXXXXXXXXXX"`s
 URL <- "https://www.goodreads.com/review/list?"
 ```
 
-Get Shelf
-=========
+## Get Shelf
 
 This is where the heavy lifting `GET`s done. I'm leaning on `httr` and `XML2` to parse the API responses.
 
@@ -89,8 +86,7 @@ get_df <- function(shelf) {
 df <- get_df(shelf)
 ```
 
-Clean
-=====
+## Clean
 
 After getting the XML data into my IDE I tabled and cleaned the data with `dplyr` and `tidyr`.
 
@@ -118,8 +114,7 @@ get_books <- function(df) {
 books <- get_books(df)
 ```
 
-Compare
-=======
+## Compare
 
 All of that get to this graph:
 

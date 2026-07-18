@@ -7,7 +7,7 @@ slug: clientpattern
 
 I recently wrapped up some work on a client project that used [TCA](https://github.com/pointfreeco/swift-composable-architecture). While I didn't love the framework, I'm thankful for the opportunity because it introduced me to something brilliant: the Client Pattern.
 
-#### The Client Pattern
+## The Client Pattern
 The thing that I'm calling the Client Pattern is really just a simplified version of Point-Free's `DependencyClient` from their [`swift-dependencies`](https://github.com/pointfreeco/swift-dependencies) library. While the benefits are well articulated in [this blog post](https://www.pointfree.co/blog/posts/120-macro-bonanza-dependencies), you can get most of the value with just a few lines of Swift:
 
 ```swift
@@ -34,7 +34,7 @@ func fetch(with client: MyClient = .live) async throws {
 
 No protocols. No abstractions. No third-party dependencies to manage... dependencies. Just structs and closures to make testing downstream dead simple.
 
-#### A "Real" Example
+## A "Real" Example
 
 To demonstrate the real power of the Client Pattern, let's build a client for the [Sunrise-Sunset API](https://sunrise-sunset.org/api).
 
@@ -158,7 +158,7 @@ And inject it into previews:
 }
 ```
 
-#### Copy-and-paste
+## Copy-and-paste
 
 Here's all of the code in a single block that you can copy-and-paste directly into Xcode to try out the Client Pattern for yourself:
 
@@ -265,7 +265,7 @@ struct SuntimesClientView: View {
         .environment(\.suntimesClient, .preview) // Injects mock client
 }
 ```
-#### The Old Way (Don't Do This)
+## The Old Way (Don't Do This)
 
 For comparison, here's the protocol-based [Service Pattern](https://medium.com/livefront/creating-a-service-layer-in-swift-ea771088fb66) I've previously used for app networking:
 
@@ -363,7 +363,7 @@ struct SuntimesServiceView: View {
 }
 ```
 
-#### Keeping It Simple
+## Keeping It Simple
 
 I'm really excited about the Client Pattern going forward as it:
 
