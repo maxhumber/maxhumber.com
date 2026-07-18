@@ -19,7 +19,6 @@ INPUT = Path("input")
 OUTPUT = Path("output")
 SITE = "https://maxhumber.com"
 BLURB = "Writing about code, books, and quotes by Max Humber"
-AVATAR = f"{SITE}/static/signature.png"
 
 MARKDOWN_EXTENSIONS = [
     "extra",  # fenced code, tables, footnotes, attributes, and Markdown in HTML
@@ -43,7 +42,6 @@ class Post:
     content: str
     slug: str
     description: str
-    image: str
 
 
 def markdown_parser() -> markdown.Markdown:
@@ -70,20 +68,12 @@ def summarise(content: str, limit: int = 160) -> str:
     return BLURB
 
 
-def absolute_url(url: str) -> str:
-    """Resolve a site-relative URL for feeds and social metadata."""
-    if url.startswith(("http://", "https://")):
-        return url
-    return f"{SITE}/{url.lstrip('/')}"
-
-
 def read_post(path: Path) -> Post:
     """Parse one Markdown post and its frontmatter."""
     parser = markdown_parser()
     content = clean_html(parser.convert(path.read_text()))
     meta = {key: values[0] for key, values in parser.Meta.items()}
     tags = [tag.strip() for tag in meta.get("tags", "").split(",") if tag.strip()]
-    image = re.search(r"""<img[^>]*src=["']([^"']+)""", content)
     return Post(
         title=meta.get("title", ""),
         date=meta.get("date", ""),
@@ -91,7 +81,6 @@ def read_post(path: Path) -> Post:
         content=content,
         slug=meta.get("slug", path.stem),
         description=meta.get("description") or summarise(content),
-        image=absolute_url(image.group(1)) if image else AVATAR,
     )
 
 
@@ -161,7 +150,6 @@ def site_environment(tags: list[str]) -> Environment:
     )
     environment.globals.update(
         description=BLURB,
-        image=AVATAR,
         og_type="website",
         tags=tags,
         url=SITE,
@@ -196,7 +184,6 @@ def write_posts(environment: Environment, posts: list[Post]) -> None:
             OUTPUT / f"{post.slug}.html",
             post=post,
             description=post.description,
-            image=post.image,
             og_type="article",
             url=f"{SITE}/{post.slug}",
         )
